@@ -1,0 +1,31 @@
+@font-face {
+	font-family: 'loan-icons';
+	src:url('../font/loan-icons.eot');
+	src:url('../font/loan-icons.eot?#iefix') format('embedded-opentype'),
+		url('../font/loan-icons.ttf') format('truetype'),
+		url('../font/loan-icons.woff') format('woff'),
+		url('../font/loan-icons.svg#loan-icons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+.icons { 
+  font-family:'loan-icons'; 
+  font-weight: normal;
+  font-weight:400; 
+  font-style: normal;
+  speak: none;
+  text-decoration: none;
+  text-transform: none;  
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icons:after:hover {
+  text-decoration:none
+}
+.icons-calendar:before { content:"\e600" }
+.icons-check:before { content:"\e601" }
+.icons-cross:before { content:"\e602" }
+.icons-arrowRright:before { content:"\e603" }
+.icons-info:before { content:"\e604" }
+
+
