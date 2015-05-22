@@ -1,24 +1,4 @@
 $(function(){
-/*选择学校*/
-	/*$("#school-name").click(function(){
-		$(".mask").show();
-		$(".mask").height($(window).height());
-		var wheight=$(window).height();
-		var cschool=$("#c_school").height();
-
-		$("#c_school").css("top",Math.round((wheight-cschool)/2-10));
-		$("#cschool_list li").click(function(){
-			$(this).addClass("active").siblings().removeClass();
-			a=$(this).html();
-			$(".mask").hide();	
-			$("#school-name").val(a.substring(33));
-		})
-		$("#close1").click(function(){
-			$(".mask").hide();
-		})
-	})*/
-
-
 /*验证提示框位置适配*/
 	wheight=$(window).height();
 	$("#n_validate").css("top",-wheight/2);
@@ -61,6 +41,14 @@ $(function(){
 			})
 			this.focus();
 		}
+		if($("#major").val()!=""){
+			var v1=$("#major").val().substr(-2,2);	
+			var v2=$("#stu_id").val().substr(0,2);
+			if(v1!=v2){
+				error2();
+				$("#stu_id").focus();
+			}
+		}
 	})
 
 	/*验证个人信息是否完整*/
@@ -75,6 +63,8 @@ $(function(){
 		}
 		if(ipt_flag==1){
 			$("#next").removeAttr("disabled");
+		}else{
+			$("#next").attr("disabled","disabled");
 		}
 	}
 
@@ -82,7 +72,12 @@ $(function(){
 		cmd();
 	})
 
-	/*输入详细地址时触发*/
+	/*输入每个输入框时判断表单是否完整*/
+	
+	$('#name').bind('input propertychange', function() {cmd();});
+	$('#stu_id').bind('input propertychange', function() {cmd();});
+	$('#school-name').bind('input propertychange', function() {cmd();});
+	$('#majot').bind('input propertychange', function() {cmd();});
 	$('#address').bind('input propertychange', function() {cmd();}); 
 
 /*个人信息验证有误*/
@@ -97,6 +92,7 @@ function error2(){
 }
 
 /*个人信息被占用提示框*/
+function error3(){
 	$(".mask8").height($(window).height());
 	var wheight=$(window).height();
 	var cschool=$("#error3").height();
@@ -105,7 +101,7 @@ function error2(){
 	$("#e3-close").click(function(){
 		$(".mask8").hide();
 	})
-
+}
 
 })    /*$(function)结束*/
 

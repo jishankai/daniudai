@@ -25,7 +25,7 @@
 							<div class="forms__group">
 			                    <label class="forms__label">姓名</label>
 			                    <span class="input__box">             
-			                        <input type="text" class="forms_input" placeholder="真实姓名"  id="name">
+			                        <input type="text" class="forms_input" placeholder="真实姓名"  id="name" name="name">
 			                        <!-- onchange="javascript:if(!/^[\u4e00-\u9fa5\.]+$/gi.test(this.value))validateName();" -->
 			                        <span class="icon-option"><i class="icons icons-cross"></i></span>
 			                    </span>
@@ -33,7 +33,7 @@
 			                <div class="forms__group">
 			                    <label class="forms__label">学生证</label>
 			                    <span class="input__box no-border">   
-			                        <input type="text" class="forms_input" placeholder="学生证号" id="stu_id">
+			                        <input type="text" class="forms_input" placeholder="学生证号" id="stu_id" name="stu_id">
 			                        <span class="icon-option"><i class="icons icons-cross"></i></span>
 			                    </span>
 			                </div> 
@@ -50,7 +50,7 @@
 			                <div class="forms__group">
 			                    <label class="forms__label">学校</label>
 			                    <span class="input__box">             
-			                        <input type="text" class="forms_input" placeholder="学校"  id="school-name">
+			                        <input type="text" class="forms_input" placeholder="学校"  id="school-name" name="school-name">
 			                        <span class="icon-option"><i class="icons icons-arrowRright"></i></span>
 			                    </span>
 			                </div>
@@ -66,7 +66,7 @@
 							 <div class="forms__group">
 			                    <label class="forms__label">专业</label>
 			                    <span class="input__box">             
-			                        <input type="text" class="forms_input" placeholder="专业/入学年份" id="major">
+			                        <input type="text" class="forms_input" placeholder="专业/入学年份" id="major" name="major">
 			                        <input type="hidden" name="degrees" value="" id="cdegrees" />
 			                        <span class="icon-option"><i class="icons icons-arrowRright"></i></span>
 			                    </span>
@@ -75,7 +75,7 @@
 			                <div class="forms__group">
 			                    <label class="forms__label">详细地址</label>
 			                    <span class="input__box no-border">   
-			                        <input type="text" class="forms_input" placeholder="宿舍楼和房间号" id="address">
+			                        <input type="text" class="forms_input" placeholder="宿舍楼和房间号" id="address" name="address">
 			                        <span class="icon-option"><i class="icons icons-cross"></i></span>
 			                    </span>
 			                </div>
@@ -141,7 +141,7 @@
 				</div>
 				<div class="lists-body">
 					<ul class="lists-main" style="max-height:300px;" id="college-list"><!--max-height值跟屏幕高度有关-->
-						<li class="active"><i class="icons icons-check"></i>信息与技术工程学院</li>
+						<!-- <li class="active"><i class="icons icons-check"></i>信息与技术工程学院</li>
 						<li><i class="icons icons-check"></i>信息与技术工程学院</li>
 						<li><i class="icons icons-check"></i>信息与技术工程学院</li>
 						<li><i class="icons icons-check"></i>信息与技术工程学院</li>
@@ -161,7 +161,7 @@
 						<li><i class="icons icons-check"></i>信息与技术工程学院</li>
 						<li><i class="icons icons-check"></i>信息与技术工程学院</li>
 						<li><i class="icons icons-check"></i>信息与技术工程学院</li>	
-						<li class="last-child"><i class="icons icons-check"></i>物理学院</li>			
+						<li class="last-child"><i class="icons icons-check"></i>物理学院</li> -->			
 					</ul>
 				</div>
 			</div>
@@ -181,8 +181,8 @@
 				</div>
 				<div class="lists-body">
 					<ul class="lists-main" id="cmajor_list">
-						<li class="active"><i class="icons icons-check"></i>计算机</li>	
-						<li class="last-child"><i class="icons icons-check"></i>微电子</li>			
+						<!-- <li class="active"><i class="icons icons-check"></i>计算机</li>	
+						<li class="last-child"><i class="icons icons-check"></i>微电子</li>	 -->		
 					</ul>						
 				</div>
 			</div>
@@ -201,8 +201,12 @@
 				</div>
 				<div class="lists-body">
 					<ul class="lists-main" id="year_list">
-						<li class="active"><i class="icons icons-check"></i>2013</li>	
-						<li class="last-child"><i class="icons icons-check"></i>2014</li>			
+						<li class="active"><i class="icons icons-check"></i>2010</li>
+						<li><i class="icons icons-check"></i>2011</li>
+						<li><i class="icons icons-check"></i>2012</li>
+						<li><i class="icons icons-check"></i>2013</li>	
+						<li><i class="icons icons-check"></i>2014</li>
+						<li class="last-child"><i class="icons icons-check"></i>2015</li>			
 					</ul>
 				</div>
 			</div>
@@ -308,6 +312,22 @@ function mclick(){
 			$(".mask1").hide();	
 			$("#cdegrees").val(a.substring(33));
 
+/*根据学校请求学院信息*/
+			asname=$("#school-name").val();
+			$.ajax({
+					url:"",
+					data: {sname:asname},
+					type: "post",
+					success: function (data) {
+						var json_x = $.parseJSON(data);
+						if (json_x.data.isSuccess) {
+							for(var i=0; i<json_x.data.lenth; i++){
+								$("#college-list").append("<li><i class='icons icons-check'></i>"+json_x.data[i]+"</li>");
+							}
+						} 				
+					}
+			});/*$.ajax结束*/
+
 			/*选择学院*/
 			$(".mask2").show();
 			var wheight=$(window).height();
@@ -320,6 +340,22 @@ function mclick(){
 
 				/*选择专业*/
 				$(".mask2").hide();
+
+				/*根据学院请求专业信息*/
+				$.ajax({
+						url:"http://www.baidu.com",
+						data: {sname:college},
+						type: "post",
+						success: function (data) {
+							var json_x = $.parseJSON(data);
+							if (json_x.data.isSuccess) {
+								for(var i=0; i<json_x.data.lenth; i++){
+									$("#cmajor_list").append("<li><i class='icons icons-check'>"+json_x.data[i]+"</li>");
+								}
+							} 				
+						}
+				});/*$.ajax结束*/
+
 				$(".mask3").show();
 				var wheight=$(window).height();
 				var cmajor=$("#c_major").height();
@@ -331,47 +367,55 @@ function mclick(){
 					$(".mask3").hide();
 
 					/*选择入学年份*/
-						$(".mask4").show();
-						var wheight=$(window).height();
-						var ayear=$("#admission_year").height();
-						$("#admission_year").css("top",Math.round((wheight-ayear)/2-10));
-						$("#year_list li").click(function(){
-							$(this).addClass("active").siblings().removeClass();
-							d=$(this).html();
-							admission_year=d.substring(33);
-							$(".mask4").hide();
-							$("#major").val(major+'/'+admission_year);
+					$(".mask4").show();
+					var wheight=$(window).height();
+					var ayear=$("#admission_year").height();
+					$("#admission_year").css("top",Math.round((wheight-ayear)/2-10));
+					$("#year_list li").click(function(){
+						$(this).addClass("active").siblings().removeClass();
+						d=$(this).html();
+						admission_year=d.substring(33);
+						$(".mask4").hide();
+						$("#major").val(major+'/'+admission_year);
 
-							/*验证入学年份和学生证号是否匹配*/
+						/*验证入学年份和学生证号是否匹配*/
+						if($("#stu_id").val()!=""){
 							stu_id=$("#stu_id").val();
-							var a1=admission_year.substring(2,4);
+							var a1=admission_year.substring(0,4);
 							var b1=stu_id.substring(0,2);
 							if(a1!=b1){
 								error2();
 							}
-
-							$("#close5").click(function(){
-								$(".mask4").hide();
-							})
-						})/*$("#year_list li").click结束*/
-
-					$("#close4").click(function(){
-						$(".mask3").hide();
-					})
-				})/*$("#cmajor_list li").click结束*/
-
-				$("#close3").click(function(){
-					$(".mask2").hide();
-				})
+						}
+	
+					})/*$("#year_list li").click结束*/					
+				})/*$("#cmajor_list li").click结束*/			
 			})/*$("#college-list li").click结束*/
-
 		})/*$("#cdegrees_list li").click结束*/
 		$("#close2").click(function(){
 			$(".mask1").hide();
 		})
+		$("#close3").click(function(){
+			$(".mask2").hide();
+		})
+		$("#close4").click(function(){
+			$(".mask3").hide();
+		})
+		$("#close5").click(function(){
+			$(".mask4").hide();
+		})
 
+}/*function mclick()结束*/
+/*个人信息验证有误*/
+function error2(){
+	$(".mask6").show();
+	var wheight=$(window).height();
+	var pi_error=$("#pi_error").height();
+	$("#pi_error").css("top",Math.round((wheight-pi_error)/2-10));
+	$("#close7").click(function(){
+		$(".mask6").hide();
+	})
 }
-
 
 </script>
 

@@ -119,6 +119,8 @@ $("#name").blur(function(){
 		}
 		if(ipt_flag==1){
 			$("#next2").removeAttr("disabled");
+		}else{
+			$("#next2").attr("disabled","disabled");
 		}
 	}
 
@@ -127,6 +129,11 @@ $("#name").blur(function(){
 	})
 
 /*输入详细地址时触发（填写完信息后让下一步变蓝）*/
+	$('#bank-name').bind('input propertychange', function() {cmd();});
+	$('#bc-num').bind('input propertychange', function() {cmd();});
+	$('#cbc-num').bind('input propertychange', function() {cmd();});
+	$('#name').bind('input propertychange', function() {cmd();});
+	$('#id-num').bind('input propertychange', function() {cmd();});
 	$('#phone-num').bind('input propertychange', function() {cmd();}); 
 
 /*个人信息被占用提示框*/
