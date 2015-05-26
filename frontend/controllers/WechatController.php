@@ -34,7 +34,7 @@ class WechatController extends \yii\web\Controller
 
     public function actionSetMenu()
     {
-        $appid = Yii::$app->params['wechat_appid'];
+        $appId = Yii::$app->params['wechat_appid'];
         $secret = Yii::$app->params['wechat_appsecret'];
 
         $menu = new Menu($appId, $secret);
