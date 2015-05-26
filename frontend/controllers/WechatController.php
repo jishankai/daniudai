@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use Yii;
 use Overtrue\Wechat\Server;
 
 class WechatController extends \yii\web\Controller
