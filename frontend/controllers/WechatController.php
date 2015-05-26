@@ -32,14 +32,14 @@ class WechatController extends \yii\web\Controller
         echo $result;
     }
 
-    public function actionSetMenu()
+    public function actionSetmenu()
     {
         $appId = Yii::$app->params['wechat_appid'];
         $secret = Yii::$app->params['wechat_appsecret'];
 
         $menu = new Menu($appId, $secret);
         $menus = array(
-            new MenuItem("申请贷款", 'view', Url::to(['loan/index'])),
+            new MenuItem("申请贷款", 'view', Url::to(['loan/index'], TRUE)),
             new MenuItem("我", 'click', 'ME'),
         );
 
