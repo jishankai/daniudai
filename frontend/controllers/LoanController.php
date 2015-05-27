@@ -67,7 +67,31 @@ class LoanController extends \yii\web\Controller
 
     public function actionSchool()
     {
+        $money = $_POST['money'];
+        $duration = $_POST['duration'];
+        $rate = $_POST['rate'];
+        
         $user = $_SESSION['user'];
+        $loan = Loan::findOne(['wechat_id'=>$user['openid']]);
+        if (isset($loan) AND $loan->status=0) {
+            $loan->money = $money;
+            $loan->duration = $duration;
+            $loan->rate = $rate;
+            $loan->start_at = time();
+            $loan->end_at = time()+$duration*3600*24;
+        } else {
+            $loan = new Loan;
+            $loan->wechat_id = $user['openid'];
+            $loan->money = $money;
+            $loan->duration = $duration;
+            $loan->rate = $rate;
+            $loan->status = 0;
+            $loan->start_at = time();
+            $loan->end_at = time()+$duration*3600*24;
+            $loan->create_at = time();
+        }
+        $loan->save();
+
         $school = School::findOne($user['openid']);
 
         return $this->renderPartial('school', array('school'=>$school));
