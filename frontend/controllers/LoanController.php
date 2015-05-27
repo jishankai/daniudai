@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use Yii;
 use Overtrue\Wechat\Auth;
 use backend\models\User; 
+use backend\models\Loan; 
 
 class LoanController extends \yii\web\Controller
 {
