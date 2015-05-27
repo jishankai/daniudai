@@ -37,8 +37,8 @@
 	<div>100天，200天，300天</div>
 	<p>随你所需，不是分期，到期才还款哟</p>
 
-    <a href="<?php Url::to(['loan/lend'])?>">立即申请</a>
-    <a href="<?php Url::to(['loan/lend','type'=>'graduate'])?>">毕业专属通道</a>
+    <a href="<?php echo Url::to(['loan/lend'])?>">立即申请</a>
+    <a href="<?php echo Url::to(['loan/lend','type'=>'graduate'])?>">毕业专属通道</a>
 
 </div>
 </body>
