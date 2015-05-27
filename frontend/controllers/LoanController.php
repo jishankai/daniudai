@@ -21,8 +21,8 @@ class LoanController extends \yii\web\Controller
         $appid = Yii::$app->params['wechat_appid'];
         $appsecret = Yii::$app->params['wechat_appsecret'];
 
+        $auth = new Auth($appid, $appsecret);
         if (empty($_SESSION['user'])) {
-            $auth = new Auth($appid, $appsecret);
             $user = $auth->authorize('http://dev.imengstar.com/index.php?r=loan/index', 'snsapi_base', 'STATE'); // 返回用户 Bag
             $_SESSION['user'] = $user;
         } else {
@@ -36,6 +36,11 @@ class LoanController extends \yii\web\Controller
             try {
                 $u = new User;
                 $u->wechat_id = $open_id;
+                $u->name = '';
+                $u->id = '';
+                $u->mobile = 0;
+                $u->bank = '';
+                $u->bank_id = 0;
                 $u->created_at = time();
                 $u->save();
                 $transaction->commit();
