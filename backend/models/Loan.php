@@ -7,6 +7,7 @@ use Yii;
 /**
  * This is the model class for table "loan".
  *
+ * @property integer $loan_id
  * @property string $wechat_id
  * @property integer $money
  * @property integer $duration
@@ -49,6 +50,7 @@ class Loan extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+            'loan_id' => 'Loan ID',
             'wechat_id' => 'Wechat ID',
             'money' => 'Money',
             'duration' => 'Duration',
