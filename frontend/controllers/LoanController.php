@@ -16,6 +16,12 @@ class LoanController extends \yii\web\Controller
         return $this->renderPartial('bank', array('user'=>$u));
     }
 
+    public function actionLend($type='common')
+    {
+        $rate = ($type=='common')?0.03:0.02;
+        return $this->renderPartial('lend', array('rate'=>$rate));
+    }
+
     public function actionIndex()
     {
         $appid = Yii::$app->params['wechat_appid'];

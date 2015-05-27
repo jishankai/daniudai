@@ -57,7 +57,7 @@
 					</div>
 					<div class="repay-text">
 						<h3>还款金额：</h3>
-						<span class="r-right"><em class="f-orange">￥<span id="return-num">1030</span></em></span>
+                        <span class="r-right"><em class="f-orange">￥<span id="return-num"><?php echo 1000*(1+$rate)?></span></em></span>
 					</div>
 					<form class="forms">
 		                <div class="forms__option">
@@ -80,7 +80,7 @@
 	
 	   $("#range-color1").width((abc-1)*(ww/9));
 	   $("#lend-num2").html($("#lend-num").html()*1000);
-	   $("#return-num").html($("#lend-num").html()*1000+$("#lend-num").html()*1000*$("#lend-time").html()*0.03);
+	   $("#return-num").html($("#lend-num").html()*1000+$("#lend-num").html()*1000*$("#lend-time").html()*<?php echo $rate?>);
 	}
 
 	function bb(){
@@ -91,7 +91,7 @@
 	
 	   $("#range-color2").width((abc-1)*(ww/3));
 	   $("#lend-time2").html($("#lend-time").html());
-	   $("#return-num").html($("#lend-num").html()*1000+$("#lend-num").html()*1000*$("#lend-time").html()*0.03);
+	   $("#return-num").html($("#lend-num").html()*1000+$("#lend-num").html()*1000*$("#lend-time").html()*<?php echo $rate?>);
 	}
 </script>
 </html>
