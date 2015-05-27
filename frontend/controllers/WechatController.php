@@ -20,7 +20,8 @@ class WechatController extends \yii\web\Controller
 
         $server = new Server($appId, $token, $encodingAESKey);
         $server->on('message', function($message) {
-            return Message::make('text')->content('儿童节就是大牛君和大家见面的日子啦，各位大牛敬请期待哦！没事可以调戏调戏客服');
+            return Message::make('transfer');
+            //return Message::make('text')->content('儿童节就是大牛君和大家见面的日子啦，各位大牛敬请期待哦！没事可以调戏调戏客服');
         });
 
         $server->on('event', 'subscribe', function($event){

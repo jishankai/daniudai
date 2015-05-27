@@ -314,18 +314,24 @@ function mclick(){
 			$("#cdegrees").val(a.substring(33));
 
 /*根据学校请求学院信息*/
+<<<<<<< HEAD
 			/*asname=$("#school-name").val();*/
 			/*$.ajax({
 					url:"",
 					data: {sname:asname},
 					type: "post",
+=======
+			asname=$("#school-name").val();
+			$.ajax({
+                    url:"http://dev.imengstar.com:8080/schools",
+					data: {},
+					type: "get",
+>>>>>>> 0ba0dd873acabc4d68b29d64a4c3da2550c16ffd
 					success: function (data) {
 						var json_x = $.parseJSON(data);
-						if (json_x.data.isSuccess) {
-							for(var i=0; i<json_x.data.lenth; i++){
-								$("#college-list").append("<li><i class='icons icons-check'></i>"+json_x.data[i]+"</li>");
-							}
-						} 				
+                        for(var i=0; i<json_x.data.lenth; i++){
+                            $("#college-list").append("<li><i class='icons icons-check'></i>"+json_x.data[i]+"</li>");
+                        }
 					}
 			});*/
 			<?php
