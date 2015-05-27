@@ -32,7 +32,7 @@ class LoanController extends \yii\web\Controller
 
         $u = User::findOne($open_id);
         if (!isset($u)) {
-            $transaction = Yii::$db->beginTransaction();
+            $transaction = Yii::$app->db->beginTransaction();
             try {
                 $u = new User;
                 $u->wechat_id = $open_id;
