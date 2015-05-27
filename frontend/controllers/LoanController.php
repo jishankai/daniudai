@@ -7,6 +7,7 @@ use Overtrue\Wechat\Auth;
 use backend\models\User; 
 use backend\models\Loan; 
 use backend\models\Student;
+use backend\models\School;
 
 class LoanController extends \yii\web\Controller
 {
@@ -130,8 +131,9 @@ class LoanController extends \yii\web\Controller
         }
 
         $student = Student::findOne($user['openid']);
+        $schools = School::findAll();
 
-        return $this->renderPartial('school', array('student'=>$student));
+        return $this->renderPartial('school', array('student'=>$student, 'schools'=>$schools));
     }
 
     public function actionSuccess()
