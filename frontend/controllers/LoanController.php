@@ -131,7 +131,7 @@ class LoanController extends \yii\web\Controller
         }
 
         $student = Student::findOne($user['openid']);
-        $schools = School::findAll();
+        $schools = School::find()->all();
 
         return $this->renderPartial('school', array('student'=>$student, 'schools'=>$schools));
     }
