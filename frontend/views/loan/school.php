@@ -339,7 +339,7 @@ function mclick(){
 				foreach($school as $k=>$v){
 					if($v["name"]==$asname){
 						for(var i=0; i< $school.length i++){
-								echo "<script>$('#college-list').append('<li>"."<i class='icons icons-check'>"."</i>'+$v['depart']+'</li>');</script>";
+								echo "<script>$('#college-list').append('<li>'+$v['depart']+'</li>');</script>";
 							}
 					}
 				}
@@ -377,7 +377,7 @@ function mclick(){
 				foreach($school as $k=>$v){
 					if($v["depart"]==$adpart){
 						for(var i=0; i< $school.length i++){
-								echo "<script>$('#college-list').append('<li>"."<i class='icons icons-check'>"."</i>'+$v['major']+'</li>');</script>";
+								echo "<script>$('#college-list').append('<li>'+$v['major']+'</li>');</script>";
 							}
 					}
 				}
