@@ -11,6 +11,8 @@ use Overtrue\Wechat\MenuItem;
 
 class WechatController extends \yii\web\Controller
 {
+    public $enableCsrfValidation = false;
+
     public function actionMessage()
     {
         $appId = Yii::$app->params['wechat_appid'];
