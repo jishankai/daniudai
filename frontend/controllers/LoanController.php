@@ -28,13 +28,11 @@ class LoanController extends \yii\web\Controller
         $appid = Yii::$app->params['wechat_appid'];
         $appsecret = Yii::$app->params['wechat_appsecret'];
 
-        $auth = new Auth($appid, $appsecret);
-        if (!isset($_GET['code']) AND empty($_SESSION['user'])) {
-            $auth->authorize('http://dev.imengstar.com/index.php?r=loan/index', 'snsapi_base'); // 返回用户 Bag
-        }
         if (empty($_SESSION['user'])) {
-            $_SESSION['user'] = $auth->user();
-        } 
+            $auth = new Auth($appid, $appsecret);
+            $user = $auth->authorize('http://dev.imengstar.com/index.php?r=loan/index', 'snsapi_base'); // 返回用户 Bag
+            $_SESSION['user'] = $user();
+        }
         $user = $_SESSION['user'];
         
         $open_id = $user['openid'];
