@@ -11,6 +11,7 @@ class LoanController extends \yii\web\Controller
 {
     public function actionBank()
     {
+        session_start();
         $user = $_SESSION['user'];
         $u = User::findOne($user['openid']);
 
@@ -28,6 +29,7 @@ class LoanController extends \yii\web\Controller
         $appid = Yii::$app->params['wechat_appid'];
         $appsecret = Yii::$app->params['wechat_appsecret'];
 
+        session_start();
         if (empty($_SESSION['user'])) {
             $auth = new Auth($appid, $appsecret);
             $user = $auth->authorize('http://dev.imengstar.com/index.php?r=loan/index', 'snsapi_base'); // 返回用户 Bag
@@ -71,6 +73,7 @@ class LoanController extends \yii\web\Controller
         $duration = $_POST['duration'];
         $rate = $_POST['rate'];
         
+        session_start();
         $user = $_SESSION['user'];
         $loan = Loan::findOne(['wechat_id'=>$user['openid']]);
         if (isset($loan) AND $loan->status=0) {
@@ -88,7 +91,7 @@ class LoanController extends \yii\web\Controller
             $loan->status = 0;
             $loan->start_at = time();
             $loan->end_at = time()+$duration*3600*24;
-            $loan->create_at = time();
+            $loan->created_at = time();
         }
         $loan->save();
 
