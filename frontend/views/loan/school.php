@@ -67,7 +67,8 @@
 			                    <label class="forms__label">专业</label>
 			                    <span class="input__box">             
 			                        <input type="text" class="forms_input" placeholder="专业/入学年份" id="major" name="major">
-			                        <input type="hidden" name="degrees" value="" id="cdegrees" />
+			                        <input type="hidden"  value="" id="cdegrees" />
+			                        <input type="hidden" value="" id="adpart"/>
 			                        <span class="icon-option"><i class="icons icons-arrowRright"></i></span>
 			                    </span>
 			                </div>
@@ -313,8 +314,8 @@ function mclick(){
 			$("#cdegrees").val(a.substring(33));
 
 /*根据学校请求学院信息*/
-			asname=$("#school-name").val();
-			$.ajax({
+			/*asname=$("#school-name").val();*/
+			/*$.ajax({
 					url:"",
 					data: {sname:asname},
 					type: "post",
@@ -326,8 +327,17 @@ function mclick(){
 							}
 						} 				
 					}
-			});/*$.ajax结束*/
-
+			});*/
+			<?php
+				var $asname = echo "<script>$('#school-name').val();</script>";
+				foreach($school as $k=>$v){
+					if($v["name"]==$asname){
+						for(var i=0; i< $school.length i++){
+								echo "<script>$('#college-list').append('<li>"."<i class='icons icons-check'>"."</i>'+$v['depart']+'</li>');</script>";
+							}
+					}
+				}
+			?>
 			/*选择学院*/
 			$(".mask2").show();
 			var wheight=$(window).height();
@@ -337,12 +347,12 @@ function mclick(){
 				$(this).addClass("active").siblings().removeClass();
 				b=$(this).html();
 				college=b.substring(33);
-
+				$("#adpart").val(college);
 				/*选择专业*/
 				$(".mask2").hide();
 
 				/*根据学院请求专业信息*/
-				$.ajax({
+				/*$.ajax({
 						url:"http://www.baidu.com",
 						data: {sname:college},
 						type: "post",
@@ -354,7 +364,18 @@ function mclick(){
 								}
 							} 				
 						}
-				});/*$.ajax结束*/
+				});*/
+				
+				<?php
+				var $adpart = echo "<script>$('#adpart').val();</script>";
+				foreach($school as $k=>$v){
+					if($v["depart"]==$adpart){
+						for(var i=0; i< $school.length i++){
+								echo "<script>$('#college-list').append('<li>"."<i class='icons icons-check'>"."</i>'+$v['major']+'</li>');</script>";
+							}
+					}
+				}
+				?>
 
 				$(".mask3").show();
 				var wheight=$(window).height();
