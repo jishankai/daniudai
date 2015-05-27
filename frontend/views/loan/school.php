@@ -314,36 +314,29 @@ function mclick(){
 			$("#cdegrees").val(a.substring(33));
 
 /*根据学校请求学院信息*/
-<<<<<<< HEAD
-			/*asname=$("#school-name").val();*/
-			/*$.ajax({
-					url:"",
-					data: {sname:asname},
-					type: "post",
-=======
-			asname=$("#school-name").val();
-			$.ajax({
-                    url:"http://dev.imengstar.com:8080/schools",
-					data: {},
-					type: "get",
->>>>>>> 0ba0dd873acabc4d68b29d64a4c3da2550c16ffd
-					success: function (data) {
-						var json_x = $.parseJSON(data);
-                        for(var i=0; i<json_x.data.lenth; i++){
-                            $("#college-list").append("<li><i class='icons icons-check'></i>"+json_x.data[i]+"</li>");
-                        }
-					}
-			});*/
-			<?php
-				var $asname = echo "<script>$('#school-name').val();</script>";
-				foreach($school as $k=>$v){
-					if($v["name"]==$asname){
-						for(var i=0; i< $school.length i++){
+			asname=$('#school-name').val();
+			if(asname=="北京大学（医学部）"){
+				<?php
+				foreach($schools as $k=>$v){
+					if($v["name"]=="北京大学（医学部）"){
+						for(var i=0; i< $schools.length i++){
 								echo "<script>$('#college-list').append('<li>'+$v['depart']+'</li>');</script>";
 							}
 					}
 				}
 			?>
+			}else if(asname=="北京大学"){
+				<?php
+				foreach($schools as $k=>$v){
+					if($v["name"]=="北京大学"){
+						for(var i=0; i< $schools.length i++){
+								echo "<script>$('#college-list').append('<li>'+$v['depart']+'</li>');</script>";
+							}
+					}
+				}
+			?>
+			}
+		
 			/*选择学院*/
 			$(".mask2").show();
 			var wheight=$(window).height();
@@ -357,31 +350,10 @@ function mclick(){
 				/*选择专业*/
 				$(".mask2").hide();
 
-				/*根据学院请求专业信息*/
-				/*$.ajax({
-						url:"http://www.baidu.com",
-						data: {sname:college},
-						type: "post",
-						success: function (data) {
-							var json_x = $.parseJSON(data);
-							if (json_x.data.isSuccess) {
-								for(var i=0; i<json_x.data.lenth; i++){
-									$("#cmajor_list").append("<li><i class='icons icons-check'>"+json_x.data[i]+"</li>");
-								}
-							} 				
-						}
-				});*/
+				adpart = $('#adpart').val();
+			
 				
-				<?php
-				var $adpart = echo "<script>$('#adpart').val();</script>";
-				foreach($school as $k=>$v){
-					if($v["depart"]==$adpart){
-						for(var i=0; i< $school.length i++){
-								echo "<script>$('#college-list').append('<li>'+$v['major']+'</li>');</script>";
-							}
-					}
-				}
-				?>
+								
 
 				$(".mask3").show();
 				var wheight=$(window).height();
