@@ -33,7 +33,7 @@ class School extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['school_id', 'name', 'depart', 'major', 'degree', 'created_at'], 'required'],
+//            [['school_id', 'name', 'depart', 'major', 'degree', 'created_at'], 'required'],
             [['school_id', 'degree', 'created_at'], 'integer'],
             [['updated_at'], 'safe'],
             [['name', 'depart', 'major'], 'string', 'max' => 45]

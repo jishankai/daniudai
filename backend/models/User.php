@@ -35,7 +35,7 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['wechat_id', 'name', 'id', 'mobile', 'bank', 'bank_id', 'created_at'], 'required'],
+//            [['wechat_id', 'name', 'id', 'mobile', 'bank', 'bank_id', 'created_at'], 'required'],
             [['mobile', 'bank_id', 'created_at'], 'integer'],
             [['updated_at'], 'safe'],
             [['wechat_id', 'name', 'bank'], 'string', 'max' => 45],

@@ -34,7 +34,7 @@ class Student extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['wechat_id', 'stu_id', 'school_id', 'dorm', 'grade', 'created_at'], 'required'],
+//            [['wechat_id', 'stu_id', 'school_id', 'dorm', 'grade', 'created_at'], 'required'],
             [['stu_id', 'school_id', 'grade', 'created_at'], 'integer'],
             [['updated_at'], 'safe'],
             [['wechat_id', 'dorm'], 'string', 'max' => 45]

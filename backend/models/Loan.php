@@ -36,7 +36,7 @@ class Loan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['wechat_id', 'money', 'duration', 'rate', 'status', 'start_at', 'end_at', 'created_at'], 'required'],
+//            [['wechat_id', 'money', 'duration', 'rate', 'status', 'start_at', 'end_at', 'created_at'], 'required'],
             [['money', 'duration', 'status', 'start_at', 'end_at', 'created_at'], 'integer'],
             [['rate'], 'number'],
             [['updated_at'], 'safe'],
