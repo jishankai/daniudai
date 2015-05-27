@@ -314,45 +314,45 @@ function mclick(){
 			$("#cdegrees").val(a.substring(33));
 
 /*根据学校请求学院信息*/
-			asname=$('#school-name').val();
-			if(asname=="北京大学（医学部）"){
-				<?php
-				foreach($schools as $k=>$v){
-					if($v["name"]=="北京大学（医学部）"){
-						for(var i=0; i< $schools.length i++){
-								echo "<script>$('#college-list').append('<li>'+$v['depart']+'</li>');</script>";
-							}
-					}
-				}
-			?>
-			}else if(asname=="北京大学"){
-				<?php
-				foreach($schools as $k=>$v){
-					if($v["name"]=="北京大学"){
-						for(var i=0; i< $schools.length i++){
-								echo "<script>$('#college-list').append('<li>'+$v['depart']+'</li>');</script>";
-							}
-					}
-				}
-			?>
-			}
-		
-			/*选择学院*/
-			$(".mask2").show();
-			var wheight=$(window).height();
-			var ccollege=$("#c_college").height();
-			$("#c_college").css("top",Math.round((wheight-ccollege)/2-10));
-			$("#college-list li").click(function(){
-				$(this).addClass("active").siblings().removeClass();
-				b=$(this).html();
-				college=b.substring(33);
-				$("#adpart").val(college);
-				/*选择专业*/
-				$(".mask2").hide();
+            asname=$('#school-name').val();
+<?php
+foreach($schools as $k=>$v){
+?>
+    if(asname=="北京大学（医学部）"){
 
-				adpart = $('#adpart').val();
-			
-				
+        if(<?php echo $v->name?>=="北京大学（医学部）"){
+
+            $('#college-list').append('<li>'+<?php echo $v->depart?>+'<li>');
+
+        }
+
+    }else if(asname=="北京大学"){
+
+        if(<?php echo $v["name"]?>=="北京大学"){
+
+            $('#college-list').append('<li>'+<?php echo $v->depart?>+'<li>');
+
+        }
+
+    }
+    <?php}?>
+
+        /*选择学院*/
+        $(".mask2").show();
+        var wheight=$(window).height();
+        var ccollege=$("#c_college").height();
+        $("#c_college").css("top",Math.round((wheight-ccollege)/2-10));
+        $("#college-list li").click(function(){
+            $(this).addClass("active").siblings().removeClass();
+            b=$(this).html();
+            college=b.substring(33);
+            $("#adpart").val(college);
+            /*选择专业*/
+            $(".mask2").hide();
+
+            adpart = $('#adpart').val();
+
+
 								
 
 				$(".mask3").show();
