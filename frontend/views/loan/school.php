@@ -320,7 +320,7 @@ function mclick(){
 				foreach($schools as $k=>$v){
 					if($v["name"]=="北京大学（医学部）"){
 						
-								echo "<script>$('#college-list').append('<li>'+$v['depart']+'</li>');</script>";
+								echo "<script>$('#college-list').append('<li>'".$v['depart']."'</li>');</script>";
 							
 					}
 				}
@@ -330,7 +330,7 @@ function mclick(){
 				foreach($schools as $k=>$v){
 					if($v["name"]=="北京大学"){
 					
-								echo "<script>$('#college-list').append('<li>'+$v['depart']+'</li>');</script>";
+								echo "<script>$('#college-list').append('<li>'".$v['depart']."'</li>');</script>";
 					
 					}
 				}
