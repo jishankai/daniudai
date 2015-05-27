@@ -6,9 +6,11 @@ use Yii;
 use Overtrue\Wechat\Auth;
 use backend\models\User; 
 use backend\models\Loan; 
+use backend\models\School;
 
 class LoanController extends \yii\web\Controller
 {
+    public $enableCsrfValidation = false;
     public function actionBank()
     {
         session_start();
