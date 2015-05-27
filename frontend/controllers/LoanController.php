@@ -67,9 +67,9 @@ class LoanController extends \yii\web\Controller
 
     public function actionSchool()
     {
-        $money = $_POST['money'];
-        $duration = $_POST['duration'];
-        $rate = $_POST['rate'];
+        $money = $_GET['money'];
+        $duration = $_GET['duration'];
+        $rate = $_GET['rate'];
         
         $user = $_SESSION['user'];
         $loan = Loan::findOne(['wechat_id'=>$user['openid']]);
