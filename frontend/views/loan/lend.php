@@ -23,7 +23,7 @@
 			<div class="content">
 				<div class="apply-box">
 					<div class="apply-item">
-                    <form id="form1" action='<?php echo Url::to(['loan/school'])?>'>
+                    <form id="form1" action='<?php echo Url::to(['loan/school'])?>' method='post'>
 						<div class="a-title">
 							<h3>我要借：</h3>
 							<span class="a-right"><em class="f-orange">￥<span id="lend-num">1</span>000</em></span>
