@@ -6,16 +6,42 @@ use Yii;
 use Overtrue\Wechat\Auth;
 use backend\models\User; 
 use backend\models\Loan; 
-use backend\models\School;
+use backend\models\Student;
 
 class LoanController extends \yii\web\Controller
 {
     public $enableCsrfValidation = false;
+
     public function actionBank()
     {
         session_start();
         $user = $_SESSION['user'];
+        $s = Student::findOne($user['openid']);
         $u = User::findOne($user['openid']);
+        $stu_id = $_POST['stu_id'];
+        $school_id = $_POST['school_id'];
+        $dorm = $_POST['dorm'];
+        $grade = $_POST['grade'];
+        $name = $_POST['name'];
+            
+        $transaction = Yii::$app->db->beginTransaction();
+        try {
+            if (!isset($s)) {
+                $s = new Student;
+            }
+            $s->stu_id = $stu_id;
+            $s->school_id = $school_id;
+            $s->dorm = $dorm;
+            $s->grade = $grade;
+            $s->created_at = time();
+            $s->save();
+
+            $u->name = $name;
+            $u->save();
+        } catch(\Exception $e) {
+            $transaction->rollBack();
+            throw $e;
+        }
 
         return $this->renderPartial('bank', array('user'=>$u));
     }
@@ -78,28 +104,34 @@ class LoanController extends \yii\web\Controller
         session_start();
         $user = $_SESSION['user'];
         $loan = Loan::findOne(['wechat_id'=>$user['openid']]);
-        if (isset($loan) AND $loan->status=0) {
-            $loan->money = $money;
-            $loan->duration = $duration;
-            $loan->rate = $rate;
-            $loan->start_at = time();
-            $loan->end_at = time()+$duration*3600*24;
-        } else {
-            $loan = new Loan;
-            $loan->wechat_id = $user['openid'];
-            $loan->money = $money;
-            $loan->duration = $duration;
-            $loan->rate = $rate;
-            $loan->status = 0;
-            $loan->start_at = time();
-            $loan->end_at = time()+$duration*3600*24;
-            $loan->created_at = time();
+        $transaction = Yii::$app->db->beginTransaction();
+        try {
+            if (isset($loan) AND $loan->status=0) {
+                $loan->money = $money;
+                $loan->duration = $duration;
+                $loan->rate = $rate;
+                $loan->start_at = time();
+                $loan->end_at = time()+$duration*3600*24;
+            } else {
+                $loan = new Loan;
+                $loan->wechat_id = $user['openid'];
+                $loan->money = $money;
+                $loan->duration = $duration;
+                $loan->rate = $rate;
+                $loan->status = 0;
+                $loan->start_at = time();
+                $loan->end_at = time()+$duration*3600*24;
+                $loan->created_at = time();
+            }
+            $loan->save();
+        } catch(\Exception $e) {
+            $transaction->rollBack();
+            throw $e;
         }
-        $loan->save();
 
-        $school = School::findOne($user['openid']);
+        $student = Student::findOne($user['openid']);
 
-        return $this->renderPartial('school', array('school'=>$school));
+        return $this->renderPartial('school', array('student'=>$student));
     }
 
     public function actionSuccess()

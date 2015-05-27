@@ -315,16 +315,14 @@ function mclick(){
 /*根据学校请求学院信息*/
 			asname=$("#school-name").val();
 			$.ajax({
-					url:"",
-					data: {sname:asname},
-					type: "post",
+                    url:"http://dev.imengstar.com:8080/schools",
+					data: {},
+					type: "get",
 					success: function (data) {
 						var json_x = $.parseJSON(data);
-						if (json_x.data.isSuccess) {
-							for(var i=0; i<json_x.data.lenth; i++){
-								$("#college-list").append("<li><i class='icons icons-check'></i>"+json_x.data[i]+"</li>");
-							}
-						} 				
+                        for(var i=0; i<json_x.data.lenth; i++){
+                            $("#college-list").append("<li><i class='icons icons-check'></i>"+json_x.data[i]+"</li>");
+                        }
 					}
 			});/*$.ajax结束*/
 
