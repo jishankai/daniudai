@@ -22,6 +22,7 @@
 			<div class="content">
 				<div class="apply-box">
 					<div class="apply-item">
+					<form id="form1">
 						<div class="a-title">
 							<h3>我要借：</h3>
 							<span class="a-right"><em class="f-orange">￥<span id="lend-num">1</span>000</em></span>
@@ -33,7 +34,7 @@
 								</div>
 							</div> -->
 							<div class="range-wrap">
-								<input type="range" name="points" min="1" max="10" value="1" class="range" id="lend-range" onchange="aa()" />
+								<input type="range" name="money" min="1" max="10" value="1" class="range" id="lend-range" onchange="aa()" />
 								<div id="range-color1" class="range-color"></div>
 							</div>
 						</div>
@@ -50,7 +51,7 @@
 								</div>
 							</div> -->
 							<div class="range-wrap">
-								<input type="range" name="points" min="1" max="4" value="1" class="range" id="lend-time-range" onchange="bb()" />
+								<input type="range" name="duration" min="1" max="4" value="1" class="range" id="lend-time-range" onchange="bb()" />
 								<div id="range-color2" class="range-color"></div>
 							</div>
 						</div>
@@ -59,9 +60,9 @@
 						<h3>还款金额：</h3>
                         <span class="r-right"><em class="f-orange">￥<span id="return-num"><?php echo 1000*(1+$rate)?></span></em></span>
 					</div>
-					<form class="forms">
 		                <div class="forms__option">
-		                	<button class="btn btn-orange btn-fullwidth">立即申请</button>
+		                	<input type="text" value="<?php echo $rate?>" style="display:none;" name="rate"/>
+		                	<input type="submit" class="btn btn-orange btn-fullwidth" value="立即申请"/>
 		                </div>                                              
 		            </form>
 				</div>
