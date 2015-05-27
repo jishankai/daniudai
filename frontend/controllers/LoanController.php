@@ -30,7 +30,7 @@ class LoanController extends \yii\web\Controller
 
         $auth = new Auth($appid, $appsecret);
         if (!isset($_GET['code']) AND empty($_SESSION['user'])) {
-            $url = $auth->url('http://dev.imengstar.com/index.php?r=loan/index', 'snsapi_base'); // 返回用户 Bag
+            $auth->authorize('http://dev.imengstar.com/index.php?r=loan/index', 'snsapi_base'); // 返回用户 Bag
         }
         if (empty($_SESSION['user'])) {
             $_SESSION['user'] = $auth->user();
