@@ -57,8 +57,8 @@ class LoanController extends \yii\web\Controller
             }
         } else {
             $l = Loan::findOne($open_id);
-            if (!isset($l) or $l->status!=0) {
-                $this->redirect('loan/success');
+            if (isset($l) and $l->status!=0) {
+                return $this->redirect(['loan/success']);
             }
         }
         
