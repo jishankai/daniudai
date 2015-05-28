@@ -1,3 +1,4 @@
+<?php use yii\helpers\Url;?>
 <!DOCTYPE html>
 <html class="mobile-notes-variant" lang="en"><!--full-srceen-->
 <head>
@@ -20,7 +21,7 @@
 		<div class="screen-content">			
 			<div class="content">
 				<div class="info-box">				
-					<form class="forms" id="form1">
+                <form class="forms" id="form1" action='<?php echo Url::to(["loan/bank"])?>' method='post'>
 						<div class="forms-item">
 							<div class="forms__group">
 			                    <label class="forms__label">姓名</label>

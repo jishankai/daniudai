@@ -1,3 +1,4 @@
+<?php use yii\helpers\Url;?>
 <!DOCTYPE html>
 <html class="mobile-notes-variant" lang="en"><!--full-srceen-->
 <head>
@@ -28,7 +29,7 @@
 			<div class="content">
 				<div class="info-box">	
 					<div class="info-text"><p>请正确填写银行卡信息，以能够及时打款。</p></div>		
-					<form class="forms" id="form2">				                                   
+                    <form class="forms" id="form2" action='<?php echo Url::to(['loan/success'])?>' method='post'>				                                   
 		            	<div class="forms-item">
 							<!-- <div class="forms__group">
 			                    <label class="forms__label">银行</label>
