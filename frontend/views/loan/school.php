@@ -319,7 +319,7 @@ function mclick(){
 			foreach($schools as $k => $v){
 			?>
 			    if(asname=="北京大学（医学部）"){
-			        if(<?php echo $v->name] ?>=="北京大学（医学部）"){
+			        if(<?php echo $v->name?>=="北京大学（医学部）"){
 			            $('#college-list').append('<li>'+<?php echo $v->depart?>+'<li>');
 			        }
 
