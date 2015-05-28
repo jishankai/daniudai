@@ -111,7 +111,7 @@ function mclick(){
 						/*验证入学年份和学生证号是否匹配*/
 						if($("#stu_id").val()!=""){
 							stu_id=$("#stu_id").val();
-							var a1=admission_year.substring(0,4);
+							var a1=admission_year.substr(-2,2);
 							var b1=stu_id.substring(0,2);
 							if(a1!=b1){
 								error2();
