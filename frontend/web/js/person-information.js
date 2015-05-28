@@ -42,7 +42,7 @@ $(function(){
 			this.focus();
 		}
 		if($("#major").val()!=""){
-			var v1=$("#major").val().substr(-2,2);	
+			var v1=$("#major").val().substr(-2,2);		
 			var v2=$("#stu_id").val().substr(0,2);
 			if(v1!=v2){
 				error2();

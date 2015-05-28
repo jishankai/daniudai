@@ -67,8 +67,7 @@
 			                    <label class="forms__label">专业</label>
 			                    <span class="input__box">             
 			                        <input type="text" class="forms_input" placeholder="专业/入学年份" id="major" name="major">
-			                        <input type="hidden"  value="" id="cdegrees" />
-			                        <input type="hidden" value="" id="adpart"/>
+			                        <input type="hidden" name="degrees" value="" id="cdegrees" />
 			                        <span class="icon-option"><i class="icons icons-arrowRright"></i></span>
 			                    </span>
 			                </div>
@@ -162,8 +161,8 @@
 					<span class="close" id="close4">&times;</span>
 				</div>
 				<div class="lists-body">
-					<ul class="lists-main" id="cmajor_list">
-								
+					<ul class="lists-main" id="cmajor_list" style="max-height:300px;">
+						
 					</ul>						
 				</div>
 			</div>
@@ -235,4 +234,8 @@
 <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="js/person-information.js"></script>
 <script type="text/javascript" src="js/change.js"></script>
+<script type="text/javascript">
+
+</script>
+
 </html>
