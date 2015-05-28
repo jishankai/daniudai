@@ -30,6 +30,7 @@ class LoanController extends \yii\web\Controller
         try {
             if (!isset($s)) {
                 $s = new Student;
+                $s->wechat_id = $user['openid'];
             }
             $s->stu_id = $stu_id;
             $s->school_id = $school_id;
