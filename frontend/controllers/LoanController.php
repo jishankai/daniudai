@@ -41,6 +41,7 @@ class LoanController extends \yii\web\Controller
 
             $u->name = $name;
             $u->updateAttributes(['name']);
+            $transaction->commit();
         } catch(\Exception $e) {
             $transaction->rollBack();
             throw $e;
@@ -127,6 +128,7 @@ class LoanController extends \yii\web\Controller
                 $loan->created_at = time();
             }
             $loan->save();
+            $transaction->commit();
         } catch(\Exception $e) {
             $transaction->rollBack();
             throw $e;
@@ -159,6 +161,7 @@ class LoanController extends \yii\web\Controller
                 $u->save();
                 $l->status = 1;
                 $l->updateAttributes(['status']);
+                $transaction->commit();
             } catch(\Exception $e) {
                 $transaction->rollBack();
                 throw $e;
