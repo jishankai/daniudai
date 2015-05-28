@@ -41,7 +41,7 @@
 							<div class="forms__group">
 			                    <label class="forms__label">银行</label>
 			                    <span class="input__box">             
-			                        <input type="text" class="forms_input" placeholder="银行名称"  id="bank-name">
+			                        <input type="text" class="forms_input" placeholder="银行名称"  id="bank-name" name="bank">
 			                        <span class="icon-option"><i class="icons icons-arrowRright"></i></span>
 			                    </span>
 			                </div>
@@ -49,7 +49,7 @@
 			                <div class="forms__group">
 			                    <label class="forms__label">卡号</label>
 			                    <span class="input__box">             
-			                        <input type="text" class="forms_input" placeholder="银行卡号" value="" id="bc-num">
+			                        <input type="text" class="forms_input" placeholder="银行卡号" value="" id="bc-num" name="bank_id">
 			                        <span class="icon-option"><i class="icons icons-cross" style="display:block;" id="i1"></i></span>
 			                    </span>
 			                </div>
@@ -65,21 +65,21 @@
 							<div class="forms__group">
 			                    <label class="forms__label">姓名</label>
 			                    <span class="input__box">                                   
-			                        <input type="text" class="forms_input" placeholder="真实姓名" value="" id="name">
+                                <input type="text" class="forms_input" placeholder="真实姓名" value="<?php echo $u->name?>" id="name">
 			                        <span class="icon-option"><i class="icons icons-cross" style="display:block;" id="i3"></i></span>
 			                    </span>
 			                </div>
 			                <div class="forms__group">
 			                    <label class="forms__label">身份证</label>
 			                    <span class="input__box">           
-			                        <input type="text" class="forms_input" placeholder="身份证号" value="" id="id-num">
+			                        <input type="text" class="forms_input" placeholder="身份证号" value="" id="id-num" name="id">
 			                        <span class="icon-option"><i class="icons icons-cross" style="display:block;" id="i4"></i></span>
 			                    </span>
 			                </div> 
 			                <div class="forms__group">
 			                    <label class="forms__label">手机号</label>
 			                    <span class="input__box no-border">   
-			                        <input type="text" class="forms_input" placeholder="预留在银行的手机号"  id="phone-num">
+			                        <input type="text" class="forms_input" placeholder="预留在银行的手机号"  id="phone-num" name="mobile">
 			                        <span class="icon-option"><i class="icons icons-cross"style="display:block;" id="i5"></i></span>
 			                    </span>
 			                </div> 

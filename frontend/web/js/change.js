@@ -102,7 +102,7 @@ function mclick(){
 					$("#year_list li").click(function(){
 						$(this).addClass("active").siblings().removeClass();
 						/*alert("1"+s1+s2+s3);*/
-						$("#school_id").val("1"+s1+s2+s3);
+						$("#school_id").val(s1+s2+s3);
 						d=$(this).html();
 						admission_year=d.substring(33);
 						$("#grade").val(admission_year);
