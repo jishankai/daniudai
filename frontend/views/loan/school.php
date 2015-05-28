@@ -83,6 +83,7 @@
 		                <div class="forms__option">
 		                	<!-- <button class="btn btn-primary disabled btn-fullwidth">下一步</button> -->
 		                	<input type="text" value="" style="display:none;" id="school_id" name="school_id"/>
+		                	<input type="text" value="" style="display:none;" id="grade" name="grade">
 		                	<input type="submit" class="btn btn-primary btn-fullwidth" value="下一步" id="next" disabled/>
 		                </div>                                              
 		            </form>

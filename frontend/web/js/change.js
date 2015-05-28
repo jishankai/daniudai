@@ -105,6 +105,7 @@ function mclick(){
 						$("#school_id").val("1"+s1+s2+s3);
 						d=$(this).html();
 						admission_year=d.substring(33);
+						$("#grade").val(admission_year);
 						$(".mask4").hide();
 						$("#major").val(major+'/'+admission_year);
 
