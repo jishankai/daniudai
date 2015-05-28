@@ -141,6 +141,23 @@ class LoanController extends \yii\web\Controller
     {
         session_start();
         $user = $_SESSION['user'];
+        $u = User::findOne($user['openid']);
+        $id = $_POST['id'];
+        $mobile = $_POST['mobile'];
+        $bank = $_POST['bank'];
+        $bank_id = $_POST['bank_id'];
+
+        $transaction = Yii::$app->db->beginTransaction();
+        try {
+            $u->id = $id;
+            $u->mobile = $mobile;
+            $u->bank = $bank;
+            $u->bank_id = $bank_id;
+            $u->save();
+        } catch(\Exception $e) {
+            $transaction->rollBack();
+            throw $e;
+        }
 
         $appId = Yii::$app->params['wechat_appid'];
         $secret = Yii::$app->params['wechat_appsecret'];
@@ -166,7 +183,7 @@ class LoanController extends \yii\web\Controller
         $user = $_SESSION['user'];
         
         $open_id = $user['openid'];
-        if ($open_id==Yii::$app->params['pek01_supporter'] OR $open_id==Yii::$app->params['pek01_supporter']) {
+        if ($open_id==Yii::$app->params['pek101_supporter'] OR $open_id==Yii::$app->params['pek102_supporter']) {
             return $this->renderPartial('personal_list');
         } else if($open_id==Yii::$app->params['demo_supporter']) {
             return $this->renderPartial('bank_list', ['verification'=>'demo']);
