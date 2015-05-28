@@ -144,6 +144,7 @@ class LoanController extends \yii\web\Controller
             session_start();
             $user = $_SESSION['user'];
             $u = User::findOne($user['openid']);
+            $l = Loan::findOne(['wechat_id'=>$user['openid']]);
             $id = $_POST['id'];
             $mobile = $_POST['mobile'];
             $bank = $_POST['bank'];
@@ -156,6 +157,8 @@ class LoanController extends \yii\web\Controller
                 $u->bank = $bank;
                 $u->bank_id = $bank_id;
                 $u->save();
+                $l->status = 1;
+                $l->updateAttributes(['status']);
             } catch(\Exception $e) {
                 $transaction->rollBack();
                 throw $e;
