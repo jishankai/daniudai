@@ -10,13 +10,13 @@ use Yii;
  * @property string $wechat_id
  * @property string $name
  * @property string $id
- * @property integer $mobile
+ * @property string $mobile
  * @property string $bank
- * @property integer $bank_id
+ * @property string $bank_id
  * @property integer $created_at
  * @property string $updated_at
  *
- * @property Loan $loan
+ * @property Loan[] $loans
  * @property Student $student
  */
 class User extends \yii\db\ActiveRecord
@@ -35,11 +35,13 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-//            [['wechat_id', 'name', 'id', 'mobile', 'bank', 'bank_id', 'created_at'], 'required'],
-            [['mobile', 'bank_id', 'created_at'], 'integer'],
+//            [['wechat_id', 'name', 'id', 'bank', 'created_at'], 'required'],
+            [['created_at'], 'integer'],
             [['updated_at'], 'safe'],
             [['wechat_id', 'name', 'bank'], 'string', 'max' => 45],
-            [['id'], 'string', 'max' => 18]
+            [['id'], 'string', 'max' => 18],
+            [['mobile'], 'string', 'max' => 11],
+            [['bank_id'], 'string', 'max' => 24]
         ];
     }
 
@@ -63,9 +65,9 @@ class User extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getLoan()
+    public function getLoans()
     {
-        return $this->hasOne(Loan::className(), ['wechat_id' => 'wechat_id']);
+        return $this->hasMany(Loan::className(), ['wechat_id' => 'wechat_id']);
     }
 
     /**
