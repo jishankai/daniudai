@@ -65,7 +65,7 @@
 							<div class="forms__group">
 			                    <label class="forms__label">姓名</label>
 			                    <span class="input__box">                                   
-                                <input type="text" class="forms_input" placeholder="真实姓名" value="<?php echo $u->name?>" id="name">
+                                <input type="text" class="forms_input" placeholder="真实姓名" value="<?php echo $user->name?>" id="name">
 			                        <span class="icon-option"><i class="icons icons-cross" style="display:block;" id="i3"></i></span>
 			                    </span>
 			                </div>
