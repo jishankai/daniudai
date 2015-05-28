@@ -320,8 +320,6 @@ function mclick(){
 			?>
 			    if(asname == "<?php echo $v->name?>"){	       
 			            $('#college-list').append('<li>'+<?php echo $v->depart?>+'<li>');
-			    }else if(asname == "<?php echo $v->name?>"){
-			            $('#college-list').append('<li>'+<?php echo $v->depart?>+'<li>');
 			    }
 			<?php }?>
 
