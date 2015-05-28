@@ -316,21 +316,21 @@ function mclick(){
 /*根据学校请求学院信息*/
             asname=$('#school-name').val();
 <?php
-foreach($schools as $k=>$v){
+foreach($schools as $k => $v){
 ?>
     if(asname=="北京大学（医学部）"){
 
-        if(<?php echo $v->name?>=="北京大学（医学部）"){
+        if(<?php echo $v['name'] ?>=="北京大学（医学部）"){
 
-            $('#college-list').append('<li>'+<?php echo $v->depart?>+'<li>');
+            $('#college-list').append('<li>'+<?php echo $v['depart']?>+'<li>');
 
         }
 
     }else if(asname=="北京大学"){
 
-        if(<?php echo $v["name"]?>=="北京大学"){
+        if(<?php echo $v['name']?>=="北京大学"){
 
-            $('#college-list').append('<li>'+<?php echo $v->depart?>+'<li>');
+            $('#college-list').append('<li>'+<?php echo $v['depart']?>+'<li>');
 
         }
 
