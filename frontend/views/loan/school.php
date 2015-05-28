@@ -318,21 +318,12 @@ function mclick(){
 			<?php
 			foreach($schools as $k => $v){
 			?>
-			    if(asname=="北京大学（医学部）"){
-			        if("<?php echo $v->name?>"=="北京大学（医学部）"){
+			    if(asname == "<?php echo $v->name?>"){	       
 			            $('#college-list').append('<li>'+<?php echo $v->depart?>+'<li>');
-			        }
-
-			    }else if(asname=="北京大学"){
-
-			        if("<?php echo $v->name?>"=="北京大学"){
-
+			    }else if(asname == "<?php echo $v->name?>"){
 			            $('#college-list').append('<li>'+<?php echo $v->depart?>+'<li>');
-
-			        }
-
 			    }
-			    <?php }?>
+			<?php }?>
 
         /*选择学院*/
         $(".mask2").show();
