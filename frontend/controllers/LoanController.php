@@ -183,7 +183,7 @@ class LoanController extends \yii\web\Controller
         $user = $_SESSION['user'];
         
         $open_id = $user['openid'];
-        if ($open_id==Yii::$app->params['pek101_supporter'] OR $open_id==Yii::$app->params['pek102_supporter']) {
+        if ($open_id==Yii::$app->params['pku101_supporter'] OR $open_id==Yii::$app->params['pku102_supporter']) {
             return $this->renderPartial('personal_list');
         } else if($open_id==Yii::$app->params['demo_supporter']) {
             return $this->renderPartial('bank_list', ['verification'=>'demo']);
