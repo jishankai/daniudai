@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use Yii;
 use Overtrue\Wechat\Auth;
+use Overtrue\Wechat\Notice;
 use backend\models\User; 
 use backend\models\Loan; 
 use backend\models\Student;
@@ -55,12 +56,12 @@ class LoanController extends \yii\web\Controller
 
     public function actionIndex()
     {
-        $appid = Yii::$app->params['wechat_appid'];
-        $appsecret = Yii::$app->params['wechat_appsecret'];
+        $appId = Yii::$app->params['wechat_appid'];
+        $secret = Yii::$app->params['wechat_appsecret'];
 
         session_start();
         if (empty($_SESSION['user'])) {
-            $auth = new Auth($appid, $appsecret);
+            $auth = new Auth($appId, $secret);
             $user = $auth->authorize('http://dev.imengstar.com/index.php?r=loan/index', 'snsapi_base'); // 返回用户 Bag
             $_SESSION['user'] = $user;
         }
@@ -138,7 +139,42 @@ class LoanController extends \yii\web\Controller
 
     public function actionSuccess()
     {
+        session_start();
+        $user = $_SESSION['user'];
+
+        $appId = Yii::$app->params['wechat_appid'];
+        $secret = Yii::$app->params['wechat_appsecret'];
+        $notice = new Notice($appId, $secret);
+        //通知放款员面签
+        //通知用户协议
+        //$messageId = $notice->uses($templateId)->andUrl($url)->withColor($color)->data($data)->send();
+
         return $this->renderPartial('success');
+    }
+
+    public function actionMe()
+    {
+        $appId = Yii::$app->params['wechat_appid'];
+        $secret = Yii::$app->params['wechat_appsecret'];
+
+        session_start();
+        if (empty($_SESSION['user'])) {
+            $auth = new Auth($appId, $secret);
+            $user = $auth->authorize('http://dev.imengstar.com/index.php?r=loan/me', 'snsapi_base'); // 返回用户 Bag
+            $_SESSION['user'] = $user;
+        }
+        $user = $_SESSION['user'];
+        
+        $open_id = $user['openid'];
+        if ($open_id==Yii::$app->params['pek01_supporter'] OR $open_id==Yii::$app->params['pek01_supporter']) {
+            return $this->renderPartial('personal_list');
+        } else if($open_id==Yii::$app->params['demo_supporter']) {
+            return $this->renderPartial('bank_list', ['verification'=>'demo']);
+        } else if($open_id==Yii::$app->params['admin_supporter']) {
+            return $this->renderPartial('bank_list', ['verification'=>'admin']);
+        } else {
+            return $this->renderPartial('agreement');
+        }
     }
 
 }
