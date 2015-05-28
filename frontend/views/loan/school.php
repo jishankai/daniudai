@@ -315,27 +315,24 @@ function mclick(){
 
 /*根据学校请求学院信息*/
             asname=$('#school-name').val();
-<?php
-foreach($schools as $k => $v){
-?>
-    if(asname=="北京大学（医学部）"){
+			<?php
+			foreach($schools as $k => $v){
+			?>
+			    if(asname=="北京大学（医学部）"){
+			        if(<?php echo $v->name] ?>=="北京大学（医学部）"){
+			            $('#college-list').append('<li>'+<?php echo $v->depart?>+'<li>');
+			        }
 
-        if(<?php echo $v['name'] ?>=="北京大学（医学部）"){
+			    }else if(asname=="北京大学"){
 
-            $('#college-list').append('<li>'+<?php echo $v['depart']?>+'<li>');
+			        if(<?php echo $v->name?>=="北京大学"){
 
-        }
+			            $('#college-list').append('<li>'+<?php echo $v->depart?>+'<li>');
 
-    }else if(asname=="北京大学"){
+			        }
 
-        if(<?php echo $v['name']?>=="北京大学"){
-
-            $('#college-list').append('<li>'+<?php echo $v['depart']?>+'<li>');
-
-        }
-
-    }
-    <?php}?>
+			    }
+			    <?php}?>
 
         /*选择学院*/
         $(".mask2").show();
@@ -351,10 +348,7 @@ foreach($schools as $k => $v){
             $(".mask2").hide();
 
             adpart = $('#adpart').val();
-
-
-								
-
+							
 				$(".mask3").show();
 				var wheight=$(window).height();
 				var cmajor=$("#c_major").height();
