@@ -24,7 +24,7 @@ class LoanController extends \yii\web\Controller
         $dorm = $_POST['dorm'];
         $grade = $_POST['grade'];
         $name = $_POST['name'];
-            
+
         $transaction = Yii::$app->db->beginTransaction();
         try {
             if (!isset($s)) {
@@ -98,9 +98,9 @@ class LoanController extends \yii\web\Controller
 
     public function actionSchool()
     {
-        $money = $_POST['money'];
-        $duration = $_POST['duration'];
-        $rate = $_POST['rate'];
+        $money = $_REQUEST['money'];
+        $duration = $_REQUEST['duration'];
+        $rate = $_REQUEST['rate'];
         
         session_start();
         $user = $_SESSION['user'];
