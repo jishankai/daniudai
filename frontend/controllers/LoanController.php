@@ -40,7 +40,7 @@ class LoanController extends \yii\web\Controller
             $s->save();
 
             $u->name = $name;
-            $u->save();
+            $u->updateAttributes(['name']);
         } catch(\Exception $e) {
             $transaction->rollBack();
             throw $e;
@@ -51,7 +51,7 @@ class LoanController extends \yii\web\Controller
 
     public function actionLend($type='common')
     {
-        $rate = ($type=='common')?0.03:0.02;
+        $rate = ($type=='common')?0.0001:0.0002;
         return $this->renderPartial('lend', array('rate'=>$rate));
     }
 
