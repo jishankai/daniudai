@@ -83,6 +83,7 @@
 			            </div>
 		                <div class="forms__option">
 		                	<!-- <button class="btn btn-primary disabled btn-fullwidth">下一步</button> -->
+		                	<input type="text" value="" style="display:none;" id="school_id" name="school_id"/>
 		                	<input type="submit" class="btn btn-primary btn-fullwidth" value="下一步" id="next" disabled/>
 		                </div>                                              
 		            </form>
@@ -142,27 +143,7 @@
 				</div>
 				<div class="lists-body">
 					<ul class="lists-main" style="max-height:300px;" id="college-list"><!--max-height值跟屏幕高度有关-->
-						<!-- <li class="active"><i class="icons icons-check"></i>信息与技术工程学院</li>
-						<li><i class="icons icons-check"></i>信息与技术工程学院</li>
-						<li><i class="icons icons-check"></i>信息与技术工程学院</li>
-						<li><i class="icons icons-check"></i>信息与技术工程学院</li>
-						<li><i class="icons icons-check"></i>信息与技术工程学院</li>
-						<li><i class="icons icons-check"></i>信息与技术工程学院</li>
-						<li><i class="icons icons-check"></i>信息与技术工程学院</li>
-						<li><i class="icons icons-check"></i>信息与技术工程学院</li>
-						<li><i class="icons icons-check"></i>信息与技术工程学院</li>
-						<li><i class="icons icons-check"></i>信息与技术工程学院</li>
-						<li><i class="icons icons-check"></i>信息与技术工程学院</li>
-						<li><i class="icons icons-check"></i>信息与技术工程学院</li>
-						<li><i class="icons icons-check"></i>信息与技术工程学院</li>
-						<li><i class="icons icons-check"></i>信息与技术工程学院</li>
-						<li><i class="icons icons-check"></i>信息与技术工程学院</li>
-						<li><i class="icons icons-check"></i>信息与技术工程学院</li>
-						<li><i class="icons icons-check"></i>信息与技术工程学院</li>
-						<li><i class="icons icons-check"></i>信息与技术工程学院</li>
-						<li><i class="icons icons-check"></i>信息与技术工程学院</li>
-						<li><i class="icons icons-check"></i>信息与技术工程学院</li>	
-						<li class="last-child"><i class="icons icons-check"></i>物理学院</li> -->			
+									
 					</ul>
 				</div>
 			</div>
@@ -182,8 +163,7 @@
 				</div>
 				<div class="lists-body">
 					<ul class="lists-main" id="cmajor_list">
-						<!-- <li class="active"><i class="icons icons-check"></i>计算机</li>	
-						<li class="last-child"><i class="icons icons-check"></i>微电子</li>	 -->		
+								
 					</ul>						
 				</div>
 			</div>
@@ -254,151 +234,5 @@
 </body>
 <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="js/person-information.js"></script>
-<script type="text/javascript">
-
-/*选择学校*/
-	$("#school-name").click(function(){
-		$(".mask").show();
-		$(".mask").height($(window).height());
-		var wheight=$(window).height();
-		var cschool=$("#c_school").height();
-
-		$("#c_school").css("top",Math.round((wheight-cschool)/2-10));
-		$("#cschool_list li").click(function(){
-			$(this).addClass("active").siblings().removeClass();
-			a=$(this).html();
-			$(".mask").hide();	
-			$("#school-name").val(a.substring(33));
-		})
-		$("#close1").click(function(){
-			$(".mask").hide();
-		})
-	})
-
-/*选择学历*/
-	$("#major").click(function(){
-		if($("#school-name").val()==""){
-			$(".mask").show();
-			$(".mask").height($(window).height());
-			var wheight=$(window).height();
-			var cschool=$("#c_school").height();
-
-			$("#c_school").css("top",Math.round((wheight-cschool)/2-10));
-			$("#cschool_list li").click(function(){
-				$(this).addClass("active").siblings().removeClass();
-				a=$(this).html();
-				$(".mask").hide();	
-				$("#school-name").val(a.substring(33));
-				mclick();
-
-			})
-			$("#close1").click(function(){
-				$(".mask").hide();
-			})
-		}else{
-			mclick();
-		}
-
-		
-	})/*$("#major").click 结束*/
-
-function mclick(){
-	$(".mask1").show();
-		var wheight=$(window).height();
-		var cdegrees=$("#c_degrees").height();
-		$("#c_degrees").css("top",Math.round((wheight-cdegrees)/2-10));
-		$("#cdegrees_list li").click(function(){
-			$(this).addClass("active").siblings().removeClass();
-			a=$(this).html();
-			$(".mask1").hide();	
-			$("#cdegrees").val(a.substring(33));
-
-/*根据学校请求学院信息*/
-            asname=$('#school-name').val();
-			<?php
-			foreach($schools as $k => $v){
-			?>
-			    if(asname == "<?php echo $v->name?>"){	       
-			            $('#college-list').append('<li>'+<?php echo $v->depart?>+'<li>');
-			    }
-			<?php }?>
-
-        /*选择学院*/
-        $(".mask2").show();
-        var wheight=$(window).height();
-        var ccollege=$("#c_college").height();
-        $("#c_college").css("top",Math.round((wheight-ccollege)/2-10));
-        $("#college-list li").click(function(){
-            $(this).addClass("active").siblings().removeClass();
-            b=$(this).html();
-            college=b.substring(33);
-            $("#adpart").val(college);
-            /*选择专业*/
-            $(".mask2").hide();
-
-            adpart = $('#adpart').val();
-							
-				$(".mask3").show();
-				var wheight=$(window).height();
-				var cmajor=$("#c_major").height();
-				$("#c_major").css("top",Math.round((wheight-cmajor)/2-10));
-				$("#cmajor_list li").click(function(){
-					$(this).addClass("active").siblings().removeClass();
-					c=$(this).html();
-					major=c.substring(33);
-					$(".mask3").hide();
-
-					/*选择入学年份*/
-					$(".mask4").show();
-					var wheight=$(window).height();
-					var ayear=$("#admission_year").height();
-					$("#admission_year").css("top",Math.round((wheight-ayear)/2-10));
-					$("#year_list li").click(function(){
-						$(this).addClass("active").siblings().removeClass();
-						d=$(this).html();
-						admission_year=d.substring(33);
-						$(".mask4").hide();
-						$("#major").val(major+'/'+admission_year);
-
-						/*验证入学年份和学生证号是否匹配*/
-						if($("#stu_id").val()!=""){
-							stu_id=$("#stu_id").val();
-							var a1=admission_year.substring(0,4);
-							var b1=stu_id.substring(0,2);
-							if(a1!=b1){
-								error2();
-							}
-						}
-	
-					})/*$("#year_list li").click结束*/					
-				})/*$("#cmajor_list li").click结束*/			
-			})/*$("#college-list li").click结束*/
-		})/*$("#cdegrees_list li").click结束*/
-		$("#close2").click(function(){
-			$(".mask1").hide();
-		})
-		$("#close3").click(function(){
-			$(".mask2").hide();
-		})
-		$("#close4").click(function(){
-			$(".mask3").hide();
-		})
-		$("#close5").click(function(){
-			$(".mask4").hide();
-		})
-
-}/*function mclick()结束*/
-/*个人信息验证有误*/
-function error2(){
-	$(".mask6").show();
-	var wheight=$(window).height();
-	var pi_error=$("#pi_error").height();
-	$("#pi_error").css("top",Math.round((wheight-pi_error)/2-10));
-	$("#close7").click(function(){
-		$(".mask6").hide();
-	})
-}
-
-</script>
-
+<script type="text/javascript" src="js/change.js"></script>
 </html>
