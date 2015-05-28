@@ -22,7 +22,7 @@ class LoanController extends \yii\web\Controller
         $u = User::findOne($user['openid']);
         $stu_id = $_POST['stu_id'];
         $school_id = $_POST['school_id'];
-        $dorm = $_POST['address'];
+        $dorm = $_POST['dorm'];
         $grade = $_POST['grade'];
         $name = $_POST['name'];
 
@@ -139,32 +139,34 @@ class LoanController extends \yii\web\Controller
 
     public function actionSuccess()
     {
-        session_start();
-        $user = $_SESSION['user'];
-        $u = User::findOne($user['openid']);
-        $id = $_POST['id'];
-        $mobile = $_POST['mobile'];
-        $bank = $_POST['bank'];
-        $bank_id = $_POST['bank_id'];
+        if (isset($_POST['id'])) {
+            session_start();
+            $user = $_SESSION['user'];
+            $u = User::findOne($user['openid']);
+            $id = $_POST['id'];
+            $mobile = $_POST['mobile'];
+            $bank = $_POST['bank'];
+            $bank_id = $_POST['bank_id'];
 
-        $transaction = Yii::$app->db->beginTransaction();
-        try {
-            $u->id = $id;
-            $u->mobile = $mobile;
-            $u->bank = $bank;
-            $u->bank_id = $bank_id;
-            $u->save();
-        } catch(\Exception $e) {
-            $transaction->rollBack();
-            throw $e;
+            $transaction = Yii::$app->db->beginTransaction();
+            try {
+                $u->id = $id;
+                $u->mobile = $mobile;
+                $u->bank = $bank;
+                $u->bank_id = $bank_id;
+                $u->save();
+            } catch(\Exception $e) {
+                $transaction->rollBack();
+                throw $e;
+            }
+
+            $appId = Yii::$app->params['wechat_appid'];
+            $secret = Yii::$app->params['wechat_appsecret'];
+            $notice = new Notice($appId, $secret);
+            //通知放款员面签
+            //通知用户协议
+            //$messageId = $notice->uses($templateId)->andUrl($url)->withColor($color)->data($data)->send();
         }
-
-        $appId = Yii::$app->params['wechat_appid'];
-        $secret = Yii::$app->params['wechat_appsecret'];
-        $notice = new Notice($appId, $secret);
-        //通知放款员面签
-        //通知用户协议
-        //$messageId = $notice->uses($templateId)->andUrl($url)->withColor($color)->data($data)->send();
 
         return $this->renderPartial('success');
     }
@@ -181,7 +183,7 @@ class LoanController extends \yii\web\Controller
             $_SESSION['user'] = $user;
         }
         $user = $_SESSION['user'];
-        
+
         $open_id = $user['openid'];
         if ($open_id==Yii::$app->params['pku101_supporter'] OR $open_id==Yii::$app->params['pku102_supporter']) {
             return $this->renderPartial('personal_list');
