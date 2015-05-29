@@ -79,9 +79,9 @@ class LoanController extends \yii\web\Controller
                 $u->wechat_id = $open_id;
                 $u->name = '';
                 $u->id = '';
-                $u->mobile = 0;
+                $u->mobile = '';
                 $u->bank = '';
-                $u->bank_id = 0;
+                $u->bank_id = '';
                 $u->created_at = time();
                 $u->save();
                 $transaction->commit();
