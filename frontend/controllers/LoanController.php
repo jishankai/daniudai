@@ -179,9 +179,7 @@ class LoanController extends \yii\web\Controller
             } else if ($student->school_id/10000==102) {
                 $supporter_openid = Yii::$app->params['pku102_supporter'];
             }
-            $staff->send($message)->to($supporter_openId);
-            //通知用户协议
-            //$messageId = $notice->uses($templateId)->andUrl($url)->withColor($color)->data($data)->send();
+            $staff->send($message)->to($supporter_openid);
         }
 
         return $this->renderPartial('success');
@@ -201,12 +199,18 @@ class LoanController extends \yii\web\Controller
         $user = $_SESSION['user'];
 
         $open_id = $user['openid'];
-        if ($open_id==Yii::$app->params['pku101_supporter'] OR $open_id==Yii::$app->params['pku102_supporter']) {
-            return $this->renderPartial('personal_list');
+        if ($open_id==Yii::$app->params['pku101_supporter']) {
+            $r = Yii::$app->db->createCommand('SELECT u.name,u.mobile,s.depart FROM user u LEFT JOIN loan l ON u.wechat_id=l.wechat_id LEFT JOIN student stu ON u.wechat_id=stu.wechat_id LEFT JOIN school s ON stu.school_id=s.school_id WHERE stu.school_id LIKE ":school_prefix%" AND l.status=1')->bindValue(':school_prefix',101)->queryAll();
+            return $this->renderPartial('personal_list',['r'=>$r]);
+        } else if($open_id==Yii::$app->params['pku102_supporter']) {
+            $r = Yii::$app->db->createCommand('SELECT u.name,u.mobile,s.depart FROM user u LEFT JOIN loan l ON u.wechat_id=l.wechat_id LEFT JOIN student stu ON u.wechat_id=stu.wechat_id LEFT JOIN school s ON stu.school_id=s.school_id WHERE stu.school_id LIKE ":school_prefix%" AND l.status=1')->bindValue(':school_prefix',102)->queryAll();
+            return $this->renderPartial('personal_list',['r'=>$r]);
         } else if($open_id==Yii::$app->params['demo_supporter']) {
-            return $this->renderPartial('bank_list', ['verification'=>'demo']);
+            $r = Yii::$app->db->createCommand('SELECT u.name,u.bank,u.bank_id FROM user u LEFT JOIN loan l ON u.wechat_id=l.wechat_id WHERE l.status=2')->queryAll();
+            return $this->renderPartial('bank_list', ['verification'=>'demo','r'=>$r]);
         } else if($open_id==Yii::$app->params['admin_supporter']) {
-            return $this->renderPartial('bank_list', ['verification'=>'admin']);
+            $r = Yii::$app->db->createCommand('SELECT u.name,u.bank,u.bank_id FROM user u LEFT JOIN loan l ON u.wechat_id=l.wechat_id WHERE l.status=2')->queryAll();
+            return $this->renderPartial('bank_list', ['verification'=>'admin','r'=>$r]);
         } else {
             return $this->renderPartial('agreement');
         }

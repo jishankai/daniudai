@@ -129,7 +129,7 @@ class m150521_093638_insert_school_data extends Migration
 
     public function down()
     {
-        $this->truncateTable();
+        $this->truncateTable('school');
     }
     
     /*
