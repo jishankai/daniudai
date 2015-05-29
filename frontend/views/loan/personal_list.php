@@ -18,7 +18,7 @@
 			<th>手机号</th>
 		</tr>
         <?php foreach($r AS $v) {?>
-        <a href="<?php echo Url::to(['loan/person',['loan_id']=>$v['loan_id']])?>">
+        <a href="<?php echo Url::to(['loan/person',['loan_id'=>$v['loan_id']])?>">
 		<tr>
         <td><?php echo $v['name']?></td>
         <td><?php echo $v['depart']?></td>
