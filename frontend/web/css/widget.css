@@ -168,23 +168,22 @@ a {
 	margin-left: 10px;
 }
 .apply-box .progress-box{
-	margin: 10px 5% 0;
+	margin: 10px 10% 0;
 	height: 30px;
-	width: 90%;
+	width: 80%;
 }
 .apply-box .progress-box .progressBar{
-	-webkit-transition: width .6s ease;
-	-moz-transition: width .6s ease;
-	-ms-transition: width .6s ease;
-	-o-transition: width .6s ease;
-	transition: width .6s ease;
+	-webkit-transition: width .5s ease;
+	-moz-transition: width .5s ease;
+	-ms-transition: width .5s ease;
+	-o-transition: width .5s ease;
+	transition: width .5s ease;
 	width: 0%;
-	min-width: 20px;	
 }
 .apply-box .progress-box .icons{
     position: absolute;    
-    right: -5px;
-    top: -13px;    
+    right: -22px;
+    top: -20px;    
     width: 30px;
     height: 30px;
     -webkit-box-shadow:0 1px 2px rgba(0,0,0,.2);
@@ -202,14 +201,13 @@ a {
     color: #aaa;
     display: inline-block;
     vertical-align: top;
+    margin: 7px;
 }
 .apply-box .progress-box .icons-recharge{
 	line-height: 26px;
 }
 .apply-box .progress-box .icons-calendar{
-	font-size: 16px;
-	/*background: url("../img/calendar.png") #fff center no-repeat;	
-	line-height: 26px;*/
+	font-size: 16px;	
 }
 .apply-box .apply-text{
 	border-top: 1px solid #eaeaea;
