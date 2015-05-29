@@ -66,10 +66,12 @@ $(function(){
 		
 			$("#i1").hide();
 			bc_num= $("#bc-num").val();
-			RegCellbcnum = /^([0-9]*)?$/;
+			RegCellbcnum = /^(\d{16}|\d{19})$/;
 			falg=bc_num.search(RegCellbcnum);
 			bc_len=bc_num.length;
-			if(falg==-1 || bc_len!=16 && bc_len!=19){
+			alert(bc_len);
+			if(falg==-1 || bc_len==16 && bc_len==19){
+				falg=-1;
 				$("#error").html("请输入正确的银行卡号");
 				$("#validate").show().delay(3000).fadeOut();
 				/*$("#bc-num").click(function(){
@@ -90,7 +92,7 @@ $(function(){
 					/*$("#cbc-num").click(function(){
 						$("#validate").hide();
 					})*/
-					("#cbc-num").focus();
+					$("#cbc-num").focus();
 				}
 
 			}
@@ -126,10 +128,10 @@ $(function(){
 				}
 			}
 
-			/*if(falg!=-1 && falg1!=-1 && falg2!=-1 && falg3!= -1 && stu_len==16 || falg!=-1 && falg1!=-1 && falg2!=-1 && falg3!= -1 && bc_len==19){
+			if(falg!=-1 && falg1!=-1 && falg2!=-1 && falg3!=-1 && stu_len==16 || falg!=-1 && falg1!=-1 && falg2!=-1 && falg3!=-1 && bc_len==19){
 				$("#next3").click();
-			}*/
-			$("#next3").click();
+			}
+			/*$("#next3").click();*/
 		
 	})
 
