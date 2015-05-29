@@ -64,7 +64,7 @@ $(function(){
 
 	$("#next2").click(function(){
 		
-			$("#i1").hide();
+			/*$("#i1").hide();*/
 			bc_num= $("#bc-num").val();
 			RegCellbcnum = /^(\d{16}|\d{19})$/;
 			falg=bc_num.search(RegCellbcnum);
@@ -81,7 +81,7 @@ $(function(){
 			}
 
 			if(falg!=-1){
-				$("#i2").hide();
+				/*$("#i2").hide();*/
 				cbc_num= $("#cbc-num").val();
 				bc_num=$("#bc-num").val();
 				falg1=1;
@@ -98,7 +98,7 @@ $(function(){
 			}
 
 			if(falg!=-1 && falg1!=-1){
-				$("#i4").hide();
+				/*$("#i4").hide();*/
 				id_num= $("#id-num").val();
 				RegCellidnum = /^(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[Xx])$)$/;
 				falg2=id_num.search(RegCellidnum);
@@ -113,7 +113,7 @@ $(function(){
 			}
 
 			if(falg!=-1 && falg1!=-1 && falg2!=-1){
-				$("#i5").hide();
+				/*$("#i5").hide();*/
 				phone_num= $("#phone-num").val();
 				/*RegCellphonenum = /^1\d{10}$/;*/
 				RegCellphonenum = /^0?(13[0-9]|15[012356789]|18[0236789]|14[57])[0-9]{8}$/;
