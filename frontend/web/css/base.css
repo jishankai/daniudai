@@ -284,11 +284,10 @@ img {
  * progress
  * ---------------------------------- */
 .progress-box {
-    display: block;
+    display: inline-block;
     vertical-align: top;
-    /*width:100%;*/
-    width: 92%;margin: 0 auto;
-    /*height: 100%;*/
+    width: 100%;
+    height: 100%;
     position: relative;    
 }
 .progress-box .progressBar-wrap {
