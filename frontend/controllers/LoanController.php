@@ -54,7 +54,7 @@ class LoanController extends \yii\web\Controller
 
     public function actionLend($type='common')
     {
-        $rate = ($type=='common')?0.0001:0.0002;
+        $rate = ($type=='common')?0.0002:0.0001;
         return $this->renderPartial('lend', ['v'=>Yii::$app->params['assets_version'], 'rate'=>$rate]);
     }
 
