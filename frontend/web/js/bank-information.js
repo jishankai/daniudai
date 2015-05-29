@@ -69,7 +69,7 @@ $(function(){
 			RegCellbcnum = /^(\d{16}|\d{19})$/;
 			falg=bc_num.search(RegCellbcnum);
 			bc_len=bc_num.length;
-			alert(bc_len);
+			
 			if(falg==-1 || bc_len==16 && bc_len==19){
 				falg=-1;
 				$("#error").html("请输入正确的银行卡号");
@@ -115,7 +115,8 @@ $(function(){
 			if(falg!=-1 && falg1!=-1 && falg2!=-1){
 				$("#i5").hide();
 				phone_num= $("#phone-num").val();
-				RegCellphonenum = /^1\d{10}$/;
+				/*RegCellphonenum = /^1\d{10}$/;*/
+				RegCellphonenum = /^0?(13[0-9]|15[012356789]|18[0236789]|14[57])[0-9]{8}$/;
 				falg3=phone_num.search(RegCellphonenum);
 
 				if(falg3==-1){
