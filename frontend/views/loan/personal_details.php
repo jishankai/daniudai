@@ -57,8 +57,8 @@
 		</tr>
 		
 	</table>
-    <a href="<?php echo Url::to(['loan/operate','operation'=>2])?>">确认通过审核</a>
-    <a href="<?php echo Url::to(['loan/operate','operation'=>-1])?>">审核未通过</a>
+    <a href="<?php echo Url::to(['loan/operate','loan_id'=>$r['loan_id'],'operation'=>2])?>">确认通过审核</a>
+    <a href="<?php echo Url::to(['loan/operate','loan_id'=>$r['loan_id'],'operation'=>-1])?>">审核未通过</a>
 </div>
 </body>
 </html>
