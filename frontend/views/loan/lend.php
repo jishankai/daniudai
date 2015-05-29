@@ -19,7 +19,7 @@
 		<div class="screen-content">			
 			<div class="content">
 				<div class="apply-box">
-					<div class="apply-info">毕业季，毕业礼，超低日利率：<?php echo $rate?>%<span>惠</span></div>
+					<div class="apply-info">毕业季，毕业礼，超低日利率：<?php echo $rate*100;?>%<span>惠</span></div>
 					<div class="apply-item" id="applyMoney">
 						<div class="a-title">
 							<h3>我要借：</h3>
@@ -66,9 +66,9 @@
 	<script type="text/javascript">
 		var rate = '<?php echo $rate?>';
 	</script>
-	<script type="text/javascript" src="./jquery.js?<?php echo $v;?>"></script>
-	<script type="text/javascript" src="./depend.js?<?php echo $v;?>"></script>
-	<script type="text/javascript" src="./loan.js?<?php echo $v;?>"></script>
+	<script type="text/javascript" src="js/jquery-1.11.1.js?<?php echo $v;?>"></script>
+	<script type="text/javascript" src="js/depend.js?<?php echo $v;?>"></script>
+	<script type="text/javascript" src="js/loan.js?<?php echo $v;?>"></script>
 	<script type="text/javascript">
 		$(".container").Loan();
 	</script>
