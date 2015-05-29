@@ -84,7 +84,7 @@
 					<span class="close" id="close1">&times;</span>
 				</div>
 				<div class="lists-body">
-					<ul class="lists-main" id="cschool_list" style="max-height:300px;">
+					<ul class="lists-main" id="cschool_list">
 						<li><i class="icons icons-check"></i>北京大学</li>
 						<li class="last-child"><i class="icons icons-check"></i>北京大学（医学部）</li>	
 					</ul>
@@ -105,7 +105,7 @@
 					<span class="close" id="close2">&times;</span>
 				</div>
 				<div class="lists-body">
-					<ul class="lists-main" id="cdegrees_list" style="max-height:300px;">
+					<ul class="lists-main" id="cdegrees_list">
 						<!-- <li><i class="icons icons-check"></i>本科</li> -->
 					</ul>
 					<p class="l-info">目前暂不支持研究生</p>
@@ -125,7 +125,7 @@
 					<span class="close" id="close3">&times;</span>
 				</div>
 				<div class="lists-body">
-					<ul class="lists-main" style="max-height:300px;" id="college-list">
+					<ul class="lists-main" id="college-list">
 					</ul>
 				</div>
 			</div>
@@ -144,7 +144,7 @@
 					<span class="close" id="close4">&times;</span>
 				</div>
 				<div class="lists-body">
-					<ul class="lists-main" id="cmajor_list" style="max-height:300px;">
+					<ul class="lists-main" id="cmajor_list">
 						
 					</ul>						
 				</div>
@@ -163,7 +163,7 @@
 					<span class="close" id="close5">&times;</span>
 				</div>
 				<div class="lists-body">
-					<ul class="lists-main" id="year_list" style="max-height:300px;">
+					<ul class="lists-main" id="year_list">
 					
 					</ul>
 				</div>
