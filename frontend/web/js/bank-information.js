@@ -129,7 +129,7 @@ $(function(){
 				}
 			}
 
-			if(falg!=-1 && falg1!=-1 && falg2!=-1 && falg3!=-1 && stu_len==16 || falg!=-1 && falg1!=-1 && falg2!=-1 && falg3!=-1 && bc_len==19){
+			if(falg!=-1 && falg1!=-1 && falg2!=-1 && falg3!=-1){
 				$("#next3").click();
 			}
 			/*$("#next3").click();*/
