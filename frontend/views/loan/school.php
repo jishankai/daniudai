@@ -39,36 +39,17 @@
 			                </div> 
 		                </div>                                   
 		            	<div class="forms-item">
-							<!-- <div class="forms__group">
+							<div class="forms__group">
 			                    <label class="forms__label">学校</label>
 			                    <span class="input__box select">
-			                    	<p class="d-color">学校</p>选中后去掉d-color
-			                        <span class="icon-option"><i class="icons icons-arrowRright"></i></span>
-			                    </span>
-			                </div> -->
-						
-			                <div class="forms__group">
-			                    <label class="forms__label">学校</label>
-			                    <span class="input__box">             
-			                        <input type="text" class="forms_input" placeholder="学校"  id="school-name" name="school-name">
+			                    	<p class="d-color" id="school-name">学校</p>
 			                        <span class="icon-option"><i class="icons icons-arrowRright"></i></span>
 			                    </span>
 			                </div>
-
-			                <!-- <div class="forms__group">
+			                <div class="forms__group">
 			                    <label class="forms__label">专业</label>
 			                    <span class="input__box select">
-			                    	<p class="d-color">专业/入学年份</p>
-			                        <span class="icon-option"><i class="icons icons-arrowRright"></i></span>
-			                    </span>
-			                </div> -->
-
-							 <div class="forms__group">
-			                    <label class="forms__label">专业</label>
-			                    <span class="input__box">             
-			                        <input type="text" class="forms_input" placeholder="专业/入学年份" id="major" name="major">
-			                        <input type="hidden"  value="" id="cdegrees" />
-			                        <input type="hidden" value="" id="adpart"/>
+			                    	<p class="d-color" id="major">专业/入学年份</p>
 			                        <span class="icon-option"><i class="icons icons-arrowRright"></i></span>
 			                    </span>
 			                </div>
@@ -76,15 +57,16 @@
 			                <div class="forms__group">
 			                    <label class="forms__label">详细地址</label>
 			                    <span class="input__box no-border">   
-			                        <input type="text" class="forms_input" placeholder="宿舍楼和房间号" id="address" name="address">
+			                        <input type="text" class="forms_input" placeholder="宿舍楼和房间号" id="address" name="address" maxlength="100">
 			                        <span class="icon-option"><i class="icons icons-cross"></i></span>
 			                    </span>
 			                </div>
 			            </div>
 		                <div class="forms__option">
-		                	<!-- <button class="btn btn-primary disabled btn-fullwidth">下一步</button> -->
+		                	<input type="text" value="" style="display:none;" id="grade" name="grade">
 		                	<input type="text" value="" style="display:none;" id="school_id" name="school_id"/>
-		                	<input type="submit" class="btn btn-primary btn-fullwidth" value="下一步" id="next" disabled/>
+		                	<input type="submit" class="btn btn-primary btn-fullwidth" value="下一步" id="next1" style="display:none;"/>                	
+		                	<input type="button" class="btn btn-primary btn-fullwidth" value="下一步" id="next" disabled/>
 		                </div>                                              
 		            </form>
 				</div>
@@ -93,7 +75,7 @@
 	</div>	
 
 <div class="mask" style="position:fixed;left:0;top:0;display:none;">
-	<div class="popover popover-big" style="display:block;position:relative;left:0;top:20px;" id="c_school"><!--滑动出现left:0;-->
+	<div class="popover popover-big" style="display:block;position:relative;top:20px;" id="c_school"><!--滑动出现left:0;-->
 		<div class="popover-inner">
 			<div class="lists-box">					
 				<div class="lists-title">
@@ -101,9 +83,9 @@
 					<span class="close" id="close1">&times;</span>
 				</div>
 				<div class="lists-body">
-					<ul class="lists-main" id="cschool_list">
-						<li class="active"><i class="icons icons-check"></i>北京大学</li>
-						<li class="last-child"><i class="icons icons-check"></i>北京大学（医学部）</li>			
+					<ul class="lists-main" id="cschool_list" style="max-height:300px;">
+						<li><i class="icons icons-check"></i>北京大学</li>
+						<li class="last-child"><i class="icons icons-check"></i>北京大学（医学部）</li>	
 					</ul>
 					<p class="l-info">即将开放更多大学，敬请期待！</p>
 				</div>
@@ -122,8 +104,8 @@
 					<span class="close" id="close2">&times;</span>
 				</div>
 				<div class="lists-body">
-					<ul class="lists-main" id="cdegrees_list">
-						<li class="active"><i class="icons icons-check"></i>本科</li>
+					<ul class="lists-main" id="cdegrees_list" style="max-height:300px;">
+						<!-- <li><i class="icons icons-check"></i>本科</li> -->
 					</ul>
 					<p class="l-info">目前暂不支持研究生</p>
 				</div>
@@ -138,12 +120,11 @@
 		<div class="popover-inner">
 			<div class="lists-box">					
 				<div class="lists-title">
-					<h3>选择院系</h3>
+					<h3 id="c_m">选择院系</h3>
 					<span class="close" id="close3">&times;</span>
 				</div>
 				<div class="lists-body">
-					<ul class="lists-main" style="max-height:300px;" id="college-list"><!--max-height值跟屏幕高度有关-->
-									
+					<ul class="lists-main" style="max-height:300px;" id="college-list">
 					</ul>
 				</div>
 			</div>
@@ -162,8 +143,8 @@
 					<span class="close" id="close4">&times;</span>
 				</div>
 				<div class="lists-body">
-					<ul class="lists-main" id="cmajor_list">
-								
+					<ul class="lists-main" id="cmajor_list" style="max-height:300px;">
+						
 					</ul>						
 				</div>
 			</div>
@@ -181,13 +162,8 @@
 					<span class="close" id="close5">&times;</span>
 				</div>
 				<div class="lists-body">
-					<ul class="lists-main" id="year_list">
-						<li class="active"><i class="icons icons-check"></i>2010</li>
-						<li><i class="icons icons-check"></i>2011</li>
-						<li><i class="icons icons-check"></i>2012</li>
-						<li><i class="icons icons-check"></i>2013</li>	
-						<li><i class="icons icons-check"></i>2014</li>
-						<li class="last-child"><i class="icons icons-check"></i>2015</li>			
+					<ul class="lists-main" id="year_list" style="max-height:300px;">
+					
 					</ul>
 				</div>
 			</div>
@@ -229,10 +205,9 @@
 	</div> 
 </div>
 
-
-
 </body>
 <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="js/person-information.js"></script>
 <script type="text/javascript" src="js/change.js"></script>
+
 </html>
