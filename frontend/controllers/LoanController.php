@@ -23,7 +23,7 @@ class LoanController extends \yii\web\Controller
         $u = User::findOne($user['openid']);
         $stu_id = $_POST['stu_id'];
         $school_id = $_POST['school_id'];
-        $dorm = $_POST['address'];
+        $dorm = $_POST['dorm'];
         $grade = $_POST['grade'];
         $name = $_POST['name'];
 
