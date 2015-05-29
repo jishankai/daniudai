@@ -215,7 +215,5 @@
 <script type="text/javascript">
 
 </script>
-=======
->>>>>>> hez/dev
 
 </html>
