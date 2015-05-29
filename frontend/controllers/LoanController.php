@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use Yii;
 use Overtrue\Wechat\Auth;
 use Overtrue\Wechat\Notice;
+use Overtrue\Wechat\Staff;
 use backend\models\User; 
 use backend\models\Loan; 
 use backend\models\Student;
@@ -169,8 +170,16 @@ class LoanController extends \yii\web\Controller
 
             $appId = Yii::$app->params['wechat_appid'];
             $secret = Yii::$app->params['wechat_appsecret'];
-            $notice = new Notice($appId, $secret);
+            $staff = new Staff($appId, $secret);
             //通知放款员面签
+            $message = "大牛君呐，又一位大牛来了，他叫{$u->name}，借款{$l->money}元，借{$l->duration}天，手机号{$u->mobile}，专业年级{student->grade}，请快速约起来~ ".Url::to(['loan/me'],TRUE);
+            $student = Student::findOne($user['openid']);
+            if ($student->school_id/10000==101) {
+                $supporter_openid = Yii::$app->params['pku101_supporter'];
+            } else if ($student->school_id/10000==102) {
+                $supporter_openid = Yii::$app->params['pku102_supporter'];
+            }
+            $staff->send($message)->to($supporter_openId);
             //通知用户协议
             //$messageId = $notice->uses($templateId)->andUrl($url)->withColor($color)->data($data)->send();
         }
