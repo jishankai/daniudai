@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use Yii;
+use yii\helpers\Url;
 use Overtrue\Wechat\Auth;
 use Overtrue\Wechat\Notice;
 use Overtrue\Wechat\Staff;
