@@ -1,9 +1,10 @@
+<?php use yii\helpers\Url;?>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta name="viewport" content="width = device-width, initial-scale=1.0">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>跟踪2</title>
+	<title>个人信息</title>
 	<style type="text/css">
 		.wraper{width:96%;padding:4%;}
 		table{margin: 0 auto;}
@@ -24,53 +25,40 @@
 	<table border="1" cellpadding="0" cellspacing="0" width="96%">
 		<tr>
 			<th>姓名</th>
-			<td></td>
-			<td><button>确认</button></td>
+            <td><?php echo $r['name']?></td>
 		</tr>
 		<tr>
 			<th>学号</th>
-			<td></td>
-			<td><button>确认</button></td>
+            <td><?php echo $r['stu_id']?></td>
 		</tr>
 		<tr>
 			<th>身份证号码</th>
-			<td></td>
-			<td><button>确认</button></td>
+            <td><?php echo $r['id']?></td>
 		</tr>
 		<tr>
 			<th>专业</th>
-			<td></td>
-			<td><button>确认</button></td>
+            <td><?php echo $r['depart']?></td>
 		</tr>
 		<tr>
 			<th>借款额</th>
-			<td></td>
-			<td><button>确认</button></td>
+            <td><?php echo $r['money']?></td>
 		</tr>
 		<tr>
 			<th>借款期限/天</th>
-			<td></td>
-			<td><button>确认</button></td>
-		</tr>
-		<tr>
-			<th>微信ID</th>
-			<td></td>
-			<td><button>确认</button></td>
+            <td><?php echo $r['duration']?></td>
 		</tr>
 		<tr>
 			<th>手机</th>
-			<td></td>
-			<td><button>确认</button></td>
+            <td><?php echo $r['mobile']?></td>
 		</tr>
 		<tr>
 			<th>宿舍</th>
-			<td></td>
-			<td><button>确认</button></td>
+            <td><?php echo $r['dorm']?></td>
 		</tr>
 		
 	</table>
-	<a href="#">确认通过审核</a>
-	<a href="#">审核未通过</a>
+    <a href="<?php echo Url::to(['loan/operate',['operation'=>2]])?>">确认通过审核</a>
+    <a href="<?php echo Url::to(['loan/operate',['operation'=>-1]])?>">审核未通过</a>
 </div>
 </body>
 </html>

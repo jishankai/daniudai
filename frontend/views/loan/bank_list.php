@@ -1,9 +1,10 @@
+<?php use yii\helpers\Url;?>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta name="viewport" content="width = device-width, initial-scale=1.0">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>跟踪1</title>
+	<title>待放款用户列表</title>
 	<style type="text/css">
 		th{height: 30px;}
 		td{height: 26px;text-align: center;line-height: 26px;}
@@ -20,30 +21,18 @@
 			<th>卡号</th>
 			<th></th>
 		</tr>
+        <?php foreach($r AS $v) {?>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td><button>确认</button></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td><button>确认</button></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td><button>确认</button></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td><button>确认</button></td>
-		</tr>
+        <td><?php echo $r['name']?></td>
+        <td><?php echo $r['bank']?></td>
+        <td><?php echo $r['bank_id']?></td>
+            <?php if($verifaction=='admin') {?>
+            <td><button>确认</button></td>
+            <?php } else {?>
+            <td><?php echo 未放款?></td>
+            <?php }?>
+        </tr>
+        <?php }?>
 	</table>
 </body>
 </html>

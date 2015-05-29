@@ -203,20 +203,75 @@ class LoanController extends \yii\web\Controller
 
         $open_id = $user['openid'];
         if ($open_id==Yii::$app->params['pku101_supporter']) {
-            $r = Yii::$app->db->createCommand('SELECT u.name,u.mobile,s.depart FROM user u LEFT JOIN loan l ON u.wechat_id=l.wechat_id LEFT JOIN student stu ON u.wechat_id=stu.wechat_id LEFT JOIN school s ON stu.school_id=s.school_id WHERE stu.school_id LIKE ":school_prefix%" AND l.status=1')->bindValue(':school_prefix',101)->queryAll();
+            $r = Yii::$app->db->createCommand('SELECT u.name,u.mobile,s.depart, l.loan_id FROM user u LEFT JOIN loan l ON u.wechat_id=l.wechat_id LEFT JOIN student stu ON u.wechat_id=stu.wechat_id LEFT JOIN school s ON stu.school_id=s.school_id WHERE stu.school_id LIKE ":school_prefix%" AND l.status=1')->bindValue(':school_prefix',101)->queryAll();
             return $this->renderPartial('personal_list',['r'=>$r]);
         } else if($open_id==Yii::$app->params['pku102_supporter']) {
-            $r = Yii::$app->db->createCommand('SELECT u.name,u.mobile,s.depart FROM user u LEFT JOIN loan l ON u.wechat_id=l.wechat_id LEFT JOIN student stu ON u.wechat_id=stu.wechat_id LEFT JOIN school s ON stu.school_id=s.school_id WHERE stu.school_id LIKE ":school_prefix%" AND l.status=1')->bindValue(':school_prefix',102)->queryAll();
+            $r = Yii::$app->db->createCommand('SELECT u.name,u.mobile,s.depart, l.loan_id FROM user u LEFT JOIN loan l ON u.wechat_id=l.wechat_id LEFT JOIN student stu ON u.wechat_id=stu.wechat_id LEFT JOIN school s ON stu.school_id=s.school_id WHERE stu.school_id LIKE ":school_prefix%" AND l.status=1')->bindValue(':school_prefix',102)->queryAll();
             return $this->renderPartial('personal_list',['r'=>$r]);
         } else if($open_id==Yii::$app->params['demo_supporter']) {
-            $r = Yii::$app->db->createCommand('SELECT u.name,u.bank,u.bank_id FROM user u LEFT JOIN loan l ON u.wechat_id=l.wechat_id WHERE l.status=2')->queryAll();
+            $r = Yii::$app->db->createCommand('SELECT u.name,u.bank,u.bank_id, l.status FROM user u LEFT JOIN loan l ON u.wechat_id=l.wechat_id WHERE l.status=2')->queryAll();
             return $this->renderPartial('bank_list', ['verification'=>'demo','r'=>$r]);
         } else if($open_id==Yii::$app->params['admin_supporter']) {
-            $r = Yii::$app->db->createCommand('SELECT u.name,u.bank,u.bank_id FROM user u LEFT JOIN loan l ON u.wechat_id=l.wechat_id WHERE l.status=2')->queryAll();
+            $r = Yii::$app->db->createCommand('SELECT u.name,u.bank,u.bank_id,l.loan_id FROM user u LEFT JOIN loan l ON u.wechat_id=l.wechat_id WHERE l.status=2')->queryAll();
             return $this->renderPartial('bank_list', ['verification'=>'admin','r'=>$r]);
         } else {
             return $this->renderPartial('agreement');
         }
     }
 
+    public function actionPerson($loan_id)
+    {
+        session_start();
+        $user = $_SESSION['user'];
+        $open_id = $user['openid'];
+        if ($open_id==Yii::$app->params['pku101_supporter'] OR $open_id==Yii::$app->params['pku102_supporter']) {
+            $r = Yii::$app->db->createCommand('SELECT l.loan_id,l.duration,l.money,u.name,u.stu_id,u.depart,u.mobile FROM loan l LEFT JOIN user u ON l.wechat_id=u.wechat_id WHERE l.loan_id=:loan_id')->bindValue(':loan_id',$loan_id)->queryRow;
+            return $this->renderPartial('personnal_details', ['r'=>$r]);
+        } else {
+            return $this->renderPartial('404');
+        }
+        
+    }
+
+    public function actionOperate($loan_id, $operation=-1)
+    {
+        $appId = Yii::$app->params['wechat_appid'];
+        $secret = Yii::$app->params['wechat_appsecret'];
+
+        session_start();
+        if (empty($_SESSION['user'])) {
+            $auth = new Auth($appId, $secret);
+            $user = $auth->authorize('http://dev.imengstar.com/index.php?r=loan/me', 'snsapi_base'); // 返回用户 Bag
+            $_SESSION['user'] = $user;
+        }
+        $user = $_SESSION['user'];
+        $open_id = $user['openid'];
+        if (($operation==-1 OR $operation==2) AND ($open_id==Yii::$app->params['pku101_supporter'] OR $open_id==Yii::$app->params['pku102_supporter'])) {
+            $l = Loan::findOne($loan_id);
+            $u = User::findOne($l->wechat_id);
+            $l->status = $operation;
+            $l->updateAttributes(['status']);
+
+            $staff = new Staff($appId, $secret);
+            if ($operation==2) {
+                $message = "又一位大牛通过审核:姓名:{$u->name},银行类别:{$u->bank},银行卡号:{$u->bank_id},借款额{$l->money}元,手机:{$u->mobile},请尽快汇出。".Url::to(['loan/me'],TRUE);
+                $messagetoclient = "大牛您好!您的借款申请已通过审核,借款额为 {$l->money} 元 ,借款期限为 {$l->duration} 天,我们会在 24 小时内给您汇款,请耐心等待。";
+                $staff->send($message)->to(Yii::$app->params['demo_supporter']);
+                $staff->send($message)->to(Yii::$app->params['admin_supporter']);
+                $staff->send($messagetoclient)->to($l->wechat_id);
+            } else if ($operation==3 AND $open_id==Yii::$app->params['admin_supporter']) {
+                $l = Loan::findOne($loan_id);
+                $u = User::findOne($l->wechat_id);
+                $l->status = $operation;
+                $l->updateAttributes(['status']);
+
+                $staff = new Staff($appId, $secret);
+                $bank_id = substr($u->bank_id, -4);
+                $messagetoclient = "大牛您好,您申请的借款已汇入您尾号为{$bank_id}的银行卡中,请及时查看。";
+                $staff->send($messagetoclient)->to($l->wechat_id);
+            }
+        }
+        
+        return $this->redirect(['loan/me']);
+    }
 }
