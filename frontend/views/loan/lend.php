@@ -23,11 +23,11 @@
 					<div class="apply-item" id="applyMoney">
 						<div class="a-title">
 							<h3>我要借：</h3>
-							<span class="a-right"><em class="f-orange">￥1000</em></span>
+							<span class="a-right"><em class="f-orange">￥3000</em></span>
 						</div>
 						<div class="progress-box">
 							<div class="progressBar-wrap">
-								<div class="progressBar" style="width:0%;">
+								<div class="progressBar" style="width:30%;">
 									<i id="changeRecharge" class="icons icons-recharge">￥</i>
 								</div>
 							</div>
