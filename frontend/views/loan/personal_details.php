@@ -12,9 +12,10 @@
 			width: 40%;}
 		tr > td:nth-of-type(2n){width: 20%;}
 		a{text-decoration: none;color: #000;
-			display: block;width: 80%;height: 50px;
+			display: inline-block;width: 40%;height: 50px;
 			background-color: orange;line-height: 50px;
-			text-align: center;margin: 20px auto;
+			text-align: center;margin: 20px 0;
+			margin-left: 5%;
 			border-radius: 10px;box-shadow:2px 2px 6px #aaa;}
 	</style>
 </head>
@@ -69,6 +70,7 @@
 		
 	</table>
 	<a href="#">确认通过审核</a>
+	<a href="#">审核未通过</a>
 </div>
 </body>
 </html>
