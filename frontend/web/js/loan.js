@@ -48,10 +48,6 @@
 			
 			$cal.hammer({ drag_lock_to_axis: true })
 				.on(events, $.proxy(this._timeEventHandler, this));
-			
-			this.submitBtn.on("click", function(){
-				self._post();
-			})
 		},
 		//贷款进度处理
 		_eventHandler:function(ev){
@@ -82,14 +78,14 @@
 					} else {
 						if(sw>=poffsetw) sw = poffsetw;
 						
-						var tp = Math.ceil(sw/poffsetw*9);
+						var tp = ev.gesture.direction=="right" ? Math.ceil(sw/poffsetw*9) : Math.floor(sw/poffsetw*9);
 						
 						var money = (tp+1) * 1000;
 						dfm = money;
 						this.moneyNode.find('em').text(["￥",money].join(""));
 						
 						if(tp>9) tp = 9;
-						console.log(tp)
+						
 						this.moneyProgressNode.css({width:(poffsetw/9*tp)/poffsetw*100+"%"});
 					}
 					
@@ -145,28 +141,6 @@
 				_width = parseInt(_pwidth) * poffsetw/100;
 			
 			return _width;
-		},
-		//后台处理
-		_post:function(){
-			try{
-				$.ajax({
-					url:url,
-					data:{duration:dtm, money:dfm,rate:dl},
-					type:"post",
-					success:function(data){
-						if(data.code){
-							window.location.href =  redirectUrl;
-						} else {
-							alert("数据库失败");
-						}
-					},
-					error:function(){
-						alert("出现异常");
-					}
-				})
-			}catch(e){
-				console.log(e);
-			}
 		}
 	}
 	
@@ -186,7 +160,10 @@
 		$("#repayTmpl").find("p").text([dtm,'天后到期'].join(""))
 			.end()
 			.find('em')
-			.text(["￥", cal(dfm, dtm, dl)].join(""))
+			.text(["￥", cal(dfm, dtm, dl)].join(""));
+		
+		$('[name="duration"]').val(dtm);
+		$('[name="money"]').val(dfm);
 	}
 	
 })(window.jQuery||window.Zepto);
