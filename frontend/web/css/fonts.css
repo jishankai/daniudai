@@ -22,7 +22,7 @@
 .icons:after:hover {
   text-decoration:none
 }
-.icons-calendar:before { content:"\e600" }
+.icons-calendar:before { content:"\e600" }*/
 .icons-check:before { content:"\e601" }
 .icons-cross:before { content:"\e602" }
 .icons-arrowRright:before { content:"\e603" }

@@ -13,87 +13,64 @@
 <link rel="stylesheet" type="text/css" media="all" href="css/base.css" />
 <link rel="stylesheet" type="text/css" media="all" href="css/fonts.css" />
 <link rel="stylesheet" type="text/css" media="all" href="css/widget.css" />
-<!-- range -->
-<link rel="stylesheet" type="text/css" media="all" href="css/range.css"/>
-
 </head>
 <body>
 	<div class="container">
 		<div class="screen-content">			
 			<div class="content">
 				<div class="apply-box">
-					<div class="apply-item">
-                    <form id="form1" action='<?php echo Url::to(['loan/school'])?>' method='post'>
+					<div class="apply-info">毕业季，毕业礼，超低日利率：0.01%<span>惠</span></div>
+					<div class="apply-item" id="applyMoney">
 						<div class="a-title">
 							<h3>我要借：</h3>
-							<span class="a-right"><em class="f-orange">￥<span id="lend-num">1</span>000</em></span>
+							<span class="a-right"><em class="f-orange">￥1000</em></span>
 						</div>
 						<div class="progress-box">
-							<!-- <div class="progressBar-wrap">
-								<div class="progressBar" style="width:67%;">
-									<i class="icons icons-recharge">￥</i>
+							<div class="progressBar-wrap">
+								<div class="progressBar" style="width:0%;">
+									<i id="changeRecharge" class="icons icons-recharge">￥</i>
 								</div>
-							</div> -->
-							<div class="range-wrap">
-								<input type="range" name="money" min="1" max="10" value="1" class="range" id="lend-range" onchange="aa()" />
-								<div id="range-color1" class="range-color"></div>
 							</div>
 						</div>
 					</div>
-					<div class="apply-item">
+					<div class="apply-item" id="applyTime">
 						<div class="a-title">
 							<h3 class="f-normal">借款时间：</h3>
-							<span class="a-right"><em class="f-orange"><span id="lend-time">1</span>00天</em></span>
+							<span class="a-right"><em class="f-orange">100天</em></span>
 						</div>
 						<div class="progress-box">
-							<!-- <div class="progressBar-wrap">
-								<div class="progressBar" style="width:33%;">
-									<i class="icons icons-calendar"></i>
+							<div class="progressBar-wrap">
+								<div class="progressBar" style="width:0%;">
+									<span id="changeCal" class="icons icons-calendar"></span>
 								</div>
-							</div> -->
-							<div class="range-wrap">
-								<input type="range" name="duration" min="1" max="4" value="1" class="range" id="lend-time-range" onchange="bb()" />
-								<div id="range-color2" class="range-color"></div>
 							</div>
 						</div>
 					</div>
-					<div class="repay-text">
+					<div class="repay-text" id="repayTmpl">
+						<p>100天后到期</p>
 						<h3>还款金额：</h3>
-                        <span class="r-right"><em class="f-orange">￥<span id="return-num"><?php echo 1000*(1+$rate)?></span></em></span>
+						<span class="r-right"><em class="f-orange">计算中</em></span>
 					</div>
+					<form class="forms" onsubmit="return false;">
 		                <div class="forms__option">
 		                	<input type="text" value="<?php echo $rate?>" style="display:none;" name="rate"/>
-		                	<input type="submit" class="btn btn-orange btn-fullwidth" value="立即申请"/>
+		                	<button class="btn btn-orange btn-fullwidth" id="applicationBtn">立即申请</button>
 		                </div>                                              
 		            </form>
 				</div>
 			</div>
 		</div>
 	</div>	
+	<script type="text/javascript">
+		var url = "http://dev.imengstar.com/index.php?r=loan/school",
+			redirectUrl = "",
+			rate = '<?php echo $rate?>';			
+	</script>
+	<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+	<script type="text/javascript" src="js/depend.js"></script>
+	<script type="text/javascript" src="js/loan.js"></script>
+	<script type="text/javascript">
+		$(".container").Loan();
+	</script>
 </body>
-<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
-<script type="text/javascript">
-	function aa(){
-		
-		var rangeValue = $("#lend-range").val();
-		$("#lend-num").html(rangeValue);
-		ww=$("#lend-range").width();
-		abc=$("#lend-num").html();
-	
-	   $("#range-color1").width((abc-1)*(ww/9));
-	   $("#lend-num2").html($("#lend-num").html()*1000);
-	   $("#return-num").html($("#lend-num").html()*1000+$("#lend-num").html()*1000*$("#lend-time").html()*<?php echo $rate?>);
-	}
-
-	function bb(){
-		var lendTime = $("#lend-time-range").val();
-		$("#lend-time").html(lendTime);
-		ww=$("#lend-time-range").width();
-		abc=$("#lend-time").html();
-	
-	   $("#range-color2").width((abc-1)*(ww/3));
-	   $("#lend-time2").html($("#lend-time").html());
-	   $("#return-num").html($("#lend-num").html()*1000+$("#lend-num").html()*1000*$("#lend-time").html()*<?php echo $rate?>);
-	}
-</script>
 </html>

@@ -1,45 +1,42 @@
 <?php use yii\helpers\Url;?>
 <!DOCTYPE html>
-<html>
+<html class="mobile-notes-variant bg-color" lang="en"><!--full-srceen-->
 <head>
-	<meta name="viewport" content="width = device-width, initial-scale=1.0">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>毕业专属</title>
-	<style type="text/css">
-		*{pading:0;margin: 0;}
-
-		.wrap{width: 640px;margin: 0 auto;padding-top: 15%;}
-		a{display: inline-block;width: 40%;height: 50px;
-			background-color: orange;text-decoration: none;
-			line-height: 50px;text-align: center;margin-left: 6%;
-			margin-top: 20%;color:#fff;font-weight: bold;
-			border-radius: 10%;box-shadow: 2px 2px 6px #333333;
-			margin-bottom: 10%;}
-		.wrap div:nth-of-type(1){padding-top: 20%;}
-		p{text-align: left;font-size: 1rem;margin-left: 10%;
-			margin-bottom: 5%;}
-		
-		.wrap div{text-align: left;font-size: 1.2rem;margin-left: 10%;
-			margin-bottom: 2%;}
-		@media only screen and (min-width: 300px) and (max-width: 650px){
-			.wrap{width:100%;}
-		}
-	</style>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" user-scalable="no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>大牛贷</title>
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-precomposed-144.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-precomposed-114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/logo-72.png">
+<link rel="stylesheet" type="text/css" media="all" href="css/reset.css" />
+<link rel="stylesheet" type="text/css" media="all" href="css/base.css" />
+<link rel="stylesheet" type="text/css" media="all" href="css/fonts.css" />
+<link rel="stylesheet" type="text/css" media="all" href="css/widget.css" />
 </head>
 <body>
-<div class="wrap">
-	<div>毕业季，毕业礼，万分之一</div>
-	<p>毕业生专属</p>
-	<br/>
-	<div>暑期档，特别礼，万分之二</div>
-	<p>6月1日 至 6月30日</p>
-	<br/>
-	<div>100天，200天，300天</div>
-	<p>随你所需，不是分期，到期才还款哟</p>
-
-    <a href="<?php echo Url::to(['loan/lend'])?>">立即申请</a>
-    <a href="<?php echo Url::to(['loan/lend','type'=>'graduate'])?>">毕业专属通道</a>
-
-</div>
+	<div class="container">
+		<div class="screen-content">			
+			<div class="content">
+				<div class="loan-box">
+					<img class="loan-picImg" src="img/pic-01.jpg" />
+					<div class="loan-content">
+						<h2>毕业季，毕业礼，万分之一</h2>
+						<p>毕业生专属，超低日利率：0.01%</p>
+						<h2>火热暑期，清凉礼，万分之二</h2>
+						<p>不毕业也可以有，特惠日利率：0.02%</p>
+						<h2>不是分期，是到期哟~</h2>
+						<p>100天，200天，300天，取你所需，到期才还</p>
+					</div>
+					<form class="forms">
+		                <div class="forms__option clearfix">
+		                	<a class="btn btn-white" href="<?php echo Url::to(['loan/lend'])?>">立即激活</a>
+		                	<a class="btn btn-white w-opacity" href="<?php echo Url::to(['loan/lend','type'=>'graduate'])?>">毕业专属通道</a>
+		                </div>                                              
+		            </form>
+				</div>
+			</div>
+		</div>
+	</div>	
 </body>
 </html>
