@@ -123,6 +123,7 @@ a {
 .apply-box .apply-info{
 	padding: 15px 15px 12px;
 	background-color: #fff;
+	font-size: 15px;
 }
 .apply-info span{
 	display: inline-block;
