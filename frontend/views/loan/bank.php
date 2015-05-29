@@ -1,3 +1,4 @@
+<?php use yii\helpers\Url;?>
 <!DOCTYPE html>
 <html class="mobile-notes-variant" lang="en"><!--full-srceen-->
 <head>

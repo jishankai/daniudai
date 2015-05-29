@@ -175,9 +175,9 @@ class LoanController extends \yii\web\Controller
             //通知放款员面签
             $message = "大牛君呐，又一位大牛来了，他叫{$u->name}，借款{$l->money}元，借{$l->duration}天，手机号{$u->mobile}，专业年级{student->grade}，请快速约起来~ ".Url::to(['loan/me'],TRUE);
             $student = Student::findOne($user['openid']);
-            if ($student->school_id/100==101) {
+            if (floor($student->school_id/100)==101) {
                 $supporter_openid = Yii::$app->params['pku101_supporter'];
-            } else if ($student->school_id/100==102) {
+            } else if (floor($student->school_id/100)==102) {
                 $supporter_openid = Yii::$app->params['pku102_supporter'];
             }
             $staff->send($message)->to($supporter_openid);

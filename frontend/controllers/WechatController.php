@@ -27,11 +27,12 @@ class WechatController extends \yii\web\Controller
             $openid = $message['FromUserName'];
             $student = Student::findOne($openid);
             if (isset($student) AND $student->school_id>0) {
-                if ($student->school_id/100==101) {
+                if (floor($student->school_id/100)==101) {
                     $account = '201501@daniudai';
-                } else if ($student->school_id/100==102) {
+                } else if (floor($student->school_id/100)==102) {
                     $account = '201502@daniudai';
                 }
+                $account = '201504@daniudai';
                 return Message::make('transfer')->to($account);
             } else {
                 return Message::make('transfer');
