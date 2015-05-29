@@ -36,7 +36,7 @@
 							<div class="forms__group">
 			                    <label class="forms__label">银行</label>
 			                    <span class="input__box select"> 
-			                    	<p class="d-color" id="bank-name">北京银行</p>
+			                    	<p class="d-color" id="bank-name">选择银行</p>
 			                        <span class="icon-option"><i class="icons icons-arrowRright"></i></span>
 			                    </span>
 			                    <input type="text" style="display:none;" value="" name="bank" id="bank_name"/>
