@@ -23,9 +23,9 @@
 		</tr>
         <?php foreach($r AS $v) {?>
 		<tr>
-        <td><?php echo $r['name']?></td>
-        <td><?php echo $r['bank']?></td>
-        <td><?php echo $r['bank_id']?></td>
+        <td><?php echo $v['name']?></td>
+        <td><?php echo $v['bank']?></td>
+        <td><?php echo $v['bank_id']?></td>
             <?php if($verifaction=='admin') {?>
             <td><button>确认</button></td>
             <?php } else {?>
