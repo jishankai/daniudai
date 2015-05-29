@@ -1,13 +1,23 @@
 $(function(){
 		wwidth=$(window).width();
+		wheight=$(window).height();
 		$("#c_school").css("left",-wwidth);
+		$("#c_college").css("left",-wwidth);
+		$("#c_degrees").css("left",-wwidth);
+		$("#admission_year").css("left",-wwidth);
+
+		$("#cschool_list").height(wheight/6*4);
+		$("#cdegrees_list").height(wheight/6*4);
+		$("#college-list").height(wheight/6*4);
+		$("#year_list").height(wheight/6*4);
+
 /*选择学校*/
 	$("#school-name").click(function(){
 		$(".mask").show();
 		$(".mask").height($(window).height());
 		var wheight=$(window).height();
 		var cschool=$("#c_school").height();
-		$("#c_school").css("top",Math.round((wheight-cschool)/6));
+		$("#c_school").css("top",Math.round(wheight/7));
 		$("#c_school").css("left",0);
 		
 		$("#cschool_list li").click(function(){
@@ -30,7 +40,7 @@ $(function(){
 			var wheight=$(window).height();
 			var cschool=$("#c_school").height();
 
-			$("#c_school").css("top",Math.round((wheight-cschool)/6));
+			$("#c_school").css("top",Math.round(wheight/6));
 			$("#c_school").css("left",0);
 			$("#cschool_list li").click(function(){
 				$(this).addClass("active").siblings().removeClass();
@@ -56,16 +66,17 @@ $(function(){
 function mclick(school_name){
 	if(school_name=="北京大学"){
 		 $('#cdegrees_list li').remove();
-		 $('#cdegrees_list').append("<li><i class='icons icons-check'></i>本科专业</li>");
+		 $('#cdegrees_list').append("<li><i class='icons icons-check'></i>本科</li>");
 	}else if(school_name=="北京大学（医学部）"){
 		$('#cdegrees_list li').remove();
-		$('#cdegrees_list').append("<li><i class='icons icons-check'></i>本科专业</li>");
+		$('#cdegrees_list').append("<li><i class='icons icons-check'></i>本科</li>");
 		$('#cdegrees_list').append("<li><i class='icons icons-check'></i>本博/本硕连读</li>");
 	}
 	$(".mask1").show();
 		var wheight=$(window).height();
 		var cdegrees=$("#c_degrees").height();
-		$("#c_degrees").css("top",Math.round((wheight-cdegrees)/6));
+		$("#c_degrees").css("top",Math.round(wheight/7));
+		$("#c_degrees").css("left",0);
 
 		$("#cdegrees_list li").click(function(){
 			$(this).addClass("active").siblings().removeClass();
@@ -79,12 +90,10 @@ function mclick(school_name){
 			asname=$('#school-name').html();
 
 			if(asname=="北京大学（医学部）"){
-				s1="101";
 				$("#c_m").html("选择专业");
 				beiyi(adgree);
 			}
 			if(asname=="北京大学"){
-				s1="102";
 				beida(adgree);
 			}
 
@@ -92,25 +101,23 @@ function mclick(school_name){
 			$(".mask2").show();
 			var wheight=$(window).height();
 			var ccollege=$("#c_college").height();
-			$("#c_college").css("top",Math.round((wheight-ccollege)/6));
+			$("#c_college").css("top",Math.round(wheight/7));
+			$("#c_college").css("left",0);
 			$("#college-list li").click(function(){
 				$(this).addClass("active").siblings().removeClass();
 				b=$(this).html();
 				college=b.substring(33);
-
-					s2(college);
-
 					grade(college,adgree);
+					/*选择入学年份*/
 					$(".mask2").hide();
 					$(".mask4").show();
 					var wheight=$(window).height();
 					var ayear=$("#admission_year").height();
-					$("#admission_year").css("top",Math.round((wheight-ayear)/6));
+					$("#admission_year").css("top",Math.round(wheight/7));
+					$("#admission_year").css("left",0);
+
 					$("#year_list li").click(function(){
 						$(this).addClass("active").siblings().removeClass();
-
-						$("#school_id").val(s1+s2);
-
 						d=$(this).html();
 						admission_year=d.substring(33);
 						$("#grade").val(admission_year);
@@ -130,8 +137,8 @@ function mclick(school_name){
 		$("#close5").click(function(){
 			$(".mask4").hide();
 		})
-
 }/*function mclick()结束*/
+
 /*个人信息验证有误*/
 function error2(){
 	$(".mask6").show();
@@ -154,7 +161,7 @@ function beiyi(degrees){
 	var school = ["临床医学8年制","基础医学8年制","口腔医学8年制","预防医学7年制","应用药学6年制"];
 	var school1=["临床医学5年制","口腔医学5年制","生物医学英语","预防医学5年制","应用药学4年制","护理学","医学实验技术","医学检验技术","口腔医学技术"];
 	
-	if(degrees=="本科专业"){
+	if(degrees=="本科"){
 		$('#college-list li').remove();
 		for(var i=0;i<school1.length;i++){
 		 $('#college-list').append("<li><i class='icons icons-check'></i>"+school1[i]+"</li>");
@@ -169,7 +176,7 @@ function beiyi(degrees){
 }
 
 function grade(college,adgree){
-	if(adgree=="本科专业"){
+	if(adgree=="本科"){
 		$('#year_list li').remove();
 		for(var i=2010;i<2015;i++){
 		 $('#year_list').append("<li><i class='icons icons-check'></i>"+i+"</li>");
@@ -200,48 +207,6 @@ function grade(college,adgree){
 	
 }
 
-function s2(college){
-	if(college=="临床医学8年制"){s2="01";}
-	if(college=="基础医学8年制"){s2="02";}
-	if(college=="口腔医学8年制"){s2="03";}
-	if(college=="预防医学7年制"){s2="04";}
-	if(college=="应用药学6年制"){s2="05";}
-	if(college=="临床医学5年制"){s2="06";}
-	if(college=="口腔医学5年制"){s2="07";}
-	if(college=="生物医学英语"){s2="08";}
-	if(college=="预防医学5年制"){s2="09";}
-	if(college=="应用药学4年制"){s2="10";}
-	if(college=="护理学"){s2="11";}
-	if(college=="医学实验技术"){s2="12";}
-	if(college=="医学检验技术"){s2="13";}
-	if(college=="口腔医学技术"){s2="14";}
-
-	if(college=="城市与环境学院"){s2="01";}
-	if(college=="地球与空间科学学院"){s2="02";}
-	if(college=="法学院"){s2="03";}
-	if(college=="工学院"){s2="04";}
-	if(college=="光华管理学院"){s2="05";}
-	if(college=="国际关系学院"){s2="06";}
-	if(college=="化学与分子工程学院"){s2="07";}
-	if(college=="环境科学与工程学院"){s2="08";}
-	if(college=="经济学院"){s2="09";}
-	if(college=="考古文博学院"){s2="10";}
-	if(college=="历史学系"){s2="11";}
-	if(college=="社会学系"){s2="12";}
-	if(college=="生命科学学院"){s2="13";}
-	if(college=="数学科学学院"){s2="14";}
-	if(college=="外国语学院"){s2="15";}
-	if(college=="物理学院"){s2="16";}
-	if(college=="心理学系"){s2="17";}
-	if(college=="新闻与传播学院"){s2="18";}
-	if(college=="信息管理系"){s2="19";}
-	if(college=="信息科学技术学院"){s2="20";}
-	if(college=="艺术学院"){s2="21";}
-	if(college=="元培学院"){s2="22";}
-	if(college=="哲学系"){s2="23";}
-	if(college=="政府管理学院"){s2="24";}
-	if(college=="中国语言文学系"){s2="25";}
-}
 
 
 })

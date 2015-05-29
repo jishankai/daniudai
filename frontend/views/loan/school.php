@@ -64,8 +64,8 @@
 			                </div>
 			            </div>
 		                <div class="forms__option">
-		                	<input type="text" value="" style="display:none;" id="grade" name="grade">
-		                	<input type="text" value="" style="display:none;" id="school_id" name="school_id"/>
+		                	<input type="text" value="2010" style="display:none;" id="grade" name="grade">
+		                	<input type="text" value="10101" style="display:none;" id="school_id" name="school_id"/>
 		                	<input type="submit" class="btn btn-primary btn-fullwidth" value="下一步" id="next1" style="display:none;"/>                	
 		                	<input type="button" class="btn btn-primary btn-fullwidth" value="下一步" id="next" disabled/>
 
