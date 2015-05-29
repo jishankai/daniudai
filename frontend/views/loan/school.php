@@ -58,7 +58,7 @@
 			                <div class="forms__group">
 			                    <label class="forms__label">详细地址</label>
 			                    <span class="input__box no-border">   
-			                        <input type="text" class="forms_input" placeholder="宿舍楼和房间号" id="address" name="address" maxlength="100">
+			                        <input type="text" class="forms_input" placeholder="宿舍楼和房间号" id="address" name="dorm" maxlength="100">
 			                        <span class="icon-option"><i class="icons icons-cross"></i></span>
 			                    </span>
 			                </div>
