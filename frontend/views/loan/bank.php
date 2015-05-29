@@ -1,4 +1,3 @@
-<?php use yii\helpers\Url;?>
 <!DOCTYPE html>
 <html class="mobile-notes-variant" lang="en"><!--full-srceen-->
 <head>
@@ -15,13 +14,15 @@
 <link rel="stylesheet" type="text/css" media="all" href="css/widget.css" />
 <!-- attach -->
 <link rel="stylesheet" type="text/css" media="all" href="css/attach.css" />
-<style type="text/css">
-	.agreement{font-family: "Microsoft YaHei";display: none;}
-	.agreement p{font-size: 1rem;line-height: 1.2;}
-	.agreement .agree{display:block;width: 80%;height: 50px;line-height: 50px;max-width: 200px;
-		background:orange;margin:10px auto;text-decoration: none;color:#fff;
-		text-align: center;border-radius: 10px;}
-</style>
+	<style type="text/css">
+		.agreement{font-family: "Microsoft YaHei";display: none;}
+		.agreement p{font-size: 1rem;line-height: 1.2;}
+    .agreement .agree{display:block;width: 80%;height: 50px;line-height: 50px;max-width: 200px;
+      background:orange;margin:10px auto;text-decoration: none;color:#fff;
+      text-align: center;border-radius: 10px;}
+    
+
+	</style>
 </head>
 <body>
 	<div class="container">
@@ -29,21 +30,15 @@
 			<div class="content">
 				<div class="info-box">	
 					<div class="info-text"><p>请正确填写银行卡信息，以能够及时打款。</p></div>		
-                    <form class="forms" id="form2" action='<?php echo Url::to(['loan/success'])?>' method='post'>				                                   
+					 <form class="forms" id="form2" action='<?php echo Url::to(['loan/success'])?>' method='post'>				                                   
 		            	<div class="forms-item">
-							<!-- <div class="forms__group">
-			                    <label class="forms__label">银行</label>
-			                    <span class="input__box select"> 
-			                    	<p class="">北京银行</p>选中后去掉d-color，默认文字：银行名称
-			                        <span class="icon-option"><i class="icons icons-arrowRright"></i></span>
-			                    </span>
-			                </div> -->
 							<div class="forms__group">
 			                    <label class="forms__label">银行</label>
-			                    <span class="input__box">             
-			                        <input type="text" class="forms_input" placeholder="银行名称"  id="bank-name" name="bank">
+			                    <span class="input__box select"> 
+			                    	<p class="d-color" id="bank-name">北京银行</p>
 			                        <span class="icon-option"><i class="icons icons-arrowRright"></i></span>
 			                    </span>
+			                    <input type="text" style="display:none;" value="" name="bank" id="bank_name"/>
 			                </div>
 
 			                <div class="forms__group">
@@ -64,9 +59,10 @@
 			            <div class="forms-item">
 							<div class="forms__group">
 			                    <label class="forms__label">姓名</label>
-			                    <span class="input__box">                                   
-                                <input type="text" class="forms_input" placeholder="真实姓名" value="<?php echo $user->name?>" id="name">
-			                        <span class="icon-option"><i class="icons icons-cross" style="display:block;" id="i3"></i></span>
+			                    <span class="input__box select">                                   
+			                        <!-- <input type="text" class="forms_input" placeholder="真实姓名" value="" id="name" name="name"> -->
+			                        <p><?php echo $user->name?></p>
+			                        <span class="icon-option"><!-- <i class="icons icons-cross" style="display:block;" id="i3"></i> --></span>
 			                    </span>
 			                </div>
 			                <div class="forms__group">
@@ -86,7 +82,8 @@
 		                </div>
 		                <div class="forms__option">
 		                	<!-- <button class="btn btn-primary btn-fullwidth">下一步</button> -->
-		                	<input type="submit" class="btn btn-primary btn-fullwidth" value="下一步" disabled id="next2" />
+		                	<input type="button" class="btn btn-primary btn-fullwidth" value="下一步" disabled id="next2" />
+		                	<input type="submit" class="btn btn-primary btn-fullwidth" value="下一步" id="next3" style="display:none;"/>
 		                	<p class="option-text">点击下一步，意味着您同意<a href="#" id="agreement-btn">《借款协议》</a></p>
 		                </div>                                              
 		            </form>
@@ -105,9 +102,22 @@
 					<span class="close" id="close8">&times;</span>
 				</div>
 				<div class="lists-body" id="cbank-list">
-					<ul class="lists-main" id="year_list">
-						<li class="active"><i class="icons icons-check"></i>北京银行</li>	
-						<li class="last-child"><i class="icons icons-check"></i>招商银行</li>			
+					<ul class="lists-main" id="cbank_list" >
+						<li><i class="icons icons-check"></i>中国工商银行</li>	
+						<li><i class="icons icons-check"></i>中国农业银行</li>
+						<li><i class="icons icons-check"></i>中国建设银行</li>
+						<li><i class="icons icons-check"></i>中国银行</li>
+						<li><i class="icons icons-check"></i>交通银行</li>
+						<li><i class="icons icons-check"></i>北京银行</li>
+						<li><i class="icons icons-check"></i>兴业银行</li>
+						<li><i class="icons icons-check"></i>华夏银行</li>
+						<li><i class="icons icons-check"></i>招商银行</li>
+						<li><i class="icons icons-check"></i>广东发展银行</li>
+						<li><i class="icons icons-check"></i>深圳发展银行</li>
+						<li><i class="icons icons-check"></i>上海浦东发展银行</li>
+						<li><i class="icons icons-check"></i>民生银行</li>
+						<li><i class="icons icons-check"></i>中信实业银行</li>
+						<li class="last-child"><i class="icons icons-check"></i>光大银行</li>			
 					</ul>
 				</div>
 			</div>
@@ -287,11 +297,12 @@
 $("#agreement-btn").click(function(){
 	$(".container").hide();
 	$(".agreement").show();
-});
+})
 
 $(".agree").click(function(){
 	$(".agreement").hide();
 	$(".container").show();
-});
+})
+	
 </script>
 </html>
