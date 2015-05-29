@@ -55,7 +55,7 @@ class LoanController extends \yii\web\Controller
     public function actionLend($type='common')
     {
         $rate = ($type=='common')?0.0001:0.0002;
-        return $this->renderPartial('lend', array('rate'=>$rate));
+        return $this->renderPartial('lend', ['v'=>Yii::$app->params['assets_version'], 'rate'=>$rate]);
     }
 
     public function actionIndex()
@@ -98,7 +98,7 @@ class LoanController extends \yii\web\Controller
             }
         }
         
-        return $this->renderPartial('index');
+        return $this->renderPartial('index',['v'=>Yii::$app->params['assets_version']]);
     }
 
     public function actionSchool()
