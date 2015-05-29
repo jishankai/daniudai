@@ -17,7 +17,7 @@ $(function(){
 		$(".mask").height($(window).height());
 		var wheight=$(window).height();
 		var cschool=$("#c_school").height();
-		$("#c_school").css("top",Math.round(wheight/7));
+		$("#c_school").css("top",Math.round(wheight/8));
 		$("#c_school").css("left",0);
 		
 		$("#cschool_list li").click(function(){
@@ -40,7 +40,7 @@ $(function(){
 			var wheight=$(window).height();
 			var cschool=$("#c_school").height();
 
-			$("#c_school").css("top",Math.round(wheight/6));
+			$("#c_school").css("top",Math.round(wheight/8));
 			$("#c_school").css("left",0);
 			$("#cschool_list li").click(function(){
 				$(this).addClass("active").siblings().removeClass();
@@ -75,7 +75,7 @@ function mclick(school_name){
 	$(".mask1").show();
 		var wheight=$(window).height();
 		var cdegrees=$("#c_degrees").height();
-		$("#c_degrees").css("top",Math.round(wheight/7));
+		$("#c_degrees").css("top",Math.round(wheight/8));
 		$("#c_degrees").css("left",0);
 
 		$("#cdegrees_list li").click(function(){
@@ -101,7 +101,7 @@ function mclick(school_name){
 			$(".mask2").show();
 			var wheight=$(window).height();
 			var ccollege=$("#c_college").height();
-			$("#c_college").css("top",Math.round(wheight/7));
+			$("#c_college").css("top",Math.round(wheight/8));
 			$("#c_college").css("left",0);
 			$("#college-list li").click(function(){
 				$(this).addClass("active").siblings().removeClass();
@@ -113,7 +113,7 @@ function mclick(school_name){
 					$(".mask4").show();
 					var wheight=$(window).height();
 					var ayear=$("#admission_year").height();
-					$("#admission_year").css("top",Math.round(wheight/7));
+					$("#admission_year").css("top",Math.round(wheight/8));
 					$("#admission_year").css("left",0);
 
 					$("#year_list li").click(function(){
