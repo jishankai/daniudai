@@ -21,13 +21,13 @@
 		<div class="screen-content">			
 			<div class="content">
 				<div class="info-box">				
-                <form class="forms" id="form1" action='<?php echo Url::to(["loan/bank"])?>' method='post'>
+					<form class="forms" id="form1" action='<?php echo Url::to(["loan/bank"])?>' method='post'>
 						<div class="forms-item">
 							<div class="forms__group">
 			                    <label class="forms__label">姓名</label>
 			                    <span class="input__box">             
 			                        <input type="text" class="forms_input" placeholder="真实姓名"  id="name" name="name">
-			                        <!-- onchange="javascript:if(!/^[\u4e00-\u9fa5\.]+$/gi.test(this.value))validateName();" -->
+			      
 			                        <span class="icon-option"><i class="icons icons-cross"></i></span>
 			                    </span>
 			                </div>
@@ -58,17 +58,16 @@
 			                <div class="forms__group">
 			                    <label class="forms__label">详细地址</label>
 			                    <span class="input__box no-border">   
-			                        <input type="text" class="forms_input" placeholder="宿舍楼和房间号" id="address" name="dorm" maxlength="100">
+			                        <input type="text" class="forms_input" placeholder="宿舍楼和房间号" id="address" name="address" maxlength="100">
 			                        <span class="icon-option"><i class="icons icons-cross"></i></span>
 			                    </span>
 			                </div>
 			            </div>
 		                <div class="forms__option">
-		                	<input type="text" value="2010" style="display:none;" id="grade" name="grade">
+		                	<input type="text" value="" style="display:none;" id="grade" name="grade"/>
 		                	<input type="text" value="10101" style="display:none;" id="school_id" name="school_id"/>
 		                	<input type="submit" class="btn btn-primary btn-fullwidth" value="下一步" id="next1" style="display:none;"/>                	
 		                	<input type="button" class="btn btn-primary btn-fullwidth" value="下一步" id="next" disabled/>
-
 		                </div>                                              
 		            </form>
 				</div>
@@ -211,8 +210,5 @@
 <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="js/person-information.js"></script>
 <script type="text/javascript" src="js/change.js"></script>
-<script type="text/javascript">
-
-</script>
 
 </html>
