@@ -9,17 +9,17 @@
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-precomposed-144.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-precomposed-114.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/logo-72.png">
-<link rel="stylesheet" type="text/css" media="all" href="css/reset.css" />
-<link rel="stylesheet" type="text/css" media="all" href="css/base.css" />
-<link rel="stylesheet" type="text/css" media="all" href="css/fonts.css" />
-<link rel="stylesheet" type="text/css" media="all" href="css/widget.css" />
+<link rel="stylesheet" type="text/css" media="all" href="css/reset.css?<?php echo $v;?>" />
+<link rel="stylesheet" type="text/css" media="all" href="css/base.css?<?php echo $v;?>" />
+<link rel="stylesheet" type="text/css" media="all" href="css/fonts.css?<?php echo $v;?>" />
+<link rel="stylesheet" type="text/css" media="all" href="css/widget.css?<?php echo $v;?>" />
 </head>
 <body>
 	<div class="container">
 		<div class="screen-content">			
 			<div class="content">
 				<div class="apply-box">
-					<div class="apply-info">毕业季，毕业礼，超低日利率：0.01%<span>惠</span></div>
+					<div class="apply-info">毕业季，毕业礼，超低日利率：<?php echo $rate?>%<span>惠</span></div>
 					<div class="apply-item" id="applyMoney">
 						<div class="a-title">
 							<h3>我要借：</h3>
@@ -51,9 +51,11 @@
 						<h3>还款金额：</h3>
 						<span class="r-right"><em class="f-orange">计算中</em></span>
 					</div>
-					<form class="forms" onsubmit="return false;">
+					<form class="forms" action="<?php echo Url::to(['loan/school'])?>" method="post">
 		                <div class="forms__option">
 		                	<input type="text" value="<?php echo $rate?>" style="display:none;" name="rate"/>
+		                	<input type="text" value="100" style="display:none;" name="duration"/>
+		                	<input type="text" value="1000" style="display:none;" name="money"/>
 		                	<button class="btn btn-orange btn-fullwidth" id="applicationBtn">立即申请</button>
 		                </div>                                              
 		            </form>
@@ -62,13 +64,11 @@
 		</div>
 	</div>	
 	<script type="text/javascript">
-		var url = "http://dev.imengstar.com/index.php?r=loan/school",
-			redirectUrl = "",
-			rate = '<?php echo $rate?>';			
+		var rate = '<?php echo $rate?>';
 	</script>
-	<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
-	<script type="text/javascript" src="js/depend.js"></script>
-	<script type="text/javascript" src="js/loan.js"></script>
+	<script type="text/javascript" src="./jquery.js?<?php echo $v;?>"></script>
+	<script type="text/javascript" src="./depend.js?<?php echo $v;?>"></script>
+	<script type="text/javascript" src="./loan.js?<?php echo $v;?>"></script>
 	<script type="text/javascript">
 		$(".container").Loan();
 	</script>
