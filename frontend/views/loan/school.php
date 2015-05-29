@@ -211,7 +211,6 @@
 <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="js/person-information.js"></script>
 <script type="text/javascript" src="js/change.js"></script>
-<<<<<<< HEAD
 <script type="text/javascript">
 
 </script>
