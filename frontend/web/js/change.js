@@ -13,8 +13,8 @@ $(function(){
 
 /*选择学校*/
 	$("#school-name").click(function(){
-		$("#stu_id").blur();
-		$("#name").blur();
+		$("#stu_id,#name").blur();
+		$("#cschool_list").height(wheight/6*4);
 		$(".mask").show();
 		$(".mask").height($(window).height());
 		var wheight=$(window).height();
@@ -40,8 +40,8 @@ $(function(){
 /*选择学历*/
 	$("#major").click(function(){
 		if($("#school-name").html()=="学校"){
-			$("#stu_id").blur();
-			$("#name").blur();
+			$("#stu_id,#name").blur();
+			$("#cschool_list").height(wheight/6*4);
 			$(".mask").show();
 			$(".mask").height($(window).height());
 			var wheight=$(window).height();
@@ -109,6 +109,7 @@ function mclick(school_name){
 			/*选择学院*/
 			$("#stu_id").blur();
 			$("#name").blur();
+			$("#college-list").height(wheight/6*4);
 			$(".mask2").show();
 			var wheight=$(window).height();
 			var ccollege=$("#college-list").height();
