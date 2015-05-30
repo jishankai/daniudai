@@ -12,7 +12,7 @@
 		td{height: 30px;text-align: center;line-height: 26px;
 			width: 40%;}
 		tr > td:nth-of-type(2n){width: 20%;}
-		a{text-decoration: none;color: #000;
+		.btn{text-decoration: none;color: #000;
 			display: inline-block;width: 40%;height: 50px;
 			background-color: orange;line-height: 50px;
 			text-align: center;margin: 20px 0;
@@ -57,8 +57,8 @@
 		</tr>
 		
 	</table>
-    <a href="<?php echo Url::to(['loan/operate','loan_id'=>$r['loan_id'],'operation'=>2])?>">确认通过审核</a>
-    <a href="<?php echo Url::to(['loan/operate','loan_id'=>$r['loan_id'],'operation'=>-1])?>">审核未通过</a>
+    <a class="btn" href="<?php echo Url::to(['loan/operate','loan_id'=>$r['loan_id'],'operation'=>2])?>">确认通过审核</a>
+    <a class="btn" href="<?php echo Url::to(['loan/operate','loan_id'=>$r['loan_id'],'operation'=>-1])?>">审核未通过</a>
 </div>
 </body>
 </html>
