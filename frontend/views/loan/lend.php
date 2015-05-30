@@ -47,15 +47,15 @@
 						</div>
 					</div>
 					<div class="repay-text" id="repayTmpl">
-						<p>100天后到期</p>
+						<p>200天后到期</p>
 						<h3>还款金额：</h3>
 						<span class="r-right"><em class="f-orange">计算中</em></span>
 					</div>
 					<form class="forms" action="<?php echo Url::to(['loan/school'])?>" method="post">
 		                <div class="forms__option">
 		                	<input type="text" value="<?php echo $rate?>" style="display:none;" name="rate"/>
-		                	<input type="text" value="100" style="display:none;" name="duration"/>
-		                	<input type="text" value="1000" style="display:none;" name="money"/>
+		                	<input type="text" value="200" style="display:none;" name="duration"/>
+		                	<input type="text" value="3000" style="display:none;" name="money"/>
 		                	<button class="btn btn-orange btn-fullwidth" id="applicationBtn">立即申请</button>
 		                </div>                                              
 		            </form>
