@@ -36,7 +36,7 @@
 					<div class="apply-item" id="applyTime">
 						<div class="a-title">
 							<h3 class="f-normal">借款时间：</h3>
-							<span class="a-right"><em class="f-orange">100天</em></span>
+							<span class="a-right"><em class="f-orange">200天</em></span>
 						</div>
 						<div class="progress-box">
 							<div class="progressBar-wrap">
