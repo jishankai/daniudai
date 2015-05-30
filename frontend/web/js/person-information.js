@@ -80,7 +80,23 @@ $(function(){
 				$("#stu_id").focus();
 			}
 		}
-		if(falg!=-1 && falg1!=-1 && stu_len==8 || falg!=-1 && falg1!=-1 && stu_len==10){
+
+		if(falg!=-1 && falg1!=-1){
+			address=$("#address").val();
+			RegCellAddress =/[\u4e00-\u9fa5A-Za-z0-9]+/g;
+			falg2=address.search(RegCellAddress);
+			if(falg2==-1){
+				$("#error").html("地址包含非法字符");
+				$("#n_validate").show().delay(3000).fadeOut();
+				/*$("#stu_id").click(function(){
+					$("#n_validate").hide();
+				})*/
+				$("#address").focus();
+			}
+
+		}
+
+		if(falg!=-1 && falg1!=-1 && falg2!=-1 && stu_len==8 || falg!=-1 && falg1!=-1 && falg2!=-1  && stu_len==10){
 			$("#next1").click();
 		}
 		
