@@ -1,4 +1,9 @@
 $(function(){
+
+	/*验证提示框位置适配*/
+	wheight=$(window).height();
+	$("#validate").css("top",-wheight/2);
+	
 	wwidth=$(window).width();
 	$("#c_bank").css("left",-wwidth);
 	$("#agreement").css("left",-wwidth);
@@ -48,9 +53,7 @@ $(function(){
 		})
 	})/*$("#bank-name")结束*/
 
-/*验证提示框位置适配*/
-	wheight=$(window).height();
-	$("#validate").css("top",-wheight/2);
+
 
 /*验证个人信息是否完整*/
 	function cmd(){
