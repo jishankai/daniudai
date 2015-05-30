@@ -222,7 +222,7 @@ class LoanController extends \yii\web\Controller
             return $this->renderPartial('bank_list', ['verification'=>'admin','r'=>$r]);
         } else {
             $l = Loan::findOne($open_id);
-            if ($l->status>=1) {
+            if (isset($l) AND $l->status>=1) {
                 return $this->redirect(['loan/success']);
             } else {
                 return $this->redirect(['loan/index']);
