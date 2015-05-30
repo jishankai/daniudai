@@ -43,10 +43,10 @@ class WechatController extends \yii\web\Controller
 
         $server->on('event', 'subscribe', function($event){
             return Message::make('text')->content('牛仔您来啦~大牛贷是校友帮校友的信用贷款服务。
-                6月1日-6月30日，在北京大学和北京大学医学部火热进行：
-                1）应届本科毕业生专属，超低日利率：0.01%
-                2）非毕业在校本科生特惠日利率：0.02%
-                要用钱，凭信用，找大牛！');
+6月1日-6月30日，在北京大学和北京大学医学部火热进行：
+1）应届本科毕业生专属，超低日利率：0.01%
+2）非毕业在校本科生，特惠日利率：0.02%
+要用钱，凭信用，找大牛！');
         });
 
         $server->on('event', 'CLICK', function($event) {
