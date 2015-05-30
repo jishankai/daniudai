@@ -41,4 +41,9 @@
         <?php }?>
 	</table>
 </body>
+<script type="text/javascript" src="js/jquery-1.11.1.js">
+	$("button").click(function(){
+		window.location="";
+	});
+</script>
 </html>

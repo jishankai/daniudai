@@ -13,7 +13,7 @@
 	var money = [1000,2000,3000,4000,5000,6000,7000,8000,9000,10000],
 		time  = [100,200,300],
 		dfm = 3000,//贷款默认值
-		dtm = 100,//天数默认值
+		dtm = 200,//天数默认值
 		dl  = rate,//利率默认值
 		offsetW = document.body.offsetWidth || document.body.clientWidth,
 		poffsetw = (offsetW-30) * 0.8;//进度条的总宽度
