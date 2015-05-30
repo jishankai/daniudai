@@ -174,7 +174,7 @@ class LoanController extends \yii\web\Controller
             //通知放款员面签
             $student = Student::findOne($user['openid']);
             $s = School::findOne($student->school_id);
-            $message = "大牛君呐，又一位大牛来了，他叫{$u->name}，借款{$l->money}元，借{$l->duration}天，手机号{$u->mobile}，专业{$s->depart}年级{$student->grade}，请快速约起来~ ".Url::to(['loan/me'],TRUE);
+            $message = "大牛君呐，又一位大牛来了，他叫{$u->name}，借款{$l->money}元，借{$l->duration}天，手机号{$u->mobile}，专业{$s->depart}，年级{$student->grade}，请快速约起来~ ".Url::to(['loan/me'],TRUE);
             $student = Student::findOne($user['openid']);
             if (floor($student->school_id/100)==101) {
                 $supporter_openid = Yii::$app->params['pku101_supporter'];
@@ -258,19 +258,19 @@ class LoanController extends \yii\web\Controller
                 $staff->send($message)->to(Yii::$app->params['demo_supporter']);
                 $staff->send($message)->to(Yii::$app->params['admin_supporter']);
                 $staff->send($messagetoclient)->to($l->wechat_id);
-            } else if ($operation==3 AND $open_id==Yii::$app->params['admin_supporter']) {
-                $l = Loan::findOne($loan_id);
-                $u = User::findOne($l->wechat_id);
-                $l->status = $operation;
-                $l->updateAttributes(['status']);
-
-                $staff = new Staff($appId, $secret);
-                $bank_id = substr($u->bank_id, -4);
-                $messagetoclient = "大牛您好,您申请的借款已汇入您尾号为{$bank_id}的银行卡中,请及时查看。";
-                $staff->send($messagetoclient)->to($l->wechat_id);
             }
+        } else if ($operation==3 AND $open_id==Yii::$app->params['admin_supporter']) {
+            $l = Loan::findOne($loan_id);
+            $u = User::findOne($l->wechat_id);
+            $l->status = $operation;
+            $l->updateAttributes(['status']);
+
+            $staff = new Staff($appId, $secret);
+            $bank_id = substr($u->bank_id, -4);
+            $messagetoclient = "大牛您好,您申请的借款已汇入您尾号为{$bank_id}的银行卡中,请及时查看。";
+            $staff->send($messagetoclient)->to($l->wechat_id);
         }
-        
+
         return $this->redirect(['loan/me']);
     }
 }
