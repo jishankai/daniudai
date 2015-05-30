@@ -29,7 +29,7 @@
             <?php if($verification=='admin') {?>
             <td><button>确认</button></td>
             <?php } else {?>
-            <td><?php echo 未放款?></td>
+            <td><?php echo '未放款'?></td>
             <?php }?>
         </tr>
         <?php }?>
