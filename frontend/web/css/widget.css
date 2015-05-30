@@ -317,9 +317,11 @@ a {
 	line-height: 25px;
 }
 .info-box .forms .select p{
+	font-family: "Microsoft YaHei", Geneva, Verdana, sans-serif;
+	font-size: 100%;
 	margin-bottom: 0;
 	line-height: 24px;
-	padding: 5px 36px 5px 0;
+	padding: 4px 36px 4px 0;
 	cursor: pointer;
 }
 .info-box .forms .select p.d-color {

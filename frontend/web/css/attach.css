@@ -1,5 +1,11 @@
 #school-name, #major{cursor: pointer;}
 
-.mask,.mask1, .mask2, .mask3, .mask4, .mask6, .mask7, .mask8{width: 100%;height: 100%;background-color: rgba(0,0,0,0.5);}
+.mask,.mask1, .mask2, .mask3, .mask4, .mask6, .mask7, .mask8, .mask9{width: 100%;height: 100%;background-color: rgba(0,0,0,0.5);}
 .popover{margin-top: 0px;}
 .close{cursor:pointer;}
+.range{width:100%; height: 6px;}
+.agreement{font-family: "Microsoft YaHei";display: none;}
+.agreement p{font-size: 1rem;line-height: 1.2;}
+/*.mask9 .agree{display:block;width: 50%;height: 30px;line-height: 30px;max-width: 200px;
+	background:#333;margin:20px auto;text-decoration: none;color:#fff;
+	text-align: center;border-radius: 10px;}*/
