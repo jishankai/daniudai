@@ -47,7 +47,7 @@ class WechatController extends \yii\web\Controller
 
         $server->on('event', 'CLICK', function($event) {
             if ($event['EventKey']=='CLICK_ANSWER') {
-                return Message::make('text')->content('牛仔您来啦~有什么可以效劳的？您只需点击下方左侧#键盘#图标，用文字或说话，都可以喝大牛君开说了');
+                return Message::make('text')->content('牛仔您来啦~有什么可以效劳的？您只需点击下方左侧#键盘#图标，用文字或说话，都可以和大牛君开说了');
             }
         });
 
