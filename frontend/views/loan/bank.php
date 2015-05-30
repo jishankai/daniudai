@@ -60,7 +60,7 @@
 			                <div class="forms__group">
 			                    <label class="forms__label">身份证</label>
 			                    <span class="input__box">           
-			                        <input type="text" class="forms_input" placeholder="身份证号" value="" id="id-num" name="id">
+			                        <input type="tel" class="forms_input" placeholder="身份证号" value="" id="id-num" name="id">
 			                        <!-- <span class="icon-option"><i class="icons icons-cross" style="display:block;" id="i4"></i></span>
 			                    </span> -->
 			                </div> 
@@ -170,8 +170,8 @@
 							<p>
 								第一条 借款基本信息<br/>
 								借款金额：￥<?php echo $loan->money;?><br/>
-								借款周期： <?php echo $loan->duration;?><br/>
-								到期还款金额：￥<?php echo ($loan->money+$loan->money*$loan->duration);?><br/>
+								借款周期： <?php echo $loan->duration;?>天<br/>
+								到期还款金额：￥<?php echo ($loan->money+$loan->money*$loan->duration*$loan->rate);?><br/>
 								还款日：	自款项从甲方的银行账户或第三方支付账户转出之日起，100天后的日期。
 							</p>
 							<p>
