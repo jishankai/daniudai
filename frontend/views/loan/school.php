@@ -52,6 +52,7 @@
 			                    <span class="input__box select">
 			                    	<p class="d-color" id="major">专业/入学年份</p>
 			                        <span class="icon-option"><i class="icons icons-arrowRright"></i></span>
+			                    	<p id="dtype" style="display:none"><?php echo $from;?></p>
 			                    </span>
 			                </div>
 

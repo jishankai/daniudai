@@ -78,7 +78,7 @@ function mclick(school_name){
 	$(".mask1").show();
 		var wheight=$(window).height();
 		var cdegrees=$("#c_degrees").height();
-		$("#c_degrees").css("top",Math.round((wheight-cdegrees)/10));
+		$("#c_degrees").css("top",Math.round((wheight-cdegrees)/2));
 		$("#c_degrees").css("left",0);
 
 		$("#cdegrees_list li").click(function(){
@@ -110,7 +110,8 @@ function mclick(school_name){
 				$(this).addClass("active").siblings().removeClass();
 				b=$(this).html();
 				college=b.substring(33);
-					grade(college,adgree);
+					dtype=$("#dtype").html();
+					grade(college,adgree,dtype);
 					/*选择入学年份*/
 					$(".mask2").hide();
 					$(".mask4").show();
@@ -178,15 +179,20 @@ function beiyi(degrees){
 	}
 }
 
-function grade(college,adgree){
-	if(adgree=="本科"){
+function grade(college,adgree,dtype){
+	if(adgree=="本科" && dtype=="common"){
 		$('#year_list li').remove();
 		for(var i=2010;i<2015;i++){
 		 $('#year_list').append("<li><i class='icons icons-check'></i>"+i+"</li>");
 		}
+	}else{
+		$('#year_list li').remove();
+		for(var i=2010;i<2012;i++){
+		 $('#year_list').append("<li><i class='icons icons-check'></i>"+i+"</li>");
+		}
 	}
 
-	if(adgree=="本博/本硕连读"){
+	if(adgree=="本博/本硕连读" && dtype=="common"){
 		if(college=="临床医学8年制" || college=="基础医学8年制" || college=="口腔医学8年制"){
 			$('#year_list li').remove();
 			for(var i=2007;i<2015;i++){
@@ -206,6 +212,25 @@ function grade(college,adgree){
 			}
 		}
 
+	}else{
+		if(college=="临床医学8年制" || college=="基础医学8年制" || college=="口腔医学8年制"){
+			$('#year_list li').remove();
+			for(var i=2006;i<2008;i++){
+			 $('#year_list').append("<li><i class='icons icons-check'></i>"+i+"</li>");
+			}
+		}
+		if(college=="预防医学7年制"){
+			$('#year_list li').remove();
+			for(var i=2007;i<2009;i++){
+			 $('#year_list').append("<li><i class='icons icons-check'></i>"+i+"</li>");
+			}
+		}
+		if(college=="应用药学6年制"){
+			$('#year_list li').remove();
+			for(var i=2008;i<2010;i++){
+			 $('#year_list').append("<li><i class='icons icons-check'></i>"+i+"</li>");
+			}
+		}
 	}
 	
 }
