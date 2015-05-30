@@ -26,6 +26,9 @@ $(function(){
 			$(".mask").hide();	
 			$("#school-name").html(a.substring(33));
 			$("#school-name").removeClass("d-color");
+
+			$("#major").html("专业/入学年份");
+			$("#major").addClass("d-color");
 		})
 		$("#close1").click(function(){
 			$(".mask").hide();
