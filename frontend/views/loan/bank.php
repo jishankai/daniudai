@@ -148,7 +148,7 @@
 					<span class="close" id="close10">&times;</span>
 				</div>
 				<div class="lists-body" id="cbank-list">
-					<div class="lists-main" style="max-height:300px;" id="agree_list">
+					<div class="lists-main" id="agree_list">
 						<p>
 							甲方（出借人）：渠帅<br/>
 							乙方（借款人）：<br/>

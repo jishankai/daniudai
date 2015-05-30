@@ -4,7 +4,7 @@ $(function(){
 	$("#agreement").css("left",-wwidth);
 
 	var wheight=$(window).height();
-	$("#cbank_list").css("max-height",wheight/6*4);
+	$("#cbank_list").css("height",wheight/6*4);
 /*协议操作*/
 	$("#agree_list").height(wheight/6*4);
 	$("#agreement").css("top",wheight/8);
