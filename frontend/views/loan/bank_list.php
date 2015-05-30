@@ -33,7 +33,7 @@
         <td><?php echo $v['bank']?></td>
         <td><?php echo $v['bank_id']?></td>
             <?php if($verification=='admin') {?>
-            <td><button>确认</button></td>
+            <td><a href=""><button>确认</button></a></td>
             <?php } else {?>
             <td>未放款</td>
             <?php }?>
@@ -41,12 +41,5 @@
         <?php }?>
 	</table>
 </body>
-<script type="text/javascript" src="js/jquery-1.11.1.js">
-	a=document.getElementById("list").getElementsByTagName("button");
-	for(var i=0; i<a.length; i++){
-		a[i].onclick=function(){
-			window.location="http://www.baidu.com";
-		}
-	}
-</script>
+
 </html>
