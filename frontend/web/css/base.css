@@ -202,6 +202,7 @@ img {
  * forms
  * ---------------------------------- */
 .forms input[type="text"],
+.forms input[type="tel"],
 .forms input[type="email"],
 .forms input[type="password"],
 .forms select,

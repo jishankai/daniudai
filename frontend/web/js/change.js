@@ -6,7 +6,7 @@ $(function(){
 		$("#c_degrees").css("left",-wwidth);
 		$("#admission_year").css("left",-wwidth);
 
-		$("#cschool_list").height(wheight/6*4);
+		$("#cschool_list").height(wheight/6*3);
 		$("#cdegrees_list").height(wheight/6*4);
 		$("#college-list").height(wheight/6*4);
 		$("#year_list").height(wheight/6*4);
@@ -17,7 +17,7 @@ $(function(){
 		$(".mask").height($(window).height());
 		var wheight=$(window).height();
 		var cschool=$("#c_school").height();
-		$("#c_school").css("top",Math.round((wheight-cschool)/3));
+		$("#c_school").css("top",Math.round(cschool/5));
 		$("#c_school").css("left",0);
 		
 		$("#cschool_list li").click(function(){

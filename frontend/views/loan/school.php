@@ -34,7 +34,7 @@
 			                <div class="forms__group">
 			                    <label class="forms__label">学生证</label>
 			                    <span class="input__box no-border">   
-			                        <input type="text" class="forms_input" placeholder="学生证号" id="stu_id" name="stu_id">
+			                        <input type="tel" class="forms_input" placeholder="学生证号" id="stu_id" name="stu_id">
 			                        <span class="icon-option"><i class="icons icons-cross"></i></span>
 			                    </span>
 			                </div> 

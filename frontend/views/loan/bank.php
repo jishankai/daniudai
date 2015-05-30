@@ -36,14 +36,14 @@
 			                <div class="forms__group">
 			                    <label class="forms__label">卡号</label>
 			                    <span class="input__box">             
-			                        <input type="text" class="forms_input" placeholder="银行卡号" value="" id="bc-num" name="bank_id">
+			                        <input type="tel" class="forms_input" placeholder="银行卡号" value="" id="bc-num" name="bank_id">
 			                        <!-- <span class="icon-option"><i class="icons icons-cross" style="display:block;" id="i1"></i></span>
 			                    </span> -->
 			                </div>
 			                <div class="forms__group">
 			                    <label class="forms__label">确认卡号</label>
 			                    <span class="input__box no-border"> 
-			                        <input type="text" class="forms_input" placeholder="确认银行卡号"  value="" id="cbc-num">
+			                        <input type="tel" class="forms_input" placeholder="确认银行卡号"  value="" id="cbc-num">
 			                        <!-- <span class="icon-option"><i class="icons icons-cross" style="display:block;" id="i2"></i></span>
 			                    </span> -->
 			                </div>
@@ -67,7 +67,7 @@
 			                <div class="forms__group">
 			                    <label class="forms__label">手机号</label>
 			                    <span class="input__box no-border">   
-			                        <input type="text" class="forms_input" placeholder="预留在银行的手机号"  id="phone-num" name="mobile">
+			                        <input type="tel" class="forms_input" placeholder="预留在银行的手机号"  id="phone-num" name="mobile">
 			                        <!-- <span class="icon-option"><i class="icons icons-cross"style="display:block;" id="i5"></i></span>
 			                    </span> -->
 			                </div> 
