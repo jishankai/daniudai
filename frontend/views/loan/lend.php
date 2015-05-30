@@ -19,7 +19,7 @@
 		<div class="screen-content">			
 			<div class="content">
 				<div class="apply-box">
-					<div class="apply-info"><b id="tit"></b><?php echo $rate*100;?>%<span>惠</span></div>
+					<div class="apply-info"><?php echo $rate=="0.0002" ? "大热暑期，清凉礼，特惠利率：" : "毕业季，毕业礼，超低日利率：" . $rate*100;?>%<span>惠</span></div>
 					<div class="apply-item" id="applyMoney">
 						<div class="a-title">
 							<h3>我要借：</h3>
@@ -27,7 +27,7 @@
 						</div>
 						<div class="progress-box">
 							<div class="progressBar-wrap">
-								<div class="progressBar" style="width:30%;">
+								<div class="progressBar" style="width:22.222%;">
 									<i id="changeRecharge" class="icons icons-recharge">￥</i>
 								</div>
 							</div>
@@ -71,11 +71,6 @@
 	<script type="text/javascript" src="js/loan.js?<?php echo $v;?>"></script>
 	<script type="text/javascript">
 		$(".container").Loan();
-		if(<?php echo $rate*100;?>==0.02){
-			$("#tit").html("大热暑期，清凉礼，特惠利率：");
-		}else{
-			$("#tit").html("毕业季，毕业礼，超低日利率：");
-		}
 	</script>
 </body>
 </html>
