@@ -119,20 +119,24 @@ $(function(){
 				}
 
 			}
-
 			if(falg!=-1 && falg1!=-1){
-				/*$("#i4").hide();*/
+				falg2=0;
 				id_num= $("#id-num").val();
-				RegCellidnum = /^(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[Xx])$)$/;
+				if(!isCnNewID(id_num)){
+					falg2=-1;
+					$("#error").html("请输入正确的身份证号");
+					$("#validate").show().delay(3000).fadeOut();
+					$("#id-num").focus();
+				}
+				/*$("#i4").hide();*/
+				
+				/*RegCellidnum = /^(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[Xx])$)$/;
 				falg2=id_num.search(RegCellidnum);
 				if(falg2==-1){
 					$("#error").html("请输入正确的身份证号");
 					$("#validate").show().delay(3000).fadeOut();
-					/*$("#id-num").click(function(){
-						$("#validate").hide();
-					})*/
 					$("#id-num").focus();
-				}
+				}*/
 			}
 
 			if(falg!=-1 && falg1!=-1 && falg2!=-1){
@@ -186,4 +190,23 @@ function getAgree(){
 	$("#day1").html(day);
 	$("#c_id").html($("#id-num").val());
 	$("#c_bid").html($("#bc-num").val());
+}
+
+function isCnNewID(cid){
+    var arrExp = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2];//加权因子
+    var arrValid = [1, 0, "X", 9, 8, 7, 6, 5, 4, 3, 2];//校验码
+    var reg = /^\d{17}\d|x$/i;
+    if(reg.test(cid)){
+        var sum = 0, idx;
+        for(var i = 0; i < cid.length - 1; i++){
+            // 对前17位数字与权值乘积求和
+            sum += parseInt(cid.substr(i, 1), 10) * arrExp[i];
+        }
+        // 计算模（固定算法）
+        idx = sum % 11;
+        // 检验第18为是否与校验码相等
+        return arrValid[idx] == cid.substr(17, 1).toUpperCase();
+    }else{
+        return false;
+    }
 }
