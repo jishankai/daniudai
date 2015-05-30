@@ -95,7 +95,7 @@ class LoanController extends \yii\web\Controller
         } else {
             $l = Loan::findOne(['wechat_id'=>$open_id]);
             if (isset($l) and $l->status!=0) {
-                //return $this->redirect(['loan/success']);
+                return $this->redirect(['loan/success']);
             }
         }
         
