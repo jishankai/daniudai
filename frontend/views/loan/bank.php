@@ -43,7 +43,7 @@
 			                <div class="forms__group">
 			                    <label class="forms__label">确认卡号</label>
 			                    <span class="input__box no-border"> 
-			                        <input type="tel" class="forms_input" placeholder="确认银行卡号"  value="" id="cbc-num">
+			                        <input type="tel" class="forms_input" placeholder="确认银行卡号"  value="" id="cbc-num" onpaste="return false;">
 			                        <!-- <span class="icon-option"><i class="icons icons-cross" style="display:block;" id="i2"></i></span>
 			                    </span> -->
 			                </div>
