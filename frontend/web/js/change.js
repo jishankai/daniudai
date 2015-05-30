@@ -13,6 +13,8 @@ $(function(){
 
 /*选择学校*/
 	$("#school-name").click(function(){
+		$("#stu_id").blur();
+		$("#name").blur();
 		$(".mask").show();
 		$(".mask").height($(window).height());
 		var wheight=$(window).height();
@@ -38,6 +40,8 @@ $(function(){
 /*选择学历*/
 	$("#major").click(function(){
 		if($("#school-name").html()=="学校"){
+			$("#stu_id").blur();
+			$("#name").blur();
 			$(".mask").show();
 			$(".mask").height($(window).height());
 			var wheight=$(window).height();
@@ -75,6 +79,8 @@ function mclick(school_name){
 		$('#cdegrees_list').append("<li><i class='icons icons-check'></i>本科</li>");
 		$('#cdegrees_list').append("<li><i class='icons icons-check'></i>本博/本硕连读</li>");
 	}
+	$("#stu_id").blur();
+	$("#name").blur();
 	$(".mask1").show();
 		var wheight=$(window).height();
 		var cdegrees=$("#cdegrees_list").height();
@@ -101,6 +107,8 @@ function mclick(school_name){
 			}
 
 			/*选择学院*/
+			$("#stu_id").blur();
+			$("#name").blur();
 			$(".mask2").show();
 			var wheight=$(window).height();
 			var ccollege=$("#college-list").height();

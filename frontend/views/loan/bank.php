@@ -242,8 +242,8 @@
 								天天飞度技术服务及信用管理服务合同<br/><br/>
 
 								本合同由以下双方于【<span id="year1"></span>】年【<span id="month1"></span>】月【 <span id="day1"></span>】日签署。<br/>
-								乙方（借款人）：<br/>
-								证件号码：<br/>
+								乙方（借款人）：<?php echo $user->name?><br/>
+								证件号码：<span id="c_id1"></span><br/>
 								丙方：北京天天飞度信息技术有限公司<br/>
 								地址：北京市朝阳区麦子店街37号盛福大厦550<br/>
 								邮编：100125<br/>

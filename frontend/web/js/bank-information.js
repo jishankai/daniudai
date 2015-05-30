@@ -189,6 +189,7 @@ function getAgree(){
 	$("#day").html(day);
 	$("#day1").html(day);
 	$("#c_id").html($("#id-num").val());
+	$("#c_id1").html($("#id-num").val());
 	$("#c_bid").html($("#bc-num").val());
 }
 
