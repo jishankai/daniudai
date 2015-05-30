@@ -19,7 +19,7 @@
 		<div class="screen-content">			
 			<div class="content">
 				<div class="apply-box">
-					<div class="apply-info"><span id="tit">毕业季，毕业礼，超低日利率：</span><?php echo $rate*100;?>%<span>惠</span></div>
+					<div class="apply-info"><b id="tit"></b><?php echo $rate*100;?>%<span>惠</span></div>
 					<div class="apply-item" id="applyMoney">
 						<div class="a-title">
 							<h3>我要借：</h3>
