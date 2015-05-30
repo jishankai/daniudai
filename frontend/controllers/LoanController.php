@@ -67,7 +67,7 @@ class LoanController extends \yii\web\Controller
         session_start();
         if (empty($_SESSION['user'])) {
             $auth = new Auth($appId, $secret);
-            $user = $auth->authorize('http://dev.imengstar.com/index.php?r=loan/index', 'snsapi_base'); // 返回用户 Bag
+            $user = $auth->authorize(Url::to(['loan/index'], TRUE), 'snsapi_base'); // 返回用户 Bag
             $_SESSION['user'] = $user;
         }
         $user = $_SESSION['user'];
@@ -202,7 +202,7 @@ class LoanController extends \yii\web\Controller
         session_start();
         if (empty($_SESSION['user'])) {
             $auth = new Auth($appId, $secret);
-            $user = $auth->authorize('http://dev.imengstar.com/index.php?r=loan/me', 'snsapi_base'); // 返回用户 Bag
+            $user = $auth->authorize(Url::to(['loan/me'], TRUE), 'snsapi_base'); // 返回用户 Bag
             $_SESSION['user'] = $user;
         }
         $user = $_SESSION['user'];
@@ -252,7 +252,7 @@ class LoanController extends \yii\web\Controller
         session_start();
         if (empty($_SESSION['user'])) {
             $auth = new Auth($appId, $secret);
-            $user = $auth->authorize('http://dev.imengstar.com/index.php?r=loan/me', 'snsapi_base'); // 返回用户 Bag
+            $user = $auth->authorize(Url::to(['loan/me'], TRUE), 'snsapi_base'); // 返回用户 Bag
             $_SESSION['user'] = $user;
         }
         $user = $_SESSION['user'];
