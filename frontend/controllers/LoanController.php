@@ -221,7 +221,13 @@ class LoanController extends \yii\web\Controller
             $r = Yii::$app->db->createCommand('SELECT u.name,u.bank,u.bank_id,l.loan_id FROM user u LEFT JOIN loan l ON u.wechat_id=l.wechat_id WHERE l.status=2')->queryAll();
             return $this->renderPartial('bank_list', ['verification'=>'admin','r'=>$r]);
         } else {
-            return $this->redirect(['loan/success']);
+            $l = Loan::findOne($open_id);
+            if ($l->status>=1) {
+                return $this->redirect(['loan/success']);
+            } else {
+                return $this->redirect(['loan/index']);
+            }
+            
         }
     }
 
@@ -260,8 +266,8 @@ class LoanController extends \yii\web\Controller
 
             $staff = new Staff($appId, $secret);
             if ($operation==2) {
-                $message = "又一位大牛通过审核:姓名:{$u->name},银行类别:{$u->bank},银行卡号:{$u->bank_id},借款额{$l->money}元,手机:{$u->mobile},请尽快汇出。".Url::to(['loan/me'],TRUE);
-                $messagetoclient = "大牛您好!您的借款申请已通过审核,借款额为 {$l->money} 元 ,借款期限为 {$l->duration} 天,我们会在 24 小时内给您汇款,请耐心等待。";
+                $message = "又一位大牛通过审核！姓名：{$u->name}，银行类别：{$u->bank}，银行卡号：{$u->bank_id}，借款额{$l->money}元，手机：{$u->mobile}，请尽快汇出。".Url::to(['loan/me'],TRUE);
+                $messagetoclient = "大牛您好！您的借款申请已通过审核，借款额为 {$l->money} 元，借款期限为 {$l->duration} 天，我们会在 24 小时内给您汇款，请耐心等待。";
                 $staff->send($message)->to(Yii::$app->params['demo_supporter']);
                 $staff->send($message)->to(Yii::$app->params['admin_supporter']);
                 $staff->send($messagetoclient)->to($l->wechat_id);
@@ -274,7 +280,7 @@ class LoanController extends \yii\web\Controller
 
             $staff = new Staff($appId, $secret);
             $bank_id = substr($u->bank_id, -4);
-            $messagetoclient = "大牛您好,您申请的借款已汇入您尾号为{$bank_id}的银行卡中,请及时查看。";
+            $messagetoclient = "大牛您好，您申请的借款已汇入您尾号为{$bank_id}的银行卡中，请及时查看。";
             $staff->send($messagetoclient)->to($l->wechat_id);
         }
 
