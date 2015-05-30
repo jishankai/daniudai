@@ -26,7 +26,7 @@
         <td><?php echo $v['name']?></td>
         <td><?php echo $v['bank']?></td>
         <td><?php echo $v['bank_id']?></td>
-            <?php if($verifaction=='admin') {?>
+            <?php if($verification=='admin') {?>
             <td><button>确认</button></td>
             <?php } else {?>
             <td><?php echo 未放款?></td>
