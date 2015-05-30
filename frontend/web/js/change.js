@@ -17,7 +17,7 @@ $(function(){
 		$(".mask").height($(window).height());
 		var wheight=$(window).height();
 		var cschool=$("#c_school").height();
-		$("#c_school").css("top",Math.round(wheight/8));
+		$("#c_school").css("top",Math.round(wheight/10));
 		$("#c_school").css("left",0);
 		
 		$("#cschool_list li").click(function(){
@@ -40,7 +40,7 @@ $(function(){
 			var wheight=$(window).height();
 			var cschool=$("#c_school").height();
 
-			$("#c_school").css("top",Math.round(wheight/8));
+			$("#c_school").css("top",Math.round(wheight/10));
 			$("#c_school").css("left",0);
 			$("#cschool_list li").click(function(){
 				$(this).addClass("active").siblings().removeClass();
@@ -75,7 +75,7 @@ function mclick(school_name){
 	$(".mask1").show();
 		var wheight=$(window).height();
 		var cdegrees=$("#c_degrees").height();
-		$("#c_degrees").css("top",Math.round(wheight/8));
+		$("#c_degrees").css("top",Math.round(wheight/10));
 		$("#c_degrees").css("left",0);
 
 		$("#cdegrees_list li").click(function(){
