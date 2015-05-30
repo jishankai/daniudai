@@ -19,7 +19,13 @@
 			<th>姓 名</th>
 			<th>银行类别</th>
 			<th>卡号</th>
-			<th></th>
+			<th>
+            <?php if($verification=='admin') {?>
+            操作
+            <?php } else {?>
+            状态
+            <?php }?>
+            </th>
 		</tr>
         <?php foreach($r AS $v) {?>
 		<tr>
@@ -29,7 +35,7 @@
             <?php if($verification=='admin') {?>
             <td><button>确认</button></td>
             <?php } else {?>
-            <td><?php echo '未放款'?></td>
+            <td>未放款</td>
             <?php }?>
         </tr>
         <?php }?>
