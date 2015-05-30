@@ -182,7 +182,7 @@ class LoanController extends \yii\web\Controller
             }
             $staff->send($message)->to($supporter_openid);
         }
-        $l = Loan::findOne($user['openid']);
+        $l = Loan::findOne(['wechat_id'=>$user['openid']]);
         if ($l->status==1) {
             if (floor($student->school_id/100)==101) {
                 return $this->renderPartial('success', ['mobile'=>'18910279503']);
