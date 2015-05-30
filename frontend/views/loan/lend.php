@@ -40,7 +40,7 @@
 						</div>
 						<div class="progress-box">
 							<div class="progressBar-wrap">
-								<div class="progressBar" style="width:0%;">
+								<div class="progressBar" style="width:50%;">
 									<span id="changeCal" class="icons icons-calendar"></span>
 								</div>
 							</div>
