@@ -214,7 +214,7 @@ class LoanController extends \yii\web\Controller
             $r = Yii::$app->db->createCommand('SELECT u.name,u.bank,u.bank_id,l.loan_id FROM user u LEFT JOIN loan l ON u.wechat_id=l.wechat_id WHERE l.status=2')->queryAll();
             return $this->renderPartial('bank_list', ['verification'=>'admin','r'=>$r]);
         } else {
-            return $this->renderPartial('agreement');
+            return $this->renderPartial('success');
         }
     }
 
