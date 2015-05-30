@@ -76,7 +76,7 @@
 	</div>	
 
 <div class="mask" style="position:fixed;left:0;top:0;display:none;">
-	<div class="popover popover-big" style="display:block;position:relative;top:20px;" id="c_school"><!--滑动出现left:0;-->
+	<div class="popover popover-big" style="display:block;position:relative;" id="c_school"><!--滑动出现left:0;-->
 		<div class="popover-inner">
 			<div class="lists-box">					
 				<div class="lists-title">
@@ -97,7 +97,7 @@
 
 <!-- 学历 -->
 <div class="mask1" style="position:fixed;left:0;top:0;display:none;">
-	<div class="popover popover-big" style="display:block;position:relative;left:0;top:20px;" id="c_degrees"><!--滑动出现left:0;-->
+	<div class="popover popover-big" style="display:block;position:relative;left:0;" id="c_degrees"><!--滑动出现left:0;-->
 		<div class="popover-inner">
 			<div class="lists-box">					
 				<div class="lists-title">

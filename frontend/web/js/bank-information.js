@@ -1,9 +1,28 @@
 $(function(){
 	wwidth=$(window).width();
 	$("#c_bank").css("left",-wwidth);
+	$("#agreement").css("left",-wwidth);
 
 	var wheight=$(window).height();
 	$("#cbank_list").css("max-height",wheight/6*4);
+/*协议操作*/
+	$("#agree_list").height(wheight/6*4);
+	$("#agreement").css("top",wheight/8);
+
+	$("#agreement-btn").click(function(){
+		$(".mask9").show();
+		$("#agreement").css("left",0);
+		$("#close10").click(function(){
+			$(".mask9").hide();				
+		})
+	})
+
+	$(".agree").click(function(){
+		$(".mask9").hide();		
+	})
+
+
+
 /*选择银行*/
 	$("#bank-name").click(function(){
 		$(".mask7").show();
