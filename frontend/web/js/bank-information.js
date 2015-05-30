@@ -10,6 +10,7 @@ $(function(){
 	$("#agreement").css("top",wheight/8);
 
 	$("#agreement-btn").click(function(){
+		getAgree();
 		$(".mask9").show();
 		$("#agreement").css("left",0);
 		$("#close10").click(function(){
@@ -169,3 +170,17 @@ $(function(){
 
 
 })/*$(function()结束*/
+function getAgree(){
+	var now = new Date();
+	var year = now.getFullYear();
+	var month = now.getMonth()+1;
+	var day = now.getDate();
+	$("#year").html(year);
+	$("#year1").html(year);
+	$("#month").html(month);
+	$("#month1").html(month);
+	$("#day").html(day);
+	$("#day1").html(day);
+	$("#c_id").html($("#id-num").val());
+	$("#c_bid").html($("#bc-num").val());
+}
