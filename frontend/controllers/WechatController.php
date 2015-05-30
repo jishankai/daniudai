@@ -45,6 +45,13 @@ class WechatController extends \yii\web\Controller
             return Message::make('text')->content('大牛贷学长正紧锣密鼓开张中！感谢您的关注，正式上线后我们会第一时间通知您！');
         });
 
+        $server->on('event', 'CLICK', function($event) {
+            if ($event['EventKey']=='CLICK_ANSWER') {
+                return Message::make('text')->content('牛仔您来啦~有什么可以效劳的？您只需点击下方左侧“键盘“ 图标，用文字或说话，都可以喝大牛君开说了~');
+            }
+        });
+
+
         $result = $server->serve();
 
         echo $result;
@@ -58,7 +65,7 @@ class WechatController extends \yii\web\Controller
         $menu = new Menu($appId, $secret);
         $menus = array(
             new MenuItem("申请贷款", 'view', Url::to(['loan/index'], TRUE)),
-            new MenuItem("我", 'view', Url::to(['loan/me'], TRUE)),
+            new MenuItem("你问我答", 'click', 'CLICK_ANSWER'),
         );
 
         try {
