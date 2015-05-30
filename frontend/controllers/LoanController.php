@@ -112,13 +112,14 @@ class LoanController extends \yii\web\Controller
         $loan = Loan::findOne(['wechat_id'=>$user['openid']]);
         $transaction = Yii::$app->db->beginTransaction();
         try {
-            if (isset($loan) AND $loan->status=0) {
+            if (isset($loan) AND $loan->status==0) {
                 $loan->money = $money;
                 $loan->duration = $duration;
                 $loan->rate = $rate;
                 $loan->start_at = time();
                 $loan->end_at = time()+$duration*3600*24;
-            } else {
+                $loan->save();
+            } else if (!isset($loan)) {
                 $loan = new Loan;
                 $loan->wechat_id = $user['openid'];
                 $loan->money = $money;
@@ -128,8 +129,8 @@ class LoanController extends \yii\web\Controller
                 $loan->start_at = time();
                 $loan->end_at = time()+$duration*3600*24;
                 $loan->created_at = time();
+                $loan->save();
             }
-            $loan->save();
             $transaction->commit();
         } catch(\Exception $e) {
             $transaction->rollBack();
