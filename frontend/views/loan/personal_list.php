@@ -16,14 +16,15 @@
 			<th>姓 名</th>
 			<th>专 业</th>
 			<th>手机号</th>
+            <th>详细</th>
 		</tr>
         <?php foreach($r AS $v) {?>
 		<tr>
-        <td><a href="<?php echo Url::to(['loan/person','loan_id'=>$v['loan_id']])?>">
-        Link</a></td>
         <td><?php echo $v['name']?></td>
         <td><?php echo $v['depart']?></td>
         <td><?php echo $v['mobile']?></td>
+        <td><a href="<?php echo Url::to(['loan/person','loan_id'=>$v['loan_id']])?>">
+        Link</a></td>
         </tr>
         <?php }?>
 	</table>

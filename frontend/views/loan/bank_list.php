@@ -33,7 +33,7 @@
         <td><?php echo $v['bank']?></td>
         <td><?php echo $v['bank_id']?></td>
             <?php if($verification=='admin') {?>
-            <td><a href=""><button>确认</button></a></td>
+            <td><a href="<?php echo Url::to(['loan/operate','loan_id'=>$v['loan)id'],'operation'=>3])?>"><button>确认</button></a></td>
             <?php } else {?>
             <td>未放款</td>
             <?php }?>
