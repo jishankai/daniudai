@@ -22,6 +22,7 @@ class LoanController extends \yii\web\Controller
         $user = $_SESSION['user'];
         $s = Student::findOne($user['openid']);
         $u = User::findOne($user['openid']);
+        $l = Loan::findOne(['wechat_id'=>$user['openid']]);
         $stu_id = $_POST['stu_id'];
         $school_id = $_POST['school_id'];
         $dorm = $_POST['dorm'];
@@ -49,7 +50,7 @@ class LoanController extends \yii\web\Controller
             throw $e;
         }
 
-        return $this->renderPartial('bank', array('user'=>$u));
+        return $this->renderPartial('bank', array('user'=>$u,'loan'=>$l));
     }
 
     public function actionLend($type='common')
