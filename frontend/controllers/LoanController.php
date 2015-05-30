@@ -143,9 +143,10 @@ class LoanController extends \yii\web\Controller
 
     public function actionSuccess()
     {
+        session_start();
+        $user = $_SESSION['user'];
+        $student = Student::findOne($user['openid']);
         if (isset($_POST['id'])) {
-            session_start();
-            $user = $_SESSION['user'];
             $u = User::findOne($user['openid']);
             $l = Loan::findOne(['wechat_id'=>$user['openid']]);
             $id = $_POST['id'];
@@ -172,10 +173,8 @@ class LoanController extends \yii\web\Controller
             $secret = Yii::$app->params['wechat_appsecret'];
             $staff = new Staff($appId, $secret);
             //通知放款员面签
-            $student = Student::findOne($user['openid']);
             $s = School::findOne($student->school_id);
             $message = "大牛君呐，又一位大牛来了，他叫{$u->name}，借款{$l->money}元，借{$l->duration}天，手机号{$u->mobile}，专业{$s->depart}，年级{$student->grade}，请快速约起来~ ".Url::to(['loan/me'],TRUE);
-            $student = Student::findOne($user['openid']);
             if (floor($student->school_id/100)==101) {
                 $supporter_openid = Yii::$app->params['pku101_supporter'];
             } else if (floor($student->school_id/100)==102) {
@@ -183,8 +182,16 @@ class LoanController extends \yii\web\Controller
             }
             $staff->send($message)->to($supporter_openid);
         }
-
-        return $this->renderPartial('success');
+        $l = Loan::findOne($user['openid']);
+        if ($l->status==1) {
+            if (floor($student->school_id/100)==101) {
+                return $this->renderPartial('success', ['mobile'=>'18910279503']);
+            } else if (floor($student->school_id/100)==102) {
+                return $this->renderPartial('success', ['mobile'=>'18810521341']);
+            }
+        } else if ($l->status>1) {
+            return $this->renderPartial('success2');
+        }
     }
 
     public function actionMe()
@@ -214,7 +221,7 @@ class LoanController extends \yii\web\Controller
             $r = Yii::$app->db->createCommand('SELECT u.name,u.bank,u.bank_id,l.loan_id FROM user u LEFT JOIN loan l ON u.wechat_id=l.wechat_id WHERE l.status=2')->queryAll();
             return $this->renderPartial('bank_list', ['verification'=>'admin','r'=>$r]);
         } else {
-            return $this->renderPartial('success');
+            return $this->redirect(['loan/success']);
         }
     }
 
