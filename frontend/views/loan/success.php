@@ -34,7 +34,7 @@
 <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
 <script type="text/javascript">
 /*电话号码随机*/
-    var phones = ["13200001232","18200029938","15594030039"];
+    var phones = ["18910279503","18810521341"];
     var sp = phones[parseInt(Math.random()*phones.length)];
 	$("#phone").html(sp);
 

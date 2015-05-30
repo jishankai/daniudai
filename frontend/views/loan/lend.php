@@ -19,7 +19,7 @@
 		<div class="screen-content">			
 			<div class="content">
 				<div class="apply-box">
-					<div class="apply-info">毕业季，毕业礼，超低日利率：<?php echo $rate*100;?>%<span>惠</span></div>
+					<div class="apply-info"><span id="tit">毕业季，毕业礼，超低日利率：</span><?php echo $rate*100;?>%<span>惠</span></div>
 					<div class="apply-item" id="applyMoney">
 						<div class="a-title">
 							<h3>我要借：</h3>
@@ -71,6 +71,11 @@
 	<script type="text/javascript" src="js/loan.js?<?php echo $v;?>"></script>
 	<script type="text/javascript">
 		$(".container").Loan();
+		if(<?php echo $rate*100;?>==0.02){
+			$("#tit").html("大热暑期，清凉礼，特惠利率：");
+		}else{
+			$("#tit").html("毕业季，毕业礼，超低日利率：");
+		}
 	</script>
 </body>
 </html>
