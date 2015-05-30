@@ -6,7 +6,7 @@ $(function(){
 		$("#c_degrees").css("left",-wwidth);
 		$("#admission_year").css("left",-wwidth);
 
-		$("#cschool_list").height(wheight/6*3);
+		$("#cschool_list").height(wheight/6*4);
 		$("#cdegrees_list").height(wheight/6*4);
 		$("#college-list").height(wheight/6*4);
 		$("#year_list").height(wheight/6*4);
@@ -16,8 +16,8 @@ $(function(){
 		$(".mask").show();
 		$(".mask").height($(window).height());
 		var wheight=$(window).height();
-		var cschool=$("#c_school").height();
-		$("#c_school").css("top",Math.round(cschool/5));
+		var cschool=$("#cschool_list").height();
+		$("#c_school").css("top",Math.round(cschool/7));
 		$("#c_school").css("left",0);
 		
 		$("#cschool_list li").click(function(){
@@ -41,9 +41,9 @@ $(function(){
 			$(".mask").show();
 			$(".mask").height($(window).height());
 			var wheight=$(window).height();
-			var cschool=$("#c_school").height();
+			var cschool=$("#cschool_list").height();
 
-			$("#c_school").css("top",Math.round((wheight-cschool)/3));
+			$("#c_school").css("top",Math.round(cschool/7));
 			$("#c_school").css("left",0);
 			$("#cschool_list li").click(function(){
 				$(this).addClass("active").siblings().removeClass();
@@ -77,8 +77,8 @@ function mclick(school_name){
 	}
 	$(".mask1").show();
 		var wheight=$(window).height();
-		var cdegrees=$("#c_degrees").height();
-		$("#c_degrees").css("top",Math.round((wheight-cdegrees)/3));
+		var cdegrees=$("#cdegrees_list").height();
+		$("#c_degrees").css("top",Math.round(cdegrees/7));
 		$("#c_degrees").css("left",0);
 
 		$("#cdegrees_list li").click(function(){
@@ -103,8 +103,8 @@ function mclick(school_name){
 			/*选择学院*/
 			$(".mask2").show();
 			var wheight=$(window).height();
-			var ccollege=$("#c_college").height();
-			$("#c_college").css("top",Math.round(wheight/8));
+			var ccollege=$("#college-list").height();
+			$("#c_college").css("top",Math.round(ccollege/7));
 			$("#c_college").css("left",0);
 			$("#college-list li").click(function(){
 				$(this).addClass("active").siblings().removeClass();
@@ -116,8 +116,8 @@ function mclick(school_name){
 					$(".mask2").hide();
 					$(".mask4").show();
 					var wheight=$(window).height();
-					var ayear=$("#admission_year").height();
-					$("#admission_year").css("top",Math.round(wheight/8));
+					var ayear=$("#year_list").height();
+					$("#admission_year").css("top",Math.round(ayear/7));
 					$("#admission_year").css("left",0);
 
 					$("#year_list li").click(function(){

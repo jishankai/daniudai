@@ -60,7 +60,7 @@
 			                <div class="forms__group">
 			                    <label class="forms__label">身份证</label>
 			                    <span class="input__box">           
-			                        <input type="tel" class="forms_input" placeholder="身份证号" value="" id="id-num" name="id">
+			                        <input type="text" class="forms_input" placeholder="身份证号" value="" id="id-num" name="id">
 			                        <!-- <span class="icon-option"><i class="icons icons-cross" style="display:block;" id="i4"></i></span>
 			                    </span> -->
 			                </div> 

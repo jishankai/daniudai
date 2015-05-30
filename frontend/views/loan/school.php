@@ -126,8 +126,9 @@
 					<span class="close" id="close3">&times;</span>
 				</div>
 				<div class="lists-body">
-					<ul class="lists-main" id="college-list">
+					<ul class="lists-main" id="college-list" style="border-bottom:0;">
 					</ul>
+					<p class="l-info" style="visibility:hidden;">11</p>
 				</div>
 			</div>
 		</div>
@@ -164,9 +165,9 @@
 					<span class="close" id="close5">&times;</span>
 				</div>
 				<div class="lists-body">
-					<ul class="lists-main" id="year_list">
-					
+					<ul class="lists-main" id="year_list" style="border-bottom:0;">				
 					</ul>
+					<p class="l-info" style="visibility:hidden;">11</p>
 				</div>
 			</div>
 		</div>
