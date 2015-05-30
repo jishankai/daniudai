@@ -1,6 +1,6 @@
 #school-name, #major{cursor: pointer;}
 
-.mask,.mask1, .mask2, .mask3, .mask4, .mask6, .mask7, .mask8, .mask9{width: 100%;height: 100%;background-color: rgba(0,0,0,0.5);}
+.mask,.mask1, .mask2, .mask3, .mask4, .mask6, .mask7, .mask8, .mask9{width: 100%;height: 100%;background-color: rgba(0,0,0,0.5);z-index: 10009;}
 .popover{margin-top: 0px;}
 .close{cursor:pointer;}
 .range{width:100%; height: 6px;}
