@@ -19,7 +19,7 @@
 		<div class="screen-content">			
 			<div class="content">
 				<div class="apply-box">
-					<div class="apply-info"><?php echo $rate=="0.0002" ? "火热暑期，清凉礼，特惠利率：" . $rate*100 : "毕业季，毕业礼，超低日利率：" . $rate*100;?>%<span>惠</span></div>
+					<div class="apply-info"><?php echo $rate=="0.0002" ? "火热暑期，清凉礼，特惠日利率：" . $rate*100 : "毕业季，毕业礼，超低日利率：" . $rate*100;?>%<span>惠</span></div>
 					<div class="apply-item" id="applyMoney">
 						<div class="a-title">
 							<h3>我要借：</h3>
@@ -73,4 +73,11 @@
 		$(".container").Loan();
 	</script>
 </body>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+    wx.config(<?php echo $js->config(array('hideOptionMenu', false, true)) ?>);
+    wx.ready(function(){
+        wx.hideOptionMenu();
+    });
+</script>
 </html>

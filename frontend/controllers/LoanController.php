@@ -55,7 +55,8 @@ class LoanController extends \yii\web\Controller
             throw $e;
         }
 
-        return $this->renderPartial('bank', array('user'=>$u,'loan'=>$l));
+        $js = new Js($appId, $secret); 
+        return $this->renderPartial('bank', array('user'=>$u,'loan'=>$l,'js'=>$js));
     }
 
     public function actionLend($type='common')
@@ -67,7 +68,8 @@ class LoanController extends \yii\web\Controller
             return $this->redirect(['loan/success']);
         }
         $rate = ($type=='common')?0.0002:0.0001;
-        return $this->renderPartial('lend', ['v'=>Yii::$app->params['assets_version'], 'rate'=>$rate]);
+        $js = new Js($appId, $secret); 
+        return $this->renderPartial('lend', ['v'=>Yii::$app->params['assets_version'], 'rate'=>$rate,'js'=>$js]);
     }
 
     public function actionIndex()
@@ -151,7 +153,8 @@ class LoanController extends \yii\web\Controller
             throw $e;
         }
 
-        return $this->renderPartial('school', array('from'=>$rate==0.0001?'graduate':'common'));
+        $js = new Js($appId, $secret); 
+        return $this->renderPartial('school', array('from'=>$rate==0.0001?'graduate':'common', 'js'=>$js));
     }
 
     public function actionSuccess()
@@ -204,6 +207,8 @@ class LoanController extends \yii\web\Controller
             }
         } else if ($l->status>1) {
             return $this->renderPartial('success2');
+        } else {
+            return $this->redirect(['loan/index']);
         }
     }
 
