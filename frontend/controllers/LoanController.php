@@ -55,6 +55,8 @@ class LoanController extends \yii\web\Controller
             throw $e;
         }
 
+        $appId = Yii::$app->params['wechat_appid'];
+        $secret = Yii::$app->params['wechat_appsecret'];
         $js = new Js($appId, $secret); 
         return $this->renderPartial('bank', array('user'=>$u,'loan'=>$l,'js'=>$js));
     }
@@ -155,6 +157,8 @@ class LoanController extends \yii\web\Controller
             throw $e;
         }
 
+        $appId = Yii::$app->params['wechat_appid'];
+        $secret = Yii::$app->params['wechat_appsecret'];
         $js = new Js($appId, $secret); 
         return $this->renderPartial('school', array('from'=>$rate==0.0001?'graduate':'common', 'js'=>$js));
     }
