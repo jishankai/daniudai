@@ -44,6 +44,6 @@
 <script type="text/javascript" charset="utf-8">
     wx.config(<?php echo $js->config(array('hideOptionMenu', false, true)) ?>);
     wx.ready(function(){
-        hideOptionMenu();
+        wx.hideOptionMenu();
     });
 </script>
