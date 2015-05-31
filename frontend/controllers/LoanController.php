@@ -7,6 +7,7 @@ use yii\helpers\Url;
 use Overtrue\Wechat\Auth;
 use Overtrue\Wechat\Notice;
 use Overtrue\Wechat\Staff;
+use Overtrue\Wechat\Js;
 use backend\models\User; 
 use backend\models\Loan; 
 use backend\models\Student;
@@ -108,8 +109,8 @@ class LoanController extends \yii\web\Controller
                 return $this->redirect(['loan/success']);
             }
         }
-        
-        return $this->renderPartial('index',['v'=>Yii::$app->params['assets_version']]);
+        $js = new Js($appId, $secret); 
+        return $this->renderPartial('index',['v'=>Yii::$app->params['assets_version'], 'js'=>$js]);
     }
 
     public function actionSchool()

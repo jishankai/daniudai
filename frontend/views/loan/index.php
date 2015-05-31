@@ -1,12 +1,4 @@
-<?php 
-use yii\helpers\Url;
-use Overtrue\Wechat\Js;
-
-$appId  = Yii::$app->params['wechat_appid'];
-$secret  = Yii::$app->params['wechat_secret'];
-
-$js = new Js($appId, $secret);
-?>
+<?php use yii\helpers\Url;?>
 <!DOCTYPE html>
 <html class="mobile-notes-variant bg-color" lang="en"><!--full-srceen-->
 <head>
