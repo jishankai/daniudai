@@ -1,4 +1,12 @@
-<?php use yii\helpers\Url;?>
+<?php 
+use yii\helpers\Url;
+use Overtrue\Wechat\Js;
+
+$appId  = Yii::$app->params['wechat_appid'];
+$secret  = Yii::$app->params['wechat_secret'];
+
+$js = new Js($appId, $secret);
+?>
 <!DOCTYPE html>
 <html class="mobile-notes-variant bg-color" lang="en"><!--full-srceen-->
 <head>
@@ -40,3 +48,10 @@
 	</div>	
 </body>
 </html>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+    wx.config(<?php echo $js->config(array('hideOptionMenu', false, true)) ?>);
+    wx.ready(function(){
+        hideOptionMenu();
+    });
+</script>

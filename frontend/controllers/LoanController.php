@@ -29,6 +29,10 @@ class LoanController extends \yii\web\Controller
         $grade = $_POST['grade'];
         $name = $_POST['name'];
 
+        if ($l->status>0) {
+            return $this->redirect(['loan/success']);
+        }
+
         $transaction = Yii::$app->db->beginTransaction();
         try {
             if (!isset($s)) {
@@ -55,6 +59,12 @@ class LoanController extends \yii\web\Controller
 
     public function actionLend($type='common')
     {
+        session_start();
+        $user = $_SESSION['user'];
+        $l = Loan::findOne(['wechat_id'=>$user['openid']]);
+        if ($l->status>0) {
+            return $this->redirect(['loan/success']);
+        }
         $rate = ($type=='common')?0.0002:0.0001;
         return $this->renderPartial('lend', ['v'=>Yii::$app->params['assets_version'], 'rate'=>$rate]);
     }
@@ -131,6 +141,8 @@ class LoanController extends \yii\web\Controller
                 $loan->end_at = time()+$duration*3600*24;
                 $loan->created_at = time();
                 $loan->save();
+            } else if ($loan->status>0) {
+                return $this->redirect(['loan/success']);
             }
             $transaction->commit();
         } catch(\Exception $e) {
