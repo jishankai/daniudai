@@ -68,6 +68,8 @@ class LoanController extends \yii\web\Controller
             return $this->redirect(['loan/success']);
         }
         $rate = ($type=='common')?0.0002:0.0001;
+        $appId = Yii::$app->params['wechat_appid'];
+        $secret = Yii::$app->params['wechat_appsecret'];
         $js = new Js($appId, $secret); 
         return $this->renderPartial('lend', ['v'=>Yii::$app->params['assets_version'], 'rate'=>$rate,'js'=>$js]);
     }
