@@ -19,6 +19,9 @@
 			<th>姓 名</th>
 			<th>银行类别</th>
 			<th>卡号</th>
+			<th>金额</th>
+			<th>天数</th>
+			<th>审核人</th>
 			<th>
             <?php if($verification=='admin') {?>
             操作
@@ -32,6 +35,9 @@
         <td><?php echo $v['name']?></td>
         <td><?php echo $v['bank']?></td>
         <td><?php echo $v['bank_id']?></td>
+        <td><?php echo $v['money']?></td>
+        <td><?php echo $v['duration']?></td>
+        <td><?php echo $v['reviewer']?></td>
             <?php if($verification=='admin') {?>
             <td><a href="<?php echo Url::to(['loan/operate','loan_id'=>$v['loan_id'],'operation'=>3])?>"><button>确认</button></a></td>
             <?php } else {?>
