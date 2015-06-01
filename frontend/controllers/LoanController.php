@@ -30,7 +30,7 @@ class LoanController extends \yii\web\Controller
         $grade = $_POST['grade'];
         $name = $_POST['name'];
 
-        if ($l->status>0) {
+        if (isset($l) AND $l->status>0) {
             return $this->redirect(['loan/success']);
         }
 
@@ -66,7 +66,7 @@ class LoanController extends \yii\web\Controller
         session_start();
         $user = $_SESSION['user'];
         $l = Loan::findOne(['wechat_id'=>$user['openid']]);
-        if ($l->status>0) {
+        if (isset($l) AND $l->status>0) {
             return $this->redirect(['loan/success']);
         }
         $rate = ($type=='common')?0.0002:0.0001;
@@ -260,7 +260,7 @@ class LoanController extends \yii\web\Controller
         $user = $_SESSION['user'];
         $open_id = $user['openid'];
         if ($open_id==Yii::$app->params['pku101_supporter'] OR $open_id==Yii::$app->params['pku102_supporter']) {
-            $r = Yii::$app->db->createCommand('SELECT l.loan_id,l.duration,l.money,u.name,u.id,stu.dorm,stu.stu_id,.s.depart,u.mobile FROM loan l LEFT JOIN user u ON l.wechat_id=u.wechat_id LEFT JOIN student stu ON l.wechat_id=stu.wechat_id LEFT JOIN school s ON stu.school_id=s.school_id WHERE l.loan_id=:loan_id')->bindValue(':loan_id',$loan_id)->queryOne();
+            $r = Yii::$app->db->createCommand('SELECT l.loan_id,l.rate,l.duration,l.money,u.name,u.id,stu.dorm,stu.stu_id,.s.depart,u.mobile FROM loan l LEFT JOIN user u ON l.wechat_id=u.wechat_id LEFT JOIN student stu ON l.wechat_id=stu.wechat_id LEFT JOIN school s ON stu.school_id=s.school_id WHERE l.loan_id=:loan_id')->bindValue(':loan_id',$loan_id)->queryOne();
             return $this->renderPartial('personal_details', ['r'=>$r]);
         } else {
             return $this->renderPartial('404');

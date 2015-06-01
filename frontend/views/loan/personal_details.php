@@ -48,6 +48,10 @@
             <td><?php echo $r['duration']?></td>
 		</tr>
 		<tr>
+			<th>通道</th>
+            <td><?php echo ($r['rate']==0.0001)?'毕业生':'普通'?></td>
+		</tr>
+		<tr>
 			<th>手机</th>
             <td><?php echo $r['mobile']?></td>
 		</tr>
