@@ -151,20 +151,6 @@ function ss(school,college){
 	if(college=="医学检验技术" || college=="生命科学学院"){s2="13";}
 	if(college=="口腔医学技术" || college=="数学科学学院"){s2="14";}
 
-	/*if(college=="城市与环境学院"){s2="01";}
-	if(college=="地球与空间科学学院"){s2="02";}
-	if(college=="法学院"){s2="03";}
-	if(college=="工学院"){s2="04";}
-	if(college=="光华管理学院"){s2="05";}
-	if(college=="国际关系学院"){s2="06";}
-	if(college=="化学与分子工程学院"){s2="07";}
-	if(college=="环境科学与工程学院"){s2="08";}
-	if(college=="经济学院"){s2="09";}
-	if(college=="考古文博学院"){s2="10";}
-	if(college=="历史学系"){s2="11";}
-	if(college=="社会学系"){s2="12";}
-	if(college=="生命科学学院"){s2="13";}
-	if(college=="数学科学学院"){s2="14";}*/
 	if(college=="外国语学院"){s2="15";}
 	if(college=="物理学院"){s2="16";}
 	if(college=="心理学系"){s2="17";}
