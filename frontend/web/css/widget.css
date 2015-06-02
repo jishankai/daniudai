@@ -317,9 +317,11 @@ a {
 	line-height: 25px;
 }
 .info-box .forms .select p{
+	font-family: "Microsoft YaHei", Geneva, Verdana, sans-serif;
+	font-size: 16px;
 	margin-bottom: 0;
-	line-height: 24px;
-	padding: 5px 36px 5px 0;
+	line-height: 1.4em;
+	padding: 4px 36px 5px 0;
 	cursor: pointer;
 }
 .info-box .forms .select p.d-color {
@@ -554,11 +556,15 @@ a {
 }
 .lists-body .l-info{
 	margin-top: 10px;
-	margin-bottom: 0;
 	text-align: center;
 	color: #aaa;
 	line-height: 34px;
 	font-size: 14px;
+	position:absolute;
+	bottom:0;
+	left:50%;
+	margin-left:-90px;
+	margin-bottom:5px;
 }
 .lists-main{
 	border-bottom: 1px solid #cccccb;	
