@@ -239,10 +239,10 @@ class LoanController extends \yii\web\Controller
             $r = Yii::$app->db->createCommand('SELECT u.name,u.mobile,s.depart, l.loan_id FROM user u LEFT JOIN loan l ON u.wechat_id=l.wechat_id LEFT JOIN student stu ON u.wechat_id=stu.wechat_id LEFT JOIN school s ON stu.school_id=s.school_id WHERE stu.school_id LIKE "102%" AND l.status=1')->queryAll();
             return $this->renderPartial('personal_list',['r'=>$r]);
         } else if($open_id==Yii::$app->params['demo_supporter']) {
-            $r = Yii::$app->db->createCommand('SELECT u.name,u.bank,u.bank_id, l.money,l.duration,t.name AS reviewer,l.status FROM user u LEFT JOIN loan l ON u.wechat_id=l.wechat_id LEFT JOIN user t ON l.reviewer=t.wechat_id WHERE l.status=2')->queryAll();
+            $r = Yii::$app->db->createCommand('SELECT u.name,u.bank,u.bank_id, l.loan_id,l.money,l.duration,t.name AS reviewer,l.status FROM user u LEFT JOIN loan l ON u.wechat_id=l.wechat_id LEFT JOIN user t ON l.reviewer=t.wechat_id WHERE l.status=2')->queryAll();
             return $this->renderPartial('bank_list', ['verification'=>'demo','r'=>$r]);
         } else if($open_id==Yii::$app->params['admin_supporter']) {
-            $r = Yii::$app->db->createCommand('SELECT u.name,u.bank,u.bank_id, l.money,l.duration,t.name AS reviewer,l.status FROM user u LEFT JOIN loan l ON u.wechat_id=l.wechat_id LEFT JOIN user t ON l.reviewer=t.wechat_id WHERE l.status=2')->queryAll();
+            $r = Yii::$app->db->createCommand('SELECT u.name,u.bank,u.bank_id, l.loan_id,l.money,l.duration,t.name AS reviewer,l.status FROM user u LEFT JOIN loan l ON u.wechat_id=l.wechat_id LEFT JOIN user t ON l.reviewer=t.wechat_id WHERE l.status=2')->queryAll();
             return $this->renderPartial('bank_list', ['verification'=>'admin','r'=>$r]);
         } else {
             $l = Loan::findOne(['wechat_id'=>$open_id]);
