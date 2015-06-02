@@ -41,5 +41,9 @@
 </body>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" charset="utf-8">
+     wx.config(<?php echo $js->config(array('hideOptionMenu'), false, true) ?>);
+     wx.ready(function(){
+         wx.hideOptionMenu();
+     });
  </script>
 </html>
