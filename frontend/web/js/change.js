@@ -14,9 +14,11 @@ $(function(){
 /*选择学校*/
 	$("#school-name").click(function(){
 		$("#stu_id,#name").blur();
-		$(".mask").height(wheight);
-		$(".mask").show();
-		$(".mask").height($(window).height());
+		$(".mask").css({height:"100%"}).show();	
+        setTimeout(function(){
+        	$(window).resizeTo(wwidth*0.99, wheight*0.99);
+            $(window).resizeTo(wwidth, wheight);
+        },1000);
 		var wheight=$(window).height();
 		var cschool=$("#cschool_list").height();
 		$("#c_school").css("top",Math.round(cschool/7));
@@ -41,9 +43,11 @@ $(function(){
 	$("#major").click(function(){
 		if($("#school-name").html()=="学校"){
 			$("#stu_id,#name").blur();
-			$(".mask").height(wheight);
-			$(".mask").show();
-			$(".mask").height($(window).height());
+			$(".mask").css({height:"100%"}).show();
+            setTimeout(function(){
+        	$(window).resizeTo(wwidth*0.99, wheight*0.99);
+            $(window).resizeTo(wwidth, wheight);
+        	},1000);
 			var wheight=$(window).height();
 			var cschool=$("#cschool_list").height();
 
@@ -79,10 +83,13 @@ function mclick(school_name){
 		$('#cdegrees_list').append("<li><i class='icons icons-check'></i>本科</li>");
 		$('#cdegrees_list').append("<li><i class='icons icons-check'></i>本博/本硕连读</li>");
 	}
-	$("#stu_id").blur();
-	$("#name").blur();
-	$(".mask1").height(wheight);
-	$(".mask1").show();
+	$("#stu_id,#name").blur();
+	 $(".mask1").css({height:"100%"}).show();
+     setTimeout(function(){
+        	$(window).resizeTo(wwidth*0.99, wheight*0.99);
+            $(window).resizeTo(wwidth, wheight);
+        },1000);
+
 		var wheight=$(window).height();
 		var cdegrees=$("#cdegrees_list").height();
 		$("#c_degrees").css("top",Math.round(cdegrees/7));
