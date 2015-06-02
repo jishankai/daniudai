@@ -205,14 +205,17 @@ class LoanController extends \yii\web\Controller
             $staff->send($message)->to($supporter_openid);
         }
         $l = Loan::findOne(['wechat_id'=>$user['openid']]);
+        $appId = Yii::$app->params['wechat_appid'];
+        $secret = Yii::$app->params['wechat_appsecret'];
+        $js = new Js($appId, $secret); 
         if ($l->status==1) {
             if (floor($student->school_id/100)==101) {
-                return $this->renderPartial('success', ['mobile'=>'18910279503']);
+                return $this->renderPartial('success', ['mobile'=>'18910279503', 'js'=>$js]);
             } else if (floor($student->school_id/100)==102) {
-                return $this->renderPartial('success', ['mobile'=>'18810521341']);
+                return $this->renderPartial('success', ['mobile'=>'18810521341', 'js'=>$js]);
             }
         } else if ($l->status>1) {
-            return $this->renderPartial('success2');
+            return $this->renderPartial('success2', ['js'=>$js]);
         } else {
             return $this->redirect(['loan/index']);
         }

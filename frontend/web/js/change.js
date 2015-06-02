@@ -15,10 +15,6 @@ $(function(){
 	$("#school-name").click(function(){
 		$("#stu_id,#name").blur();
 		$(".mask").css({height:"100%"}).show();	
-        setTimeout(function(){
-        	$(window).resizeTo(wwidth*0.99, wheight*0.99);
-            $(window).resizeTo(wwidth, wheight);
-        },1000);
 		var wheight=$(window).height();
 		var cschool=$("#cschool_list").height();
 		$("#c_school").css("top",Math.round(cschool/7));
@@ -44,10 +40,6 @@ $(function(){
 		if($("#school-name").html()=="学校"){
 			$("#stu_id,#name").blur();
 			$(".mask").css({height:"100%"}).show();
-            setTimeout(function(){
-        	$(window).resizeTo(wwidth*0.99, wheight*0.99);
-            $(window).resizeTo(wwidth, wheight);
-        	},1000);
 			var wheight=$(window).height();
 			var cschool=$("#cschool_list").height();
 
@@ -85,10 +77,6 @@ function mclick(school_name){
 	}
 	$("#stu_id,#name").blur();
 	 $(".mask1").css({height:"100%"}).show();
-     setTimeout(function(){
-        	$(window).resizeTo(wwidth*0.99, wheight*0.99);
-            $(window).resizeTo(wwidth, wheight);
-        },1000);
 
 		var wheight=$(window).height();
 		var cdegrees=$("#cdegrees_list").height();
