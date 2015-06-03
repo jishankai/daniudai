@@ -287,8 +287,9 @@ class LoanController extends \yii\web\Controller
         if (($operation==-1 OR $operation==2) AND ($open_id==Yii::$app->params['pku101_supporter'] OR $open_id==Yii::$app->params['pku102_supporter'])) {
             $l = Loan::findOne($loan_id);
             $u = User::findOne($l->wechat_id);
+            $l->reviewer = $open_id;
             $l->status = $operation;
-            $l->updateAttributes(['status']);
+            $l->updateAttributes(['reviewer', 'status']);
 
             $staff = new Staff($appId, $secret);
             if ($operation==2) {
