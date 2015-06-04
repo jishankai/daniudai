@@ -201,8 +201,8 @@ class LoanController extends \yii\web\Controller
             $color = '#FF0000';
             $data = array(
                 "first"    => "大牛君呐，又一位大牛来了",
-                "keynote1" => "{$u->name}，借款{$l->money}元，借{$l->duration}天，手机号{$u->mobile}，专业{$s->depart}，年级{$student->grade}",
-                "keynote2" => "待办",
+                "keyword1" => "{$u->name}，借款{$l->money}元，借{$l->duration}天，手机号{$u->mobile}，专业{$s->depart}，年级{$student->grade}",
+                "keyword2" => "待办",
                 "remark"   => "请快速约起来~",
             );
             if (floor($student->school_id/100)==101) {
@@ -306,10 +306,10 @@ class LoanController extends \yii\web\Controller
                 $color = '#FF0000';
                 $data1 = array(
                     "first"    => "又一位大牛{$u->name}通过审核！",
-                    "keynote1" => "{$l->money}元",
-                    "keynote2" => "{$l->duration}天",
-                    "keynote3" => "{$l->rate}*每个月的天数",
-                    "keynote4" => "通过",
+                    "keyword1" => "{$l->money}元",
+                    "keyword2" => "{$l->duration}天",
+                    "keyword3" => "{$l->rate}*每个月的天数",
+                    "keyword4" => "通过",
                     "remark"   => "手机号{$u->mobile}，专业{$s->depart}，年级{$student->grade}",
                 );
                 $messageId = $notice->uses($templateId)->withUrl($url1)->andData($data1)->andReceiver(Yii::$app->params['demo_supporter'])->send();
@@ -317,10 +317,10 @@ class LoanController extends \yii\web\Controller
                 $url2 = Url::to(['loan/success'],TRUE);
                 $data2 = array(
                     "first"    => "大牛您好！您的借款申请已通过审核",
-                    "keynote1" => "{$l->money}元",
-                    "keynote2" => "{$l->duration}天",
-                    "keynote3" => "{$l->rate}*每个月的天数",
-                    "keynote4" => "通过",
+                    "keyword1" => "{$l->money}元",
+                    "keyword2" => "{$l->duration}天",
+                    "keyword3" => "{$l->rate}*每个月的天数",
+                    "keyword4" => "通过",
                     "remark"   => "我们会在 24 小时内给您汇款，请耐心等待。",
                 );
                 $messageId = $notice->uses($templateId)->withUrl($url1)->andData($data1)->andReceiver($l->wechat_id)->send();
@@ -337,9 +337,9 @@ class LoanController extends \yii\web\Controller
             $url = Url::to(['loan/success'],TRUE);
             $data = array(
                 "first"    => "大牛您好，您申请的借款已汇入您尾号为{$bank_id}的银行卡中",
-                "keynote1" => "已汇款",
-                "keynote2" => "大牛贷",
-                "keynote3" => date("Ymd"),
+                "keyword1" => "已汇款",
+                "keyword2" => "大牛贷",
+                "keyword3" => date("Ymd"),
                 "remark"   => "请及时查看",
             );
             $messageId = $notice->uses($templateId)->withUrl($url)->andData($data)->andReceiver($l->wechat_id)->send();
