@@ -193,16 +193,24 @@ class LoanController extends \yii\web\Controller
 
             $appId = Yii::$app->params['wechat_appid'];
             $secret = Yii::$app->params['wechat_appsecret'];
-            $staff = new Staff($appId, $secret);
+            $notice = new Notice($appId, $secret);
             //通知放款员面签
             $s = School::findOne($student->school_id);
-            $message = "大牛君呐，又一位大牛来了，他叫{$u->name}，借款{$l->money}元，借{$l->duration}天，手机号{$u->mobile}，专业{$s->depart}，年级{$student->grade}，请快速约起来~ ".Url::to(['loan/me'],TRUE);
+            $templateId = Yii::$app->params['templateId_task'];
+            $url = Url::to(['loan/me'],TRUE);
+            $color = '#FF0000';
+            $data = array(
+                "first"    => "大牛君呐，又一位大牛来了",
+                "keynote1" => "{$u->name}，借款{$l->money}元，借{$l->duration}天，手机号{$u->mobile}，专业{$s->depart}，年级{$student->grade}",
+                "keynote2" => "待办",
+                "remark"   => "请快速约起来~",
+            );
             if (floor($student->school_id/100)==101) {
-                $supporter_openid = Yii::$app->params['pku101_supporter'];
+                $userId = Yii::$app->params['pku101_supporter'];
             } else if (floor($student->school_id/100)==102) {
-                $supporter_openid = Yii::$app->params['pku102_supporter'];
+                $userId = Yii::$app->params['pku102_supporter'];
             }
-            $staff->send($message)->to($supporter_openid);
+            $messageId = $notice->uses($templateId)->withUrl($url)->andData($data)->andReceiver($userId)->send();
         }
         $l = Loan::findOne(['wechat_id'=>$user['openid']]);
         $appId = Yii::$app->params['wechat_appid'];
@@ -291,13 +299,31 @@ class LoanController extends \yii\web\Controller
             $l->status = $operation;
             $l->updateAttributes(['reviewer', 'status']);
 
-            $staff = new Staff($appId, $secret);
+            $notice = new Notice($appId, $secret);
             if ($operation==2) {
-                $message = "又一位大牛通过审核！姓名：{$u->name}，银行类别：{$u->bank}，银行卡号：{$u->bank_id}，借款额{$l->money}元，手机：{$u->mobile}，请尽快汇出。".Url::to(['loan/me'],TRUE);
-                $messagetoclient = "大牛您好！您的借款申请已通过审核，借款额为 {$l->money} 元，借款期限为 {$l->duration} 天，我们会在 24 小时内给您汇款，请耐心等待。";
-                $staff->send($message)->to(Yii::$app->params['demo_supporter']);
-                $staff->send($message)->to(Yii::$app->params['admin_supporter']);
-                $staff->send($messagetoclient)->to($l->wechat_id);
+                $templateId = Yii::$app->params['templateId_review'];
+                $url1 = Url::to(['loan/me'],TRUE);
+                $color = '#FF0000';
+                $data1 = array(
+                    "first"    => "又一位大牛{$u->name}通过审核！",
+                    "keynote1" => "{$l->money}元",
+                    "keynote2" => "{$l->duration}天",
+                    "keynote3" => "{$l->rate}*每个月的天数",
+                    "keynote4" => "通过",
+                    "remark"   => "手机号{$u->mobile}，专业{$s->depart}，年级{$student->grade}",
+                );
+                $messageId = $notice->uses($templateId)->withUrl($url1)->andData($data1)->andReceiver(Yii::$app->params['demo_supporter'])->send();
+                $messageId = $notice->uses($templateId)->withUrl($url1)->andData($data1)->andReceiver(Yii::$app->params['admin_supporter'])->send();
+                $url2 = Url::to(['loan/success'],TRUE);
+                $data2 = array(
+                    "first"    => "大牛您好！您的借款申请已通过审核",
+                    "keynote1" => "{$l->money}元",
+                    "keynote2" => "{$l->duration}天",
+                    "keynote3" => "{$l->rate}*每个月的天数",
+                    "keynote4" => "通过",
+                    "remark"   => "我们会在 24 小时内给您汇款，请耐心等待。",
+                );
+                $messageId = $notice->uses($templateId)->withUrl($url1)->andData($data1)->andReceiver($l->wechat_id)->send();
             }
         } else if ($operation==3 AND $open_id==Yii::$app->params['admin_supporter']) {
             $l = Loan::findOne($loan_id);
@@ -305,10 +331,18 @@ class LoanController extends \yii\web\Controller
             $l->status = $operation;
             $l->updateAttributes(['status']);
 
-            $staff = new Staff($appId, $secret);
+            $notice = new Notice($appId, $secret);
+            $templateId = Yii::$app->params['templateId_remit'];
             $bank_id = substr($u->bank_id, -4);
-            $messagetoclient = "大牛您好，您申请的借款已汇入您尾号为{$bank_id}的银行卡中，请及时查看。";
-            $staff->send($messagetoclient)->to($l->wechat_id);
+            $url = Url::to(['loan/success'],TRUE);
+            $data = array(
+                "first"    => "大牛您好，您申请的借款已汇入您尾号为{$bank_id}的银行卡中",
+                "keynote1" => "已汇款",
+                "keynote2" => "大牛贷",
+                "keynote3" => date("Ymd"),
+                "remark"   => "请及时查看",
+            );
+            $messageId = $notice->uses($templateId)->withUrl($url)->andData($data)->andReceiver($l->wechat_id)->send();
         }
 
         return $this->redirect(['loan/me']);
