@@ -310,11 +310,7 @@ class LoanController extends \yii\web\Controller
                     "keyword2" => "{$l->duration}天",
                     "keyword3" => "{$l->rate}*每个月的天数",
                     "keyword4" => "通过",
-                    "remark"   => "姓名：{$u->name}，
-                    银行类别：{$u->bank}，
-                    银行卡号：{$u->bank_id}，
-                    借款额{$l->money}元，
-                    手机：{$u->mobile}",
+                    "remark"   => "姓名：{$u->name}，银行类别：{$u->bank}，银行卡号：{$u->bank_id}，借款额{$l->money}元，手机：{$u->mobile}",
                 );
                 $messageId = $notice->uses($templateId)->withUrl($url1)->andData($data1)->andReceiver(Yii::$app->params['demo_supporter'])->send();
                 $messageId = $notice->uses($templateId)->withUrl($url1)->andData($data1)->andReceiver(Yii::$app->params['admin_supporter'])->send();
