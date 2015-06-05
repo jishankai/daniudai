@@ -70,7 +70,7 @@
 	<script type="text/javascript" src="js/depend.js?<?php echo $v;?>"></script>
 	<script type="text/javascript" src="js/loan.js?<?php echo $v;?>"></script>
 	<script type="text/javascript">
-		$(".container").Loan();
+		$(".container").Loan(); 
 	</script>
 </body>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
