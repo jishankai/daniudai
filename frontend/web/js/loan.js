@@ -24,6 +24,8 @@
 		this.timeNode = $("#applyTime");
 		this.moneyProgressNode = $("#applyMoney").find(".progressBar");
 		this.timeProgressNode = $("#applyTime").find(".progressBar");
+		this.moneyProgressBarNode = this.moneyNode.find(".progressBar-wrap");
+		this.timeProgressBarNode = this.timeNode.find(".progressBar-wrap");
 		this.submitBtn = $("#applicationBtn");
 		this._addEvents();
 	}
@@ -31,7 +33,7 @@
 	Loan.prototype = {
 		//事件绑定
 		_addEvents:function(){
-			var self = this.parents;
+			var self = this;
 			$("#repayTmpl").on("repay:change", function(){
 				repayChange();
 			})
@@ -48,6 +50,54 @@
 			
 			$cal.hammer({ drag_lock_to_axis: true })
 				.on(events, $.proxy(this._timeEventHandler, this));
+			
+			this.moneyProgressBarNode.on("click",function(evt){
+				var evt= evt || event,
+					offset = evt.offsetX || evt.layerX;
+				
+				var cw = self._calpercent('applyMoney');
+				
+				if(cw>=offset){
+					var tp = Math.floor(offset/poffsetw*9);
+					var money = (tp+1) * 1000;
+					dfm = money;
+					self.moneyNode.find('em').text(["￥",money].join(""));
+					
+					if(tp>9) tp = 9;
+					
+					self.moneyProgressNode.css({width:(poffsetw/9*tp)/poffsetw*100+"%"});
+				} else {
+					var tp = Math.ceil(offset/poffsetw*9);
+					var money = (tp+1) * 1000;
+					dfm = money;
+					self.moneyNode.find('em').text(["￥",money].join(""));
+					
+					if(tp>9) tp = 9;
+					
+					self.moneyProgressNode.css({width:(poffsetw/9*tp)/poffsetw*100+"%"});
+				}
+				
+				repayChange();
+			})
+			
+			this.timeProgressBarNode.on("click",function(e){
+				var evt= evt || event,
+					offset = evt.offsetX || evt.layerX;
+			
+				var cw = self._calpercent('applyTime');
+				
+				if(cw>=offset){
+					var tp = Math.floor(offset/poffsetw*2);
+					dtm = (tp+1)*100;
+					self.timeProgressNode.css({width:(poffsetw/2*tp)/poffsetw*100+"%"});
+				} else {
+					var tp = Math.ceil(offset/poffsetw*2);
+					dtm = (tp+1)*100;
+					self.timeProgressNode.css({width:(poffsetw/2*tp)/poffsetw*100+"%"});
+				}
+				self.timeNode.find('em').text([dtm,"天"].join(""));
+				repayChange();
+			})
 		},
 		//贷款进度处理
 		_eventHandler:function(ev){
