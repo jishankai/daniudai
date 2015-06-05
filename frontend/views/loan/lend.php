@@ -70,7 +70,7 @@
 	<script type="text/javascript" src="js/depend.js?<?php echo $v;?>"></script>
 	<script type="text/javascript" src="js/loan.js?<?php echo $v;?>"></script>
 	<script type="text/javascript">
-		$(".container").Loan();
+		$(".container").Loan(); 
 	</script>
 </body>
 </html>
