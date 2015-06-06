@@ -166,6 +166,9 @@ class LoanController extends \yii\web\Controller
     public function actionSuccess()
     {
         session_start();
+        if (!isset($_SESSION['user'])) {
+            return $this->redirect(['loan/index']);
+        }
         $user = $_SESSION['user'];
         $student = Student::findOne($user['openid']);
         if (isset($_POST['id'])) {
