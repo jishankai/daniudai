@@ -130,7 +130,7 @@ class LoanController extends \yii\web\Controller
         $loan = Loan::findOne(['wechat_id'=>$user['openid']]);
         $transaction = Yii::$app->db->beginTransaction();
         try {
-            if (isset($loan) AND $loan->status==0) {
+            if (isset($loan) AND $loan->status<=0) {
                 $loan->money = $money;
                 $loan->duration = $duration;
                 $loan->rate = $rate;
