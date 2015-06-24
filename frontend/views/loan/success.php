@@ -20,7 +20,7 @@
 				<div class="success-box s-bgcolor">				
 					<div class="s-title">
 						<img src="img/success.png" />
-						<h1>恭喜恭喜，<span>您的申请已通过！</span></h1>
+						<h1>恭喜恭喜，<span>您的申请已提交！</span></h1>
 					</div>
 					<p>
 						请等待校园金融专员与您联系!<br />
