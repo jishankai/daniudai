@@ -169,10 +169,8 @@ class LoanController extends \yii\web\Controller
         $secret = Yii::$app->params['wechat_appsecret'];
 
         session_start();
-        if (empty($_SESSION['user'])) {
-            $auth = new Auth($appId, $secret);
-            $user = $auth->authorize(Url::to(['loan/index'], TRUE), 'snsapi_base'); // 返回用户 Bag
-            $_SESSION['user'] = $user;
+        if (!isset($_SESSION['user'])) {
+            return $this->redirect(['loan/index']);
         }
         $user = $_SESSION['user'];
         $student = Student::findOne($user['openid']);
