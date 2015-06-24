@@ -246,6 +246,7 @@
 	<script type="text/javascript" src="js/widgets/pb.js"></script>
 	<script type="text/javascript" src="js/widgets/tools.js"></script>
 	<script type="text/javascript" src="js/widgets/MessageBox.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 		 $("#container").PUB();
 		 wx.config(<?php echo $js->config(array('hideOptionMenu'), false, true) ?>);
