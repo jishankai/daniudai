@@ -6,6 +6,4 @@
 .range{width:100%; height: 6px;}
 .agreement{font-family: "Microsoft YaHei";display: none;}
 .agreement p{font-size: 1rem;line-height: 1.2;}
-/*.mask9 .agree{display:block;width: 50%;height: 30px;line-height: 30px;max-width: 200px;
-	background:#333;margin:20px auto;text-decoration: none;color:#fff;
-	text-align: center;border-radius: 10px;}*/
+.alists-body{height: auto;max-height:300px;overflow:scroll;}

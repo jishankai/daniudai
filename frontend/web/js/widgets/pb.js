@@ -7,7 +7,6 @@
  * 20150617
  */
 
-
 function Log(msg){
 	msg = msg || 'empty';
 	if(envirment=="production"){
@@ -17,7 +16,6 @@ function Log(msg){
 	}
 	
 }
-
 
 (function($, undefined){
 	//生产类
@@ -33,23 +31,25 @@ function Log(msg){
 		this.idCardInput = this.$el.find('[node-type="LoanIdCardInput"]');
 		this.mobileIcon = this.$el.find('[node-type="LoanMobileIcon"]');
 		this.mobileInput = this.$el.find('[node-type="LoanMobileInput"]');
+		this.agreement = $("#agreement-btn");
+		this.agreeClose = $("#close10");
+		this.agree= $("#agreement");
 		this.imbox = $("#imbox");
-		this.bankName = $("#bank_name")
+		this.bankName = $("#bank_name");
+		this.mask = $("#masker");
 		this._addEvents();
+
 	}
 	
 	Pub.prototype = {
 		//初始化
 		_init : function(){
-			
+		
 		},
 		//所有事件绑定
 		_addEvents : function(){
 			var sthis=this;
-			this.nameInput.on("click", function(){
-				
-			})
-
+						
 			/*判断信息完整*/
 			this.$el.find("input").on("input", function(){
 				/*Log('AAA');*/
@@ -87,6 +87,25 @@ function Log(msg){
 				var zName = $("#name").val();
 				sthis._fnSubmit(zCard,zIdCard,zMobile,zName);
 				
+			})
+			/*协议*/
+			this.agreement.on("click",function(){
+				var wheight = $(window).height();
+					wwidth = $(window).width();
+					agreeList = $("#agree_list");
+
+				/*sthis.agree.css("left",-wwidth);*/
+				agreeList.height(wheight/6*4);
+				sthis.agree.css("top",wheight/8);		
+				sthis._fnGetAgree();
+				sthis.mask.show();
+				sthis.agree.show();
+				sthis.agree.css("left",0);
+			})
+
+			this.agreeClose.on("click",function(){
+				sthis.mask.hide();
+				sthis.agree.hide();
 			})
 
 
@@ -189,6 +208,8 @@ function Log(msg){
 					if(intype=="bank_card"){
 						this.imbox.hide();
 						this.bankName.hide();
+						this.idCardInput.val("");
+						this.mobileInput.val("");
 					}
 					next.attr("disabled","disabled");
 				}else{
@@ -196,6 +217,26 @@ function Log(msg){
 					next.attr("disabled","disabled");
 				}	
 			}
+		},
+
+		/*获取协议*/
+		_fnGetAgree : function(){
+			var now = new Date();
+				year = now.getFullYear();
+				month = now.getMonth()+1;
+				day = now.getDate();
+				name = $("#name").val();
+				id_card = $("#ID_card").val();
+				bank_card = $("#bank_card").val();
+			$("#year").html(year);
+			$("#year1").html(year);
+			$("#month").html(month);
+			$("#month1").html(month);
+			$("#day").html(day);
+			$("#day1").html(day);
+			$("#c_id").html(id_card);
+			$("#c_bid").html(bank_card);
+			$("#c_name").html(name);
 		},
 
 		//提交按钮处理
