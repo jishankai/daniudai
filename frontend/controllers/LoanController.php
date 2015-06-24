@@ -165,6 +165,9 @@ class LoanController extends \yii\web\Controller
 
     public function actionSuccess()
     {
+        $appId = Yii::$app->params['wechat_appid'];
+        $secret = Yii::$app->params['wechat_appsecret'];
+
         session_start();
         if (!isset($_SESSION['user'])) {
             return $this->redirect(['loan/index']);
@@ -194,8 +197,6 @@ class LoanController extends \yii\web\Controller
                 throw $e;
             }
 
-            $appId = Yii::$app->params['wechat_appid'];
-            $secret = Yii::$app->params['wechat_appsecret'];
             $notice = new Notice($appId, $secret);
             //通知放款员面签
             $s = School::findOne($student->school_id);
