@@ -240,12 +240,12 @@
 
 
 	</div>
-	<script type="text/javascript" src="./js/widgets/bankLists.js"></script>
-	<script type="text/javascript" src="./js/widgets/constants.js"></script>
-	<script type="text/javascript" src="./js/libs/zepto.js"></script>
-	<script type="text/javascript" src="./js/widgets/pb.js"></script>
-	<script type="text/javascript" src="./js/widgets/tools.js"></script>
-	<script type="text/javascript" src="./js/widgets/MessageBox.js"></script>
+	<script type="text/javascript" src="js/widgets/bankLists.js"></script>
+	<script type="text/javascript" src="js/widgets/constants.js"></script>
+	<script type="text/javascript" src="js/libs/zepto.js"></script>
+	<script type="text/javascript" src="js/widgets/pb.js"></script>
+	<script type="text/javascript" src="js/widgets/tools.js"></script>
+	<script type="text/javascript" src="js/widgets/MessageBox.js"></script>
 	<script type="text/javascript">
 		 wx.config(<?php echo $js->config(array('hideOptionMenu'), false, true) ?>);
 		 wx.ready(function(){
