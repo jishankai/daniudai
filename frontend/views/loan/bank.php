@@ -247,12 +247,11 @@
 	<script type="text/javascript" src="js/widgets/tools.js"></script>
 	<script type="text/javascript" src="js/widgets/MessageBox.js"></script>
 	<script type="text/javascript">
+		 $("#container").PUB();
 		 wx.config(<?php echo $js->config(array('hideOptionMenu'), false, true) ?>);
 		 wx.ready(function(){
 		 	wx.hideOptionMenu();
 		 });
-	
-		$("#container").PUB();
 
 	</script>	
 </body>
