@@ -37,6 +37,7 @@ function Log(msg){
 		this.imbox = $("#imbox");
 		this.bankName = $("#bank_name");
 		this.mask = $("#masker");
+		this.iconOption = $(".icon-option");
 		this._addEvents();
 
 	}
@@ -71,6 +72,12 @@ function Log(msg){
 			this.$el.find(".icon-option").on("click", function(){
 				var icon_this=this;
 				sthis._fnIcon(icon_this);	
+			})
+
+			/*失去焦点隐藏icon*/
+			this.$el.find("input").on("focus", function(){
+				sthis.iconOption.hide();
+				$(this).siblings().show(); 
 			})
 			/*手机号输入判断*/
 			this.mobileInput.on("keyup",function(){
