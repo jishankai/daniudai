@@ -163,6 +163,17 @@ class LoanController extends \yii\web\Controller
         return $this->renderPartial('school', array('from'=>$rate==0.0001?'graduate':'common', 'js'=>$js));
     }
 
+    public function actionVerify($name, $bank_card, $id_card, $mobile, $type)
+    {
+        $account = Yii::$app->params['unionpay_account'];
+        $privatekey = Yii::$app->params['unionpay_privatekey'];
+        $card = $bank_card;
+        $cid = $id_card;
+        $sign = strtoupper(md5('account'.$account.'card'.$card.'cid'.$cid.'mobile'.$mobile.'name'.$name.'type'.$type.$privatekey));
+
+        return $this->redirect(Yii::$app->params['unionpay_route'].'?account='.$account.'&card='.$card.'&cid='.$cid.'&mobile='.$mobile.'&name='.$name.'&type='.$type.'&sign='.$sign);
+        
+    }
     public function actionSuccess()
     {
         $appId = Yii::$app->params['wechat_appid'];

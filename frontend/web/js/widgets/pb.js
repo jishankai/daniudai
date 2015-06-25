@@ -259,7 +259,7 @@ function Log(msg){
 									if(smBtn.hasClass("disabled")) return false;
 									smBtn.addClass('disabled');			 					
 									TOOLS.ajax({
-										url:"./index.php",
+										url:"./index.php?r=loan/verify",
 										data:{name:zName,bank_card:zCard,id_card:zIdCard,mobile:zMobile,type:2},
 										type:"get",
 										fnSuccess:function(data){
