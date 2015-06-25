@@ -293,7 +293,7 @@ img {
  * bank
  * ---------------------------------- */
 .bankName{
-  background: url(../../img/bank.jpg) no-repeat;
+  background: url(../img/bank.jpg) no-repeat;
   background-size: 100% auto;   
 }
 .ICBC{
