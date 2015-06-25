@@ -9,10 +9,10 @@
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-precomposed-144.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-precomposed-114.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/logo-72.png">
-<link rel="stylesheet" type="text/css" media="all" href="css/reset1.css" />
-<link rel="stylesheet" type="text/css" media="all" href="css/base1.css" />
-<link rel="stylesheet" type="text/css" media="all" href="css/fonts1.css" />
-<link rel="stylesheet" type="text/css" media="all" href="css/widget1.css" />
+<link rel="stylesheet" type="text/css" media="all" href="css/reset.css" />
+<link rel="stylesheet" type="text/css" media="all" href="css/base.css" />
+<link rel="stylesheet" type="text/css" media="all" href="css/fonts.css" />
+<link rel="stylesheet" type="text/css" media="all" href="css/widget.css" />
 <link rel="stylesheet" type="text/css" media="all" href="css/attach.css" />
 </head>
 <body>
@@ -91,7 +91,7 @@
 						<span class="close" id="close10">&times;</span>
 					</div>
 					<div class="lists-body alists-body" id="cbank-list">
-						<div class="lists-main" id="agree_list">
+						<div id="agree_list">
 							<p>
 								甲方（出借人）：渠帅<br/>
 								乙方（借款人）：<br/>

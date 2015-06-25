@@ -1,6 +1,6 @@
 html, body,.container{
 	min-height: 100%;
-	height: auto;		
+	height: 100%;
 }
 html{
 	background-color: #efeff4;		
@@ -34,13 +34,14 @@ body {
 	-o-transition: -o-transform .2s cubic-bezier(0.2, 0.3, 0.25, 0.9);
 	transition: transform .2s cubic-bezier(0.2, 0.3, 0.25, 0.9);	
 	position: relative;
-	overflow:hidden;
+	overflow-x:hidden; 
+	overflow-y:auto;	
 }
 .container.w-bgcolor{	
 	background-color: #fff;	
 }
 .screen-content {
-	outline: 0;
+	outline: 0;	
 }
 h1, h2, h3, h4 {
 	font-family: "Helvetica";
@@ -270,20 +271,70 @@ a {
 .info-box .forms .forms-item{
 	margin-top: 10px;
 	border: 1px solid #e3e3e2;
-	border-width: 1px 0;
+	border-width: 1px 0;	
+}
+.info-box .forms .bank-match,
+.info-box .forms .agreement{	
+	border: 0;
+	padding: 3px 15px 7px;
+	width: 100%;
+	display: none;
+}
+.info-box .forms .agreement{
+	display: block;
+}
+.info-box .forms .bankName{
+	width: 125px;
+  	height:22px;
+  	display:inline-block;
+  	vertical-align: top;
+}
+.info-box .forms .agreement .text{
+	margin-bottom: 0;
+	cursor: pointer;
+}
+.info-box .forms .agreement .icons-checkNew{
+	font-size: 18px;
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 5px;	
+}
+.info-box .forms .agreement .icons-checkNew:before{
+	color: #d0cfcf;
+}
+.info-box .forms .agreement .text a,
+.info-box .forms .agreement.active .icons-checkNew:before{
+	color: #00a2e8;
 }
 .info-box .forms .forms__group{
 	padding: 0 0 0 100px;
 	background-color: #fff;
 }
+.info-box .forms .btn-right{
+	padding: 0 120px 0 15px;	
+}
+.info-box .forms .code-btn{
+	position: absolute;
+	right:0;
+	top: 0;
+	line-height: 45px;
+	text-align: center;
+	border-left: 1px solid #ccc;
+	width: 120px;
+	color: #00a2e8;
+}
+.info-box .forms .code-btn.disabled{
+	color: #ccc;
+	cursor: default;
+}
 .info-box .forms .forms__label{
 	position: absolute;
 	left: 15px;
-	top: 0;
-	line-height: 44px;
+	top: 6px;
+	line-height: 34px;
 }
 .info-box .forms .input__box{
-	padding: 5px 0;
+	padding: 13px 0 11px;
 	border-bottom: 1px solid #ececec;
 	display: inline-block;
 	vertical-align: top;
@@ -296,7 +347,7 @@ a {
 .info-box .forms .icon-option{
 	position: absolute;
 	right:0;
-	top: 0;
+	top: 1px;
 	line-height: 44px;
 	font-size: 16px;
 	padding: 0 10px;
@@ -304,6 +355,9 @@ a {
 }
 .info-box .forms .icons:before{
 	color: #aaa;
+}
+.info-box .forms .icon-option .icons-infoNew:before{
+	color: #37b8e7;
 }
 .info-box .forms .icon-option .icons-cross{
 	display: none;
@@ -313,16 +367,16 @@ a {
 	-webkit-box-shadow:none;
 	-moz-box-shadow:none;
 	box-shadow:none;
-	padding:5px 36px 5px 0;
-	line-height: 25px;
+	padding:0 36px 0 0;
+	line-height:20px;
+	height: 20px;
 }
 .info-box .forms .select p{
-	font-family: "Microsoft YaHei", Geneva, Verdana, sans-serif;
-	font-size: 16px;
 	margin-bottom: 0;
-	line-height: 1.4em;
-	padding: 4px 36px 5px 0;
+	line-height: 20px;
+	padding: 0 36px 0 0;
 	cursor: pointer;
+	font-size: 16px;
 }
 .info-box .forms .select p.d-color {
 	color: #999;
@@ -429,6 +483,23 @@ a {
 .s-again .s-title h1{
 	padding-top: 20px;
 }
+.fail-box{
+	padding: 50px 30px 0;
+}
+.fail-box h1{
+	color: #ea5252;
+	font-size: 22px;
+	font-family: "microsoft yahei";
+	font-weight: normal;
+	text-align: center;
+	line-height: 50px;
+	margin-bottom: 20px;
+}
+.fail-box p{
+	line-height: 2em;
+	color: #999;
+}
+
 /* ----------------------------------
  * masker 
  * ---------------------------------- */
@@ -443,14 +514,15 @@ a {
  	display: none;
 }
 .popover{
-	position: fixed;
+	position: absolute;
 	z-index: 10010;
 	display: none;		
-	margin: 30px 15px;
+	margin: 10px 15px;
 }
 .popover.popover-small{
 	left: 50%;
-	top:50%;	
+	top:20px;	
+	margin: 0 15px;
 	opacity: 1; 
 	-webkit-transition: opacity 2s ease;
 	-moz-transition: opacity 2s ease;
@@ -552,23 +624,19 @@ a {
 	padding: 0 13px;
 }
 .lists-box .lists-body{
-	min-height: 220px;
+	min-height:200px;
+	overflow-y: auto;
 }
 .lists-body .l-info{
-	margin-top: 10px;
+	padding: 5px 0;
+	margin-bottom: 0;
 	text-align: center;
 	color: #aaa;
 	line-height: 34px;
 	font-size: 14px;
-	position:absolute;
-	bottom:0;
-	left:50%;
-	margin-left:-90px;
-	margin-bottom:5px;
 }
 .lists-main{
 	border-bottom: 1px solid #cccccb;	
-	overflow-y:auto; 
 }
 .lists-main li{
 	padding:5px 30px 5px 0;		
