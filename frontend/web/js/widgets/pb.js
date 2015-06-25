@@ -37,6 +37,7 @@ function Log(msg){
 		this.imbox = $("#imbox");
 		this.bankName = $("#bank_name");
 		this.mask = $("#masker");
+		this.iconOption = $(".icon-option");
 		this._addEvents();
 
 	}
@@ -66,11 +67,28 @@ function Log(msg){
 			this.idCardInput.on("keyup", function(){
 				var idCard_val = this.value;
 				this.value = sthis._fnIdentity(idCard_val);
+				if(this.value==0){
+					$(this).siblings().hide();
+				}else{
+					$(this).siblings().show();
+				}
 			})
 			/*icon单机操作*/
 			this.$el.find(".icon-option").on("click", function(){
 				var icon_this=this;
 				sthis._fnIcon(icon_this);	
+			})
+
+			/*失去焦点隐藏icon*/
+			this.$el.find("input").on("focus", function(){
+				sthis.iconOption.hide();
+				if(this.id=="ID_card"){
+					if(this.value.length > 1){
+						$(this).siblings().show();
+					}
+				}else{
+					$(this).siblings().show();
+				} 
 			})
 			/*手机号输入判断*/
 			this.mobileInput.on("keyup",function(){
@@ -214,6 +232,7 @@ function Log(msg){
 					next.attr("disabled","disabled");
 				}else{
 					$('#'+intype).val("");
+					$(inIs[0]).parent().hide();
 					next.attr("disabled","disabled");
 				}	
 			}
@@ -245,6 +264,7 @@ function Log(msg){
 				age = TOOLS.isIdentity(zIdCard),
 				phone = TOOLS.isMobile(zMobile),
 				bcflag = TOOLS.isCard(zCard.replace(/\s+/g,""));
+				bcflag2 = TOOLS.isBank(zCard.replace(/\s+/g,""));
 				smBtn = $("#next2");
 
 			if(this.boxFlag){
@@ -272,7 +292,7 @@ function Log(msg){
 											}else if(data.code == "3"){
 												window.location="http://www.baidu.com";
 											}
-											
+
 										},
 										fnError:function(){}
 									});
@@ -294,7 +314,10 @@ function Log(msg){
 			}else{
 				if(zCard_len != 19 && zCard_len == 23 || zCard_len != 23 && zCard_len == 19){
 					if(bcflag){
-
+						if(bcflag2){
+						}else{
+							MessageBox.alert({type:"common",txt:CS.ERRORMSG["NOBANKERROR"]});
+						}
 					}else{
 						MessageBox.alert({type:"common",txt:CS.ERRORMSG["BANKCARDERROR"]});
 					}

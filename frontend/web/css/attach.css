@@ -6,4 +6,4 @@
 .range{width:100%; height: 6px;}
 .agreement{font-family: "Microsoft YaHei";display: none;}
 .agreement p{font-size: 1rem;line-height: 1.2;}
-.alists-body{height: auto;max-height:300px;overflow:scroll;}
+.alists-body{height: auto;/*max-height:300px;*/overflow:scroll;}
