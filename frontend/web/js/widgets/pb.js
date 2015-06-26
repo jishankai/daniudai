@@ -294,8 +294,6 @@ function Log(msg){
 													smBtn.removeClass("disabled");
 												}else if(data.verify_times == "0"){
 													alert("没机会了");
-												}else{
-													alert("111");
 												}
 											}else{
 												alert("系统错误");
