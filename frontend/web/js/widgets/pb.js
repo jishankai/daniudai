@@ -258,11 +258,12 @@ function Log(msg){
 
 		//提交按钮处理
 		_fnSubmit : function(zCard,zIdCard,zMobile,zName){
-			var zCard_len = zCard.length,
+			var zCard = zCard.replace(/\s+/g,""),
+				zCard_len = zCard.length,
 				age = TOOLS.isIdentity(zIdCard),
 				phone = TOOLS.isMobile(zMobile),
-				bcflag = TOOLS.isCard(zCard.replace(/\s+/g,""));
-				bcflag2 = TOOLS.isBank(zCard.replace(/\s+/g,""));
+				bcflag = TOOLS.isCard(zCard.replace(/\s+/g,"")),
+				bcflag2 = TOOLS.isBank(zCard.replace(/\s+/g,"")),
 				smBtn = $("#next2");
 
 			if(this.boxFlag){
