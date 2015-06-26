@@ -181,17 +181,28 @@ class LoanController extends \yii\web\Controller
         if (isset($bank)) {
             return json_encode(['resCode'=>'0000', 'resMsg'=>'验证成功', 'stat'=>'1', 'verify_times'=>$_SESSION['verify_times']]);
         } else if ($_SESSION['verify_times'>0]) {
-            $sign = strtoupper(md5('account'.$account.'card'.$card.'cid'.$cid.'mobile'.$mobile.'name'.$name.'type'.$type.$privatekey));
-            $response = $this->redirect(Yii::$app->params['unionpay_route'].'?account='.$account.'&card='.$card.'&cid='.$cid.'&mobile='.$mobile.'&name='.$name.'&type='.$type.'&sign='.$sign);
-            $json_obj = json_decode($response);
+            $type = 1;
+            $sign = strtoupper(md5('account'.$account.'card'.$card.'name'.$name.'type'.$type.$privatekey));
+            $response_type_1 = $this->redirect(Yii::$app->params['unionpay_route'].'?account='.$account.'&card='.$card.'&name='.$name.'&type='.$type.'&sign='.$sign);
+            //$sign = strtoupper(md5('account'.$account.'card'.$card.'cid'.$cid.'mobile'.$mobile.'name'.$name.'type'.$type.$privatekey));
+            //$response = $this->redirect(Yii::$app->params['unionpay_route'].'?account='.$account.'&card='.$card.'&cid='.$cid.'&mobile='.$mobile.'&name='.$name.'&type='.$type.'&sign='.$sign);
+            $json_obj = json_decode($response_type_1);
             if ($json_obj->resCode=='0000'&&$json_obj->stat==1) {
-                $bank = new Bank;
-                $bank->card = $card;
-                $bank->cid = $cid;
-                $bank->mobile = $mobile;
-                $bank->name = $name;
-                $bank->created_at = time();
-                $bank->save();
+                $type = 3;
+                $sign = strtoupper(md5('account'.$account.'card'.$card.'cid'.$cid.'type'.$type.$privatekey));
+                $response_type_3 = $this->redirect(Yii::$app->params['unionpay_route'].'?account='.$account.'&card='.$card.'&cid='.$cid.'&type='.$type.'&sign='.$sign);
+                $json_obj = json_decode($response_type_3);
+                if ($json_obj->resCode=='0000'&&$json_obj->stat==1) {
+                    $bank = new Bank;
+                    $bank->card = $card;
+                    $bank->cid = $cid;
+                    $bank->mobile = $mobile;
+                    $bank->name = $name;
+                    $bank->created_at = time();
+                    $bank->save();
+                } else {
+                    $_SESSION['verify_times']-=1;
+                }
             } else {
                 $_SESSION['verify_times']-=1;
             }
