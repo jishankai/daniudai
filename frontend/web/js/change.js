@@ -69,11 +69,13 @@ $(function(){
 function mclick(school_name){
 	if(school_name=="北京大学"){
 		 $('#cdegrees_list ul li').remove();
-		 $('#cdegrees_list ul').append("<li><i class='icons icons-check'></i>本科</li>");
+		 $('#cdegrees_list ul').append("<li class='last-child'><i class='icons icons-check'></i>本科</li>");
+		 $('#cdegrees_list p').html("目前暂不支持研究生");
 	}else if(school_name=="北京大学（医学部）"){
 		$('#cdegrees_list ul li').remove();
 		$('#cdegrees_list ul').append("<li><i class='icons icons-check'></i>本科</li>");
-		$('#cdegrees_list ul').append("<li><i class='icons icons-check'></i>本博/本硕连读</li>");
+		$('#cdegrees_list ul').append("<li class='last-child'><i class='icons icons-check'></i>本博/本硕连读</li>");
+		$('#cdegrees_list p').html("");
 	}
 	$("#stu_id,#name").blur();
 	 $(".mask1").css({height:"100%"}).show();
@@ -111,7 +113,7 @@ function mclick(school_name){
 			var ccollege=$("#college-list").height();
 			$("#c_college").css("top",Math.round(ccollege/7));
 			$("#c_college").css("left",0);
-			$("#college-list li").click(function(){
+			$("#college-list ul li").click(function(){
 				$(this).addClass("active").siblings().removeClass();
 				b=$(this).html();
 				college=b.substring(33);
@@ -161,9 +163,9 @@ function error2(){
 
 function beida(degrees){
 	var school = ["数学科学学院","物理学院","化学与分子工程学院","地球与空间科学学院","城市与环境学院","生命科学学院","心理学系","环境科学与工程学院","信息科学技术学院","工学院","中国语言文学系","历史学系","考古文博学院","外国语学院","哲学系","艺术学院","国际关系学院","社会学系","法学院","经济学院","光华管理学院","信息管理系","政府管理学院","新闻与传播学院","元培学院"];
-	$('#college-list li').remove();
+	$('#college-list ul li').remove();
 	for(var i=0;i<school.length;i++){
-	 $('#college-list').append("<li><i class='icons icons-check'></i>"+school[i]+"</li>");
+	 $('#college-list ul').append("<li><i class='icons icons-check'></i>"+school[i]+"</li>");
 	}
 }
 function beiyi(degrees){
@@ -171,15 +173,15 @@ function beiyi(degrees){
 	var school1=["临床医学5年制","口腔医学5年制","生物医学英语","预防医学5年制","应用药学4年制","护理学","医学实验技术","医学检验技术","口腔医学技术"];
 	
 	if(degrees=="本科"){
-		$('#college-list li').remove();
+		$('#college-list ul li').remove();
 		for(var i=0;i<school1.length;i++){
-		 $('#college-list').append("<li><i class='icons icons-check'></i>"+school1[i]+"</li>");
+		 $('#college-list ul').append("<li><i class='icons icons-check'></i>"+school1[i]+"</li>");
 		}
 	}
 	if(degrees=="本博/本硕连读"){
-		$('#college-list li').remove();
+		$('#college-list ul li').remove();
 		for(var i=0;i<school.length;i++){
-		 $('#college-list').append("<li><i class='icons icons-check'></i>"+school[i]+"</li>");
+		 $('#college-list ul').append("<li><i class='icons icons-check'></i>"+school[i]+"</li>");
 		}
 	}
 }
