@@ -283,7 +283,6 @@ function Log(msg){
 										dataType:"json",
 										type:"get",
 										fnSuccess:function(data){
-											console.log(data);
 											if(data.stat == "1"){
 												window.location="http://www.baidu.com";
 											}else if(data.stat == "2"){
@@ -295,6 +294,8 @@ function Log(msg){
 													smBtn.removeClass("disabled");
 												}else if(data.verify_times == "0"){
 													alert("没机会了");
+												}else{
+													alert("111");
 												}
 											}else{
 												alert("系统错误");
