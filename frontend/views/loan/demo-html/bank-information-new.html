@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html class="mobile-notes-variant" lang="en"><!--full-srceen-->
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" user-scalable="no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>填写银行信息</title>
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-precomposed-144.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-precomposed-114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/logo-72.png">
+<link rel="stylesheet" type="text/css" media="all" href="css/reset.css" />
+<link rel="stylesheet" type="text/css" media="all" href="css/base.css" />
+<link rel="stylesheet" type="text/css" media="all" href="css/fonts.css" />
+<link rel="stylesheet" type="text/css" media="all" href="css/widget.css" />
+</head>
+<body>
+	<div class="container">
+		<div class="screen-content">			
+			<div class="content">
+				<div class="info-box">	
+					<div class="info-text"><p>请正确填写银行卡信息，以能够及时打款。</p></div>		
+					<form class="forms">				                                   
+		            	<div class="forms-item">							
+			                <div class="forms__group">
+			                    <label class="forms__label">姓名</label>
+			                    <span class="input__box">                                   
+			                        <input type="text" class="forms_input" disabled placeholder="" value="小红">
+			                    </span>
+			                </div>
+			                <div class="forms__group">
+			                    <label class="forms__label">卡号</label>
+			                    <span class="input__box no-border">             
+			                        <input type="text" class="forms_input" placeholder="您本人的银行卡号" value="">
+			                        <span class="icon-option"><i class="icons icons-infoNew"></i><i class="icons icons-cross" style="display:none;"></i></span>
+			                    </span>
+			                </div>			                
+			            </div>
+			            <div class="forms-item bank-match" style="display:block;">
+			            	<span class="bankName ICBC"></span>
+			            </div>
+			            <div class="forms-item" style="display:block;">							
+			                <div class="forms__group">
+			                    <label class="forms__label">身份证</label>
+			                    <span class="input__box">           
+			                        <input type="text" class="forms_input" placeholder="身份证号" value="110110198810200011">
+			                        <span class="icon-option"><i class="icons icons-cross" style="display:block;"></i></span>
+			                    </span>
+			                </div> 
+			                <div class="forms__group">
+			                    <label class="forms__label">手机号</label>
+			                    <span class="input__box no-border">   
+			                        <input type="text" class="forms_input" placeholder="银行预留手机号码">
+			                        <span class="icon-option"><i class="icons icons-infoNew" style="display:none;"></i><i class="icons icons-cross" style="display:block;"></i></span>
+			                    </span>
+			                </div> 
+			                
+		                </div>
+		                <div class="forms-item agreement active" style="display:block;">
+			            	<p class="text"><i class="icons icons-checkNew"></i>同意接受&nbsp;<a href="#">相关协议</a></p>      	
+			            </div>		                
+		                <div class="forms__option">
+		                	<button class="btn btn-primary btn-fullwidth">下一步</button><!--disabled-->
+		                </div>                                              
+		            </form>
+				</div>
+			</div>
+		</div>
+	</div>	
+</body>
+</html>
