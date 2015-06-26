@@ -9,7 +9,7 @@ use Yii;
  *
  * @property string $card
  * @property string $name
- * @property integer $mobile
+ * @property string $mobile
  * @property string $cid
  * @property integer $created_at
  * @property string $updated_at
@@ -31,9 +31,9 @@ class Bank extends \yii\db\ActiveRecord
     {
         return [
 //            [['card', 'name', 'mobile', 'cid', 'created_at'], 'required'],
-            [['card', 'mobile', 'created_at'], 'integer'],
+            [['created_at'], 'integer'],
             [['updated_at'], 'safe'],
-            [['name', 'cid'], 'string', 'max' => 45]
+            [['card', 'name', 'mobile', 'cid'], 'string', 'max' => 45]
         ];
     }
 
