@@ -123,6 +123,7 @@ var TOOLS = (function(){
 			$.ajax({
 				url:options.url,
 				data:options.data,
+				dataType:options.dataType,
 				type:!!options.type?options.type:"post",
 				success:options.fnSuccess,
 				error:options.fnError

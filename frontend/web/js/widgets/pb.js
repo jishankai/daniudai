@@ -280,6 +280,7 @@ function Log(msg){
 									TOOLS.ajax({
 										url:"./index.php?r=loan/verify",
 										data:{name:zName,bank_card:zzCard,id_card:zIdCard,mobile:zMobile},
+										dataType:"json",
 										type:"get",
 										fnSuccess:function(data){
 											console.log(data);
