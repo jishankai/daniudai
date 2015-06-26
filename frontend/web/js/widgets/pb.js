@@ -258,12 +258,12 @@ function Log(msg){
 
 		//提交按钮处理
 		_fnSubmit : function(zCard,zIdCard,zMobile,zName){
-			var zCard = zCard.replace(/\s+/g,""),
-				zCard_len = zCard.length,
+			var zCard_len = zCard.length,
 				age = TOOLS.isIdentity(zIdCard),
 				phone = TOOLS.isMobile(zMobile),
 				bcflag = TOOLS.isCard(zCard.replace(/\s+/g,"")),
 				bcflag2 = TOOLS.isBank(zCard.replace(/\s+/g,"")),
+				zzCard = zCard.replace(/\s+/g,""),
 				smBtn = $("#next2");
 
 			if(this.boxFlag){
@@ -279,7 +279,7 @@ function Log(msg){
 									smBtn.addClass('disabled');			 					
 									TOOLS.ajax({
 										url:"./index.php?r=loan/verify",
-										data:{name:zName,bank_card:zCard,id_card:zIdCard,mobile:zMobile},
+										data:{name:zName,bank_card:zzCard,id_card:zIdCard,mobile:zMobile},
 										type:"get",
 										fnSuccess:function(data){
 											console.log(data);
