@@ -13,6 +13,7 @@ use backend\models\Loan;
 use backend\models\Student;
 use backend\models\School;
 use backend\models\Bank;
+use frontend\widgets\SmsApi;
 
 class LoanController extends \yii\web\Controller
 {
@@ -166,6 +167,11 @@ class LoanController extends \yii\web\Controller
 
     public function actionVerify($name, $bank_card, $id_card, $mobile, $type)
     {
+        session_start();
+        if (!isset($_SESSION['verify_times'])) {
+            $_SESSION['verify_times'] = 3;
+        }
+        
         $account = Yii::$app->params['unionpay_account'];
         $privatekey = Yii::$app->params['unionpay_privatekey'];
         $card = $bank_card;
@@ -173,8 +179,8 @@ class LoanController extends \yii\web\Controller
 
         $bank = Bank::findOne(['card'=>$card, 'cid'=>$cid, 'mobile'=>$mobile, 'name'=>$name]);
         if (isset($bank)) {
-            return json_encode(['resCode'=>'0000', 'resMsg'=>'验证成功', 'stat'=>'1']);
-        } else {
+            return json_encode(['resCode'=>'0000', 'resMsg'=>'验证成功', 'stat'=>'1', 'verify_times'=>$_SESSION['verify_times']]);
+        } else if ($_SESSION['verify_times'>0]) {
             $sign = strtoupper(md5('account'.$account.'card'.$card.'cid'.$cid.'mobile'.$mobile.'name'.$name.'type'.$type.$privatekey));
             $response = $this->redirect(Yii::$app->params['unionpay_route'].'?account='.$account.'&card='.$card.'&cid='.$cid.'&mobile='.$mobile.'&name='.$name.'&type='.$type.'&sign='.$sign);
             $json_obj = json_decode($response);
@@ -186,9 +192,45 @@ class LoanController extends \yii\web\Controller
                 $bank->name = $name;
                 $bank->created_at = time();
                 $bank->save();
+            } else {
+                $_SESSION['verify_times']-=1;
             }
-            return $response;
+            return json_encode(['resCode'=>$json_obj->resCode, 'resMsg'=>$json_obj->resMsg, 'stat'=>$json_obj->stat, 'verify_times'=>$_SESSION['verify_times']]);
         }
+    }
+
+    public function actionSms($mobile, $code=0)
+    {
+        $appId = Yii::$app->params['wechat_appid'];
+        $secret = Yii::$app->params['wechat_appsecret'];
+
+        session_start();
+        if ($code!=0) {
+            if ($_SESSION['sms_code']==$code) {
+                $result = 1;
+            } else {
+                $result = 0;
+            }
+            return json_encode(['isSuccess'=>$result]);
+        }
+        $code = $_SESSION['sms_code'] = rand(1000, 9999);
+        $sms = new SmsApi;
+        $sms->sendMsg($mobile, $code);
+
+        $js = new Js($appId, $secret); 
+
+        return $this->rendPartial('sms', ['mobile'=>$mobile, 'js'=>$js]);
+    }
+
+    public function actionFailed()
+    {
+        $appId = Yii::$app->params['wechat_appid'];
+        $secret = Yii::$app->params['wechat_appsecret'];
+
+        $js = new Js($appId, $secret); 
+
+        return $this->rendPartial('failed', ['js'=>$js]);
+        
     }
     
     public function actionSuccess()
@@ -245,8 +287,7 @@ class LoanController extends \yii\web\Controller
             $messageId = $notice->uses($templateId)->withUrl($url)->andData($data)->andReceiver($userId)->send();
         }
         $l = Loan::findOne(['wechat_id'=>$user['openid']]);
-        $appId = Yii::$app->params['wechat_appid'];
-        $secret = Yii::$app->params['wechat_appsecret'];
+
         $js = new Js($appId, $secret); 
         if ($l->status==1) {
             if (floor($student->school_id/100)==101) {

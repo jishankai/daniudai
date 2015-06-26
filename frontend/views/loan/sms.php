@@ -18,7 +18,7 @@
 		<div class="screen-content">			
 			<div class="content">
 				<div class="info-box">	
-					<div class="info-text"><p>验证码已发送至手机：<span id="phone">13800000000</span></p></div>		
+                <div class="info-text"><p>验证码已发送至手机：<span id="phone"><?php echo $mobile?></span></p></div>		
 					<form class="forms" onsubmit="return false;">                           
 		            	<div class="forms-item">							
 			                <div class="forms__group btn-right">		                    
@@ -58,4 +58,11 @@
 		$("#container").PUB();
 	
 </script>	
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+     wx.config(<?php echo $js->config(array('hideOptionMenu'), false, true) ?>);
+     wx.ready(function(){
+         wx.hideOptionMenu();
+     });
+ </script>
 </html>
