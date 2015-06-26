@@ -84,8 +84,8 @@
 					<h3>选择高校</h3>
 					<span class="close" id="close1">&times;</span>
 				</div>
-				<div class="lists-body">
-					<ul class="lists-main" id="cschool_list">
+				<div class="lists-body" id="cschool_list">
+					<ul class="lists-main">
 						<li><i class="icons icons-check"></i>北京大学</li>
 						<li class="last-child"><i class="icons icons-check"></i>北京大学（医学部）</li>	
 					</ul>
@@ -105,8 +105,8 @@
 					<h3>选择学历</h3>
 					<span class="close" id="close2">&times;</span>
 				</div>
-				<div class="lists-body">
-					<ul class="lists-main" id="cdegrees_list">
+				<div class="lists-body" id="cdegrees_list">
+					<ul class="lists-main">
 						<!-- <li><i class="icons icons-check"></i>本科</li> -->
 					</ul>
 					<p class="l-info">目前暂不支持研究生</p>

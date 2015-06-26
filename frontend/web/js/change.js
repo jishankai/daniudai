@@ -68,12 +68,12 @@ $(function(){
 
 function mclick(school_name){
 	if(school_name=="北京大学"){
-		 $('#cdegrees_list li').remove();
-		 $('#cdegrees_list').append("<li><i class='icons icons-check'></i>本科</li>");
+		 $('#cdegrees_list ul li').remove();
+		 $('#cdegrees_list ul').append("<li><i class='icons icons-check'></i>本科</li>");
 	}else if(school_name=="北京大学（医学部）"){
-		$('#cdegrees_list li').remove();
-		$('#cdegrees_list').append("<li><i class='icons icons-check'></i>本科</li>");
-		$('#cdegrees_list').append("<li><i class='icons icons-check'></i>本博/本硕连读</li>");
+		$('#cdegrees_list ul li').remove();
+		$('#cdegrees_list ul').append("<li><i class='icons icons-check'></i>本科</li>");
+		$('#cdegrees_list ul').append("<li><i class='icons icons-check'></i>本博/本硕连读</li>");
 	}
 	$("#stu_id,#name").blur();
 	 $(".mask1").css({height:"100%"}).show();
@@ -83,7 +83,7 @@ function mclick(school_name){
 		$("#c_degrees").css("top",Math.round(cdegrees/7));
 		$("#c_degrees").css("left",0);
 
-		$("#cdegrees_list li").click(function(){
+		$("#cdegrees_list ul li").click(function(){
 			$(this).addClass("active").siblings().removeClass();
 			ad=$(this).html();
 			adgree=ad.substring(33);
