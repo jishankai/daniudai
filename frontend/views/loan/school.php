@@ -128,7 +128,7 @@
 				<div class="lists-body" id="college-list">
 					<ul class="lists-main" style="border-bottom:0;">
 					</ul>
-					<p class="l-info">即将开放更多大学，敬请期待！</p>
+					<p class="l-info"></p>
 				</div>
 			</div>
 		</div>
