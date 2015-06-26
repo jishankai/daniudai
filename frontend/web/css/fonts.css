@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'loan-icons';
-	src:url('../../font/loan-icons.eot');
-	src:url('../../font/loan-icons.eot?#iefix') format('embedded-opentype'),
-		url('../../font/loan-icons.ttf') format('truetype'),
-		url('../../font/loan-icons.woff') format('woff'),
-		url('../../font/loan-icons.svg#loan-icons') format('svg');
+	src:url('../font/loan-icons.eot');
+	src:url('../font/loan-icons.eot?#iefix') format('embedded-opentype'),
+		url('../font/loan-icons.ttf') format('truetype'),
+		url('../font/loan-icons.woff') format('woff'),
+		url('../font/loan-icons.svg#loan-icons') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }

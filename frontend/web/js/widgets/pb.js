@@ -39,23 +39,25 @@ function Log(msg){
 		this.mask = $("#masker");
 		this.iconOption = $(".icon-option");
 		this._addEvents();
-
 	}
 	
 	Pub.prototype = {
-		//初始化
-		_init : function(){
-		
-		},
 		//所有事件绑定
 		_addEvents : function(){
 			var sthis=this;
 						
 			/*判断信息完整*/
 			this.$el.find("input").on("input", function(){
+				var _this = this;
 				/*Log('AAA');*/
-				setTimeout(function(){sthis._fnComplete();},500)
-				 
+				setTimeout(function(){
+					sthis._fnComplete();
+					var Id = $(_this).attr("id");
+					if(Id=="ID_card"){
+						var idCard_val = $(_this).val();
+						_this.value = sthis._fnIdentity(idCard_val);
+					}
+				},500)
 			})
 
 			/*卡号输入判断*/
@@ -127,10 +129,6 @@ function Log(msg){
 			})
 
 
-		},
-		//名字处理
-		_fnName : function(){
-			
 		},
 		//卡号处理
 		_fnCard : function(card_id){
@@ -279,7 +277,7 @@ function Log(msg){
 									if(smBtn.hasClass("disabled")) return false;
 									smBtn.addClass('disabled');			 					
 									TOOLS.ajax({
-										url:"./index.php?r=loan/verify",
+										url:"./index.php",
 										data:{name:zName,bank_card:zCard,id_card:zIdCard,mobile:zMobile,type:2},
 										type:"get",
 										fnSuccess:function(data){
