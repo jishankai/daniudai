@@ -277,18 +277,25 @@ function Log(msg){
 									if(smBtn.hasClass("disabled")) return false;
 									smBtn.addClass('disabled');			 					
 									TOOLS.ajax({
-										url:"./index.php",
-										data:{name:zName,bank_card:zCard,id_card:zIdCard,mobile:zMobile,type:2},
+										url:"./index.php?r=loan/verify",
+										data:{name:zName,bank_card:zCard,id_card:zIdCard,mobile:zMobile},
 										type:"get",
 										fnSuccess:function(data){
 											console.log(data);
-											if(data.code == "1"){
+											if(data.stat == "1"){
 												window.location="http://www.baidu.com";
-											}else if(data.code == "2"){
-												MessageBox.alert({type:"message",txt:CS.ERRORMSG["TWOCHANCE"],cls:true});
-												smBtn.removeClass("disabled");	
-											}else if(data.code == "3"){
-												window.location="http://www.baidu.com";
+											}else if(data.stat == "2"){
+												if(data.verify_times == "2"){
+													MessageBox.alert({type:"message",txt:CS.ERRORMSG["TWOCHANCE"],cls:true});
+													smBtn.removeClass("disabled");
+												}else if(data.verify_times == "1"){
+													MessageBox.alert({type:"message",txt:CS.ERRORMSG["ONECHANCE"],cls:true});
+													smBtn.removeClass("disabled");
+												}else if(data.verify_times == "0"){
+													alert("没机会了");
+												}
+											}else{
+												alert("系统错误");
 											}
 
 										},
