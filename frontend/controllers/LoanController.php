@@ -193,7 +193,10 @@ class LoanController extends \yii\web\Controller
                 $response_type_3 = file_get_contents(Yii::$app->params['unionpay_route'].'?account='.$account.'&name='.$name.'&cid='.$cid.'&type='.$type.'&sign='.$sign);
                 $json_obj = json_decode($response_type_3);
                 if ($json_obj->resCode=='0000'&&$json_obj->stat==1) {
-                    $bank = new Bank;
+                    $bank = Bank::findOne($card);
+                    if (!isset($bank)) {
+                        $bank = new Bank;
+                    }
                     $bank->card = $card;
                     $bank->cid = $cid;
                     $bank->mobile = $mobile;
