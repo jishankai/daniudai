@@ -180,7 +180,7 @@ class LoanController extends \yii\web\Controller
         $bank = Bank::findOne(['card'=>$card, 'cid'=>$cid, 'mobile'=>$mobile, 'name'=>$name]);
         if (isset($bank)) {
             return json_encode(['resCode'=>'0000', 'resMsg'=>'验证成功', 'stat'=>'1', 'verify_times'=>$_SESSION['verify_times']]);
-        } else if ($_SESSION['verify_times'>0]) {
+        } else if ($_SESSION['verify_times']>0) {
             $type = 1;
             $sign = strtoupper(md5('account'.$account.'card'.$card.'name'.$name.'type'.$type.$privatekey));
             $response_type_1 = $this->redirect(Yii::$app->params['unionpay_route'].'?account='.$account.'&card='.$card.'&name='.$name.'&type='.$type.'&sign='.$sign);
