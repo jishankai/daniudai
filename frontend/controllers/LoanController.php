@@ -12,6 +12,7 @@ use backend\models\User;
 use backend\models\Loan; 
 use backend\models\Student;
 use backend\models\School;
+use backend\models\Bank;
 
 class LoanController extends \yii\web\Controller
 {
@@ -169,11 +170,27 @@ class LoanController extends \yii\web\Controller
         $privatekey = Yii::$app->params['unionpay_privatekey'];
         $card = $bank_card;
         $cid = $id_card;
-        $sign = strtoupper(md5('account'.$account.'card'.$card.'cid'.$cid.'mobile'.$mobile.'name'.$name.'type'.$type.$privatekey));
 
-        return $this->redirect(Yii::$app->params['unionpay_route'].'?account='.$account.'&card='.$card.'&cid='.$cid.'&mobile='.$mobile.'&name='.$name.'&type='.$type.'&sign='.$sign);
-        
+        $bank = Bank::findOne(['card'=>$card, 'cid'=>$cid, 'mobile'=>$mobile, 'name'=>$name]);
+        if (isset($bank)) {
+            return json_encode(['resCode'=>'0000', 'resMsg'=>'验证成功', 'stat'=>'1']);
+        } else {
+            $sign = strtoupper(md5('account'.$account.'card'.$card.'cid'.$cid.'mobile'.$mobile.'name'.$name.'type'.$type.$privatekey));
+            $response = $this->redirect(Yii::$app->params['unionpay_route'].'?account='.$account.'&card='.$card.'&cid='.$cid.'&mobile='.$mobile.'&name='.$name.'&type='.$type.'&sign='.$sign);
+            $json_obj = json_decode($response);
+            if ($json_obj->resCode=='0000'&&$json_obj->stat==1) {
+                $bank = new Bank;
+                $bank->card = $card;
+                $bank->cid = $cid;
+                $bank->mobile = $mobile;
+                $bank->name = $name;
+                $bank->created_at = time();
+                $bank->save();
+            }
+            return $response;
+        }
     }
+    
     public function actionSuccess()
     {
         $appId = Yii::$app->params['wechat_appid'];
