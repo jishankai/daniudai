@@ -189,8 +189,8 @@ class LoanController extends \yii\web\Controller
             $json_obj = json_decode($response_type_1);
             if ($json_obj->resCode=='0000'&&$json_obj->stat==1) {
                 $type = 3;
-                $sign = strtoupper(md5('account'.$account.'card'.$card.'cid'.$cid.'type'.$type.$privatekey));
-                $response_type_3 = $this->redirect(Yii::$app->params['unionpay_route'].'?account='.$account.'&card='.$card.'&cid='.$cid.'&type='.$type.'&sign='.$sign);
+                $sign = strtoupper(md5('account'.$account.'cid'.$cid.'name'.$name.'type'.$type.$privatekey));
+                $response_type_3 = $this->redirect(Yii::$app->params['unionpay_route'].'?account='.$account.'&name='.$name.'&cid='.$cid.'&type='.$type.'&sign='.$sign);
                 $json_obj = json_decode($response_type_3);
                 if ($json_obj->resCode=='0000'&&$json_obj->stat==1) {
                     $bank = new Bank;
