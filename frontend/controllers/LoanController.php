@@ -165,7 +165,7 @@ class LoanController extends \yii\web\Controller
         return $this->renderPartial('school', array('from'=>$rate==0.0001?'graduate':'common', 'js'=>$js));
     }
 
-    public function actionVerify($name, $bank_card, $id_card, $mobile, $type)
+    public function actionVerify($name, $bank_card, $id_card, $mobile)
     {
         session_start();
         if (!isset($_SESSION['verify_times'])) {
