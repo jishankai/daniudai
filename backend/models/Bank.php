@@ -7,7 +7,7 @@ use Yii;
 /**
  * This is the model class for table "bank".
  *
- * @property integer $card
+ * @property string $card
  * @property string $name
  * @property integer $mobile
  * @property string $cid
