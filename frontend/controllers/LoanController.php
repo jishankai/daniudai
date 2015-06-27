@@ -13,7 +13,6 @@ use backend\models\Loan;
 use backend\models\Student;
 use backend\models\School;
 use backend\models\Bank;
-use frontend\widgets\SmsApi;
 
 class LoanController extends \yii\web\Controller
 {
@@ -215,6 +214,8 @@ class LoanController extends \yii\web\Controller
 
     public function actionSms($mobile, $code=0)
     {
+        include Yii::getAlias("@frontend/widgets")."/Smsapi.php";
+
         $appId = Yii::$app->params['wechat_appid'];
         $secret = Yii::$app->params['wechat_appsecret'];
 
@@ -228,7 +229,7 @@ class LoanController extends \yii\web\Controller
             return json_encode(['isSuccess'=>$result]);
         }
         $code = $_SESSION['sms_code'] = rand(1000, 9999);
-        $sms = new SmsApi;
+        $sms = new \SmsApi();
         $sms->sendMsg($mobile, $code);
 
         $js = new Js($appId, $secret); 

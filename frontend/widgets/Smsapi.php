@@ -7,10 +7,10 @@ class Smsapi{
 	private  $corp_pwd = 'drffcd';
 	private  $corp_service = '10690909yd';
 	public function __construct(){
-		if(REDISSWITCH){
-			$this->redis = new Redis();
-			$this->redis->connect(REDIS_IP,REDIS_PORT);
-		}
+		// if(REDISSWITCH){
+		// 	$this->redis = new Redis();
+		// 	$this->redis->connect(REDIS_IP,REDIS_PORT);
+		// }
 	}
 
 	public function sendMsg($phone, $msg) {
@@ -22,7 +22,8 @@ class Smsapi{
       	
       	//$result = HttpClient::quickPost('http://211.103.155.246:8080/sms_send2.do', $data);
       	
-      	if(REDISSWITCH){
+      	// if(REDISSWITCH){
+      	if(0){
 			$this->redis->select(1);
       		$this->redis->lPush('sms',json_encode($data,true));
       		$result = $this->postMsg();
