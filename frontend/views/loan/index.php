@@ -31,7 +31,6 @@
 					<form class="forms">
 		                <div class="forms__option clearfix">
 		                	<a class="btn btn-white" href="<?php echo Url::to(['loan/lend'])?>">立即激活</a>
-		                	<a class="btn btn-white w-opacity" href="<?php echo Url::to(['loan/lend','type'=>'graduate'])?>">毕业专属通道</a>
 		                </div>                                              
 		            </form>
 				</div>
