@@ -29,7 +29,7 @@
 						<p>100天，200天，300天，取你所需，到期才还</p>
 					</div>
 					<form class="forms">
-		                <div class="forms__option clearfix">
+		                <div class="forms__option ljjh clearfix">
 		                	<a class="btn btn-white" href="<?php echo Url::to(['loan/lend'])?>">立即激活</a>
 		                </div>                                              
 		            </form>

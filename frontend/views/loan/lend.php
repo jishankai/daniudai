@@ -47,7 +47,7 @@
 						</div>
 					</div>
 					<div class="repay-text" id="repayTmpl">
-						<p>200天后到期</p>
+						<p>预计还款时间2015/06/06</p>
 						<h3>还款金额：</h3>
 						<span class="r-right"><em class="f-orange">计算中</em></span>
 					</div>
