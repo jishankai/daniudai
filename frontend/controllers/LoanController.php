@@ -178,7 +178,7 @@ class LoanController extends \yii\web\Controller
 
         $bank = Bank::findOne(['card'=>$card, 'cid'=>$cid, 'mobile'=>$mobile, 'name'=>$name]);
         if (isset($bank)) {
-            return json_encode(['resCode'=>'0000', 'resMsg'=>'验证成功', 'stat'=>'1', 'verify_times'=>$_SESSION['verify_times']]);
+            return json_encode(['resCode'=>'0000', 'resMsg'=>'验证成功', 'stat'=>'1', 'verify_times'=>$_SESSION['verify_times'], 'mobile'=>$mobile]);
         } else if ($_SESSION['verify_times']>0) {
             $type = 1;
             $sign = strtoupper(md5('account'.$account.'card'.$card.'name'.$name.'type'.$type.$privatekey));
@@ -208,7 +208,7 @@ class LoanController extends \yii\web\Controller
             } else {
                 $_SESSION['verify_times']-=1;
             }
-            return json_encode(['resCode'=>$json_obj->resCode, 'resMsg'=>$json_obj->resMsg, 'stat'=>$json_obj->stat, 'verify_times'=>$_SESSION['verify_times']]);
+            return json_encode(['resCode'=>$json_obj->resCode, 'resMsg'=>$json_obj->resMsg, 'stat'=>$json_obj->stat, 'verify_times'=>$_SESSION['verify_times'], 'mobile'=>$mobile]);
         }
     }
 
