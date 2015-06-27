@@ -71,9 +71,10 @@
  			},1000);
 
  			TOOLS.ajax({
- 				url:"./index.php",
- 				data:{phone:this.phone},
+ 				url:"./index.php?loan/sms",
+ 				data:{mobile:this.phone,code:1},
  				type:"get",
+ 				dataType:"json",
  				fnSuccess:function(data){
  				},
  				fnError:function(){}
@@ -83,16 +84,17 @@
  			if(confirmBtn.hasClass("disabled")) return false;
  			confirmBtn.addClass('disabled');
  			TOOLS.ajax({
- 				url:"./index.php",
- 				data:{captcha:this.idCode,type:1},
+ 				url:"./index.php?loan/sms",
+ 				data:{mobile:this.phone,code:this.idCode,type:1},
  				type:"get",
+ 				dataType:"json",
  				fnSuccess:function(data){
  					console.log(data);
- 					if(data.code == "1"){
+ 					if(data.isSuccess == "0"){
  						confirmBtn.removeClass('disabled');
  						MessageBox.alert({type:"common",txt:CS.ERRORMSG["CAPTCHAERROR"]});
- 					}else if(data.code == "2"){
- 						window.location="http://www.baidu.com";
+ 					}else if(data.code == "1"){
+ 						window.location="./index.php?loan/success";
  					}
  				},
  				fnError:function(){}

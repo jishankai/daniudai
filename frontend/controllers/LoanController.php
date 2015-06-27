@@ -220,18 +220,20 @@ class LoanController extends \yii\web\Controller
         $secret = Yii::$app->params['wechat_appsecret'];
 
         session_start();
-        if ($code!=0) {
+        if ($code!=0&&$code!=1) {
             if ($_SESSION['sms_code']==$code) {
                 $result = 1;
             } else {
                 $result = 0;
             }
             return json_encode(['isSuccess'=>$result]);
-        }
-        $code = $_SESSION['sms_code'] = rand(1000, 9999);
-        $sms = new \SmsApi();
-        $sms->sendMsg($mobile, $code);
+        } else if ($code==1) {
+            $code = $_SESSION['sms_code'] = rand(1000, 9999);
+            $sms = new \SmsApi();
+            $sms->sendMsg($mobile, $code);
 
+            return json_encode(['isSend'=>1]);
+        }
         $js = new Js($appId, $secret); 
 
         return $this->renderPartial('sms', ['mobile'=>$mobile, 'js'=>$js]);
