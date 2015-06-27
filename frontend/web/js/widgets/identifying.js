@@ -13,7 +13,7 @@
  		this.captchaInput = this.$el.find('[node-type="LoanCaptchaInput"]');
  		this.sendBtn = this.$el.find('[node-type="LoanSendBtn"]');
  		this.confirmBtn = this.$el.find('[node-type="LoanConfirmBtn"]');
- 		this.phone = $("#phone").val();
+ 		this.phone = $("#phone").html();
  		this.idCode = $("#idCode").val();
  		this._addEvents();
  	}
