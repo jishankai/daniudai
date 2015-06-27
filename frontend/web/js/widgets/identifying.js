@@ -71,7 +71,7 @@
  			},1000);
 
  			TOOLS.ajax({
- 				url:"./index.php?loan/sms",
+ 				url:"./index.php?r=loan/sms",
  				data:{mobile:this.phone,code:1},
  				type:"get",
  				dataType:"json",
@@ -84,7 +84,7 @@
  			if(confirmBtn.hasClass("disabled")) return false;
  			confirmBtn.addClass('disabled');
  			TOOLS.ajax({
- 				url:"./index.php?loan/sms",
+ 				url:"./index.php?r=loan/sms",
  				data:{mobile:this.phone,code:this.idCode,type:1},
  				type:"get",
  				dataType:"json",
@@ -94,7 +94,7 @@
  						confirmBtn.removeClass('disabled');
  						MessageBox.alert({type:"common",txt:CS.ERRORMSG["CAPTCHAERROR"]});
  					}else if(data.code == "1"){
- 						window.location="./index.php?loan/success";
+ 						window.location="./index.php?r=loan/success";
  					}
  				},
  				fnError:function(){}
