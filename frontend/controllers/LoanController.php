@@ -234,7 +234,7 @@ class LoanController extends \yii\web\Controller
 
         $js = new Js($appId, $secret); 
 
-        return $this->rendPartial('sms', ['mobile'=>$mobile, 'js'=>$js]);
+        return $this->renderPartial('sms', ['mobile'=>$mobile, 'js'=>$js]);
     }
 
     public function actionFailed()
