@@ -13,6 +13,7 @@
 <link rel="stylesheet" type="text/css" media="all" href="css/base.css?<?php echo $v; ?>" />
 <link rel="stylesheet" type="text/css" media="all" href="css/fonts.css?<?php echo $v; ?>" />
 <link rel="stylesheet" type="text/css" media="all" href="css/widget.css?<?php echo $v; ?>" />
+<link rel="stylesheet" type="text/css" media="all" href="css/attach.css?<?php echo $v; ?>" />
 </head>
 <body>
 	<div class="container">
