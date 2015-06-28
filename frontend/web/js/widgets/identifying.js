@@ -83,6 +83,7 @@
  		_fnSubmit : function(confirmBtn){
  			if(confirmBtn.hasClass("disabled")) return false;
  			confirmBtn.addClass('disabled');
+ 			this.idCode = $("#idCode").val();
  			TOOLS.ajax({
  				url:"./index.php?r=loan/sms",
  				data:{mobile:this.phone,code:this.idCode,type:1},
