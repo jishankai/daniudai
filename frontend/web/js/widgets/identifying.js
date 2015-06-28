@@ -94,7 +94,7 @@
  					if(data.isSuccess == "0"){
  						confirmBtn.removeClass('disabled');
  						MessageBox.alert({type:"common",txt:CS.ERRORMSG["CAPTCHAERROR"]});
- 					}else if(data.code == "1"){
+ 					}else if(data.isSuccess == "1"){
  						window.location="./index.php?r=loan/success";
  					}
  				},
