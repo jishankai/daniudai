@@ -284,6 +284,7 @@ class LoanController extends \yii\web\Controller
             return $this->redirect(['loan/index']);
         }
         $user = $_SESSION['user'];
+        $u = User::findOne($user['openid']);
         $l = Loan::findOne(['wechat_id'=>$user['openid']]);
         $student = Student::findOne($user['openid']);
 
