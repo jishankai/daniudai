@@ -176,7 +176,7 @@ class LoanController extends \yii\web\Controller
         $privatekey = Yii::$app->params['unionpay_privatekey'];
         $name = $_POST['name'];
         $card = $_POST['bank_card'];
-        $cid = $_POST['$id_card'];
+        $cid = $_POST['id_card'];
         $mobile = $_POST['mobile'];
 
         $bank = Bank::findOne(['card'=>$card, 'cid'=>$cid, 'mobile'=>$mobile, 'name'=>$name]);
