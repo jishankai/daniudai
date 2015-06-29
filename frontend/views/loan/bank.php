@@ -9,11 +9,11 @@
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-precomposed-144.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-precomposed-114.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/logo-72.png">
-<link rel="stylesheet" type="text/css" media="all" href="css/reset.css" />
-<link rel="stylesheet" type="text/css" media="all" href="css/base.css" />
-<link rel="stylesheet" type="text/css" media="all" href="css/fonts.css" />
-<link rel="stylesheet" type="text/css" media="all" href="css/widget.css" />
-<link rel="stylesheet" type="text/css" media="all" href="css/attach.css" />
+<link rel="stylesheet" type="text/css" media="all" href="css/reset.css?<?php echo $v; ?>" />
+<link rel="stylesheet" type="text/css" media="all" href="css/base.css?<?php echo $v; ?>" />
+<link rel="stylesheet" type="text/css" media="all" href="css/fonts.css?<?php echo $v; ?>" />
+<link rel="stylesheet" type="text/css" media="all" href="css/widget.css?<?php echo $v; ?>" />
+<link rel="stylesheet" type="text/css" media="all" href="css/attach.css?<?php echo $v; ?>" />
 </head>
 <body>
 	<div class="container" id="container">
@@ -241,12 +241,12 @@
 
 
 	</div>
-	<script type="text/javascript" src="js/widgets/bankLists.js"></script>
-	<script type="text/javascript" src="js/widgets/constants.js"></script>
-	<script type="text/javascript" src="js/libs/zepto.js"></script>
-	<script type="text/javascript" src="js/widgets/pb.js"></script>
-	<script type="text/javascript" src="js/widgets/tools.js"></script>
-	<script type="text/javascript" src="js/widgets/MessageBox.js"></script>
+    <script type="text/javascript" src="js/widgets/bankLists.js?<?php echo $v; ?>"></script>
+    <script type="text/javascript" src="js/widgets/constants.js?<?php echo $v; ?>"></script>
+    <script type="text/javascript" src="js/libs/zepto.js?<?php echo $v; ?>"></script>
+    <script type="text/javascript" src="js/widgets/pb.js?<?php echo $v; ?>"></script>
+    <script type="text/javascript" src="js/widgets/tools.js?<?php echo $v; ?>"></script>
+    <script type="text/javascript" src="js/widgets/MessageBox.js?<?php echo $v; ?>"></script>
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 		 $("#container").PUB();

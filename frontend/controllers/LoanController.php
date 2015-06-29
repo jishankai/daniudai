@@ -59,7 +59,7 @@ class LoanController extends \yii\web\Controller
         $appId = Yii::$app->params['wechat_appid'];
         $secret = Yii::$app->params['wechat_appsecret'];
         $js = new Js($appId, $secret); 
-        return $this->renderPartial('bank', array('user'=>$u,'loan'=>$l,'js'=>$js));
+        return $this->renderPartial('bank', ['v'=>Yii::$app->params['assets_version'],'user'=>$u,'loan'=>$l,'js'=>$js]);
     }
 
     public function actionLend($type='common')
@@ -162,10 +162,10 @@ class LoanController extends \yii\web\Controller
         $appId = Yii::$app->params['wechat_appid'];
         $secret = Yii::$app->params['wechat_appsecret'];
         $js = new Js($appId, $secret); 
-        return $this->renderPartial('school', array('from'=>$rate==0.0001?'graduate':'common', 'js'=>$js));
+        return $this->renderPartial('school', ['v'=>Yii::$app->params['assets_version'],'from'=>$rate==0.0001?'graduate':'common', 'js'=>$js]);
     }
 
-    public function actionVerify($name, $bank_card, $id_card, $mobile)
+    public function actionVerify()
     {
         session_start();
         if (!isset($_SESSION['verify_times'])) {
@@ -174,8 +174,10 @@ class LoanController extends \yii\web\Controller
         
         $account = Yii::$app->params['unionpay_account'];
         $privatekey = Yii::$app->params['unionpay_privatekey'];
-        $card = $bank_card;
-        $cid = $id_card;
+        $name = $_POST['name'];
+        $card = $_POST['bank_card'];
+        $cid = $_POST['$id_card'];
+        $mobile = $_POST['mobile'];
 
         $bank = Bank::findOne(['card'=>$card, 'cid'=>$cid, 'mobile'=>$mobile, 'name'=>$name]);
         if (isset($bank)) {
@@ -213,12 +215,15 @@ class LoanController extends \yii\web\Controller
         }
     }
 
-    public function actionSms($mobile, $code=0)
+    public function actionSms()
     {
         include Yii::getAlias("@frontend/widgets")."/Smsapi.php";
 
         $appId = Yii::$app->params['wechat_appid'];
         $secret = Yii::$app->params['wechat_appsecret'];
+
+        $mobile = $_POST['mobile'];
+        $code = isset($_POST['code'])?$_POST['code']:0;
 
         session_start();
         if ($code!=0&&$code!=1) {
@@ -237,7 +242,7 @@ class LoanController extends \yii\web\Controller
         }
         $js = new Js($appId, $secret); 
 
-        return $this->renderPartial('sms', ['mobile'=>$mobile, 'js'=>$js]);
+        return $this->renderPartial('sms', ['v'=>Yii::$app->params['assets_version'], 'mobile'=>$mobile, 'js'=>$js]);
     }
 
     public function actionFailed()
@@ -247,7 +252,7 @@ class LoanController extends \yii\web\Controller
 
         $js = new Js($appId, $secret); 
 
-        return $this->rendPartial('failed', ['js'=>$js]);
+        return $this->rendPartial('failed', ['v'=>Yii::$app->params['assets_version'], 'js'=>$js]);
         
     }
     
@@ -315,7 +320,7 @@ class LoanController extends \yii\web\Controller
                 return $this->renderPartial('success', ['mobile'=>'18810521341', 'js'=>$js]);
             }
         } else if ($l->status>1) {
-            return $this->renderPartial('success2', ['js'=>$js]);
+            return $this->renderPartial('success2', ['v'=>Yii::$app->params['assets_version'], 'js'=>$js]);
         } else {
             return $this->redirect(['loan/index']);
         }
