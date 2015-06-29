@@ -231,7 +231,7 @@ class LoanController extends \yii\web\Controller
         } else if ($code==1) {
             $code = $_SESSION['sms_code'] = rand(100000, 999999);
             $sms = new \SmsApi();
-            $sms->sendMsg($mobile, $code);
+            $sms->sendMsg($mobile, '您的验证码是：'.$code);
 
             return json_encode(['isSend'=>1]);
         }
