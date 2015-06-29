@@ -124,7 +124,7 @@ var TOOLS = (function(){
 				url:options.url,
 				data:options.data,
 				dataType:options.dataType,
-				type:"post",
+				type:!!options.type?options.type:"post",
 				success:options.fnSuccess,
 				error:options.fnError
 			})
