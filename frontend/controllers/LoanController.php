@@ -176,7 +176,7 @@ class LoanController extends \yii\web\Controller
         $privatekey = Yii::$app->params['unionpay_privatekey'];
         $name = $_POST['name'];
         $card = $_POST['bank_card'];
-        $cid = $_POST['$id_card'];
+        $cid = $_POST['id_card'];
         $mobile = $_POST['mobile'];
 
         $bank = Bank::findOne(['card'=>$card, 'cid'=>$cid, 'mobile'=>$mobile, 'name'=>$name]);
@@ -222,8 +222,8 @@ class LoanController extends \yii\web\Controller
         $appId = Yii::$app->params['wechat_appid'];
         $secret = Yii::$app->params['wechat_appsecret'];
 
-        $mobile = $_POST['mobile'];
-        $code = isset($_POST['code'])?$_POST['code']:0;
+        $mobile = $_REQUEST['mobile'];
+        $code = isset($_REQUEST['code'])?$_REQUEST['code']:0;
 
         session_start();
         if ($code!=0&&$code!=1) {
