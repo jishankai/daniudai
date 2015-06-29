@@ -195,16 +195,33 @@ class LoanController extends \yii\web\Controller
                 $response_type_3 = file_get_contents(Yii::$app->params['unionpay_route'].'?account='.$account.'&name='.$name.'&cid='.$cid.'&type='.$type.'&sign='.$sign);
                 $json_obj = json_decode($response_type_3);
                 if ($json_obj->resCode=='0000'&&$json_obj->stat==1) {
-                    $bank = Bank::findOne($card);
-                    if (!isset($bank)) {
-                        $bank = new Bank;
+                    $user = $_SESSION['user'];
+                    $u = User::findOne($user['openid']);
+
+                    $transaction = Yii::$app->db->beginTransaction();
+                    try {
+                        $u->id = $cid;
+                        $u->mobile = $mobile;
+                        $u->bank = $bank;
+                        $u->bank_id = $card;
+                        $u->save();
+
+                        $bank = Bank::findOne($card);
+                        if (!isset($bank)) {
+                            $bank = new Bank;
+                        }
+                        $bank->card = $card;
+                        $bank->cid = $cid;
+                        $bank->mobile = $mobile;
+                        $bank->name = $name;
+                        $bank->created_at = time();
+                        $bank->save();
+
+                        $transaction->commit();
+                    } catch(\Exception $e) {
+                        $transaction->rollBack();
+                        throw $e;
                     }
-                    $bank->card = $card;
-                    $bank->cid = $cid;
-                    $bank->mobile = $mobile;
-                    $bank->name = $name;
-                    $bank->created_at = time();
-                    $bank->save();
                 } else {
                     $_SESSION['verify_times']-=1;
                 }
@@ -266,22 +283,11 @@ class LoanController extends \yii\web\Controller
             return $this->redirect(['loan/index']);
         }
         $user = $_SESSION['user'];
-        $student = Student::findOne($user['openid']);
-        if (isset($_POST['id'])) {
-            $u = User::findOne($user['openid']);
-            $l = Loan::findOne(['wechat_id'=>$user['openid']]);
-            $id = $_POST['id'];
-            $mobile = $_POST['mobile'];
-            $bank = $_POST['bank'];
-            $bank_id = $_POST['bank_id'];
+        $l = Loan::findOne(['wechat_id'=>$user['openid']]);
 
+        if ($l->status==0) {
             $transaction = Yii::$app->db->beginTransaction();
             try {
-                $u->id = $id;
-                $u->mobile = $mobile;
-                $u->bank = $bank;
-                $u->bank_id = $bank_id;
-                $u->save();
                 $l->status = 1;
                 $l->updateAttributes(['status']);
                 $transaction->commit();
@@ -289,9 +295,9 @@ class LoanController extends \yii\web\Controller
                 $transaction->rollBack();
                 throw $e;
             }
-
             $notice = new Notice($appId, $secret);
             //通知放款员面签
+            $student = Student::findOne($user['openid']);
             $s = School::findOne($student->school_id);
             $templateId = Yii::$app->params['templateId_task'];
             $url = Url::to(['loan/me'],TRUE);
@@ -310,7 +316,6 @@ class LoanController extends \yii\web\Controller
             $messageId = $notice->uses($templateId)->withUrl($url)->andData($data)->andReceiver($userId)->send();
             $messageId = $notice->uses($templateId)->withUrl($url)->andData($data)->andReceiver(Yii::$app->params['demo_supporter'])->send();
         }
-        $l = Loan::findOne(['wechat_id'=>$user['openid']]);
 
         $js = new Js($appId, $secret); 
         if ($l->status==1) {
