@@ -206,7 +206,8 @@
 	}
 	
 	function repayChange(){
-		$("#repayTmpl").find("p").text([dtm,'天后到期'].join(""))
+		var hkrq = GetDateStr(dtm);
+		$("#repayTmpl").find("p").text(['预计还款日期',hkrq].join(""))
 			.end()
 			.find('em')
 			.text(["￥", cal(dfm, dtm, dl)].join(""));
@@ -215,4 +216,13 @@
 		$('[name="money"]').val(dfm);
 	}
 	
+	function GetDateStr(AddDayCount) 
+	{ 
+		var dd = new Date(); 
+		dd.setDate(dd.getDate()+AddDayCount);
+		var y = dd.getFullYear(); 
+		var m = (dd.getMonth()+1)<10?"0"+(dd.getMonth()+1):(dd.getMonth()+1);
+		var d = dd.getDate()<10?"0"+dd.getDate():dd.getDate(); 
+		return y+"/"+m+"/"+d; 
+	}
 })(window.jQuery||window.Zepto);

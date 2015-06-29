@@ -13,6 +13,7 @@
 <link rel="stylesheet" type="text/css" media="all" href="css/base.css?<?php echo $v; ?>" />
 <link rel="stylesheet" type="text/css" media="all" href="css/fonts.css?<?php echo $v; ?>" />
 <link rel="stylesheet" type="text/css" media="all" href="css/widget.css?<?php echo $v; ?>" />
+<link rel="stylesheet" type="text/css" media="all" href="css/attach.css?<?php echo $v; ?>" />
 </head>
 <body>
 	<div class="container">
@@ -21,17 +22,16 @@
 				<div class="loan-box">
 					<img class="loan-picImg" src="img/pic-01.jpg" />
 					<div class="loan-content">
-						<h2>毕业季，毕业礼，万分之一</h2>
-						<p>毕业生专属，超低日利率：0.01%</p>
-						<h2>火热暑期，清凉礼，万分之二</h2>
-						<p>不毕业也可以有，特惠日利率：0.02%</p>
+						<h2>信用贷款</h2>
+						<p>只要你是在校大学生，用大牛贷，纯信用</p>
+						<h2>超低利率</h2>
+						<p>远低于市场上的信用贷款，日利率仅0.03%</p>
 						<h2>不是分期，是到期哟~</h2>
 						<p>100天，200天，300天，取你所需，到期才还</p>
 					</div>
 					<form class="forms">
-		                <div class="forms__option clearfix">
+		                <div class="forms__option ljjh clearfix">
 		                	<a class="btn btn-white" href="<?php echo Url::to(['loan/lend'])?>">立即激活</a>
-		                	<a class="btn btn-white w-opacity" href="<?php echo Url::to(['loan/lend','type'=>'graduate'])?>">毕业专属通道</a>
 		                </div>                                              
 		            </form>
 				</div>

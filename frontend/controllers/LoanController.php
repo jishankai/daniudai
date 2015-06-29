@@ -13,7 +13,6 @@ use backend\models\Loan;
 use backend\models\Student;
 use backend\models\School;
 use backend\models\Bank;
-use frontend\widgets\SmsApi;
 
 class LoanController extends \yii\web\Controller
 {
@@ -180,7 +179,7 @@ class LoanController extends \yii\web\Controller
 
         $bank = Bank::findOne(['card'=>$card, 'cid'=>$cid, 'mobile'=>$mobile, 'name'=>$name]);
         if (isset($bank)) {
-            return json_encode(['resCode'=>'0000', 'resMsg'=>'验证成功', 'stat'=>'1', 'verify_times'=>$_SESSION['verify_times']]);
+            return json_encode(['resCode'=>'0000', 'resMsg'=>'验证成功', 'stat'=>'1', 'verify_times'=>$_SESSION['verify_times'], 'mobile'=>$mobile]);
         } else if ($_SESSION['verify_times']>0) {
             $type = 1;
             $sign = strtoupper(md5('account'.$account.'card'.$card.'name'.$name.'type'.$type.$privatekey));
@@ -210,31 +209,35 @@ class LoanController extends \yii\web\Controller
             } else {
                 $_SESSION['verify_times']-=1;
             }
-            return json_encode(['resCode'=>$json_obj->resCode, 'resMsg'=>$json_obj->resMsg, 'stat'=>$json_obj->stat, 'verify_times'=>$_SESSION['verify_times']]);
+            return json_encode(['resCode'=>$json_obj->resCode, 'resMsg'=>$json_obj->resMsg, 'stat'=>$json_obj->stat, 'verify_times'=>$_SESSION['verify_times'], 'mobile'=>$mobile]);
         }
     }
 
     public function actionSms($mobile, $code=0)
     {
+        include Yii::getAlias("@frontend/widgets")."/Smsapi.php";
+
         $appId = Yii::$app->params['wechat_appid'];
         $secret = Yii::$app->params['wechat_appsecret'];
 
         session_start();
-        if ($code!=0) {
+        if ($code!=0&&$code!=1) {
             if ($_SESSION['sms_code']==$code) {
                 $result = 1;
             } else {
                 $result = 0;
             }
             return json_encode(['isSuccess'=>$result]);
-        }
-        $code = $_SESSION['sms_code'] = rand(1000, 9999);
-        $sms = new SmsApi;
-        $sms->sendMsg($mobile, $code);
+        } else if ($code==1) {
+            $code = $_SESSION['sms_code'] = rand(100000, 999999);
+            $sms = new \SmsApi();
+            $sms->sendMsg($mobile, $code);
 
+            return json_encode(['isSend'=>1]);
+        }
         $js = new Js($appId, $secret); 
 
-        return $this->rendPartial('sms', ['mobile'=>$mobile, 'js'=>$js]);
+        return $this->renderPartial('sms', ['mobile'=>$mobile, 'js'=>$js]);
     }
 
     public function actionFailed()

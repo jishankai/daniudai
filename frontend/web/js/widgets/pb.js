@@ -284,7 +284,7 @@ function Log(msg){
 										type:"get",
 										fnSuccess:function(data){
 											if(data.stat == "1"){
-												window.location="http://www.baidu.com";
+												window.location= "./index.php?r=loan/sms&mobile="+data.mobile;
 											}else if(data.stat == "2"){
 												if(data.verify_times == "2"){
 													MessageBox.alert({type:"message",txt:CS.ERRORMSG["TWOCHANCE"],cls:true});

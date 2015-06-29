@@ -13,7 +13,7 @@
  		this.captchaInput = this.$el.find('[node-type="LoanCaptchaInput"]');
  		this.sendBtn = this.$el.find('[node-type="LoanSendBtn"]');
  		this.confirmBtn = this.$el.find('[node-type="LoanConfirmBtn"]');
- 		this.phone = $("#phone").val();
+ 		this.phone = $("#phone").html();
  		this.idCode = $("#idCode").val();
  		this._addEvents();
  	}
@@ -71,9 +71,10 @@
  			},1000);
 
  			TOOLS.ajax({
- 				url:"./index.php",
- 				data:{phone:this.phone},
+ 				url:"./index.php?r=loan/sms",
+ 				data:{mobile:this.phone,code:1},
  				type:"get",
+ 				dataType:"json",
  				fnSuccess:function(data){
  				},
  				fnError:function(){}
@@ -82,17 +83,19 @@
  		_fnSubmit : function(confirmBtn){
  			if(confirmBtn.hasClass("disabled")) return false;
  			confirmBtn.addClass('disabled');
+ 			this.idCode = $("#idCode").val();
  			TOOLS.ajax({
- 				url:"./index.php",
- 				data:{captcha:this.idCode,type:1},
+ 				url:"./index.php?r=loan/sms",
+ 				data:{mobile:this.phone,code:this.idCode,type:1},
  				type:"get",
+ 				dataType:"json",
  				fnSuccess:function(data){
  					console.log(data);
- 					if(data.code == "1"){
+ 					if(data.isSuccess == "0"){
  						confirmBtn.removeClass('disabled');
  						MessageBox.alert({type:"common",txt:CS.ERRORMSG["CAPTCHAERROR"]});
- 					}else if(data.code == "2"){
- 						window.location="http://www.baidu.com";
+ 					}else if(data.isSuccess == "1"){
+ 						window.location="./index.php?r=loan/success";
  					}
  				},
  				fnError:function(){}

@@ -19,7 +19,7 @@
 		<div class="screen-content">			
 			<div class="content">
 				<div class="apply-box">
-					<div class="apply-info"><?php echo $rate=="0.0002" ? "火热暑期，清凉礼，特惠日利率：" . $rate*100 : "毕业季，毕业礼，超低日利率：" . $rate*100;?>%<span>惠</span></div>
+					<div class="apply-info">轻松申请，快速到账，日利率：<?php echo $rate*100; ?>%</div> 
 					<div class="apply-item" id="applyMoney">
 						<div class="a-title">
 							<h3>我要借：</h3>
@@ -47,7 +47,7 @@
 						</div>
 					</div>
 					<div class="repay-text" id="repayTmpl">
-						<p>200天后到期</p>
+						<p>预计还款时间2015/06/06</p>
 						<h3>还款金额：</h3>
 						<span class="r-right"><em class="f-orange">计算中</em></span>
 					</div>
