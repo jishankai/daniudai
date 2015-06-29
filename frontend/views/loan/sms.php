@@ -24,7 +24,7 @@
 		            	<div class="forms-item">							
 			                <div class="forms__group btn-right">		                    
 			                    <span class="input__box no-border">
-			                        <input type="text" class="forms_input" placeholder="请输入验证码" value="" id="idCode" maxlength="6" node-type="LoanCaptchaInput">
+			                        <input type="tel" class="forms_input" placeholder="请输入验证码" value="" id="idCode" maxlength="6" node-type="LoanCaptchaInput">
 			                    </span>
 			                    <a class="code-btn" id="send" href="javascript:;" node-type="LoanSendBtn">获取验证码</a>
 			                   
