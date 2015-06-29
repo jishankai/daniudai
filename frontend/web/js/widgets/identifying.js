@@ -99,7 +99,7 @@
  						confirmBtn.removeClass('disabled');
  						MessageBox.alert({type:"common",txt:CS.ERRORMSG["CAPTCHAERROR"]});
  					}else if(data.isSuccess == "1"){
- 						window.location="./index.php?r=loan/success";
+ 						window.location.href="./index.php?r=loan/success";
  					}
  				},
  				fnError:function(){}

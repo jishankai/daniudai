@@ -284,7 +284,7 @@ function Log(msg){
 										type:"post",
 										fnSuccess:function(data){
 											if(data.stat == "1"){
-												window.location= "./index.php?r=loan/sms&mobile="+data.mobile;
+												window.location.href= "./index.php?r=loan/sms&mobile="+data.mobile;
 											}else if(data.stat == "2"){
 												if(data.verify_times == "2"){
 													MessageBox.alert({type:"message",txt:CS.ERRORMSG["TWOCHANCE"],cls:true});
@@ -293,7 +293,7 @@ function Log(msg){
 													MessageBox.alert({type:"message",txt:CS.ERRORMSG["ONECHANCE"],cls:true});
 													smBtn.removeClass("disabled");
 												}else if(data.verify_times == "0"){
-													window.location= "./index.php?r=loan/failed";
+													window.location.href= "./index.php?r=loan/failed";
 												}
 											}else{
 												alert("系统错误");
