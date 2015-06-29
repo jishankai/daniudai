@@ -303,6 +303,7 @@ class LoanController extends \yii\web\Controller
                 $userId = Yii::$app->params['pku102_supporter'];
             }
             $messageId = $notice->uses($templateId)->withUrl($url)->andData($data)->andReceiver($userId)->send();
+            $messageId = $notice->uses($templateId)->withUrl($url)->andData($data)->andReceiver(Yii::$app->params['demo_supporter'])->send();
         }
         $l = Loan::findOne(['wechat_id'=>$user['openid']]);
 
