@@ -264,7 +264,74 @@ function Log(msg){
 				bcflag = TOOLS.isCard(zCard.replace(/\s+/g,"")),
 				bcflag2 = TOOLS.isBank(zCard.replace(/\s+/g,"")),
 				zzCard = zCard.replace(/\s+/g,""),
-				smBtn = $("#next2");
+				smBtn = $("#next2"),
+				cbank_name;
+
+				if(bcflag2){
+					switch(bcflag2)
+					{
+						case "IBCB":
+							cbank_name="中国工商银行";
+							break;
+						case "ABC":
+							cbank_name="中国农业银行";
+							break;
+						case "CCB":
+							cbank_name="中国建设银行";
+							break;
+						case "CMB":
+							cbank_name="招商银行";
+							break;
+						case "BOC":
+							cbank_name="中国银行";
+							break;
+						case "PSBC":
+							cbank_name="中国邮政储蓄银行";
+							break;
+						case "COMM":
+							cbank_name="交通银行";
+							break;
+						case "CITIC":
+							cbank_name="中信银行";
+							break;
+						case "CMBC":
+							cbank_name="中国民生银行";
+							break;
+						case "CEB":
+							cbank_name="中国光大银行";
+							break;
+						case "CIB":
+							cbank_name="兴业银行";
+							break;
+						case "SPDB":
+							cbank_name="浦发银行";
+							break;
+						case "GDB":
+							cbank_name="广发银行";
+							break;
+						case "HXBANK":
+							cbank_name="华夏银行";
+							break;
+						case "SPABANK":
+							cbank_name="平安银行";
+							break;
+						case "BJBANK":
+							cbank_name="北京银行";
+							break;
+						case "BJRCB":
+							cbank_name="北京农商银行";
+							break;
+						case "SHBANK":
+							cbank_name="上海银行";
+							break;
+						case "JSBANK":
+							cbank_name="江苏银行";
+							break;
+						default:
+	        				cbank_name="错误银行";
+							break;
+					}
+				}
 
 			if(this.boxFlag){
 				if(zCard_len != 19 && zCard_len == 23 || zCard_len != 23 && zCard_len == 19){
@@ -279,7 +346,7 @@ function Log(msg){
 									smBtn.addClass('disabled');			 					
 									TOOLS.ajax({
 										url:"./index.php?r=loan/verify",
-										data:{name:zName,bank_card:zzCard,id_card:zIdCard,mobile:zMobile},
+										data:{name:zName,bank_card:zzCard,id_card:zIdCard,mobile:zMobile,bank:cbank_name},
 										dataType:"json",
 										type:"post",
 										fnSuccess:function(data){
