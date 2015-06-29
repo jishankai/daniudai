@@ -281,7 +281,7 @@ function Log(msg){
 										url:"./index.php?r=loan/verify",
 										data:{name:zName,bank_card:zzCard,id_card:zIdCard,mobile:zMobile},
 										dataType:"json",
-										type:"get",
+										type:"post",
 										fnSuccess:function(data){
 											if(data.stat == "1"){
 												window.location= "./index.php?r=loan/sms&mobile="+data.mobile;
