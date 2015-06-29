@@ -178,6 +178,7 @@ class LoanController extends \yii\web\Controller
         $card = $_POST['bank_card'];
         $cid = $_POST['id_card'];
         $mobile = $_POST['mobile'];
+        $bank = isset($_POST['bank'])?$_POST['bank']:'';
 
         $bank = Bank::findOne(['card'=>$card, 'cid'=>$cid, 'mobile'=>$mobile, 'name'=>$name]);
         if (isset($bank)) {
