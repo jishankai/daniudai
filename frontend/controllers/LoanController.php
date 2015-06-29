@@ -178,7 +178,7 @@ class LoanController extends \yii\web\Controller
         $card = $_POST['bank_card'];
         $cid = $_POST['id_card'];
         $mobile = $_POST['mobile'];
-        $bank = isset($_POST['bank'])?$_POST['bank']:'';
+        $bank_name = isset($_POST['bank_name'])?$_POST['bank_name']:'';
 
         $bank = Bank::findOne(['card'=>$card, 'cid'=>$cid, 'mobile'=>$mobile, 'name'=>$name]);
         if (isset($bank)) {
@@ -203,7 +203,7 @@ class LoanController extends \yii\web\Controller
                     try {
                         $u->id = $cid;
                         $u->mobile = $mobile;
-                        $u->bank = $bank;
+                        $u->bank = $bank_name;
                         $u->bank_id = $card;
                         $u->save();
 
