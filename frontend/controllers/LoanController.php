@@ -182,6 +182,22 @@ class LoanController extends \yii\web\Controller
 
         $bank = Bank::findOne(['card'=>$card, 'cid'=>$cid, 'mobile'=>$mobile, 'name'=>$name]);
         if (isset($bank)) {
+            $user = $_SESSION['user'];
+            $u = User::findOne($user['openid']);
+
+            $transaction = Yii::$app->db->beginTransaction();
+            try {
+                $u->id = $cid;
+                $u->mobile = $mobile;
+                $u->bank = $bank_name;
+                $u->bank_id = $card;
+                $u->save();
+
+                $transaction->commit();
+            } catch(\Exception $e) {
+                $transaction->rollBack();
+                throw $e;
+            }
             return json_encode(['resCode'=>'0000', 'resMsg'=>'验证成功', 'stat'=>'1', 'verify_times'=>$_SESSION['verify_times'], 'mobile'=>$mobile]);
         } else if ($_SESSION['verify_times']>0) {
             $type = 1;
