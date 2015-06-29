@@ -71,7 +71,8 @@ class LoanController extends \yii\web\Controller
         if (isset($l) AND $l->status>0) {
             return $this->redirect(['loan/success']);
         }
-        $rate = ($type=='common')?0.0002:0.0001;
+        //$rate = ($type=='common')?0.0002:0.0001;
+        $rate = 0.0003;
         $appId = Yii::$app->params['wechat_appid'];
         $secret = Yii::$app->params['wechat_appsecret'];
         $js = new Js($appId, $secret); 
