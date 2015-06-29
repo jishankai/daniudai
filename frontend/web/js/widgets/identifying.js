@@ -74,7 +74,7 @@
  			TOOLS.ajax({
  				url:"./index.php?r=loan/sms",
  				data:{mobile:this.phone,code:1},
- 				type:"get",
+ 				type:"post",
  				dataType:"json",
  				fnSuccess:function(data){
  					if(data.isSend == "1"){
@@ -91,7 +91,7 @@
  			TOOLS.ajax({
  				url:"./index.php?r=loan/sms",
  				data:{mobile:this.phone,code:this.idCode,type:1},
- 				type:"get",
+ 				type:"post",
  				dataType:"json",
  				fnSuccess:function(data){
  					console.log(data);
