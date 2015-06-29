@@ -285,6 +285,7 @@ class LoanController extends \yii\web\Controller
         }
         $user = $_SESSION['user'];
         $l = Loan::findOne(['wechat_id'=>$user['openid']]);
+        $student = Student::findOne($user['openid']);
 
         if ($l->status==0) {
             $transaction = Yii::$app->db->beginTransaction();
@@ -298,7 +299,6 @@ class LoanController extends \yii\web\Controller
             }
             $notice = new Notice($appId, $secret);
             //通知放款员面签
-            $student = Student::findOne($user['openid']);
             $s = School::findOne($student->school_id);
             $templateId = Yii::$app->params['templateId_task'];
             $url = Url::to(['loan/me'],TRUE);
