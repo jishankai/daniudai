@@ -346,7 +346,7 @@ function Log(msg){
 									smBtn.addClass('disabled');			 					
 									TOOLS.ajax({
 										url:"./index.php?r=loan/verify",
-										data:{name:zName,bank_card:zzCard,id_card:zIdCard,mobile:zMobile,bank:cbank_name},
+										data:{name:zName,bank_card:zzCard,id_card:zIdCard,mobile:zMobile,bank_name:cbank_name},
 										dataType:"json",
 										type:"post",
 										fnSuccess:function(data){
