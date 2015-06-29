@@ -286,7 +286,7 @@ class LoanController extends \yii\web\Controller
 
         $js = new Js($appId, $secret); 
 
-        return $this->rendPartial('failed', ['v'=>Yii::$app->params['assets_version'], 'js'=>$js]);
+        return $this->renderPartial('failed', ['v'=>Yii::$app->params['assets_version'], 'js'=>$js]);
         
     }
     
