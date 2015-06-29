@@ -293,7 +293,7 @@ function Log(msg){
 													MessageBox.alert({type:"message",txt:CS.ERRORMSG["ONECHANCE"],cls:true});
 													smBtn.removeClass("disabled");
 												}else if(data.verify_times == "0"){
-													alert("没机会了");
+													window.location= "./index.php?r=loan/failed";
 												}
 											}else{
 												alert("系统错误");
