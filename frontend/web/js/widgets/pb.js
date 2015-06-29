@@ -359,7 +359,7 @@ function Log(msg){
 												}else if(data.verify_times == "1"){
 													MessageBox.alert({type:"message",txt:CS.ERRORMSG["ONECHANCE"],cls:true});
 													smBtn.removeClass("disabled");
-												}else if(data.verify_times == "0"){
+												}else if(data.verify_times <= "0"){
 													window.location.href= "./index.php?r=loan/failed";
 												}
 											}else{

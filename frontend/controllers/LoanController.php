@@ -246,6 +246,8 @@ class LoanController extends \yii\web\Controller
                 $_SESSION['verify_times']-=1;
             }
             return json_encode(['resCode'=>$json_obj->resCode, 'resMsg'=>$json_obj->resMsg, 'stat'=>$json_obj->stat, 'verify_times'=>$_SESSION['verify_times'], 'mobile'=>$mobile]);
+        } else {
+            return json_encode(['resCode'=>'0000', 'resMsg'=>'验证失败', 'stat'=>'2', 'verify_times'=>$_SESSION['verify_times'], 'mobile'=>$mobile]);
         }
     }
 
