@@ -56,7 +56,7 @@
 			                    </span>
 			                </div> 
 			                <div class="forms-item agreement active" style="display:block;" id="agreement-btn">
-			            		<p class="text"><i class="icons icons-checkNew"></i>同意接受&nbsp;<a href="javascript:;">相关协议</a></p>      	
+			            		<p class="text"><i class="icons icons-checkNew"></i>同意接受&nbsp;<a href="javascript:;">借款协议</a></p>      	
 			            	</div>	
 		                </div>
 		                	                
