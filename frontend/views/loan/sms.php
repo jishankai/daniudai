@@ -12,13 +12,14 @@
 <link rel="stylesheet" type="text/css" media="all" href="css/base.css" />
 <link rel="stylesheet" type="text/css" media="all" href="css/fonts.css" />
 <link rel="stylesheet" type="text/css" media="all" href="css/widget.css" />
+<link rel="stylesheet" type="text/css" media="all" href="css/attach.css" />
 </head>
 <body>
 	<div class="container" id="container">
 		<div class="screen-content">			
 			<div class="content">
 				<div class="info-box">	
-                <div class="info-text"><p>验证码已发送至手机：<span id="phone"><?php echo $mobile?></span></p></div>		
+                <div class="info-text" id="success_send"><p>验证码已发送至手机：<span id="phone"><?php echo $mobile?></span></p></div>		
 					<form class="forms" onsubmit="return false;">                           
 		            	<div class="forms-item">							
 			                <div class="forms__group btn-right">		                    

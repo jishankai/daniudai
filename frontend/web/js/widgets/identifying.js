@@ -56,7 +56,8 @@
 			return idCode_var;
  		},
  		_fnObtain : function(times,send){
- 			var timer = null;
+ 			var timer = null,
+ 				success_send = $("#success_send");
  			if(send.hasClass("disabled")) return false;
  			send.addClass('disabled');
  			timer = setInterval(function(){
@@ -76,6 +77,9 @@
  				type:"get",
  				dataType:"json",
  				fnSuccess:function(data){
+ 					if(data.isSend == "1"){
+ 						success_send.show();
+ 					}
  				},
  				fnError:function(){}
  			});
