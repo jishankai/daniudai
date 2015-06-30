@@ -94,7 +94,7 @@
 					<span class="close" id="close8">&times;</span>
 				</div>
 				<div class="lists-body" id="cbank-list">
-					<ul class="lists-main" id="cbank_list" >
+					<ul class="lists-main" id="cbank_list" style="border-bottom:none;">
 						<li><i class="icons icons-check"></i>中国工商银行</li>	
 						<li><i class="icons icons-check"></i>中国农业银行</li>
 						<li><i class="icons icons-check"></i>中国建设银行</li>
@@ -148,7 +148,7 @@
 					<span class="close" id="close10">&times;</span>
 				</div>
 				<div class="lists-body" id="cbank-list">
-					<div class="lists-main" id="agree_list">
+					<div class="lists-main" id="agree_list" style="border-bottom:none;">
 						<p>
 							甲方（出借人）：渠帅<br/>
 							乙方（借款人）：<br/>
