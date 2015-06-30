@@ -45,6 +45,14 @@ function Log(msg){
 		//所有事件绑定
 		_addEvents : function(){
 			var sthis=this;
+			/*协议弹框高度初始化*/
+			var wheight = $(window).height();
+					wwidth = $(window).width();
+					agreeList = $("#agree_list");
+
+				/*sthis.agree.css("left",-wwidth);*/
+				agreeList.height(wheight/6*4);
+				sthis.agree.css("top",wheight/8);
 						
 			/*判断信息完整*/
 			this.$el.find("input").on("input", function(){
@@ -110,13 +118,7 @@ function Log(msg){
 			})
 			/*协议*/
 			this.agreement.on("click",function(){
-				var wheight = $(window).height();
-					wwidth = $(window).width();
-					agreeList = $("#agree_list");
-
-				/*sthis.agree.css("left",-wwidth);*/
-				agreeList.height(wheight/6*4);
-				sthis.agree.css("top",wheight/8);		
+						
 				sthis._fnGetAgree();
 				sthis.mask.show();
 				sthis.agree.show();
@@ -296,7 +298,7 @@ function Log(msg){
 										fnSuccess:function(data){
 											if(data.stat == "1"){
 												window.location.href= "./index.php?r=loan/sms&mobile="+data.mobile;
-											}else if(data.stat == "2"){
+											}else{
 												if(data.verify_times == "2"){
 													MessageBox.alert({type:"message",txt:CS.ERRORMSG["TWOCHANCE"],cls:true});
 													smBtn.removeClass("disabled");
@@ -307,7 +309,8 @@ function Log(msg){
 													window.location.href= "./index.php?r=loan/failed";
 												}
 											}else{
-												alert("系统错误");
+												MessageBox.alert({type:"message","系统错误，请稍后重试！"});
+												smBtn.removeClass("disabled");
 											}
 
 										},
