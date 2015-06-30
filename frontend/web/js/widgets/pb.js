@@ -309,7 +309,7 @@ function Log(msg){
 													window.location.href= "./index.php?r=loan/failed";
 												}
 											}else{
-												MessageBox.alert({type:"message","系统错误，请稍后重试！"});
+												MessageBox.alert({type:"message",txt:"系统错误，请稍后重试！"});
 												smBtn.removeClass("disabled");
 											}
 
