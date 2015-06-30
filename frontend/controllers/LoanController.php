@@ -164,6 +164,17 @@ class LoanController extends \yii\web\Controller
         return $this->renderPartial('school', array('from'=>$rate==0.0001?'graduate':'common', 'js'=>$js));
     }
 
+    public function actionFailed()
+    {
+        $appId = Yii::$app->params['wechat_appid'];
+        $secret = Yii::$app->params['wechat_appsecret'];
+
+        $js = new Js($appId, $secret); 
+
+        return $this->renderPartial('failed', ['v'=>Yii::$app->params['assets_version'], 'js'=>$js]);
+
+    }
+
     public function actionSuccess()
     {
         $appId = Yii::$app->params['wechat_appid'];
