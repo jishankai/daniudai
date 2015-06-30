@@ -265,72 +265,16 @@ function Log(msg){
 				bcflag2 = TOOLS.isBank(zCard.replace(/\s+/g,"")),
 				zzCard = zCard.replace(/\s+/g,""),
 				smBtn = $("#next2"),
-				cbank_name;
-
+				cbank_name,
+				bank_index = -1,
+				bankListE = ["IBCB","ABC","CCB","CMB","BOC","PSBC","COMM","CITIC","CMBC","CEB","CIB","SPDB","GDB","HXBANK","SPABANK","BJBANK","BJRCB","SHBANK","JSBANK"],
+				bankListC = ["中国工商银行","中国农业银行","中国建设银行","招商银行","中国银行","中国邮政储蓄银行","交通银行","中信银行","中国民生银行","中国光大银行","兴业银行","浦发银行","广发银行","华夏银行","平安银行","北京银行","北京农商银行","上海银行","江苏银行"];
+				
 				if(bcflag2){
-					switch(bcflag2)
-					{
-						case "IBCB":
-							cbank_name="中国工商银行";
-							break;
-						case "ABC":
-							cbank_name="中国农业银行";
-							break;
-						case "CCB":
-							cbank_name="中国建设银行";
-							break;
-						case "CMB":
-							cbank_name="招商银行";
-							break;
-						case "BOC":
-							cbank_name="中国银行";
-							break;
-						case "PSBC":
-							cbank_name="中国邮政储蓄银行";
-							break;
-						case "COMM":
-							cbank_name="交通银行";
-							break;
-						case "CITIC":
-							cbank_name="中信银行";
-							break;
-						case "CMBC":
-							cbank_name="中国民生银行";
-							break;
-						case "CEB":
-							cbank_name="中国光大银行";
-							break;
-						case "CIB":
-							cbank_name="兴业银行";
-							break;
-						case "SPDB":
-							cbank_name="浦发银行";
-							break;
-						case "GDB":
-							cbank_name="广发银行";
-							break;
-						case "HXBANK":
-							cbank_name="华夏银行";
-							break;
-						case "SPABANK":
-							cbank_name="平安银行";
-							break;
-						case "BJBANK":
-							cbank_name="北京银行";
-							break;
-						case "BJRCB":
-							cbank_name="北京农商银行";
-							break;
-						case "SHBANK":
-							cbank_name="上海银行";
-							break;
-						case "JSBANK":
-							cbank_name="江苏银行";
-							break;
-						default:
-	        				cbank_name="错误银行";
-							break;
+					for(var i=0;i<bankListE.length;i++){
+						if(bcflag2 == bankListE[i]){bank_index = i;}
 					}
+					cbank_name = bankListC[bank_index];
 				}
 
 			if(this.boxFlag){
