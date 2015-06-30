@@ -1,4 +1,11 @@
 $(function(){
+
+	var name = $("#name");
+		name.on("keyup",function(){
+			var name_val = this.value.replace(/[^\u4E00-\u9FA5\·\u4E00-\u9FA5$]/g,'');
+			this.value = name_val;
+		})
+
 /*验证提示框位置适配*/
 	wheight=$(window).height();
 	$("#n_validate").css("top",-wheight/2);
