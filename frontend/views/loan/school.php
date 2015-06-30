@@ -84,8 +84,8 @@
 					<h3>选择高校</h3>
 					<span class="close" id="close1">&times;</span>
 				</div>
-				<div class="lists-body">
-					<ul class="lists-main" id="cschool_list">
+				<div class="lists-body" id="cschool_list">
+					<ul class="lists-main">
 						<li><i class="icons icons-check"></i>北京大学</li>
 						<li class="last-child"><i class="icons icons-check"></i>北京大学（医学部）</li>	
 					</ul>
@@ -105,8 +105,8 @@
 					<h3>选择学历</h3>
 					<span class="close" id="close2">&times;</span>
 				</div>
-				<div class="lists-body">
-					<ul class="lists-main" id="cdegrees_list">
+				<div class="lists-body" id="cdegrees_list">
+					<ul class="lists-main">
 						<!-- <li><i class="icons icons-check"></i>本科</li> -->
 					</ul>
 					<p class="l-info">目前暂不支持研究生</p>
@@ -125,10 +125,10 @@
 					<h3 id="c_m">选择院系</h3>
 					<span class="close" id="close3">&times;</span>
 				</div>
-				<div class="lists-body">
-					<ul class="lists-main" id="college-list" style="border-bottom:0;">
+				<div class="lists-body" id="college-list">
+					<ul class="lists-main" style="border-bottom:0;">
 					</ul>
-					<p class="l-info" style="visibility:hidden;">11</p>
+					<p class="l-info"></p>
 				</div>
 			</div>
 		</div>
@@ -167,7 +167,7 @@
 				<div class="lists-body">
 					<ul class="lists-main" id="year_list" style="border-bottom:0;">				
 					</ul>
-					<p class="l-info" style="visibility:hidden;">11</p>
+					<p class="l-info"></p>
 				</div>
 			</div>
 		</div>
