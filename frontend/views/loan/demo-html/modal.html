@@ -15,12 +15,15 @@
 </head>
 <body>	
 	<div class="container">
-		<div id="masker" class="masker" style="display:block;"></div>
-		<div class="popover popover-tiny" style="display:block;position: relative; "><!--提示消失opacity:0;-->
+		<div id="masker" class="masker" style="display:none;"></div>
+		<!--loading begin-->
+		<div id="masker" class="masker masker-60" style="display:block;"></div>
+		<div class="popover popover-tiny" style="display:block;position: relative; "><!--提示消失opacity:0;蒙层加上这个class  masker-60-->
 			<div class="popover-inner">
 				<img src="img/loader4.gif">
 			</div>
 		</div> 
+		<!--loading end-->
 		<div class="popover popover-small" style="display:block;position: relative; margin-left:-90px;"><!--提示消失opacity:0;显示位置margin:-20px 0 0 -90px;-->
 			<div class="popover-inner">
 				<div class="wrong-box">
