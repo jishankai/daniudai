@@ -20,8 +20,8 @@ $(function(){
 		$("#c_school").css("top",Math.round(cschool/7));
 		$("#c_school").css("left",0);
 		
-		$("#cschool_list li").click(function(){
-			$(this).addClass("active").siblings().removeClass();
+		$("#cschool_list ul li").click(function(){
+			$(this).addClass("active").siblings().removeClass("active");
 			a=$(this).html();
 			$(".mask").hide();	
 			$("#school-name").html(a.substring(33));
@@ -45,7 +45,7 @@ $(function(){
 
 			$("#c_school").css("top",Math.round(cschool/7));
 			$("#c_school").css("left",0);
-			$("#cschool_list li").click(function(){
+			$("#cschool_list ul li").click(function(){
 				$(this).addClass("active").siblings().removeClass();
 				a=$(this).html();
 				$(".mask").hide();	
