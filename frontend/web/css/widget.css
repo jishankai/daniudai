@@ -374,9 +374,9 @@ a {
 .info-box .forms .select p{
 	margin-bottom: 0;
 	line-height: 20px;
-	padding: 0 36px 0 0;
+	padding: 0 30px 0 0;
 	cursor: pointer;
-	font-size: 16px;
+	font-size: 14px;
 }
 .info-box .forms .select p.d-color {
 	color: #999;
