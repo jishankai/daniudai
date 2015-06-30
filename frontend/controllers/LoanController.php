@@ -240,10 +240,14 @@ class LoanController extends \yii\web\Controller
                         throw $e;
                     }
                 } else {
-                    $_SESSION['verify_times']-=1;
+                    if ($json_obj->stat==2) {
+                        $_SESSION['verify_times']-=1;
+                    }
                 }
             } else {
-                $_SESSION['verify_times']-=1;
+                if ($json_obj->stat==2) {
+                    $_SESSION['verify_times']-=1;
+                }
             }
             return json_encode(['resCode'=>$json_obj->resCode, 'resMsg'=>$json_obj->resMsg, 'stat'=>$json_obj->stat, 'verify_times'=>$_SESSION['verify_times'], 'mobile'=>$mobile]);
         } else {
@@ -306,7 +310,7 @@ class LoanController extends \yii\web\Controller
         $l = Loan::findOne(['wechat_id'=>$user['openid']]);
         $student = Student::findOne($user['openid']);
 
-        if ($l->status==0) {
+        if ($l->status<=0) {
             $transaction = Yii::$app->db->beginTransaction();
             try {
                 $l->status = 1;
@@ -446,6 +450,18 @@ class LoanController extends \yii\web\Controller
                     "remark"   => "我们会在 24 小时内给您汇款，请耐心等待。",
                 );
                 $messageId = $notice->uses($templateId)->withUrl($url2)->andData($data2)->andReceiver($l->wechat_id)->send();
+            } else if ($operation==-1) {
+                $templateId = Yii::$app->params['templateId_review'];
+                $url = Url::to(['loan/failed`'],TRUE);
+                $data = array(
+                    "first"    => "大牛您好！您没有通过审核",
+                    "keyword1" => "{$l->money}元",
+                    "keyword2" => "{$l->duration}天",
+                    "keyword3" => "{$l->rate}*每个月的天数",
+                    "keyword4" => "未通过",
+                    "remark"   => "请核对借款条件及个人信息后再提出申请，谢谢关注。",
+                );
+                $messageId = $notice->uses($templateId)->withUrl($url)->andData($data)->andReceiver($l->wechat_id)->send();
             }
         } else if ($operation==3 AND $open_id==Yii::$app->params['admin_supporter']) {
             $l = Loan::findOne($loan_id);
