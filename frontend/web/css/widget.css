@@ -513,11 +513,25 @@ a {
  	background-color: rgba(0, 0, 0, .4);
  	display: none;
 }
+.masker-60 {	
+ 	background-color: rgba(0, 0, 0, .6);
+}
 .popover{
 	position: absolute;
 	z-index: 10010;
 	display: none;		
 	margin: 10px 15px;
+}
+.popover.popover-tiny{
+	left:50%;
+	top:50%;	
+	margin:-12px 0 0 -12px;
+	opacity: 1; 
+	-webkit-transition: opacity 2s ease;
+	-moz-transition: opacity 2s ease;
+	-ms-transition: opacity 2s ease;
+	-o-transition: opacity 2s ease;
+	transition: opacity 2s ease; 	
 }
 .popover.popover-small{
 	left: 50%;
