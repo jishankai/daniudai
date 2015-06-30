@@ -38,6 +38,7 @@ function Log(msg){
 		this.bankName = $("#bank_name");
 		this.mask = $("#masker");
 		this.iconOption = $(".icon-option");
+		this.loading = $("#loading_masker");
 		this._addEvents();
 	}
 	
@@ -269,6 +270,8 @@ function Log(msg){
 				smBtn = $("#next2"),
 				cbank_name,
 				bank_index = -1,
+				mask = this.mask,
+				loading = this.loading,
 				bankListE = ["IBCB","ABC","CCB","CMB","BOC","PSBC","COMM","CITIC","CMBC","CEB","CIB","SPDB","GDB","HXBANK","SPABANK","BJBANK","BJRCB","SHBANK","JSBANK"],
 				bankListC = ["中国工商银行","中国农业银行","中国建设银行","招商银行","中国银行","中国邮政储蓄银行","交通银行","中信银行","中国民生银行","中国光大银行","兴业银行","浦发银行","广发银行","华夏银行","平安银行","北京银行","北京农商银行","上海银行","江苏银行"];
 				
@@ -289,7 +292,9 @@ function Log(msg){
 								if(phone){
 									/*提交*/	
 									if(smBtn.hasClass("disabled")) return false;
-									smBtn.addClass('disabled');			 					
+									smBtn.addClass('disabled');
+									mask.addClass("masker-60").show();
+									loading.show();			 					
 									TOOLS.ajax({
 										url:"./index.php?r=loan/verify",
 										data:{name:zName,bank_card:zzCard,id_card:zIdCard,mobile:zMobile,bank_name:cbank_name},
@@ -312,7 +317,8 @@ function Log(msg){
 												MessageBox.alert({type:"message",txt:"系统错误，请稍后重试！"});
 												smBtn.removeClass("disabled");
 											}
-
+											mask.removeClass("masker-60").hide();
+											loading.hide();
 										},
 										fnError:function(){}
 									});
