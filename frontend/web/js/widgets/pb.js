@@ -71,8 +71,9 @@ function Log(msg){
 
 			/*卡号输入判断*/
 			this.cardInput.on("keyup", function(){
-				var card_id=this.value;
-				this.value=sthis._fnCard(card_id);
+				var card_id = this.value,
+					bankCard = this;
+				this.value=sthis._fnCard(card_id,bankCard);
 			})
 			/*身份证号输入判断*/
 			this.idCardInput.on("keyup", function(){
@@ -134,7 +135,7 @@ function Log(msg){
 
 		},
 		//卡号处理
-		_fnCard : function(card_id){
+		_fnCard : function(card_id,bankCard){
 			card_id = card_id.replace(/\D/g,'').replace(/....(?!$)/g,'$& ');
 			var b_len = card_id.length,
 				bRIcon = $("#bRIcon");
@@ -158,10 +159,15 @@ function Log(msg){
 				this.bankName.hide();
 			}else if(b_len>=12){
 				var bank_type=TOOLS.isBank(card_id.replace(/\s+/g,""));
-				if(bank_type){
+				if(bank_type.bank){
 					this.bankName.find("span").removeClass();
-					this.bankName.find("span").addClass("bankName "+bank_type);
+					this.bankName.find("span").addClass("bankName "+bank_type.bank);
 					this.bankName.show();
+					if(bank_type.len>16){
+						$(bankCard).attr("maxlength",bank_type.len+4);
+					}else{
+						$(bankCard).attr("maxlength",bank_type.len+3);
+					}
 					
 				}
 			}
@@ -277,11 +283,10 @@ function Log(msg){
 				
 				if(bcflag2){
 					for(var i=0;i<bankListE.length;i++){
-						if(bcflag2 == bankListE[i]){bank_index = i;}
+						if(bcflag2.bank == bankListE[i]){bank_index = i;}
 					}
 					cbank_name = bankListC[bank_index];
 				}
-
 			if(this.boxFlag){
 				if(zCard_len != 19 && zCard_len == 23 || zCard_len != 23 && zCard_len == 19){
 					if(bcflag){
