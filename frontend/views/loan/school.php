@@ -176,7 +176,7 @@
 
 <!-- 请输入真实姓名 -->
 
-<div class="popover popover-small" style="display:none;position: relative; margin-left:-90px; " id="n_validate"><!--提示消失opacity:0;显示位置margin:-20px 0 0 -90px;-->
+<div class="popover popover-small" style="display:none;position: absolute; margin-left:-90px; " id="n_validate"><!--提示消失opacity:0;显示位置margin:-20px 0 0 -90px;-->
 	<div class="popover-inner">
 		<div class="wrong-box">
 			<p id="error">请输入真实姓名</p>				
