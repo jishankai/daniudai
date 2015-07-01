@@ -65,6 +65,8 @@ $(function(){
 			/*alert(sname.length);*/
 			if(sname.length<2){
 				falg=-1;
+			}else{
+				falg=0;
 			}
 			
 			if(falg==-1){
