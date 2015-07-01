@@ -299,7 +299,9 @@ function Log(msg){
 									if(smBtn.hasClass("disabled")) return false;
 									smBtn.addClass('disabled');
 									mask.addClass("masker-60").show();
-									loading.show();			 					
+									setTimeout(function(){
+										loading.css({height:"100%"}).show();	
+									},200);		 					
 									TOOLS.ajax({
 										url:"./index.php?r=loan/verify",
 										data:{name:zName,bank_card:zzCard,id_card:zIdCard,mobile:zMobile,bank_name:cbank_name},
