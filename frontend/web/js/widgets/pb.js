@@ -153,7 +153,7 @@ function Log(msg){
 					this.idCardInput.focus();
 					window.scrollTo(0,180);
 				}
-			}else if(b_len==23 && bank_type.len==16){
+			}else if(b_len==23 && bank_type.len==19){
 				if(bank_type){
 					this.boxFlag=1;
 					this.imbox.show();
