@@ -60,8 +60,12 @@ $(function(){
 			$("#school_id").val(s1+s2);
 
 			sname= $("#name").val();
-			RegCellName = /^[\u4e00-\u9fa5\·]*$/;
-			falg=sname.search(RegCellName);
+			/*RegCellName = /^[\u4e00-\u9fa5\·]*$/;
+			falg=sname.search(RegCellName);*/
+			/*alert(sname.length);*/
+			if(sname.length<2){
+				falg=-1;
+			}
 			
 			if(falg==-1){
 				$("#error").html("请输入真实姓名");
