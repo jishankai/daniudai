@@ -138,27 +138,34 @@ function Log(msg){
 		_fnCard : function(card_id,bankCard){
 			card_id = card_id.replace(/\D/g,'').replace(/....(?!$)/g,'$& ');
 			var b_len = card_id.length,
-				bRIcon = $("#bRIcon");
+				bRIcon = $("#bRIcon"),
+				bank_type=TOOLS.isBank(card_id.replace(/\s+/g,""));
 			if(b_len==0){
 				bRIcon.addClass("active").show().siblings().hide();
 				this.imbox.hide();
 				this.bankName.hide();
 			}else if(b_len==1){
 				bRIcon.removeClass("active").hide().siblings().show().removeClass("active");	
-			}else if(b_len==18){
-							
-			}else if(b_len==19){
-				var bank_type=TOOLS.isBank(card_id.replace(/\s+/g,""));
+			}else if(b_len==19 && bank_type.len==16){	
 				if(bank_type){
 					this.boxFlag=1;
 					this.imbox.show();
+					this.idCardInput.focus();
+					window.scrollTo(0,180);
 				}
+			}else if(b_len==23 && bank_type.len==16){
+				if(bank_type){
+					this.boxFlag=1;
+					this.imbox.show();
+					this.idCardInput.focus();
+					window.scrollTo(0,180);
+				}		
 			}else if(b_len<12){	
 				this.imbox.hide();
 				this.boxFlag=0;
 				this.bankName.hide();
 			}else if(b_len>=12){
-				var bank_type=TOOLS.isBank(card_id.replace(/\s+/g,""));
+				
 				if(bank_type.bank){
 					this.bankName.find("span").removeClass();
 					this.bankName.find("span").addClass("bankName "+bank_type.bank);
@@ -171,6 +178,7 @@ function Log(msg){
 					
 				}
 			}
+
 			return card_id;
 		},
 		//身份证处理
