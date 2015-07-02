@@ -140,7 +140,7 @@ var lists = {
 	'622212' : {bank:'ICBC', len:16},
 	'622213' : {bank:'ICBC', len:16},
 	'622214' : {bank:'ICBC', len:16},
-	'622110' : {bank:'ICBC', len:16},
+	'622110' : {bank:'ICBC', len:18},
 	'622220' : {bank:'ICBC', len:16},
 	'622223' : {bank:'ICBC', len:16},
 	'622225' : {bank:'ICBC', len:16},
@@ -263,8 +263,6 @@ var lists = {
 	'621724' : {bank:'ICBC', len:19},
 	'621762' : {bank:'ICBC', len:19},
 	'621371' : {bank:'ICBC', len:16},
-	'620143' : {bank:'ICBC', len:16},
-	'620149' : {bank:'ICBC', len:16},
 	'621730' : {bank:'ICBC', len:16},
 	'621414' : {bank:'ICBC', len:19},
 	'621375' : {bank:'ICBC', len:19},
@@ -303,8 +301,8 @@ var lists = {
 	'621731' : {bank:'ICBC', len:16},
 	'621781' : {bank:'ICBC', len:16},
 	'103' : {bank:'ABC', len:19},
-	'634910' : {bank:'ABC', len:16},
-	'635359' : {bank:'ABC', len:16},
+	'49102' : {bank:'ABC', len:16},
+	'53591' : {bank:'ABC', len:16},
 	'623206' : {bank:'ABC', len:19},
 	'621671' : {bank:'ABC', len:19},
 	'620059' : {bank:'ABC', len:19},
@@ -497,7 +495,7 @@ var lists = {
 	'620021' : {bank:'COMM', len:19},
 	'620521' : {bank:'COMM', len:19},
 	'405512' : {bank:'COMM', len:17},
-	'006014' : {bank:'COMM', len:19},
+	'601428' : {bank:'COMM', len:17},
 	'405512' : {bank:'COMM', len:19},
 	'601428' : {bank:'COMM', len:17},
 	'622254' : {bank:'COMM', len:16},
@@ -706,6 +704,7 @@ var lists = {
 	'621083' : {bank:'CCB', len:16},
 	'622459' : {bank:'CITIC', len:17},
 	'623328' : {bank:'CITIC', len:17},
+	'623397' : {bank:'CITIC', len:17},
 	'621741' : {bank:'BOC', len:19},
 	'623040' : {bank:'BOC', len:16},
 	'620202' : {bank:'BOC', len:16},
@@ -713,5 +712,14 @@ var lists = {
 	'621782' : {bank:'BOC', len:19},
 	'623309' : {bank:'BOC', len:19},
 	'622348' : {bank:'BOC', len:16},
-	'623251' : {bank:'CCB', len:16}
+	
+	'623271' : {bank:'ICBC', len:19},
+	'623272' : {bank:'ICBC', len:19},
+	
+	'623262' : {bank:'CMB', len:16},
+	'621041' : {bank:'BOC', len:19},
+	'620107' : {bank:'CCB', len:16},
+	
+	'436742' : {bank:'CCB', len:19},
+	'622280' : {bank:'CCB', len:19}
 }
