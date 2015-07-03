@@ -15,7 +15,8 @@ var TOOLS = (function(){
 		isBank:isBank,
 		getItem:getItem,
 		setItem:setItem,
-		ajax:_ajax
+		ajax:_ajax,
+		animate:_animate
 	}
 	
 	//判断身份证合法
@@ -157,5 +158,24 @@ var TOOLS = (function(){
 		} else {
 			
 		}
+	}
+	//滚动条
+	function _animate(scrollTo, time){
+		var scrollFrom = parseInt(document.body.scrollTop),
+	        i = 0,
+	        runEvery = 5;
+	
+	    scrollTo = parseInt(scrollTo);
+	    time /= runEvery;
+	
+	    var interval = setInterval(function () {
+	        i++;
+	
+	        document.body.scrollTop = (scrollTo - scrollFrom) / time * i + scrollFrom;
+	
+	        if (i >= time) {
+	            clearInterval(interval);
+	        }
+	    }, runEvery);
 	}
 })();
