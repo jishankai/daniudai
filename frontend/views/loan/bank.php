@@ -96,7 +96,7 @@
 						<span class="close" id="close10">&times;</span>
 					</div>
 					<div class="lists-body alists-body" id="cbank-list">
-						<div id="agree_list">
+						<div id="agree_list" class="agree_list">
 							<p>
 								甲方（出借人）：渠帅<br/>
 								乙方（借款人）：<br/>

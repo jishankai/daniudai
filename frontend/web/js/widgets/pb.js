@@ -248,6 +248,7 @@ function Log(msg){
 					$(inIs[0]).addClass("active").show();
 					$(inIs[1]).hide();
 					if(intype=="bank_card"){
+						this.agreement.hide();
 						this.imbox.hide();
 						this.bankName.hide();
 						this.idCardInput.val("");
