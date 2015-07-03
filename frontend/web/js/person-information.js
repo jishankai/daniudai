@@ -8,7 +8,7 @@ $(function(){
 
 /*验证提示框位置适配*/
 	wheight=$(window).height();
-	$("#n_validate").css("top","10%");
+	$("#n_validate").css("top","20px");
 	/*姓名输入验证*/
 	function validateName(){
 		/*$("#n_validate").fadeTo(500,1);*/

@@ -20,12 +20,19 @@
 
  	Pub.prototype = {
  		//初始化
+ 		
  		_init : function(){
-
+ 			
  		},
  		//所有事件绑定
  		_addEvents : function(){
  			var sthis = this;
+
+ 			var times = 59,
+ 			send = this.sendBtn;
+ 			sthis._fnObtain(times,send);
+
+
  			/*验证码输入判断*/
  			this.captchaInput.on('keyup', function(){
  				var idCode_var = this.value;

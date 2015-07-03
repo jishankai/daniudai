@@ -150,18 +150,23 @@ function Log(msg){
 				if(bank_type){
 					this.boxFlag=1;
 					this.imbox.show();
+					this.agreement.show();
 					this.idCardInput.focus();
-					window.scrollTo(0,180);
+					/*window.scrollTo(0,180);*/
+					TOOLS.animate(180,500);
 				}
 			}else if(b_len==23 && bank_type.len==19){
 				if(bank_type){
 					this.boxFlag=1;
 					this.imbox.show();
+					this.agreement.show();
 					this.idCardInput.focus();
-					window.scrollTo(0,180);
+					/*window.scrollTo(0,180);*/
+					TOOLS.animate(180,500);
 				}		
 			}else if(b_len<12){	
 				this.imbox.hide();
+				this.agreement.hide();
 				this.boxFlag=0;
 				this.bankName.hide();
 			}else if(b_len>=12){
@@ -288,6 +293,8 @@ function Log(msg){
 				loading = this.loading,
 				bankListE = ["IBCB","ABC","CCB","CMB","BOC","PSBC","COMM","CITIC","CMBC","CEB","CIB","SPDB","GDB","HXBANK","SPABANK","BJBANK","BJRCB","SHBANK","JSBANK"],
 				bankListC = ["中国工商银行","中国农业银行","中国建设银行","招商银行","中国银行","中国邮政储蓄银行","交通银行","中信银行","中国民生银行","中国光大银行","兴业银行","浦发银行","广发银行","华夏银行","平安银行","北京银行","北京农商银行","上海银行","江苏银行"];
+				
+				this.iconOption.hide();
 				
 				if(bcflag2){
 					for(var i=0;i<bankListE.length;i++){

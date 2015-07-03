@@ -54,12 +54,12 @@
 			                        <input type="tel" class="forms_input" placeholder="银行预留手机号码" id="mobile" maxlength="11" node-type="LoanMobileInput" autocomplete="off" onpaste="return false;">
 			                        <span class="icon-option" node-type="mobile"><i class="icons icons-infoNew active" id="mRIcon"></i><i class="icons icons-cross" style="display:none;"></i></span>
 			                    </span>
-			                </div> 
-			                <div class="forms-item agreement active" style="display:block;" id="agreement-btn">
-			            		<p class="text"><i class="icons icons-checkNew"></i>同意接受&nbsp;<a href="javascript:;">借款协议</a></p>      	
-			            	</div>	
+			                </div> 	
 		                </div>
-		                	                
+		                <div class="forms-item agreement active" style="display:block;" id="agreement-btn">
+		                	<p class="text"><i class="icons icons-checkNew"></i>同意接受&nbsp;<a href="javascript:;">借款协议</a></p>      	
+		                </div>
+		             	                
 		                <div class="forms__option">
 		                	<button class="btn btn-primary btn-fullwidth" id="next2" disabled node-type="LoanSubmitBtn">下一步</button><!--disabled-->
 		                </div>                                              
