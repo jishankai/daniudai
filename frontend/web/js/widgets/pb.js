@@ -153,7 +153,9 @@ function Log(msg){
 					this.agreement.show();
 					this.idCardInput.focus();
 					/*window.scrollTo(0,180);*/
-					TOOLS.animate(180,500);
+					setTimeout(function(){
+						TOOLS.animate(180,500)
+					},200);
 				}
 			}else if(b_len==23 && bank_type.len==19){
 				if(bank_type){
@@ -162,7 +164,9 @@ function Log(msg){
 					this.agreement.show();
 					this.idCardInput.focus();
 					/*window.scrollTo(0,180);*/
-					TOOLS.animate(180,500);
+					setTimeout(function(){
+						TOOLS.animate(180,500)
+					},200);
 				}		
 			}else if(b_len<12){	
 				this.imbox.hide();
