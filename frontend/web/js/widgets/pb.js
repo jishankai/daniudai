@@ -151,7 +151,7 @@ function Log(msg){
 					this.boxFlag=1;
 					this.imbox.show();
 					this.agreement.show();
-					this.idCardInput.focus();
+					/*this.idCardInput.focus();*/
 					/*window.scrollTo(0,180);*/
 					setTimeout(function(){
 						TOOLS.animate(180,500)
@@ -162,7 +162,7 @@ function Log(msg){
 					this.boxFlag=1;
 					this.imbox.show();
 					this.agreement.show();
-					this.idCardInput.focus();
+					/*this.idCardInput.focus();*/
 					/*window.scrollTo(0,180);*/
 					setTimeout(function(){
 						TOOLS.animate(180,500)
