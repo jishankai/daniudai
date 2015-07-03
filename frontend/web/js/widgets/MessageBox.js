@@ -33,7 +33,7 @@ var MessageBox = MessageBox || (function($, undefined){
 	}
 	
 	function setMessageErrorTxt(options){
-		$masker.trigger("masker:show");
+		$masker.show();
 		$message_masker.show().find("p").html(options.txt);
 
 		setTimeout(function(){
