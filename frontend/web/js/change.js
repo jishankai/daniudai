@@ -142,6 +142,15 @@ function mclick(school_name){
 						$("#major").html(college+'/'+admission_year);
 						$("#major").removeClass("d-color");
 						$("#admission_year").css("left",-wwidth);//左推动画重置
+
+						var ipt=$("input");
+						for(var i=0; i<ipt.length; i++){
+							if($(ipt[i]).val().length == 0){		
+								return false;
+							}
+						}
+						/*if($("#next").hasClass("disabled")) return false;*/
+						$("#next").removeAttr("disabled");
 	
 					})/*$("#year_list li").click结束*/								
 			})/*$("#college-list li").click结束*/
