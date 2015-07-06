@@ -146,28 +146,34 @@ function Log(msg){
 				this.bankName.hide();
 			}else if(b_len==1){
 				bRIcon.removeClass("active").hide().siblings().show().removeClass("active");	
-			}else if(b_len==19 && bank_type.len==16){	
-				if(bank_type){
-					this.boxFlag=1;
-					this.imbox.show();
-					this.agreement.show();
-					/*this.idCardInput.focus();*/
-					/*window.scrollTo(0,180);*/
-					setTimeout(function(){
-						TOOLS.animate(180,500)
-					},200);
-				}
+			}else if(b_len==18 && bank_type.len==15){
+				this.boxFlag=1;
+				this.imbox.show();
+				this.agreement.show();
+				setTimeout(function(){
+					TOOLS.animate(180,500)
+				},200);	
+			}else if(b_len==19 && bank_type.len==16){			
+				this.boxFlag=1;
+				this.imbox.show();
+				this.agreement.show();
+				setTimeout(function(){
+					TOOLS.animate(180,500)
+				},200);	
+			}else if(b_len==22 && bank_type.len==18){
+				this.boxFlag=1;
+				this.imbox.show();
+				this.agreement.show();
+				setTimeout(function(){
+					TOOLS.animate(180,500)
+				},200);	
 			}else if(b_len==23 && bank_type.len==19){
-				if(bank_type){
-					this.boxFlag=1;
-					this.imbox.show();
-					this.agreement.show();
-					/*this.idCardInput.focus();*/
-					/*window.scrollTo(0,180);*/
-					setTimeout(function(){
-						TOOLS.animate(180,500)
-					},200);
-				}		
+				this.boxFlag=1;
+				this.imbox.show();
+				this.agreement.show();
+				setTimeout(function(){
+					TOOLS.animate(180,500)
+				},200);		
 			}else if(b_len<12){	
 				this.imbox.hide();
 				this.agreement.hide();
@@ -185,6 +191,8 @@ function Log(msg){
 						$(bankCard).attr("maxlength",bank_type.len+3);
 					}
 					
+				}else{
+					$(bankCard).attr("maxlength","23");
 				}
 			}
 
@@ -308,74 +316,68 @@ function Log(msg){
 					cbank_name = bankListC[bank_index];
 				}
 			if(this.boxFlag){
-				if(zCard_len != 19 && zCard_len == 23 || zCard_len != 23 && zCard_len == 19){
-					if(bcflag){
-						if(age){
-							if(age>30 || age<16){
-								MessageBox.alert({type:"common",txt:CS.ERRORMSG["AGENOTRANGEERROR"]});
-							}else{
-								if(phone){
-									/*提交*/	
-									if(smBtn.hasClass("disabled")) return false;
-									smBtn.addClass('disabled');
-									mask.addClass("masker-60").show();
-									setTimeout(function(){
-										loading.css({height:"100%"}).show();	
-									},200);		 					
-									TOOLS.ajax({
-										url:"./index.php?r=loan/verify",
-										data:{name:zName,bank_card:zzCard,id_card:zIdCard,mobile:zMobile,bank_name:cbank_name},
-										dataType:"json",
-										type:"post",
-										fnSuccess:function(data){
-											if(data.stat == "1"){
-												window.location.href= "./index.php?r=loan/sms&mobile="+data.mobile;
-											}else if(data.stat == "2"){
-												if(data.verify_times == "2"){
-													MessageBox.alert({type:"message",txt:CS.ERRORMSG["TWOCHANCE"],cls:true});
-													smBtn.removeClass("disabled");
-												}else if(data.verify_times == "1"){
-													MessageBox.alert({type:"message",txt:CS.ERRORMSG["ONECHANCE"],cls:true});
-													smBtn.removeClass("disabled");
-												}else if(data.verify_times <= "0"){
-													window.location.href= "./index.php?r=loan/failed";
-												}
-											}else{
-												MessageBox.alert({type:"message",txt:"系统错误，请稍后重试！"});
-												smBtn.removeClass("disabled");
-											}
-											mask.removeClass("masker-60").hide();
-											loading.hide();
-										},
-										fnError:function(){}
-									});
-
-								}else{
-									MessageBox.alert({type:"common",txt:CS.ERRORMSG["MOBILEERROR"]});
-								}
-							}
-						}else{
-							MessageBox.alert({type:"common",txt:CS.ERRORMSG["IDENTITYERROR"]});
-						}
-					}else{
-						MessageBox.alert({type:"common",txt:CS.ERRORMSG["BANKCARDERROR"]});
-					}		
 				
+				if(bcflag){
+					if(age){
+						if(age>30 || age<16){
+							MessageBox.alert({type:"common",txt:CS.ERRORMSG["AGENOTRANGEERROR"]});
+						}else{
+							if(phone){
+								/*提交*/	
+								if(smBtn.hasClass("disabled")) return false;
+								smBtn.addClass('disabled');
+								mask.addClass("masker-60").show();
+								setTimeout(function(){
+									loading.css({height:"100%"}).show();	
+								},200);		 					
+								TOOLS.ajax({
+									url:"./index.php?r=loan/verify",
+									data:{name:zName,bank_card:zzCard,id_card:zIdCard,mobile:zMobile,bank_name:cbank_name},
+									dataType:"json",
+									type:"post",
+									fnSuccess:function(data){
+										if(data.stat == "1"){
+											window.location.href= "./index.php?r=loan/sms&mobile="+data.mobile;
+										}else if(data.stat == "2"){
+											if(data.verify_times == "2"){
+												MessageBox.alert({type:"message",txt:CS.ERRORMSG["TWOCHANCE"],cls:true});
+												smBtn.removeClass("disabled");
+											}else if(data.verify_times == "1"){
+												MessageBox.alert({type:"message",txt:CS.ERRORMSG["ONECHANCE"],cls:true});
+												smBtn.removeClass("disabled");
+											}else if(data.verify_times <= "0"){
+												window.location.href= "./index.php?r=loan/failed";
+											}
+										}else{
+											MessageBox.alert({type:"message",txt:"系统错误，请稍后重试！"});
+											smBtn.removeClass("disabled");
+										}
+										mask.removeClass("masker-60").hide();
+										loading.hide();
+									},
+									fnError:function(){}
+								});
+
+}else{
+	MessageBox.alert({type:"common",txt:CS.ERRORMSG["MOBILEERROR"]});
+}
+}
+}else{
+	MessageBox.alert({type:"common",txt:CS.ERRORMSG["IDENTITYERROR"]});
+}
 				}else{
 					MessageBox.alert({type:"common",txt:CS.ERRORMSG["BANKCARDERROR"]});
-				}
+				}		
+				
 			}else{
-				if(zCard_len != 19 && zCard_len == 23 || zCard_len != 23 && zCard_len == 19){
+				
+				if(bcflag2){
 					if(bcflag){
-						if(bcflag2){
-						}else{
-							MessageBox.alert({type:"common",txt:CS.ERRORMSG["NOBANKERROR"]});
-						}
 					}else{
 						MessageBox.alert({type:"common",txt:CS.ERRORMSG["BANKCARDERROR"]});
 					}
 				}else{
-					MessageBox.alert({type:"common",txt:CS.ERRORMSG["BANKCARDERROR"]});
+					MessageBox.alert({type:"common",txt:CS.ERRORMSG["NOBANKERROR"]});
 				}
 			}
 		
