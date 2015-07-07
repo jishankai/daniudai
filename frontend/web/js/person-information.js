@@ -133,7 +133,7 @@ $(function(){
 					if(data.stat == "1"){
 						window.location.href= "./index.php?r=loan/bank";
 					}else{
-						MessageBox.alert({type:"message",txt:"当前学生信息已被占用，请核实重新填写。"});
+						MessageBox.alert({type:"message",txt:"当前学生信息已被占用，请核实重新填写。",cls:true});
 						next.removeClass("disabled");
 					}
 					mask.removeClass("masker-60").hide();
