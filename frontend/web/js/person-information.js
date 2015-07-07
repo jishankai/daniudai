@@ -109,8 +109,41 @@ $(function(){
 
 		}
 
+		var next = $("#next"),
+			z_name = $("#name").val(),
+			zstu_id = $("#stu_id").val(),
+			z_grade = $("#grade").val(),
+			zschool_id = $("#school_id").val(),
+			mask = $("#masker");
+
 		if(falg!=-1 && falg1!=-1 && falg2!=-1 && stu_len==8 || falg!=-1 && falg1!=-1 && falg2!=-1  && stu_len==10){
-			$("#next1").click();
+			
+			if(next.hasClass("disabled")) return false;
+			next.addClass('disabled');
+			mask.addClass("masker-60").show();
+			setTimeout(function(){
+				loading.css({height:"100%"}).show();	
+			},200);		 					
+			TOOLS.ajax({
+				url:"./index.php?r=loan/bank",
+				data:{name:z_name,stu_id:zstu_id,grade:z_grade,school_id:zschool_id},
+				dataType:"json",
+				type:"post",
+				fnSuccess:function(data){
+					if(data.stat == "1"){
+						window.location.href= "./index.php?r=loan/bank";
+					}else{
+						MessageBox.alert({type:"message",txt:"当前学生信息已被占用，请核实重新填写。"});
+						next.removeClass("disabled");
+					}
+					mask.removeClass("masker-60").hide();
+					loading.hide();
+				},
+				fnError:function(){}
+			});
+
+
+
 		}
 		
 	})
