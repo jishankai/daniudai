@@ -115,12 +115,18 @@ $(function(){
 			z_grade = $("#grade").val(),
 			zschool_id = $("#school_id").val(),
 			zdorm = $("#address").val(),
+			loading = $("#loading_masker"),
+			loadingImg = $("#loadingImg"),
 			mask = $("#masker");
 
 		if(falg!=-1 && falg1!=-1 && falg2!=-1 && stu_len==8 || falg!=-1 && falg1!=-1 && falg2!=-1  && stu_len==10){
 			
 			if(next.hasClass("disabled")) return false;
-			next.addClass('disabled');	 					
+			next.addClass('disabled');	 
+			mask.addClass("masker-60").show();
+			setTimeout(function(){
+				loading.css({height:"100%"}).show();	
+			},200);						
 			TOOLS.ajax({
 				url:"./index.php?r=loan/bank",
 				data:{name:z_name,stu_id:zstu_id,grade:z_grade,school_id:zschool_id,dorm:zdorm},
@@ -128,11 +134,14 @@ $(function(){
 				type:"post",
 				fnSuccess:function(data){
 					if(data.stat == "1"){
+						loadingImg.hide();	
 						window.location.href= "./index.php?r=loan/bank";
 					}else{
-						MessageBox.alert({type:"message",txt:"当前学生信息已被占用，请核实重新填写。",cls:true});
+						loadingImg.hide();
+						MessageBox.alert({type:"message",txt:"当前学生信息已被占用，请核实重新填写。"});
 						next.removeClass("disabled");
 					}
+					mask.removeClass("masker-60");
 				},
 				fnError:function(){}
 			});

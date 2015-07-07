@@ -91,7 +91,7 @@
 		</div>	
 		<div id="loading_masker"class="popover popover-tiny" style="display:none;position: absolute;"><!--提示消失opacity:0;蒙层加上这个class  masker-60-->
 			<div class="popover-inner">
-				<img src="img/loader4.gif">
+				<img src="img/loader4.gif" id="loadingImg">
 			</div>
 		</div> 	
 	</div>	
