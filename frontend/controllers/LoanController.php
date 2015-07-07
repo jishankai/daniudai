@@ -30,11 +30,10 @@ class LoanController extends \yii\web\Controller
 
         session_start();
         $user = $_SESSION['user'];
-        $wechat_id = $user['open_id'];
 
-        $s = Student::findOne($wechat_id);
-        $u = User::findOne($wechat_id);
-        $l = Loan::findOne(['wechat_id'=>$wechat_id]);
+        $s = Student::findOne($user['openid']);
+        $u = User::findOne($user['openid']);
+        $l = Loan::findOne(['wechat_id'=>$user['openid']]);
 
         if (!Yii::$app->request->getIsAjax()) {
             if (isset($l) AND $l->status>0) {
@@ -42,7 +41,7 @@ class LoanController extends \yii\web\Controller
             } else {
                 $appId = Yii::$app->params['wechat_appid'];
                 $secret = Yii::$app->params['wechat_appsecret'];
-                $js = new Js($appId, $secret); 
+                $js = new Js($appId, $secret);
                 return $this->renderPartial('bank', ['v'=>Yii::$app->params['assets_version'],'user'=>$u,'loan'=>$l,'js'=>$js]);
             }
         } else {
