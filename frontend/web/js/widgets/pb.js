@@ -160,6 +160,13 @@ function Log(msg){
 				setTimeout(function(){
 					TOOLS.animate(180,500)
 				},200);	
+			}else if(b_len==21 && bank_type.len==17){
+				this.boxFlag=1;
+				this.imbox.show();
+				this.agreement.show();
+				setTimeout(function(){
+					TOOLS.animate(180,500)
+				},200);	
 			}else if(b_len==22 && bank_type.len==18){
 				this.boxFlag=1;
 				this.imbox.show();
@@ -358,13 +365,13 @@ function Log(msg){
 									fnError:function(){}
 								});
 
-}else{
-	MessageBox.alert({type:"common",txt:CS.ERRORMSG["MOBILEERROR"]});
-}
-}
-}else{
-	MessageBox.alert({type:"common",txt:CS.ERRORMSG["IDENTITYERROR"]});
-}
+							}else{
+								MessageBox.alert({type:"common",txt:CS.ERRORMSG["MOBILEERROR"]});
+							}
+						}
+					}else{
+						MessageBox.alert({type:"common",txt:CS.ERRORMSG["IDENTITYERROR"]});
+					}
 				}else{
 					MessageBox.alert({type:"common",txt:CS.ERRORMSG["BANKCARDERROR"]});
 				}		

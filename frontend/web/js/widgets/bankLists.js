@@ -496,7 +496,6 @@ var lists = {
 	'620521' : {bank:'COMM', len:19},
 	'405512' : {bank:'COMM', len:17},
 	'601428' : {bank:'COMM', len:17},
-	'405512' : {bank:'COMM', len:19},
 	'601428' : {bank:'COMM', len:17},
 	'622254' : {bank:'COMM', len:16},
 	'622255' : {bank:'COMM', len:16},
