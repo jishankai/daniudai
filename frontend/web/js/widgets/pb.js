@@ -359,6 +359,10 @@ function Log(msg){
 											}else if(data.verify_times <= "0"){
 												window.location.href= "./index.php?r=loan/failed";
 											}
+										}else if(data.stat == "5"){
+											loadingImg.hide();
+											MessageBox.alert({type:"message",txt:"当前学生信息已被占用，请核实重新填写。"});
+											smBtn.removeClass("disabled");
 										}else{
 											loading.hide();
 											loadingImg.hide();
