@@ -39,6 +39,7 @@ function Log(msg){
 		this.mask = $("#masker");
 		this.iconOption = $(".icon-option");
 		this.loading = $("#loading_masker");
+		this.loadingImg = $("#loadingImg");
 		this._addEvents();
 	}
 	
@@ -311,6 +312,7 @@ function Log(msg){
 				bank_index = -1,
 				mask = this.mask,
 				loading = this.loading,
+				loadingImg = this.loadingImg,
 				bankListE = ["IBCB","ABC","CCB","CMB","BOC","PSBC","COMM","CITIC","CMBC","CEB","CIB","SPDB","GDB","HXBANK","SPABANK","BJBANK","BJRCB","SHBANK","JSBANK"],
 				bankListC = ["中国工商银行","中国农业银行","中国建设银行","招商银行","中国银行","中国邮政储蓄银行","交通银行","中信银行","中国民生银行","中国光大银行","兴业银行","浦发银行","广发银行","华夏银行","平安银行","北京银行","北京农商银行","上海银行","江苏银行"];
 				
@@ -347,15 +349,19 @@ function Log(msg){
 											window.location.href= "./index.php?r=loan/sms&mobile="+data.mobile;
 										}else if(data.stat == "2"){
 											if(data.verify_times == "2"){
+												loadingImg.hide();
 												MessageBox.alert({type:"message",txt:CS.ERRORMSG["TWOCHANCE"],cls:true});
 												smBtn.removeClass("disabled");
 											}else if(data.verify_times == "1"){
+												loadingImg.hide();
 												MessageBox.alert({type:"message",txt:CS.ERRORMSG["ONECHANCE"],cls:true});
 												smBtn.removeClass("disabled");
 											}else if(data.verify_times <= "0"){
 												window.location.href= "./index.php?r=loan/failed";
 											}
 										}else{
+											loading.hide();
+											loadingImg.hide();
 											MessageBox.alert({type:"message",txt:"系统错误，请稍后重试！"});
 											smBtn.removeClass("disabled");
 										}
