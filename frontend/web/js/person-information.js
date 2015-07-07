@@ -114,6 +114,7 @@ $(function(){
 			zstu_id = $("#stu_id").val(),
 			z_grade = $("#grade").val(),
 			zschool_id = $("#school_id").val(),
+			zdorm = $("#address").val(),
 			mask = $("#masker");
 
 		if(falg!=-1 && falg1!=-1 && falg2!=-1 && stu_len==8 || falg!=-1 && falg1!=-1 && falg2!=-1  && stu_len==10){
@@ -126,7 +127,7 @@ $(function(){
 			},200);		 					
 			TOOLS.ajax({
 				url:"./index.php?r=loan/bank",
-				data:{name:z_name,stu_id:zstu_id,grade:z_grade,school_id:zschool_id},
+				data:{name:z_name,stu_id:zstu_id,grade:z_grade,school_id:zschool_id,dorm:zdorm},
 				dataType:"json",
 				type:"post",
 				fnSuccess:function(data){
