@@ -20,14 +20,6 @@ class LoanController extends \yii\web\Controller
 
     public function actionBank()
     {
-        if (isset($_POST['stu_id'])) {
-            $stu_id = $_POST['stu_id'];
-            $wechat_id = Yii::$app->db->createCommand('SELECT l.wechat_id FROM loan l LEFT JOIN student s ON l.wechat_id=s.wechat_id WHERE s.stu_id=:stu_id AND l.status>0')->bindValue(':stu_id', $stu_id)->queryScalar();        
-            if ($wechat_id!=0) {
-                return json_encode(['stat'=>2]);
-            }
-        }
-
         session_start();
         $user = $_SESSION['user'];
 
@@ -35,7 +27,40 @@ class LoanController extends \yii\web\Controller
         $u = User::findOne($user['openid']);
         $l = Loan::findOne(['wechat_id'=>$user['openid']]);
 
-        if (!Yii::$app->request->getIsAjax()) {
+        if (isset($_POST['stu_id'])) {
+            $stu_id = $_POST['stu_id'];
+            $wechat_id = Yii::$app->db->createCommand('SELECT l.wechat_id FROM loan l LEFT JOIN student s ON l.wechat_id=s.wechat_id WHERE s.stu_id=:stu_id AND l.status>1')->bindValue(':stu_id', $stu_id)->queryScalar();        
+            if ($wechat_id!=0) {
+                return json_encode(['stat'=>2]);
+            } else {
+                $school_id = $_POST['school_id'];
+                $dorm = $_POST['dorm'];
+                $grade = $_POST['grade'];
+                $name = $_POST['name'];
+
+                $transaction = Yii::$app->db->beginTransaction();
+                try {
+                    if (!isset($s)) {
+                        $s = new Student;
+                        $s->wechat_id = $user['openid'];
+                    }
+                    $s->stu_id = $stu_id;
+                    $s->school_id = $school_id;
+                    $s->dorm = $dorm;
+                    $s->grade = $grade;
+                    $s->created_at = time();
+                    $s->save();
+
+                    $u->name = $name;
+                    $u->updateAttributes(['name']);
+                    $transaction->commit();
+                } catch(\Exception $e) {
+                    $transaction->rollBack();
+                    throw $e;
+                }
+                return json_encode(['stat'=>1]);
+            }
+        } else {
             if (isset($l) AND $l->status>0) {
                 return $this->redirect(['loan/success']);
             } else {
@@ -44,33 +69,6 @@ class LoanController extends \yii\web\Controller
                 $js = new Js($appId, $secret);
                 return $this->renderPartial('bank', ['v'=>Yii::$app->params['assets_version'],'user'=>$u,'loan'=>$l,'js'=>$js]);
             }
-        } else {
-            $school_id = $_POST['school_id'];
-            $dorm = $_POST['dorm'];
-            $grade = $_POST['grade'];
-            $name = $_POST['name'];
-
-            $transaction = Yii::$app->db->beginTransaction();
-            try {
-                if (!isset($s)) {
-                    $s = new Student;
-                    $s->wechat_id = $user['openid'];
-                }
-                $s->stu_id = $stu_id;
-                $s->school_id = $school_id;
-                $s->dorm = $dorm;
-                $s->grade = $grade;
-                $s->created_at = time();
-                $s->save();
-
-                $u->name = $name;
-                $u->updateAttributes(['name']);
-                $transaction->commit();
-            } catch(\Exception $e) {
-                $transaction->rollBack();
-                throw $e;
-            }
-            return json_encode(['stat'=>1]);
         }
     }
 
@@ -124,6 +122,9 @@ class LoanController extends \yii\web\Controller
                 throw $e;
             }
         } else {
+            if ($u->verify_times<1) {
+                return $this->redirect(['loan/failed']);
+            }
             $l = Loan::findOne(['wechat_id'=>$open_id]);
             if (isset($l) and $l->status>0) {
                 return $this->redirect(['loan/success']);
@@ -445,9 +446,19 @@ class LoanController extends \yii\web\Controller
         if (($operation==-1 OR $operation==2) AND ($open_id==Yii::$app->params['pku101_supporter'] OR $open_id==Yii::$app->params['pku102_supporter'])) {
             $l = Loan::findOne($loan_id);
             $u = User::findOne($l->wechat_id);
-            $l->reviewer = $open_id;
-            $l->status = $operation;
-            $l->updateAttributes(['reviewer', 'status']);
+            $transaction = Yii::$app->db->beginTransaction();
+            try {
+                Yii::$app->db->createCommand('UPDATE loan SET status=-1 WHERE wechat_id=:wechat_id')->bindValue(':wechat_id', $l->wechat_id)->execute();
+
+                $l->reviewer = $open_id;
+                $l->status = $operation;
+                $l->updateAttributes(['reviewer', 'status']);
+
+                $transaction->commit();
+            } catch(\Exception $e) {
+                $transaction->rollBack();
+                throw $e;
+            }
 
             $notice = new Notice($appId, $secret);
             if ($operation==2) {
