@@ -20,15 +20,17 @@ class LoanController extends \yii\web\Controller
 
     public function actionBank()
     {
-        $stu_id = $_POST['stu_id'];
-        $wechat_id = Yii::$app->db->createCommand('SELECT l.wechat_id FROM loan l LEFT JOIN student s ON l.wechat_id=s.wechat_id WHERE s.stu_id=:stu_id AND l.status>0')->bindValue(':stu_id', $stu_id)->queryScalar();        
-        if (!isset($wechat_id)) {
-            session_start();
-            $user = $_SESSION['user'];
-            $wechat_id = $user['open_id'];
-        } else {
-            return json_encode(['stat'=>2]);
+        if (isset($_POST['stu_id'])) {
+            $stu_id = $_POST['stu_id'];
+            $wechat_id = Yii::$app->db->createCommand('SELECT l.wechat_id FROM loan l LEFT JOIN student s ON l.wechat_id=s.wechat_id WHERE s.stu_id=:stu_id AND l.status>0')->bindValue(':stu_id', $stu_id)->queryScalar();        
+            if ($wechat_id!=0) {
+                return json_encode(['stat'=>2]);
+            }
         }
+
+        session_start();
+        $user = $_SESSION['user'];
+        $wechat_id = $user['open_id'];
 
         $s = Student::findOne($wechat_id);
         $u = User::findOne($wechat_id);
