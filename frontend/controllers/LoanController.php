@@ -20,46 +20,57 @@ class LoanController extends \yii\web\Controller
 
     public function actionBank()
     {
-        session_start();
-        $user = $_SESSION['user'];
-        $s = Student::findOne($user['openid']);
-        $u = User::findOne($user['openid']);
-        $l = Loan::findOne(['wechat_id'=>$user['openid']]);
         $stu_id = $_POST['stu_id'];
-        $school_id = $_POST['school_id'];
-        $dorm = $_POST['dorm'];
-        $grade = $_POST['grade'];
-        $name = $_POST['name'];
-
-        if (isset($l) AND $l->status>0) {
-            return $this->redirect(['loan/success']);
+        $wechat_id = Yii::$app->db->createCommand('SELECT l.wechat_id FROM loan l LEFT JOIN student s ON l.wechat_id=s.wechat_id WHERE s.stu_id=:stu_id AND l.status>0')->bindValue(':stu_id', $stu_id)->queryScalar();        
+        if (!isset($wechat_id)) {
+            session_start();
+            $user = $_SESSION['user'];
+            $wechat_id = $user['open_id'];
+        } else {
+            return json_encode(['stat'=>2]);
         }
 
-        $transaction = Yii::$app->db->beginTransaction();
-        try {
-            if (!isset($s)) {
-                $s = new Student;
-                $s->wechat_id = $user['openid'];
+        $s = Student::findOne($wechat_id);
+        $u = User::findOne($wechat_id);
+        $l = Loan::findOne(['wechat_id'=>$wechat_id]);
+
+        if (!Yii::$app->request->getIsAjax()) {
+            if (isset($l) AND $l->status>0) {
+                return $this->redirect(['loan/success']);
+            } else {
+                $appId = Yii::$app->params['wechat_appid'];
+                $secret = Yii::$app->params['wechat_appsecret'];
+                $js = new Js($appId, $secret); 
+                return $this->renderPartial('bank', ['v'=>Yii::$app->params['assets_version'],'user'=>$u,'loan'=>$l,'js'=>$js]);
             }
-            $s->stu_id = $stu_id;
-            $s->school_id = $school_id;
-            $s->dorm = $dorm;
-            $s->grade = $grade;
-            $s->created_at = time();
-            $s->save();
+        } else {
+            $school_id = $_POST['school_id'];
+            $dorm = $_POST['dorm'];
+            $grade = $_POST['grade'];
+            $name = $_POST['name'];
 
-            $u->name = $name;
-            $u->updateAttributes(['name']);
-            $transaction->commit();
-        } catch(\Exception $e) {
-            $transaction->rollBack();
-            throw $e;
+            $transaction = Yii::$app->db->beginTransaction();
+            try {
+                if (!isset($s)) {
+                    $s = new Student;
+                    $s->wechat_id = $user['openid'];
+                }
+                $s->stu_id = $stu_id;
+                $s->school_id = $school_id;
+                $s->dorm = $dorm;
+                $s->grade = $grade;
+                $s->created_at = time();
+                $s->save();
+
+                $u->name = $name;
+                $u->updateAttributes(['name']);
+                $transaction->commit();
+            } catch(\Exception $e) {
+                $transaction->rollBack();
+                throw $e;
+            }
+            return json_encode(['stat'=>1]);
         }
-
-        $appId = Yii::$app->params['wechat_appid'];
-        $secret = Yii::$app->params['wechat_appsecret'];
-        $js = new Js($appId, $secret); 
-        return $this->renderPartial('bank', ['v'=>Yii::$app->params['assets_version'],'user'=>$u,'loan'=>$l,'js'=>$js]);
     }
 
     public function actionLend($type='common')
