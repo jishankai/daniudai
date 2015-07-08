@@ -361,14 +361,14 @@ function Log(msg){
 											}
 										}else if(data.stat == "5"){
 											loadingImg.hide();
-											MessageBox.alert({type:"message",txt:"当前学生信息已被占用，请核实重新填写。",cls:true});
+											MessageBox.alert({type:"message",txt:"当前学生信息已被占用，请核实重新填写。"});
 											smBtn.removeClass("disabled");
 										}else{
 											loadingImg.hide();
 											MessageBox.alert({type:"message",txt:"系统错误，请稍后重试！"});
 											smBtn.removeClass("disabled");
 										}
-										mask.removeClass("masker-60").hide();
+										// mask.removeClass("masker-60").hide();
 										loading.hide();
 									},
 									fnError:function(){}
