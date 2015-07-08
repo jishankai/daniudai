@@ -419,6 +419,10 @@ a {
 	line-height: 1em;	
 	height: 43px;
 }
+.info-box .forms-psdNew input.forms_input{	
+	outline: none;	
+	padding-right:15px;	
+}
 .success-box{
 	padding: 30px 15px 20px;
 }
