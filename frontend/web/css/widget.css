@@ -274,12 +274,13 @@ a {
 .info-box .forms .bank-match,
 .info-box .forms .agreement{	
 	border: 0;
-	padding: 10px 15px 0;
+	padding: 3px 15px 7px;
 	width: 100%;
 	display: none;
 }
 .info-box .forms .agreement{
 	display: block;
+	padding: 10px 15px 0;
 }
 .info-box .forms .bankName{
 	width: 125px;
