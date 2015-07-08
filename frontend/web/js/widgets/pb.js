@@ -364,9 +364,8 @@ function Log(msg){
 											MessageBox.alert({type:"message",txt:"当前学生信息已被占用，请核实重新填写。",cls:true});
 											smBtn.removeClass("disabled");
 										}else{
-											loading.hide();
 											loadingImg.hide();
-											MessageBox.alert({type:"message",txt:"系统错误，请稍后重试！",cls:true});
+											MessageBox.alert({type:"message",txt:"系统错误，请稍后重试！"});
 											smBtn.removeClass("disabled");
 										}
 										mask.removeClass("masker-60").hide();
