@@ -14,17 +14,17 @@
 <link rel="stylesheet" type="text/css" media="all" href="css/widget.css" />
 </head>
 <body>
-	<div class="container">
+	<div class="container" id="container">
 		<div class="screen-content">			
 			<div class="content">
 				<div class="info-box">
 					<div class="info-text"><p>为保证您的借款安全，请设置6位数字密码。</p></div>
-					<form class="forms">
-						<div class="forms-item forms-psdNew">
-							<div class="forms__group">
+					<form class="forms" onsubmit="return false;">
+						<div class="forms-item forms-psdNew" id="opwdBox">
+							<div class="forms__group" >
 			                    <label class="forms__label">原始密码</label>
 			                    <span class="input__box no-border">             
-			                        <input type="text" class="forms_input" placeholder="请输入密码" value="" maxlength="6" >	
+			                        <input type="tel" class="forms_input" placeholder="请输入密码" value="" maxlength="6" id="ogn_pwd" node-type="LoanOpwdInput">	
 			                    </span>
 			                </div>
 		                </div> <!--修改密码之原始密码的代码-->
@@ -32,23 +32,44 @@
 							<div class="forms__group">
 			                    <label class="forms__label">设置密码</label>
 			                    <span class="input__box">             
-			                        <input type="text" class="forms_input" placeholder="请输入密码" value="" maxlength="6" >	
+			                        <input type="tel" class="forms_input" placeholder="请输入密码" value="" maxlength="6" id="set_
+			                        pwd" node-type="LoanSpwdInput">	
 			                    </span>
 			                </div>
 			                <div class="forms__group">
 			                    <label class="forms__label">确认密码</label>
 			                    <span class="input__box no-border">             
-			                        <input type="text" class="forms_input" placeholder="请再次输入密码" value="" maxlength="6" >
+			                        <input type="tel" class="forms_input" placeholder="请再次输入密码" value="" maxlength="6" id="cf_pwd" node-type="LoanCpwdInput">
 			                    </span>
 			                </div>
 		                </div> 
 		                <div class="forms__option">
-		                	<button class="btn btn-primary disabled btn-fullwidth">下一步</button>
+		                	<button class="btn btn-primary disabled btn-fullwidth" id="next">下一步</button>
 		                </div>                                              
 		            </form>
 				</div>
 			</div>
-		</div>		
+		</div>
+		<div id="masker" class="masker" style="display:none;"></div>
+		<div id="common_masker" class="popover popover-small" style="display:none;position: absolute; margin-left:-90px;"><!--提示消失opacity:0;显示位置margin:-20px 0 0 -90px;-->
+			<div class="popover-inner">
+				<div class="wrong-box">
+					<p></p>				
+				</div>
+			</div>
+		</div>
+		<div id="s_x" style="display:none;">1</div>		
 	</div>	
 </body>
+
+<script type="text/javascript" src="js/libs/zepto.js"></script>
+<script type="text/javascript" src="js/widgets/password.js"></script>
+<script type="text/javascript" src="js/widgets/tools.js"></script>
+<script type="text/javascript" src="js/widgets/MessageBox.js"></script>
+
+<script type="text/javascript">
+	
+	$("#container").PUC();
+	
+</script>	
 </html>
