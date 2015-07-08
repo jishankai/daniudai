@@ -192,8 +192,16 @@ class LoanController extends \yii\web\Controller
         $mobile = $_POST['mobile'];
         $bank_name = isset($_POST['bank_name'])?$_POST['bank_name']:'';
 
-        $b1 = Bank::findOne(['card'=>$card]);
-        $b2 = Bank::findOne(['cid'=>$cid]);
+        $b1 = Bank::find()
+            ->select('bank.*')
+            ->leftJoin('loan', '`loan`.`wechat_id`=`bank`.`wechat_id`')
+            ->where(['bank.card'=>$card, 'loan.status'>1])
+            ->one();
+        $b1 = Bank::find()
+            ->select('bank.*')
+            ->leftJoin('loan', '`loan`.`wechat_id`=`bank`.`wechat_id`')
+            ->where(['bank.cid'=>$cid, 'loan.status'>1])
+            ->one();
         if (isset($b1)||isset($b2)) {
             $resCode = '0000';
             $stat = 5;
@@ -492,5 +500,10 @@ class LoanController extends \yii\web\Controller
         }
 
         return $this->redirect(['loan/me']);
+    }
+
+    public function actionPassword()
+    {
+        return $this->renderPartial('password');
     }
 }

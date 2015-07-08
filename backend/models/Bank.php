@@ -7,6 +7,7 @@ use Yii;
 /**
  * This is the model class for table "bank".
  *
+ * @property string $wechat_id
  * @property string $card
  * @property string $name
  * @property string $mobile
@@ -30,10 +31,12 @@ class Bank extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-//            [['card', 'name', 'mobile', 'cid', 'created_at'], 'required'],
+            //[['wechat_id', 'name', 'cid', 'created_at'], 'required'],
             [['created_at'], 'integer'],
             [['updated_at'], 'safe'],
-            [['card', 'name', 'mobile', 'cid'], 'string', 'max' => 45]
+            [['wechat_id'], 'string', 'max' => 255],
+            [['card', 'mobile'], 'string', 'max' => 24],
+            [['name', 'cid'], 'string', 'max' => 45]
         ];
     }
 
@@ -43,6 +46,7 @@ class Bank extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+            'wechat_id' => 'Wechat ID',
             'card' => 'Card',
             'name' => 'Name',
             'mobile' => 'Mobile',
