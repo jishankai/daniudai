@@ -31,7 +31,7 @@
 						<div class="forms-item forms-psdNew">
 							<div class="forms__group">
 			                    <label class="forms__label">设置密码</label>
-			                    <span class="input__box no-border">             
+			                    <span class="input__box">             
 			                        <input type="text" class="forms_input" placeholder="请输入密码" value="" maxlength="6" >	
 			                    </span>
 			                </div>
