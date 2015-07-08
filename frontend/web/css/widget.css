@@ -274,7 +274,7 @@ a {
 .info-box .forms .bank-match,
 .info-box .forms .agreement{	
 	border: 0;
-	padding: 3px 15px 7px;
+	padding: 10px 15px 0;
 	width: 100%;
 	display: none;
 }
