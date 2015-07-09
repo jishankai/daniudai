@@ -54,7 +54,7 @@
  					spwd = sthis.spwdInput.val(),
  					cpwd = sthis.cpwdInput.val(),
  					pflag = 0,
- 					sxflag = sthis.sxflag.val();
+ 					sxflag = sthis.sxflag.html();
  				if(spwd!=cpwd){
  					pflag = 1;
  				}else if(spwd.length!=6){
