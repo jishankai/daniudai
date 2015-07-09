@@ -230,10 +230,11 @@ class LoanController extends \yii\web\Controller
                         $u->bank_id = $card;
                         $u->save();
 
-                        $bank = Bank::findOne($card);
+                        $bank = Bank::findOne($user['openid']);
                         if (!isset($bank)) {
                             $bank = new Bank;
                         }
+                        $bank->wechat_id = $user['openid'];
                         $bank->card = $card;
                         $bank->cid = $cid;
                         $bank->mobile = $mobile;
