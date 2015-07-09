@@ -58,7 +58,7 @@
 				</div>
 			</div>
 		</div>
-		<div id="s_x" style="display:none;">1</div>		
+		<div id="s_x" style="display:none;">0</div>		
 	</div>	
 </body>
 
