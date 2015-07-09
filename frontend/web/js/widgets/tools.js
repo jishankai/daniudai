@@ -126,6 +126,7 @@ var TOOLS = (function(){
 				data:options.data,
 				dataType:options.dataType,
 				type:!!options.type?options.type:"post",
+				timeout:30000,
 				success:options.fnSuccess,
 				error:options.fnError
 			})

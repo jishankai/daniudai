@@ -62,9 +62,7 @@
  				}
  				sthis._fnSubmit(pflag,opwd,spwd,cpwd,sxflag);
  			
- 			})
- 			
-
+ 			})		
  		},
  		/*密码处理*/
  		_fnPwd : function(pwd_val){
@@ -73,40 +71,30 @@
  		},
 
  		_fnSubmit : function(pflag,opwd,spwd,cpwd,sxflag){
- 			var confirmBtn = this.pwdnext;
+ 			var confirmBtn = this.pwdnext;	
  			if(pflag==0){
+ 				if(sxflag){
+ 					data={opwd:opwd,spwd:spwd,cpwd:cpwd}
+ 				}else{
+ 					data={spwd:spwd,cpwd:cpwd}
+	 			}
  				if(confirmBtn.hasClass("disabled")) return false;
 	 			confirmBtn.addClass('disabled');
- 				if(sxflag){	
-	 				TOOLS.ajax({
-	 					url:"./index.php?r=loan/password",
-	 					data:{opwd:opwd,spwd:spwd,cpwd:cpwd},
-	 					type:"post",
-	 					dataType:"json",
-	 					fnSuccess:function(data){
-	 						if(data.stat == "1"){
-	 							window.location="http://www.baidu.com";
-	 						}else if(data.stat == "2"){
-	 							MessageBox.alert({type:"common",txt:"原始密码错误！"});
-	 							confirmBtn.removeClass("disabled");	
-	 						}
-	 					},
-	 					fnError:function(){}
-	 				});
-	 			}else{
-	 				TOOLS.ajax({
-	 					url:"./index.php?r=loan/password",
-	 					data:{spwd:spwd,cpwd:cpwd},
-	 					type:"post",
-	 					dataType:"json",
-	 					fnSuccess:function(data){
-	 						if(data.stat == "1"){
-	 							window.location="http://www.baidu.com";
-	 						}
-	 					},
-	 					fnError:function(){}
-	 				});
-	 			}
+	 			TOOLS.ajax({
+	 				url:"./index.php?r=loan/password",
+	 				data:data,
+	 				type:"post",
+	 				dataType:"json",
+	 				fnSuccess:function(data){
+	 					if(data.stat == "1"){
+	 						window.location="http://www.baidu.com";
+	 					}else if(data.stat == "2"){
+	 						MessageBox.alert({type:"common",txt:"原始密码错误！"});
+	 						confirmBtn.removeClass("disabled");	
+	 					}
+	 				},
+	 				fnError:function(){}
+	 			});
  			}else if(pflag==1){
  				MessageBox.alert({type:"common",txt:"两次密码输入不一致"});
  			}else if(pflag==2){
