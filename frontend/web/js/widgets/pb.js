@@ -371,11 +371,13 @@ function Log(msg){
 										// mask.removeClass("masker-60").hide();
 										loading.hide();
 									},
-									fnError:function(){
-										loadingImg.hide();
-										loading.hide();
-										MessageBox.alert({type:"message",txt:"系统繁忙，请稍后重试！"});
-										smBtn.removeClass("disabled");
+									fnError:function(XMLHttpRequest, textStatus){
+										if(textStatus=="timeout"){
+											loadingImg.hide();
+											loading.hide();
+											MessageBox.alert({type:"message",txt:"系统繁忙，请稍后重试！"});
+											smBtn.removeClass("disabled");
+										}
 									}
 								});
 
