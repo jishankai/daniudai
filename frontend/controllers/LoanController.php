@@ -231,7 +231,7 @@ class LoanController extends \yii\web\Controller
                     $resCode = '0000';
                     $stat = 2;
                     $resMsg = '验证失败';
-                } else if (isset($b2)&&($b2->name!=name||$b2->cid!=$cid)) {
+                } else if (isset($b2)&&($b2->name!=$name||$b2->cid!=$cid)) {
                     $resCode = '0000';
                     $stat = 2;
                     $resMsg = '验证失败';
