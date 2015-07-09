@@ -74,9 +74,9 @@
  			var confirmBtn = this.pwdnext;	
  			if(pflag==0){
  				if(sxflag){
- 					data={opwd:opwd,spwd:spwd,cpwd:cpwd}
+ 					data={opwd:opwd,spwd:spwd,cpwd:cpwd,type:sxflag}
  				}else{
- 					data={spwd:spwd,cpwd:cpwd}
+ 					data={spwd:spwd,cpwd:cpwd,type:sxflag}
 	 			}
  				if(confirmBtn.hasClass("disabled")) return false;
 	 			confirmBtn.addClass('disabled');
@@ -87,7 +87,11 @@
 	 				dataType:"json",
 	 				fnSuccess:function(data){
 	 					if(data.stat == "1"){
-	 						window.location="http://www.baidu.com";
+              if (data.type== "0") {
+                window.location.href="./index.php?r=loan/success";
+              } else {
+                window.location.href="./index.php?r=loan/me";
+              }
 	 					}else if(data.stat == "2"){
 	 						MessageBox.alert({type:"common",txt:"原始密码错误！"});
 	 						confirmBtn.removeClass("disabled");	

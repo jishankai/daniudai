@@ -503,8 +503,50 @@ class LoanController extends \yii\web\Controller
         return $this->redirect(['loan/me']);
     }
 
-    public function actionPassword()
+    public function actionPassword($type=0, $opwd='', $spwd='')
     {
-        return $this->renderPartial('password');
+        $appId = Yii::$app->params['wechat_appid'];
+        $secret = Yii::$app->params['wechat_appsecret'];
+
+        if (Yii::$app->request->getIsAjax()) {
+            $old_pwd = $opwd;
+            $new_pwd = $spwd;
+
+            session_start();
+            $user = $_SESSION['user'];
+
+            $u = User::findOne($user['openid']);
+
+            if ($type==0&&$new_pwd!='') {
+                $transaction = Yii::$app->db->beginTransaction();
+                try {
+                    $u->auth_code = md5($new_pwd);
+                    $u->updateAttributes(['auth_code']);
+                    $transaction->commit();
+                } catch(\Exception $e) {
+                    $transaction->rollBack();
+                    throw $e;
+                }
+                
+                return json_encode(['type'=>$type, 'stat'=>1]);
+            } else if ($type==1&&$u->auth_code!=''&&$old_pwd!=''&&$new_pwd!=''&&$u->auth_code==md5($old_pwd)) {
+                $transaction = Yii::$app->db->beginTransaction();
+                try {
+                    $u->auth_code = md5($new_pwd);
+                    $u->updateAttributes(['auth_code']);
+                    $transaction->commit();
+                } catch(\Exception $e) {
+                    $transaction->rollBack();
+                    throw $e;
+                }
+                
+                return json_encode(['type'=>$type, 'stat'=>1]);
+            } else {
+                return json_encode(['type'=>$type, 'stat'=>2]);
+            }
+        }
+
+        $js = new Js($appId, $secret); 
+        return $this->renderPartial('password', ['v'=>Yii::$app->params['assets_version'], 'type'=>$type, 'js'=>$js]);
     }
 }
