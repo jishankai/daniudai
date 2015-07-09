@@ -109,8 +109,13 @@
  		//表单处理
 		_fnComplete : function(){
 			var ipt=this.$el.find("input"),
-				ipt_flag=1;
-			for(var i=0; i<ipt.length; i++){
+				pflag=this.sxflag.val(),
+				ipt_flag=1,
+				ipt_len=1;
+				if(pflag==1){
+					ipt_len=0;
+				}
+			for(var i=ipt_len; i<ipt.length; i++){
 				if(ipt[i].value.length == 0){       
 					ipt_flag=0;
 				}

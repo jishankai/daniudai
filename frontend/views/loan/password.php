@@ -20,7 +20,7 @@
 				<div class="info-box">
 					<div class="info-text"><p>为保证您的借款安全，请设置6位数字密码。</p></div>
 					<form class="forms" onsubmit="return false;">
-						<div class="forms-item forms-psdNew" id="opwdBox">
+						<div class="forms-item forms-psdNew" id="opwdBox" style="display:none">
 							<div class="forms__group" >
 			                    <label class="forms__label">原始密码</label>
 			                    <span class="input__box no-border">             
