@@ -513,21 +513,22 @@ class LoanController extends \yii\web\Controller
         return $this->redirect(['loan/me']);
     }
 
-    public function actionPassword($type=0, $opwd='', $spwd='')
+    public function actionPassword($type=0)
     {
         $appId = Yii::$app->params['wechat_appid'];
         $secret = Yii::$app->params['wechat_appsecret'];
 
         if (Yii::$app->request->getIsAjax()) {
-            $old_pwd = $opwd;
-            $new_pwd = $spwd;
+            $old_pwd = isset($_POST['opwd'])?$_POST['opwd']:NULL;
+            $new_pwd = $_POST['spwd'];
+            $type = $_POST['type'];
 
             session_start();
             $user = $_SESSION['user'];
 
             $u = User::findOne($user['openid']);
 
-            if ($type==0&&$new_pwd!='') {
+            if ($type==0) {
                 $transaction = Yii::$app->db->beginTransaction();
                 try {
                     $u->auth_code = md5($new_pwd);
@@ -539,7 +540,7 @@ class LoanController extends \yii\web\Controller
                 }
                 
                 return json_encode(['type'=>$type, 'stat'=>1]);
-            } else if ($type==1&&$u->auth_code!=''&&$old_pwd!=''&&$new_pwd!=''&&$u->auth_code==md5($old_pwd)) {
+            } else if ($type==1&&$u->auth_code!=''&&$u->auth_code==md5($old_pwd)) {
                 $transaction = Yii::$app->db->beginTransaction();
                 try {
                     $u->auth_code = md5($new_pwd);
