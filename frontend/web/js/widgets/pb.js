@@ -396,6 +396,8 @@ function Log(msg){
 				
 				if(bcflag2){
 					if(bcflag){
+						if(zCard_len!=bcflag2.len)
+							MessageBox.alert({type:"common",txt:CS.ERRORMSG["BANKCARDERROR"]});
 					}else{
 						MessageBox.alert({type:"common",txt:CS.ERRORMSG["BANKCARDERROR"]});
 					}
