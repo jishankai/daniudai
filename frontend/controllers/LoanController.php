@@ -275,11 +275,21 @@ class LoanController extends \yii\web\Controller
         session_start();
         if ($code!=0&&$code!=1) {
             if ($_SESSION['sms_code']==$code) {
+                $user = $_SESSION['user'];
+                $u = User::findOne($user['openid']);
+                $auth_code = $u->auth_code;
+                if ($auth_code!='') {
+                    $auth = 1;
+                } else {
+                    $auth = 0;
+                }
+
                 $result = 1;
             } else {
                 $result = 0;
+                $auth = 0;
             }
-            return json_encode(['isSuccess'=>$result]);
+            return json_encode(['isSuccess'=>$result, 'auth'=>$auth]);
         } else if ($code==1) {
             $code = $_SESSION['sms_code'] = rand(100000, 999999);
             $sms = new \SmsApi();

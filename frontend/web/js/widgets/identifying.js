@@ -106,7 +106,11 @@
  						confirmBtn.removeClass('disabled');
  						MessageBox.alert({type:"common",txt:CS.ERRORMSG["CAPTCHAERROR"]});
  					}else if(data.isSuccess == "1"){
- 						window.location.href="./index.php?r=loan/password";
+            if (data.auth=="1") {
+              window.location.href="./index.php?r=loan/success";
+            } else {
+              window.location.href="./index.php?r=loan/password";
+            }
  					}
  				},
  				fnError:function(){}
