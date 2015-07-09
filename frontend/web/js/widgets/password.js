@@ -73,7 +73,7 @@
  		_fnSubmit : function(pflag,opwd,spwd,cpwd,sxflag){
  			var confirmBtn = this.pwdnext;	
  			if(pflag==0){
- 				if(sxflag){
+ 				if(sxflag==1){
  					data={opwd:opwd,spwd:spwd,cpwd:cpwd,type:sxflag}
  				}else{
  					data={spwd:spwd,cpwd:cpwd,type:sxflag}
