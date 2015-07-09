@@ -120,6 +120,9 @@ var TOOLS = (function(){
 	}
 	
 	function _ajax(options){
+		//避免缓存
+		options.data.temptime = new Date().getTime();
+		
 		try {
 			$.ajax({
 				url:options.url,
