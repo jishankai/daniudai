@@ -24,7 +24,7 @@
 							<div class="forms__group" >
 			                    <label class="forms__label">原始密码</label>
 			                    <span class="input__box no-border">             
-			                        <input type="tel" class="forms_input" placeholder="请输入密码" value="" maxlength="6" id="ogn_pwd" node-type="LoanOpwdInput">	
+			                        <input type="password" class="forms_input" placeholder="请输入密码" value="" maxlength="6" id="ogn_pwd" node-type="LoanOpwdInput">	
 			                    </span>
 			                </div>
 		                </div> <!--修改密码之原始密码的代码-->
@@ -32,14 +32,14 @@
 							<div class="forms__group">
 			                    <label class="forms__label">设置密码</label>
 			                    <span class="input__box">             
-			                        <input type="tel" class="forms_input" placeholder="请输入密码" value="" maxlength="6" id="set_
+			                        <input type="password" class="forms_input" placeholder="请输入密码" value="" maxlength="6" id="set_
 			                        pwd" node-type="LoanSpwdInput">	
 			                    </span>
 			                </div>
 			                <div class="forms__group">
 			                    <label class="forms__label">确认密码</label>
 			                    <span class="input__box no-border">             
-			                        <input type="tel" class="forms_input" placeholder="请再次输入密码" value="" maxlength="6" id="cf_pwd" node-type="LoanCpwdInput">
+			                        <input type="password" class="forms_input" placeholder="请再次输入密码" value="" maxlength="6" id="cf_pwd" node-type="LoanCpwdInput">
 			                    </span>
 			                </div>
 		                </div> 
