@@ -195,12 +195,12 @@ class LoanController extends \yii\web\Controller
         $b1 = Bank::find()
             ->select('bank.*')
             ->leftJoin('loan', '`loan`.`wechat_id`=`bank`.`wechat_id`')
-            ->where(['bank.card'=>$card, 'loan.status'>1])
+            ->where(['and', "bank.card=$card", 'loan.status>1'])
             ->one();
         $b1 = Bank::find()
             ->select('bank.*')
             ->leftJoin('loan', '`loan`.`wechat_id`=`bank`.`wechat_id`')
-            ->where(['bank.cid'=>$cid, 'loan.status'>1])
+            ->where(['and', "bank.cid=$cid", 'loan.status>1'])
             ->one();
         if (isset($b1)||isset($b2)) {
             $resCode = '0000';
@@ -230,10 +230,11 @@ class LoanController extends \yii\web\Controller
                         $u->bank_id = $card;
                         $u->save();
 
-                        $bank = Bank::findOne($card);
+                        $bank = Bank::findOne($user['openid']);
                         if (!isset($bank)) {
                             $bank = new Bank;
                         }
+                        $bank->wechat_id = $user['openid'];
                         $bank->card = $card;
                         $bank->cid = $cid;
                         $bank->mobile = $mobile;
@@ -274,11 +275,21 @@ class LoanController extends \yii\web\Controller
         session_start();
         if ($code!=0&&$code!=1) {
             if ($_SESSION['sms_code']==$code) {
+                $user = $_SESSION['user'];
+                $u = User::findOne($user['openid']);
+                $auth_code = $u->auth_code;
+                if ($auth_code!='') {
+                    $auth = 1;
+                } else {
+                    $auth = 0;
+                }
+
                 $result = 1;
             } else {
                 $result = 0;
+                $auth = 0;
             }
-            return json_encode(['isSuccess'=>$result]);
+            return json_encode(['isSuccess'=>$result, 'auth'=>$auth]);
         } else if ($code==1) {
             $code = $_SESSION['sms_code'] = rand(100000, 999999);
             $sms = new \SmsApi();
@@ -502,8 +513,51 @@ class LoanController extends \yii\web\Controller
         return $this->redirect(['loan/me']);
     }
 
-    public function actionPassword()
+    public function actionPassword($type=0)
     {
-        return $this->renderPartial('password');
+        $appId = Yii::$app->params['wechat_appid'];
+        $secret = Yii::$app->params['wechat_appsecret'];
+
+        if (Yii::$app->request->getIsAjax()) {
+            $old_pwd = isset($_POST['opwd'])?$_POST['opwd']:NULL;
+            $new_pwd = $_POST['spwd'];
+            $type = $_POST['type'];
+
+            session_start();
+            $user = $_SESSION['user'];
+
+            $u = User::findOne($user['openid']);
+
+            if ($type==0) {
+                $transaction = Yii::$app->db->beginTransaction();
+                try {
+                    $u->auth_code = md5($new_pwd);
+                    $u->updateAttributes(['auth_code']);
+                    $transaction->commit();
+                } catch(\Exception $e) {
+                    $transaction->rollBack();
+                    throw $e;
+                }
+                
+                return json_encode(['type'=>$type, 'stat'=>1]);
+            } else if ($type==1&&$u->auth_code!=''&&$u->auth_code==md5($old_pwd)) {
+                $transaction = Yii::$app->db->beginTransaction();
+                try {
+                    $u->auth_code = md5($new_pwd);
+                    $u->updateAttributes(['auth_code']);
+                    $transaction->commit();
+                } catch(\Exception $e) {
+                    $transaction->rollBack();
+                    throw $e;
+                }
+                
+                return json_encode(['type'=>$type, 'stat'=>1]);
+            } else {
+                return json_encode(['type'=>$type, 'stat'=>2]);
+            }
+        }
+
+        $js = new Js($appId, $secret); 
+        return $this->renderPartial('password', ['v'=>Yii::$app->params['assets_version'], 'type'=>$type, 'js'=>$js]);
     }
 }

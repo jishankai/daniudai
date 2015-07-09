@@ -54,7 +54,7 @@
  					spwd = sthis.spwdInput.val(),
  					cpwd = sthis.cpwdInput.val(),
  					pflag = 0,
- 					sxflag = sthis.sxflag.val();
+ 					sxflag = sthis.sxflag.html();
  				if(spwd!=cpwd){
  					pflag = 1;
  				}else if(spwd.length!=6){
@@ -73,10 +73,10 @@
  		_fnSubmit : function(pflag,opwd,spwd,cpwd,sxflag){
  			var confirmBtn = this.pwdnext;	
  			if(pflag==0){
- 				if(sxflag){
- 					data={opwd:opwd,spwd:spwd,cpwd:cpwd}
+ 				if(sxflag==1){
+ 					data={opwd:opwd,spwd:spwd,cpwd:cpwd,type:sxflag}
  				}else{
- 					data={spwd:spwd,cpwd:cpwd}
+ 					data={spwd:spwd,cpwd:cpwd,type:sxflag}
 	 			}
  				if(confirmBtn.hasClass("disabled")) return false;
 	 			confirmBtn.addClass('disabled');
@@ -87,7 +87,11 @@
 	 				dataType:"json",
 	 				fnSuccess:function(data){
 	 					if(data.stat == "1"){
-	 						window.location="http://www.baidu.com";
+              if (data.type== "0") {
+                window.location.href="./index.php?r=loan/success";
+              } else {
+                window.location.href="./index.php?r=loan/me";
+              }
 	 					}else if(data.stat == "2"){
 	 						MessageBox.alert({type:"common",txt:"原始密码错误！"});
 	 						confirmBtn.removeClass("disabled");	
@@ -105,8 +109,13 @@
  		//表单处理
 		_fnComplete : function(){
 			var ipt=this.$el.find("input"),
-				ipt_flag=1;
-			for(var i=0; i<ipt.length; i++){
+				pflag=this.sxflag.val(),
+				ipt_flag=1,
+				ipt_len=1;
+				if(pflag==1){
+					ipt_len=0;
+				}
+			for(var i=ipt_len; i<ipt.length; i++){
 				if(ipt[i].value.length == 0){       
 					ipt_flag=0;
 				}

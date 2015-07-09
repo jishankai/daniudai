@@ -120,7 +120,7 @@
 									借款金额：￥<?php echo $loan->money;?><br/>
 									借款周期：	<?php echo $loan->duration;?>天<br/>
 									到期还款金额：	￥<?php echo ($loan->money+$loan->money*$loan->duration*$loan->rate);?><br/>
-									还款日：	自款项从甲方的银行账户或第三方支付账户转出之日起，100天后的日期。
+									还款日：	自款项从甲方的银行账户或第三方支付账户转出之日起，<?php echo $loan->duration;?>天后的日期。
 								</p>
 								<p>
 									第二条 借款发放方式<br/>
