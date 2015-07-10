@@ -289,6 +289,10 @@ class LoanController extends \yii\web\Controller
                     $u->updateAttributes(['verify_times']);
                 }
             }
+        } else {
+            $resCode = '0000';
+            $stat = 2;
+            $resMsg = '验证次数超过上限';
         }
         return json_encode(['resCode'=>$resCode, 'resMsg'=>$resMsg, 'stat'=>$stat, 'verify_times'=>$u->verify_times, 'mobile'=>$mobile]);
     }
