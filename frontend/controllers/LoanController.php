@@ -207,56 +207,87 @@ class LoanController extends \yii\web\Controller
             $stat = 5;
             $resMsg = '身份信息被占用';
         } else if ($u->verify_times>0) {
-            $type = 3;
-            $sign = strtoupper(md5('account'.$account.'cid'.$cid.'name'.$name.'type'.$type.$privatekey));
-            $response_type_3 = file_get_contents(Yii::$app->params['unionpay_route'].'?account='.$account.'&name='.$name.'&cid='.$cid.'&type='.$type.'&sign='.$sign);
-            $json_obj = json_decode($response_type_3);
-
-            if ($json_obj->resCode=='0000'&&$json_obj->stat==1) {
-                $type = 1;
-                $sign = strtoupper(md5('account'.$account.'card'.$card.'name'.$name.'type'.$type.$privatekey));
-                $response_type_1 = file_get_contents(Yii::$app->params['unionpay_route'].'?account='.$account.'&card='.$card.'&name='.$name.'&type='.$type.'&sign='.$sign);
-                $json_obj = json_decode($response_type_1);
-
-                if ($json_obj->resCode=='0000'&&$json_obj->stat==1) {
-                    $user = $_SESSION['user'];
-                    $u = User::findOne($user['openid']);
-
-                    $transaction = Yii::$app->db->beginTransaction();
-                    try {
-                        $u->id = $cid;
-                        $u->mobile = $mobile;
-                        $u->bank = $bank_name;
-                        $u->bank_id = $card;
-                        $u->save();
-
-                        $bank = Bank::findOne($user['openid']);
-                        if (!isset($bank)) {
-                            $bank = new Bank;
-                        }
-                        $bank->wechat_id = $user['openid'];
-                        $bank->card = $card;
-                        $bank->cid = $cid;
-                        $bank->mobile = $mobile;
-                        $bank->name = $name;
-                        $bank->created_at = time();
-                        $bank->save();
-
-                        $transaction->commit();
-                    } catch(\Exception $e) {
-                        $transaction->rollBack();
-                        throw $e;
-                    }
+            $bank = Bank::findOne(['card'=>$card, 'cid'=>$cid, 'mobile'=>$mobile, 'name'=>$name]);
+            if (isset($bank)) {
+                $transaction = Yii::$app->db->beginTransaction();
+                try {
+                    $u->id = $cid;
+                    $u->mobile = $mobile;
+                    $u->bank = $bank_name;
+                    $u->bank_id = $card;
+                    $u->save();
+                    $transaction->commit();
+                } catch(\Exception $e) {
+                    $transaction->rollBack();
+                    throw $e;
                 }
-            }
+                $resCode = '0000';
+                $stat = 1;
+                $resMsg = '验证成功';
+            } else {
+                $b1 = Bank::findOne(['cid'=>$cid]);
+                $b2 = Bank::findOne(['card'=>$card]);
+                if (isset($b1)&&$b1->name!=$name) {
+                    $resCode = '0000';
+                    $stat = 2;
+                    $resMsg = '验证失败';
+                } else if (isset($b2)&&($b2->name!=$name||$b2->cid!=$cid)) {
+                    $resCode = '0000';
+                    $stat = 2;
+                    $resMsg = '验证失败';
+                } else {
+                    $type = 3;
+                    $sign = strtoupper(md5('account'.$account.'cid'.$cid.'name'.$name.'type'.$type.$privatekey));
+                    $response_type_3 = file_get_contents(Yii::$app->params['unionpay_route'].'?account='.$account.'&name='.$name.'&cid='.$cid.'&type='.$type.'&sign='.$sign);
+                    $json_obj = json_decode($response_type_3);
 
-            $resCode = $json_obj->resCode;
-            $resMsg = $json_obj->resMsg;
-            $stat = $json_obj->stat;
+                    if ($json_obj->resCode=='0000'&&$json_obj->stat==1) {
+                        $type = 1;
+                        $sign = strtoupper(md5('account'.$account.'card'.$card.'name'.$name.'type'.$type.$privatekey));
+                        $response_type_1 = file_get_contents(Yii::$app->params['unionpay_route'].'?account='.$account.'&card='.$card.'&name='.$name.'&type='.$type.'&sign='.$sign);
+                        $json_obj = json_decode($response_type_1);
 
-            if ($stat==2) {
-                $u->verify_times--;
-                $u->updateAttributes(['verify_times']);
+                        if ($json_obj->resCode=='0000'&&$json_obj->stat==1) {
+                            $user = $_SESSION['user'];
+                            $u = User::findOne($user['openid']);
+
+                            $transaction = Yii::$app->db->beginTransaction();
+                            try {
+                                $u->id = $cid;
+                                $u->mobile = $mobile;
+                                $u->bank = $bank_name;
+                                $u->bank_id = $card;
+                                $u->save();
+
+                                $bank = Bank::findOne($user['openid']);
+                                if (!isset($bank)) {
+                                    $bank = new Bank;
+                                }
+                                $bank->wechat_id = $user['openid'];
+                                $bank->card = $card;
+                                $bank->cid = $cid;
+                                $bank->mobile = $mobile;
+                                $bank->name = $name;
+                                $bank->created_at = time();
+                                $bank->save();
+
+                                $transaction->commit();
+                            } catch(\Exception $e) {
+                                $transaction->rollBack();
+                                throw $e;
+                            }
+                        }
+                    }
+
+                    $resCode = $json_obj->resCode;
+                    $resMsg = $json_obj->resMsg;
+                    $stat = $json_obj->stat;
+                }
+
+                if ($stat==2) {
+                    $u->verify_times--;
+                    $u->updateAttributes(['verify_times']);
+                }
             }
         }
         return json_encode(['resCode'=>$resCode, 'resMsg'=>$resMsg, 'stat'=>$stat, 'verify_times'=>$u->verify_times, 'mobile'=>$mobile]);
@@ -310,9 +341,9 @@ class LoanController extends \yii\web\Controller
         $js = new Js($appId, $secret); 
 
         return $this->renderPartial('failed', ['v'=>Yii::$app->params['assets_version'], 'js'=>$js]);
-        
+
     }
-    
+
     public function actionSuccess()
     {
         $appId = Yii::$app->params['wechat_appid'];
@@ -419,7 +450,7 @@ class LoanController extends \yii\web\Controller
         } else {
             return $this->renderPartial('404');
         }
-        
+
     }
 
     public function actionOperate($loan_id, $operation=-1)
@@ -538,7 +569,7 @@ class LoanController extends \yii\web\Controller
                     $transaction->rollBack();
                     throw $e;
                 }
-                
+
                 return json_encode(['type'=>$type, 'stat'=>1]);
             } else if ($type==1&&$u->auth_code!=''&&$u->auth_code==md5($old_pwd)) {
                 $transaction = Yii::$app->db->beginTransaction();
@@ -550,7 +581,7 @@ class LoanController extends \yii\web\Controller
                     $transaction->rollBack();
                     throw $e;
                 }
-                
+
                 return json_encode(['type'=>$type, 'stat'=>1]);
             } else {
                 return json_encode(['type'=>$type, 'stat'=>2]);
