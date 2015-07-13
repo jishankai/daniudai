@@ -313,7 +313,7 @@ function Log(msg){
 				mask = this.mask,
 				loading = this.loading,
 				loadingImg = this.loadingImg,
-				bankListE = ["IBCB","ABC","CCB","CMB","BOC","PSBC","COMM","CITIC","CMBC","CEB","CIB","SPDB","GDB","HXBANK","SPABANK","BJBANK","BJRCB","SHBANK","JSBANK"],
+				bankListE = ["ICBC","ABC","CCB","CMB","BOC","PSBC","COMM","CITIC","CMBC","CEB","CIB","SPDB","GDB","HXBANK","SPABANK","BJBANK","BJRCB","SHBANK","JSBANK"],
 				bankListC = ["中国工商银行","中国农业银行","中国建设银行","招商银行","中国银行","中国邮政储蓄银行","交通银行","中信银行","中国民生银行","中国光大银行","兴业银行","浦发银行","广发银行","华夏银行","平安银行","北京银行","北京农商银行","上海银行","江苏银行"];
 				
 				this.iconOption.hide();
