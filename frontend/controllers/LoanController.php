@@ -488,9 +488,10 @@ class LoanController extends \yii\web\Controller
         if (($operation==-1 OR $operation==2) AND ($open_id==Yii::$app->params['pku101_supporter'] OR $open_id==Yii::$app->params['pku102_supporter'])) {
             $l = Loan::findOne($loan_id);
             $u = User::findOne($l->wechat_id);
+            $s = Student::findOne($l->wechat_id);
             $transaction = Yii::$app->db->beginTransaction();
             try {
-                Yii::$app->db->createCommand('UPDATE loan SET status=-1 WHERE wechat_id=:wechat_id')->bindValue(':wechat_id', $l->wechat_id)->execute();
+                Yii::$app->db->createCommand('UPDATE loan l LEFT JOIN student s ON l.wechat_id=s.wechat_id SET l.status=-1 WHERE s.stu_id=:stu_id')->bindValue(':stu_id', $s->stu_id)->execute();
 
                 $l->reviewer = $open_id;
                 $l->status = $operation;
