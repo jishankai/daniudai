@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html class="mobile-notes-variant" lang="en"><!--full-srceen-->
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" user-scalable="no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>大牛贷</title>
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-precomposed-144.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-precomposed-114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/logo-72.png">
+<link rel="stylesheet" type="text/css" media="all" href="css/reset.css" />
+<link rel="stylesheet" type="text/css" media="all" href="css/base.css" />
+<link rel="stylesheet" type="text/css" media="all" href="css/fonts.css" />
+<link rel="stylesheet" type="text/css" media="all" href="css/widget.css" />
+</head>
+<body>	
+	<div class="container">
+		<div id="masker" class="masker" style="display:none;"></div>
+		<!--loading begin-->
+		<div id="masker" class="masker masker-60" style="display:block;"></div>
+		<div class="popover popover-tiny" style="display:block;position: relative; "><!--提示消失opacity:0;蒙层加上这个class  masker-60-->
+			<div class="popover-inner">
+				<img src="img/loader4.gif">
+			</div>
+		</div> 
+		<!--loading end-->
+		<div class="popover popover-small" style="display:block;position: relative; margin-left:-90px;"><!--提示消失opacity:0;显示位置margin:-20px 0 0 -90px;-->
+			<div class="popover-inner">
+				<div class="wrong-box">
+					<p>请输入真实姓名</p>				
+				</div>
+			</div>
+		</div> 
+		<div class="popover popover-small" style="display:block;position: relative; margin-left:-90px;"><!--提示消失opacity:0;显示位置margin:-20px 0 0 -90px;-->
+			<div class="popover-inner">
+				<div class="wrong-box">
+					<p>请输入正确的身份证号</p>				
+				</div>
+			</div>
+		</div> 
+		<div class="popover" style="display:block;position: relative;">
+			<div class="popover-inner">
+				<div class="message-box">
+					<p>银行预留手机号是您在办理银行卡时所填写的手机号。<br />	
+					如忘记、停用或无预留手机号，请拨打银行客服电话95588更新处理。</p>
+					<a href="#" class="btn-option">知道了</a> 		
+				</div>
+			</div>
+		</div>
+		<div class="popover" style="display:block;position: relative;">
+			<div class="popover-inner">
+				<div class="message-box">
+					<p>您的身份证号与银行预留不符，请确认证件号或卡号正确输入。</p>			
+					<a href="#" class="btn-option">确定</a> 		
+				</div>
+			</div>
+		</div>
+		<div class="popover" style="display:block;position: relative;">
+			<div class="popover-inner">
+				<div class="message-box">
+					<p>您的手机号与在银行预留的不符，请核对后再试。</p>			
+					<a href="#" class="btn-option">确定</a> 		
+				</div>
+			</div>
+		</div>
+		<div class="popover" style="display:block;position: relative;">
+			<div class="popover-inner">
+				<div class="message-box">
+					<p>可以使用的银行卡：<br />工商银行、农业银行、建设银行、中国银行、交通银行、招商银行、民生银行、中信银行、华夏银行、光大银行、平安银行、兴业银行、浦发银行、广发银行、邮政储蓄银行</p>
+					<a href="#" class="btn-option">知道了</a> 		
+				</div>
+			</div>
+		</div>
+		<div class="popover" style="display:block;position: relative;">
+			<div class="popover-inner">
+				<div class="message-box m-icon">
+					<p><i class="icons icons-info"></i>个人信息有误，请特别注意&nbsp;学生证和专业/入学年份是否一致。<em>请认证核查</em></p>			
+					<a href="#" class="btn-option">返回修改</a> 		
+				</div>
+			</div>
+		</div> 
+		<div class="popover" style="display:block;position: relative;">
+			<div class="popover-inner">
+				<div class="message-box">
+					<p>当前身份信息已被占用，如有疑问，请在微信里联系客服。</p>			
+					<a href="#" class="btn-option">我知道了</a> 		
+				</div>
+			</div>
+		</div> 
+		<div class="popover popover-big" style="display:block;position: relative;left:0;"><!--滑动出现left:0;-->
+			<div class="popover-inner">
+				<div class="lists-box">					
+					<div class="lists-title">
+						<h3>选择高校</h3>
+						<span class="close">&times;</span>
+					</div>
+					<div class="lists-body" style="height:315px;">
+						<ul class="lists-main">
+							<li class="active"><i class="icons icons-check"></i>北京大学</li>
+							<li class="last-child"><i class="icons icons-check"></i>北京大学（医学部）</li>	
+						</ul>
+						<p class="l-info">即将开放更多大学，敬请期待！</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="popover popover-big" style="display:block;position: relative;left:0;"><!--height值为屏幕高度减去上下边距之和（60px），根据屏幕自动适应-->
+			<div class="popover-inner">
+				<div class="lists-box">					
+					<div class="lists-title">
+						<h3>选择院系</h3>
+						<span class="close">&times;</span>
+					</div>
+					<div class="lists-body" style="height:315px;"><!--height值跟屏幕高度有关-->
+						<ul class="lists-main">
+							<li><i class="icons icons-check"></i>信息与技术工程学院</li>
+							<li><i class="icons icons-check"></i>信息与技术工程学院</li>
+							<li><i class="icons icons-check"></i>信息与技术工程学院</li>
+							<li><i class="icons icons-check"></i>信息与技术工程学院</li>
+							<li><i class="icons icons-check"></i>信息与技术工程学院</li>
+							<li><i class="icons icons-check"></i>信息与技术工程学院</li>
+							<li><i class="icons icons-check"></i>信息与技术工程学院</li>
+							<li><i class="icons icons-check"></i>信息与技术工程学院</li>
+							<li><i class="icons icons-check"></i>信息与技术工程学院</li>
+							<li><i class="icons icons-check"></i>信息与技术工程学院</li>
+							<li><i class="icons icons-check"></i>信息与技术工程学院</li>
+							<li><i class="icons icons-check"></i>信息与技术工程学院</li>
+							<li><i class="icons icons-check"></i>信息与技术工程学院</li>
+							<li><i class="icons icons-check"></i>信息与技术工程学院</li>
+							<li><i class="icons icons-check"></i>信息与技术工程学院</li>
+							<li><i class="icons icons-check"></i>信息与技术工程学院</li>
+							<li><i class="icons icons-check"></i>信息与技术工程学院</li>
+							<li><i class="icons icons-check"></i>信息与技术工程学院</li>
+							<li><i class="icons icons-check"></i>信息与技术工程学院</li>
+							<li><i class="icons icons-check"></i>信息与技术工程学院</li>	
+							<li class="last-child"><i class="icons icons-check"></i>物理学院</li>			
+						</ul>
+						<p class="l-info">即将开放更多大学，敬请期待！</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="popover popover-big" style="display:block;position: relative;left:0;">
+			<div class="popover-inner">
+				<div class="lists-box">					
+					<div class="lists-title">
+						<h3>选择专业</h3>
+						<span class="close">&times;</span>
+					</div>
+					<div class="lists-body">
+						<ul class="lists-main">
+							<li class="active"><i class="icons icons-check"></i>计算机</li>	
+							<li class="last-child"><i class="icons icons-check"></i>微电子</li>			
+						</ul>						
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="popover popover-big" style="display:block;position: relative;left:0;">
+			<div class="popover-inner">
+				<div class="lists-box">					
+					<div class="lists-title">
+						<h3>选择入学年份</h3>
+						<span class="close">&times;</span>
+					</div>
+					<div class="lists-body">
+						<ul class="lists-main">
+							<li class="active"><i class="icons icons-check"></i>2013</li>	
+							<li class="last-child"><i class="icons icons-check"></i>2014</li>			
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+</body>
+<!-- END BODY -->
+</html>

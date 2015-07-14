@@ -13,6 +13,8 @@ use Yii;
  * @property string $mobile
  * @property string $bank
  * @property string $bank_id
+ * @property string $auth_code
+ * @property integer $verify_times
  * @property integer $created_at
  * @property string $updated_at
  *
@@ -36,12 +38,13 @@ class User extends \yii\db\ActiveRecord
     {
         return [
 //            [['wechat_id', 'name', 'id', 'bank', 'created_at'], 'required'],
-            [['created_at'], 'integer'],
+            [['verify_times', 'created_at'], 'integer'],
             [['updated_at'], 'safe'],
             [['wechat_id', 'name', 'bank'], 'string', 'max' => 45],
             [['id'], 'string', 'max' => 18],
             [['mobile'], 'string', 'max' => 11],
-            [['bank_id'], 'string', 'max' => 24]
+            [['bank_id'], 'string', 'max' => 24],
+            [['auth_code'], 'string', 'max' => 32]
         ];
     }
 
@@ -57,6 +60,8 @@ class User extends \yii\db\ActiveRecord
             'mobile' => 'Mobile',
             'bank' => 'Bank',
             'bank_id' => 'Bank ID',
+            'auth_code' => 'Auth Code',
+            'verify_times' => 'Verify Times',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];

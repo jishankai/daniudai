@@ -23,8 +23,12 @@
         <td><?php echo $v['name']?></td>
         <td><?php echo $v['depart']?></td>
         <td><?php echo $v['mobile']?></td>
+        <?php if($v['status']==1) {?>
         <td><a href="<?php echo Url::to(['loan/person','loan_id'=>$v['loan_id']])?>">
         Link</a></td>
+        <?php } else {?>
+        <td>已通过</td>
+        <?php }?>
         </tr>
         <?php }?>
 	</table>

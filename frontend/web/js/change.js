@@ -29,9 +29,11 @@ $(function(){
 
 			$("#major").html("专业/入学年份");
 			$("#major").addClass("d-color");
+			$("#c_school").css("left",-wwidth);//左推动画重置
 		})
 		$("#close1").click(function(){
 			$(".mask").hide();
+			$("#c_school").css("left",-wwidth);
 		})
 	})
 
@@ -51,6 +53,7 @@ $(function(){
 				$(".mask").hide();	
 				$("#school-name").html(a.substring(33));
 				$("#school-name").removeClass("d-color");
+				$("#c_school").css("left",-wwidth);//左推动画重置
 				var school_name=$("#school-name").html();
 				mclick(school_name);
 
@@ -93,6 +96,7 @@ function mclick(school_name){
 			$(".mask1").hide();	
 			$("#cdegrees").val(a.substring(33));
 
+			$("#c_degrees").css("left",-wwidth);//左推动画重置
 /*根据学校请求学院信息*/
 			asname=$('#school-name').html();
 
@@ -127,6 +131,8 @@ function mclick(school_name){
 					$("#admission_year").css("top",Math.round(ayear/7));
 					$("#admission_year").css("left",0);
 
+					$("#c_college").css("left",-wwidth);//左推动画重置
+
 					$("#year_list li").click(function(){
 						$(this).addClass("active").siblings().removeClass();
 						d=$(this).html();
@@ -135,15 +141,27 @@ function mclick(school_name){
 						$(".mask4").hide();
 						$("#major").html(college+'/'+admission_year);
 						$("#major").removeClass("d-color");
+						$("#admission_year").css("left",-wwidth);//左推动画重置
+
+						var ipt=$("input");
+						for(var i=0; i<ipt.length; i++){
+							if($(ipt[i]).val().length == 0){		
+								return false;
+							}
+						}
+						/*if($("#next").hasClass("disabled")) return false;*/
+						$("#next").removeAttr("disabled");
 	
 					})/*$("#year_list li").click结束*/								
 			})/*$("#college-list li").click结束*/
 		})/*$("#cdegrees_list li").click结束*/
 		$("#close2").click(function(){
 			$(".mask1").hide();
+			$("#c_degrees").css("left",-wwidth);//左推动画重置
 		})
 		$("#close3").click(function(){
 			$(".mask2").hide();
+			$("#c_college").css("left",-wwidth);//左推动画重置
 		})
 		$("#close5").click(function(){
 			$(".mask4").hide();

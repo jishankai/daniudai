@@ -8,7 +8,7 @@ $(function(){
 
 /*验证提示框位置适配*/
 	wheight=$(window).height();
-	$("#n_validate").css("top",-wheight/2);
+	$("#n_validate").css("top","20px");
 	/*姓名输入验证*/
 	function validateName(){
 		/*$("#n_validate").fadeTo(500,1);*/
@@ -60,8 +60,14 @@ $(function(){
 			$("#school_id").val(s1+s2);
 
 			sname= $("#name").val();
-			RegCellName = /^[\u4e00-\u9fa5\·]*$/;
-			falg=sname.search(RegCellName);
+			/*RegCellName = /^[\u4e00-\u9fa5\·]*$/;
+			falg=sname.search(RegCellName);*/
+			/*alert(sname.length);*/
+			if(sname.length<2){
+				falg=-1;
+			}else{
+				falg=0;
+			}
 			
 			if(falg==-1){
 				$("#error").html("请输入真实姓名");
@@ -103,8 +109,45 @@ $(function(){
 
 		}
 
+		var next = $("#next"),
+			z_name = $("#name").val(),
+			zstu_id = $("#stu_id").val(),
+			z_grade = $("#grade").val(),
+			zschool_id = $("#school_id").val(),
+			zdorm = $("#address").val(),
+			loading = $("#loading_masker"),
+			loadingImg = $("#loadingImg"),
+			mask = $("#masker");
+
 		if(falg!=-1 && falg1!=-1 && falg2!=-1 && stu_len==8 || falg!=-1 && falg1!=-1 && falg2!=-1  && stu_len==10){
-			$("#next1").click();
+			
+			if(next.hasClass("disabled")) return false;
+			next.addClass('disabled');	 
+			mask.addClass("masker-60").show();
+			setTimeout(function(){
+				loading.css({height:"100%"}).show();	
+			},200);						
+			TOOLS.ajax({
+				url:"./index.php?r=loan/bank",
+				data:{name:z_name,stu_id:zstu_id,grade:z_grade,school_id:zschool_id,dorm:zdorm},
+				dataType:"json",
+				type:"post",
+				fnSuccess:function(data){
+					if(data.stat == "1"){
+						loadingImg.hide();	
+						window.location.href= "./index.php?r=loan/bank";
+					}else{
+						loadingImg.hide();
+						MessageBox.alert({type:"message",txt:"当前学生信息已被占用，请核实重新填写。"});
+						next.removeClass("disabled");
+					}
+					mask.removeClass("masker-60");
+				},
+				fnError:function(){}
+			});
+
+
+
 		}
 		
 	})
