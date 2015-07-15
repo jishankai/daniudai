@@ -339,9 +339,13 @@ class LoanController extends \yii\web\Controller
             }
             return json_encode(['isSuccess'=>$result, 'auth'=>$auth]);
         } else if ($code==1) {
-            $code = $_SESSION['sms_code'] = rand(100000, 999999);
-            $sms = new \SmsApi();
-            $sms->sendMsg($mobile, '您的验证码是：'.$code.'。回复TD退订');
+            $time = $_SESSION['sms_send_time'];
+            if (time()-$time>60) {
+                $code = $_SESSION['sms_code'] = rand(100000, 999999);
+                $sms = new \SmsApi();
+                $sms->sendMsg($mobile, '您的验证码是：'.$code.'。回复TD退订');
+                $_SESSION['sms_send_time'] = time();
+            }
 
             return json_encode(['isSend'=>1]);
         }
