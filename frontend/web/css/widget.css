@@ -310,13 +310,13 @@ a {
 }
 .repay-box .repay-item{
 	position: relative;
-	border-bottom: 1px solid #aaa;
-	padding: 11px 0 14px;
+	border-bottom: 1px solid #ddd;
+	padding: 9px 0 12px;
 	font-size: 16px;
 	cursor: pointer;
 }
 .repay-box .last-child{
-	border-bottom: 1px solid #000;
+	border-bottom: 1px solid #aaa;
 	padding-bottom: 25px;
 }
 .repay-box .repay-item .r-right{
@@ -337,7 +337,7 @@ a {
 	content: "";
 	border-width:10px;
 	border-style: solid;
-	border-color:transparent transparent transparent #666; 
+	border-color:transparent transparent transparent #aaa; 
 	position: relative;
 }
 .repay-box .repay-item .r-arrow:after{
@@ -352,11 +352,12 @@ a {
 	border-color:transparent transparent transparent #fff; 
 }
 .repay-box .repay-item .money{
-	font-size: 22px;
+	font-size: 20px;
 }
 .repay-box .repay-item p{
 	margin-bottom: 0;
 	color: #aaa;
+	margin-top: 3px;
 }
 .repay-box .repay-item em{
 	font-size: 22px;
@@ -365,7 +366,6 @@ a {
 	vertical-align: top;
 	line-height: 26px;
 }
-
 
 .info-box{
 	padding-top: 10px;
