@@ -42,11 +42,10 @@ class WechatController extends \yii\web\Controller
         });
 
         $server->on('event', 'subscribe', function($event){
-            return Message::make('text')->content('牛仔您来啦~大牛贷是校友帮校友的信用贷款服务。
-6月1日-6月30日，在北京大学和北京大学医学部火热进行：
-1）应届本科毕业生专属，超低日利率：0.01%
-2）非毕业在校本科生，特惠日利率：0.02%
-要用钱，凭信用，找大牛！');
+            return Message::make('text')->content('牛仔您好！大牛贷是专门针对大学生的超低息、无担保、纯信用贷款。只要是大学生，注册提交、并面签通过审核后即可获得借款。
+年轻人，能用钱解决的那都不是事，缺钱就我大牛。
+                 
+请回复“借款”、“业务”、“地区”、“大牛君”了解大牛贷，回复“历史消息”获取历史消息。');
         });
 
         $server->on('event', 'CLICK', function($event) {
@@ -55,6 +54,24 @@ class WechatController extends \yii\web\Controller
             }
         });
 
+        $server->on('message', 'text', function($message) {
+            if ($message=='借款') {
+                return Message::make('text')->content('请点击页面左下角“申请贷款”提交个人学籍和银行卡信息完成借款申请。提交申请后，我们信贷员会在第一时间与您联系，面签确认您的身份后即可获得借款。So easy 啦！');
+            } else if ($message=='业务') {
+                return Message::make('text')->content('大牛贷对在校生提供1000-10000元的无抵押、纯信用贷款，利率为0.03%/日。只要是大学生，注册提交并面签通过后，最快10分钟内拿到借款。借款期限为100天、200天、300天，到期再还款。大牛贷希望你能在这段时间内自己赚钱，来还这笔钱，而不是从父母给的生活费里出。
+自己的事情自己做，不伸手跟父母要钱，年轻人，你长大了。');
+            } else if ($message=='地区') {
+                return Message::make('text')->content('大牛贷目前仅支持北京大学（北大）本科生的借款，更多高校争取在九月份开通，需要我大牛贷的同学敬请期待，请继续关注！');
+            } else if ($message=='大牛君') {
+                return Message::make('text')->content('大牛君是大牛贷两位创始人的昵称，他们是北京大学2015届本科毕业生。他们在45太难时间里从校友处筹集到了1000万元，将这笔钱用于大学生借款中，提供史上最低息的、无抵押无担保、纯信用的学生贷款。
+年轻人，年轻的时候是要做一些牛逼的事情的，所以，我们叫大牛！');
+            } else if ($message=='历史消息') {
+                return Message::make('link')->title('历史消息')->description('大牛贷历史消息')->url('http://mp.weixin.qq.com/mp/getmasssendmsg?__biz=MzA3ODg2NzY5Ng==#wechat_webview_type=1&wechat_redirect');
+            } else {
+                return Message::make('text')->content('你好...');
+            }
+
+        });
 
         $result = $server->serve();
 
