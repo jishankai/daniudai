@@ -308,6 +308,16 @@ a {
 .repay-box .repay-btn{
 	margin-top: 20px;
 }
+.repay-box .repay-xy{
+	margin: 5px 0 0;
+	padding:10px 0;
+	text-align: center;
+	line-height: 2em;
+}
+.repay-box .repay-xy a{
+	color: #00a2e8;
+	text-decoration: underline;
+}
 .repay-box .repay-item{
 	position: relative;
 	border-bottom: 1px solid #ddd;
