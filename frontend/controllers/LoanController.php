@@ -455,7 +455,7 @@ class LoanController extends \yii\web\Controller
         } else {
             $l = Loan::findOne(['wechat_id'=>$open_id]);
             if (isset($l) AND $l->status>=1) {
-                return $this->redirect(['loan/success']);
+                return $this->redirect(['loan/repay_list']);
             } else {
                 return $this->redirect(['loan/index']);
             }
@@ -618,16 +618,34 @@ class LoanController extends \yii\web\Controller
 
     public function actionRepays()
     {
-        return $this->renderPartial('repay_list');
+        $appId = Yii::$app->params['wechat_appid'];
+        $secret = Yii::$app->params['wechat_appsecret'];
+
+        session_start();
+        $user = $_SESSION['user'];
+        $open_id = $user['openid'];
+
+        $js = new Js($appId, $secret); 
+        return $this->renderPartial('repay_list', ['js'=>$js]);
     }
 
-    public function actionRepay()
+    public function actionRepay($loan_id)
     {
-        return $this->renderPartial('repay');
+        $appId = Yii::$app->params['wechat_appid'];
+        $secret = Yii::$app->params['wechat_appsecret'];
+
+        $l = Loan::findOne($loan_id);
+
+        $js = new Js($appId, $secret); 
+        return $this->renderPartial('repay', ['l'=>$l, 'js'=>$js]);
     }
 
     public function actionRepayed()
     {
-        return $this->renderPartial('repayed');
+        $appId = Yii::$app->params['wechat_appid'];
+        $secret = Yii::$app->params['wechat_appsecret'];
+
+        $js = new Js($appId, $secret); 
+        return $this->renderPartial('repayed', ['js'=>$js]);
     }
 }
