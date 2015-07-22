@@ -20,7 +20,7 @@
 				<div class="repay-box">	
 					<div class="repay-text">
                         <div class="r-name">到期还款日</div>
-						<div class="r-time font-green">还剩<span id="s_day"></span>天</div>
+						<div class="r-time font-green">还剩<b id="s_day"></b>天</div>
 						<!--div class="r-time font-red">已逾期2天</div>
 						<div class="r-time font-gray">还剩2天</div-->
 						<span id="repay_date"></span>
@@ -32,7 +32,7 @@
                             本金<span class="s-money"><?php echo $l->money?></span>
 						</div>
 						<div class="r-money-s">
-                            利息<span class="s-money"><?php echo $l->rate * 100 * $l->money * $l->duration?></span>
+                            利息<span class="s-money"><?php echo $l->rate * $l->money * $l->duration?></span>
 						</div>
 						<div class="r-money-s">
 							罚息<span class="s-money">0</span><!--font-red-->
