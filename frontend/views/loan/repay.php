@@ -65,7 +65,7 @@
 		 document.getElementById("repay_date").innerHTML = NewDate(<?php echo $l->end_at?>);
 
 		 function NewDate(date){
-		 	var dd=new Date(parseInt(date));  
+		 	var dd=new Date(parseInt(date)*1000);  
 		 	var y = dd.getFullYear(); 
 		 	var m = (dd.getMonth()+1)<10?"0"+(dd.getMonth()+1):(dd.getMonth()+1);
 		 	var d = dd.getDate()<10?"0"+dd.getDate():dd.getDate(); 
