@@ -47,7 +47,7 @@
                         <span><?php echo $l->duration?>&nbsp;天</span>
 					</div>					
 	                <div class="repay-btn">
-	                	<button class="btn btn-orange btn-fullwidth">立刻还款</button>
+	                	<button class="btn btn-orange btn-fullwidth" id="repay_btn">立刻还款</button>
 	                </div>
 	                <p class="repay-xy"><a href="#">查看《借款协议》</a></p>
 				</div>
@@ -73,6 +73,12 @@
 		 }
 		 function NewDay(date1,date2){
 		 	return parseInt((parseInt(date1)-parseInt(date2))/(60*60*24));
+		 }
+
+		 var repay_btn = document.getElementById("repay_btn");
+
+		 repay_btn.onclick = function(){
+		 	window.location.href="";
 		 }
 
 	</script>	
