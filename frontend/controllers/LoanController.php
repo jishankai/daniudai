@@ -640,24 +640,23 @@ class LoanController extends \yii\web\Controller
 
     public function actionRepay($loan_id=0)
     {
-        $appId = Yii::$app->params['wechat_appid'];
-        $secret = Yii::$app->params['wechat_appsecret'];
-
         session_start();
-        $user = $_SESSION['user'];
+        if (isset($_SESSION['user'])) {
+            $user = $_SESSION['user'];
+            $l = Loan::findOne(['wechat_id'=>$user['open_id']]);
 
-        $l = Loan::findOne(['wechat_id'=>$user['open_id']]);
-
-        $js = new Js($appId, $secret); 
-        if (isset($l) and $l->status>2) {
-            if ($l->status==3) {
-                return $this->renderPartial('repay', ['l'=>$l, 'js'=>$js]);
-            } else {
-                return $this->redirect(['loan/repayed']);
+            if (isset($l) and $l->status>2) {
+                if ($l->status==3) {
+                    $appId = Yii::$app->params['wechat_appid'];
+                    $secret = Yii::$app->params['wechat_appsecret'];
+                    $js = new Js($appId, $secret); 
+                    return $this->renderPartial('repay', ['l'=>$l, 'js'=>$js]);
+                } else {
+                    return $this->redirect(['loan/repayed']);
+                }
             }
-        } else {
-            return $this->redirect(['loan/index']);
         }
+        return $this->redirect(['loan/index']);
     }
 
     public function actionRepayed()
