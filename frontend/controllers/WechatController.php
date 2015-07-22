@@ -87,6 +87,7 @@ class WechatController extends \yii\web\Controller
         $menu = new Menu($appId, $secret);
         $menus = array(
             new MenuItem("申请贷款", 'view', Url::to(['loan/index'], TRUE)),
+            new MenuItem("我的贷款", 'view', Url::to(['loan/repay'], TRUE)),
             new MenuItem("你问我答", 'click', 'CLICK_ANSWER'),
         );
 

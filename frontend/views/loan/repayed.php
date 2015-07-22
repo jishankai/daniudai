@@ -29,5 +29,13 @@
 			</div>
 		</div>
 	</div>	
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		 wx.config(<?php echo $js->config(array('hideOptionMenu'), false, true) ?>);
+		 wx.ready(function(){
+		 	wx.hideOptionMenu();
+		 });
+
+	</script>	
 </body>
 </html>

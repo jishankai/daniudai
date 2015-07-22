@@ -19,7 +19,7 @@
 			<div class="content">
 				<div class="repay-box">	
 					<div class="repay-text">
-						<div class="r-name">到期还款日</div>
+                        <div class="r-name">到期还款日<?php echo $l->end_at?></div>
 						<div class="r-time font-green">还剩2天</div>
 						<!--div class="r-time font-red">已逾期2天</div>
 						<div class="r-time font-gray">还剩2天</div-->
@@ -29,22 +29,22 @@
 						<div class="r-name">应还总额</div>						
 						<span class="r-money">1002&nbsp;元</span>
 						<div class="r-money-s">
-							本金<span class="s-money">1000</span>
+                            本金<span class="s-money"><?php echo $l->money?></span>
 						</div>
 						<div class="r-money-s">
-							利息<span class="s-money">2</span>
+                            利息<span class="s-money"><?php echo $l->rate*100?>%</span>
 						</div>
 						<div class="r-money-s">
 							罚息<span class="s-money">0</span><!--font-red-->
 						</div>
 					</div>
 					<div class="repay-text">
-						<div class="r-name">借款日期</div>						
+                        <div class="r-name">借款日期<?php echo $l->start_at?></div>						
 						<span>2015.04.13</span>
 					</div>
 					<div class="repay-text">
 						<div class="r-name">周期</div>						
-						<span>100&nbsp;天</span>
+                        <span><?php echo $l->duration?>&nbsp;天</span>
 					</div>					
 	                <div class="repay-btn">
 	                	<button class="btn btn-orange btn-fullwidth">立刻还款</button>
@@ -54,5 +54,13 @@
 			</div>
 		</div>
 	</div>	
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		 wx.config(<?php echo $js->config(array('hideOptionMenu'), false, true) ?>);
+		 wx.ready(function(){
+		 	wx.hideOptionMenu();
+		 });
+
+	</script>	
 </body>
 </html>

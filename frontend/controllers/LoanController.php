@@ -548,8 +548,17 @@ class LoanController extends \yii\web\Controller
         } else if ($operation==3 AND $open_id==Yii::$app->params['admin_supporter']) {
             $l = Loan::findOne($loan_id);
             $u = User::findOne($l->wechat_id);
-            $l->status = $operation;
-            $l->updateAttributes(['status']);
+            $transaction = Yii::$app->db->beginTransaction();
+            try {
+                $l->status = $operation;
+                $l->start_at = time();
+                $l->end_at = time()+$l->duration*3600*24;
+                $l->updateAttributes(['status','start_at','end_at']);
+                $transaction->commit();
+            } catch(\Exception $e) {
+                $transaction->rollBack();
+                throw $e;
+            }
 
             $notice = new Notice($appId, $secret);
             $templateId = Yii::$app->params['templateId_remit'];
@@ -629,15 +638,26 @@ class LoanController extends \yii\web\Controller
         return $this->renderPartial('repay_list', ['js'=>$js]);
     }
 
-    public function actionRepay($loan_id)
+    public function actionRepay($loan_id=0)
     {
         $appId = Yii::$app->params['wechat_appid'];
         $secret = Yii::$app->params['wechat_appsecret'];
 
-        $l = Loan::findOne($loan_id);
+        session_start();
+        $user = $_SESSION['user'];
+
+        $l = Loan::findOne(['wechat_id'=>$user['open_id']]);
 
         $js = new Js($appId, $secret); 
-        return $this->renderPartial('repay', ['l'=>$l, 'js'=>$js]);
+        if (isset($l) and $l->status>2) {
+            if ($l->status==3) {
+                return $this->renderPartial('repay', ['l'=>$l, 'js'=>$js]);
+            } else {
+                return $this->redirect(['loan/repayed']);
+            }
+        } else {
+            return $this->redirect(['loan/index']);
+        }
     }
 
     public function actionRepayed()
