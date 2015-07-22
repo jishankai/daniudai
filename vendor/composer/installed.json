@@ -982,5 +982,37 @@
             "weixin",
             "weixin-sdk"
         ]
+    },
+    {
+        "name": "luzhongyang/yeepay",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/luzhongyang/yeepay.git",
+            "reference": "86382882b0bbaacf05277c1fd8d0e0d48fa146aa"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/luzhongyang/yeepay/zipball/86382882b0bbaacf05277c1fd8d0e0d48fa146aa",
+            "reference": "86382882b0bbaacf05277c1fd8d0e0d48fa146aa",
+            "shasum": ""
+        },
+        "time": "2015-05-11 09:10:20",
+        "type": "yeepay",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "Yeepay\\": "src/Yeepay/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "authors": [
+            {
+                "name": "luzhongyang",
+                "email": "luzhongyang@touzila.com"
+            }
+        ],
+        "description": "易宝通处理程序"
     }
 ]

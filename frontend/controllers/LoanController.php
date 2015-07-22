@@ -635,7 +635,7 @@ class LoanController extends \yii\web\Controller
         $open_id = $user['openid'];
 
         $js = new Js($appId, $secret); 
-        return $this->renderPartial('repay_list', ['js'=>$js]);
+        return $this->renderPartial('repay_list', ['v'=>Yii::$app->params['assets_version'], 'js'=>$js]);
     }
 
     public function actionRepay($loan_id=0)
@@ -656,7 +656,7 @@ class LoanController extends \yii\web\Controller
         if (isset($l) and $l->status>2) {
             if ($l->status==3) {
                 $js = new Js($appId, $secret); 
-                return $this->renderPartial('repay', ['l'=>$l, 'js'=>$js]);
+                return $this->renderPartial('repay', ['v'=>Yii::$app->params['assets_version'], 'l'=>$l, 'js'=>$js]);
             } else {
                 return $this->redirect(['loan/repayed']);
             }
@@ -671,6 +671,6 @@ class LoanController extends \yii\web\Controller
         $secret = Yii::$app->params['wechat_appsecret'];
 
         $js = new Js($appId, $secret); 
-        return $this->renderPartial('repayed', ['js'=>$js]);
+        return $this->renderPartial('repayed', ['v'=>Yii::$app->params['assets_version'], 'js'=>$js]);
     }
 }
