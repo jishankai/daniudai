@@ -72,7 +72,7 @@
 		 	return y+'.'+m+'.'+d;
 		 }
 		 function NewDay(date1,date2){
-		 	return parseInt((parseInt(date1)-parseInt(date2))/(60*60*24*1000));
+		 	return parseInt((parseInt(date1)-parseInt(date2))/(60*60*24));
 		 }
 
 	</script>	
