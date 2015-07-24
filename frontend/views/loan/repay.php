@@ -80,7 +80,7 @@
 		 var repay_btn = document.getElementById("repay_btn");
 
 		 repay_btn.onclick = function(){
-		 	window.location.href="";
+            window.location.href="./index.php?r=loan/repaying";
 		 }
 
 	</script>	
