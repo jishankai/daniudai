@@ -1,5 +1,5 @@
 <?php
 return [
     'adminEmail' => 'admin@example.com',
-    'assets_version'=>'7',
+    'assets_version'=>'2',
 ];
