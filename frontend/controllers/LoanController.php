@@ -684,10 +684,10 @@ class LoanController extends \yii\web\Controller
         
         $yeepay = new YeepayMPay($merchantaccount, $merchantPublicKey, $merchantPrivateKey, $yeepayPublicKey);
 
-        $order_id = create_str(15);//网页支付的订单在订单有效期内可以进行多次支付请求，但是需要注意的是每次请求的业务参数都要一致，交易时间也要保持一致。否则会报错“订单与已存在的订单信息不符”
+        $order_id = $this->create_str(15);//网页支付的订单在订单有效期内可以进行多次支付请求，但是需要注意的是每次请求的业务参数都要一致，交易时间也要保持一致。否则会报错“订单与已存在的订单信息不符”
         $transtime = time();//交易时间，是每次支付请求的时间，注意此参数在进行多次支付的时候要保持一致。
         $product_catalog = '1';//商品类编码是我们业管根据商户业务本身的特性进行配置的业务参数。
-        $identity_id = create_str(15);//用户身份标识，是生成绑卡关系的因素之一，在正式环境此值不能固定为一个，要一个用户有唯一对应一个用户标识，以防出现盗刷的风险且一个支付身份标识只能绑定5张银行卡
+        $identity_id = $this->create_str(15);//用户身份标识，是生成绑卡关系的因素之一，在正式环境此值不能固定为一个，要一个用户有唯一对应一个用户标识，以防出现盗刷的风险且一个支付身份标识只能绑定5张银行卡
         $identity_type = 0;     //支付身份标识类型码
         $user_ip = '172.17.253.112'; //此参数不是固定的商户服务器ＩＰ，而是用户每次支付时使用的网络终端IP，否则的话会有不友好提示：“检测到您的IP地址发生变化，请注意支付安全”。
         $user_ua = 'NokiaN70/3.0544.5.1 Series60/2.8 Profile/MIDP-2.0 Configuration/CLDC-1.1';//用户ua
@@ -708,7 +708,7 @@ class LoanController extends \yii\web\Controller
         $encrypt = explode('=', $arr[1]);
         $data = explode('=', $arr[2]);
 
-        echo($url);
+        return $this->redirect($url);
         //var_dump($url);
     }
 
