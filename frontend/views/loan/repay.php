@@ -60,7 +60,9 @@
 		 wx.ready(function(){
 		 	wx.hideOptionMenu();
 		 });
-		 document.getElementById("s_day").innerHTML = NewDay(<?php echo $l->end_at?>,<?php echo $l->start_at?>);
+
+		 var now = Date.parse(new Date())/1000;
+		 document.getElementById("s_day").innerHTML = NewDay(<?php echo $l->end_at?>,now);
 		 document.getElementById("loan_date").innerHTML = NewDate(<?php echo $l->start_at?>);
 		 document.getElementById("repay_date").innerHTML = NewDate(<?php echo $l->end_at?>);
 
