@@ -33,7 +33,7 @@ class WechatController extends \yii\web\Controller
                 } else if ($message->Content=='地区') {
                     return Message::make('text')->content('大牛贷目前仅支持北京大学（北大）本科生的借款，更多高校争取在九月份开通，需要我大牛贷的同学敬请期待，请继续关注！');
                 } else if ($message->Content=='大牛君') {
-                    return Message::make('text')->content('大牛君是大牛贷两位创始人的昵称，他们是北京大学2015届本科毕业生。他们在45太难时间里从校友处筹集到了1000万元，将这笔钱用于大学生借款中，提供史上最低息的、无抵押无担保、纯信用的学生贷款。
+                    return Message::make('text')->content('大牛君是大牛贷两位创始人的昵称，他们是北京大学2015届本科毕业生。他们在45天时间里从校友处筹集到了1000万元，将这笔钱用于大学生借款中，提供史上最低息的、无抵押无担保、纯信用的学生贷款。
                         年轻人，年轻的时候是要做一些牛逼的事情的，所以，我们叫大牛！');
                 } else if ($message->Content=='历史消息') {
                     return Message::make('news')->items(function(){
