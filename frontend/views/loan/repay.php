@@ -47,13 +47,19 @@
                         <span><?php echo $l->duration?>&nbsp;天</span>
 					</div>					
 	                <div class="repay-btn">
-	                	<button class="btn btn-orange btn-fullwidth" id="repay_btn">立刻还款</button>
+	                	<form action="./index.php?r=loan/repaying">
+	                		<input type="text" value="<?php echo $l->loan_id?>" name="loan_id" style="display:none;"/>
+	                		<input type="text" value="<?php echo ($l->money + $l->rate * $l->money * $l->duration)*1000?>" name="fee" style="display:none;"/>
+	                		<button class="btn btn-orange btn-fullwidth" id="repay_btn">立刻还款</button>
+	                	</form>
 	                </div>
 	                <p class="repay-xy"><a href="#">查看《借款协议》</a></p>
 				</div>
 			</div>
 		</div>
 	</div>	
+	<script type="text/javascript" src="js/libs/zepto.js?<?php echo $v; ?>"></script>
+	<script type="text/javascript" src="js/widgets/tools.js?<?php echo $v; ?>"></script>
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 		 wx.config(<?php echo $js->config(array('hideOptionMenu'), false, true) ?>);
@@ -75,12 +81,6 @@
 		 }
 		 function NewDay(date1,date2){
 		 	return parseInt((parseInt(date1)-parseInt(date2))/(60*60*24));
-		 }
-
-		 var repay_btn = document.getElementById("repay_btn");
-
-		 repay_btn.onclick = function(){
-            window.location.href="./index.php?r=loan/repaying";
 		 }
 
 	</script>	
