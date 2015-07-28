@@ -340,8 +340,7 @@ class LoanController extends \yii\web\Controller
             }
             return json_encode(['isSuccess'=>$result, 'auth'=>$auth]);
         } else if ($code==1) {
-            $time = $_SESSION['sms_send_time'];
-            if (time()-$time>60) {
+            if (!isset($_SESSION['sms_send_time']) or time()-$_SESSION['sms_send_time']>60) {
                 $code = $_SESSION['sms_code'] = rand(100000, 999999);
                 $sms = new \SmsApi();
                 $sms->sendMsg($mobile, '您的验证码是：'.$code.'。回复TD退订');
@@ -440,13 +439,13 @@ class LoanController extends \yii\web\Controller
 
         $open_id = $user['openid'];
         if ($open_id==Yii::$app->params['pku101_supporter']) {
-            $r = Yii::$app->db->createCommand('SELECT u.name,u.mobile,s.depart, l.loan_id,l.status FROM user u LEFT JOIN loan l ON u.wechat_id=l.wechat_id LEFT JOIN student stu ON u.wechat_id=stu.wechat_id LEFT JOIN school s ON stu.school_id=s.school_id WHERE stu.school_id LIKE "101%" AND l.status>=1 ORDER BY l.status ASC, l.update_time DESC')->queryAll();
+            $r = Yii::$app->db->createCommand('SELECT u.name,u.mobile,s.depart, l.loan_id,l.status FROM user u LEFT JOIN loan l ON u.wechat_id=l.wechat_id LEFT JOIN student stu ON u.wechat_id=stu.wechat_id LEFT JOIN school s ON stu.school_id=s.school_id WHERE stu.school_id LIKE "101%" AND l.status>=1 ORDER BY l.status ASC, l.updated_at DESC')->queryAll();
             return $this->renderPartial('personal_list',['r'=>$r]);
         } else if($open_id==Yii::$app->params['pku102_supporter']) {
-            $r = Yii::$app->db->createCommand('SELECT u.name,u.mobile,s.depart, l.loan_id,l.status FROM user u LEFT JOIN loan l ON u.wechat_id=l.wechat_id LEFT JOIN student stu ON u.wechat_id=stu.wechat_id LEFT JOIN school s ON stu.school_id=s.school_id WHERE stu.school_id LIKE "102%" AND l.status>=1 ORDER BY l.status ASC, l.update_time DESC')->queryAll();
+            $r = Yii::$app->db->createCommand('SELECT u.name,u.mobile,s.depart, l.loan_id,l.status FROM user u LEFT JOIN loan l ON u.wechat_id=l.wechat_id LEFT JOIN student stu ON u.wechat_id=stu.wechat_id LEFT JOIN school s ON stu.school_id=s.school_id WHERE stu.school_id LIKE "102%" AND l.status>=1 ORDER BY l.status ASC, l.updated_at DESC')->queryAll();
             return $this->renderPartial('personal_list',['r'=>$r]);
         } else if($open_id==Yii::$app->params['demo_supporter']) {
-            $r = Yii::$app->db->createCommand('SELECT u.name,u.mobile,s.depart, l.loan_id,l.status FROM user u LEFT JOIN loan l ON u.wechat_id=l.wechat_id LEFT JOIN student stu ON u.wechat_id=stu.wechat_id LEFT JOIN school s ON stu.school_id=s.school_id WHERE l.status>=1 ORDER BY l.status ASC, l.update_time DESC')->queryAll();
+            $r = Yii::$app->db->createCommand('SELECT u.name,u.mobile,s.depart, l.loan_id,l.status FROM user u LEFT JOIN loan l ON u.wechat_id=l.wechat_id LEFT JOIN student stu ON u.wechat_id=stu.wechat_id LEFT JOIN school s ON stu.school_id=s.school_id WHERE l.status>=1 ORDER BY l.status ASC, l.updated_at DESC')->queryAll();
             return $this->renderPartial('personal_list',['r'=>$r]);
             //$r = Yii::$app->db->createCommand('SELECT u.name,u.bank,u.bank_id, l.loan_id,l.money,l.duration,t.name AS reviewer,l.status FROM user u LEFT JOIN loan l ON u.wechat_id=l.wechat_id LEFT JOIN user t ON l.reviewer=t.wechat_id WHERE l.status=2')->queryAll();
             //return $this->renderPartial('bank_list', ['verification'=>'demo','r'=>$r]);
@@ -677,6 +676,29 @@ class LoanController extends \yii\web\Controller
 
     public function actionRepaying()
     {
+        session_start();
+        if (empty($_SESSION['user'])) {
+            $auth = new Auth($appId, $secret);
+            $user = $auth->authorize(Url::to(['loan/repay'], TRUE), 'snsapi_base'); // 返回用户 Bag
+            $_SESSION['user'] = $user;
+        }
+    
+        $user = $_SESSION['user'];
+
+        $order_id = $user['openid'].'_'.$_POST['loan_id'];
+        $y = Yeepay::findOne($order_id);
+        if (!isset($y)) {
+            $y = new Yeepay;
+            $y->order_id = $order_id;
+            $y->wechat_id = $user['openid'];
+            $y->loan_id = $_POST['loan_id'];
+            $y->fee = $_POST['fee'];
+            $y->status = 0;
+            $y->created_at = time();
+            $y->save();
+        }
+        $u = User::findOne($user['openid']);
+
         $merchantaccount = Yii::$app->params['merchant_account'];
         $merchantPublicKey = Yii::$app->params['merchant_pub'];
         $merchantPrivateKey = Yii::$app->params['merchant_private'];
@@ -684,24 +706,24 @@ class LoanController extends \yii\web\Controller
         
         $yeepay = new YeepayMPay($merchantaccount, $merchantPublicKey, $merchantPrivateKey, $yeepayPublicKey);
 
-        $order_id = $this->create_str(15);//网页支付的订单在订单有效期内可以进行多次支付请求，但是需要注意的是每次请求的业务参数都要一致，交易时间也要保持一致。否则会报错“订单与已存在的订单信息不符”
-        $transtime = time();//交易时间，是每次支付请求的时间，注意此参数在进行多次支付的时候要保持一致。
-        $product_catalog = '1';//商品类编码是我们业管根据商户业务本身的特性进行配置的业务参数。
-        $identity_id = $this->create_str(15);//用户身份标识，是生成绑卡关系的因素之一，在正式环境此值不能固定为一个，要一个用户有唯一对应一个用户标识，以防出现盗刷的风险且一个支付身份标识只能绑定5张银行卡
-        $identity_type = 0;     //支付身份标识类型码
-        $user_ip = '172.17.253.112'; //此参数不是固定的商户服务器ＩＰ，而是用户每次支付时使用的网络终端IP，否则的话会有不友好提示：“检测到您的IP地址发生变化，请注意支付安全”。
-        $user_ua = 'NokiaN70/3.0544.5.1 Series60/2.8 Profile/MIDP-2.0 Configuration/CLDC-1.1';//用户ua
-        $callbackurl = 'http://mobiletest.yeepay.com/demo/pay/callback';//商户后台系统回调地址，前后台的回调结果一样
-        $fcallbackurl = 'http://mobiletest.yeepay.com/demo/pay/callback';//商户前台系统回调地址，前后台的回调结果一样
-        $product_name = '诛仙-3 阶成品天琊';//出于风控考虑，请按下面的格式传递值：应用-商品名称，如“诛仙-3 阶成品天琊”
-        $product_desc = '钻石';//商品描述
+        //$order_id = $this->create_str(15);//网页支付的订单在订单有效期内可以进行多次支付请求，但是需要注意的是每次请求的业务参数都要一致，交易时间也要保持一致。否则会报错“订单与已存在的订单信息不符”
+        $transtime = $y->created_at;//交易时间，是每次支付请求的时间，注意此参数在进行多次支付的时候要保持一致。
+        $product_catalog = '18';//商品类编码是我们业管根据商户业务本身的特性进行配置的业务参数。
+        $identity_id = $y->wechat_id;//用户身份标识，是生成绑卡关系的因素之一，在正式环境此值不能固定为一个，要一个用户有唯一对应一个用户标识，以防出现盗刷的风险且一个支付身份标识只能绑定5张银行卡
+        $identity_type = 2;     //支付身份标识类型码
+        $user_ip = $_SERVER["HTTP_CLIENT_IP"]; //此参数不是固定的商户服务器ＩＰ，而是用户每次支付时使用的网络终端IP，否则的话会有不友好提示：“检测到您的IP地址发生变化，请注意支付安全”。
+        $user_ua = $_SERVER['HTTP_USER_AGENT'];//用户ua
+        $callbackurl = Url::to(['loan/callback'], TRUE);//商户后台系统回调地址，前后台的回调结果一样
+        $fcallbackurl = Url::to(['loan/callback'], TRUE);//商户前台系统回调地址，前后台的回调结果一样
+        $product_name = '大牛贷-还款';//出于风控考虑，请按下面的格式传递值：应用-商品名称，如“诛仙-3 阶成品天琊”
+        $product_desc = '还款';//商品描述
         $terminaltype = 3;
-        $terminalid = '05-16-DC-59-C2-34';//其他支付身份信息
-        $amount = 4;//订单金额单位为分，支付时最低金额为2分，因为测试和生产环境的商户都有手续费（如2%），易宝支付收取手续费如果不满1分钱将按照1分钱收取。
-        $cardno = '6226388002295420';
+        $terminalid = $y->wechat_id;//其他支付身份信息
+        $amount = $y->fee;//订单金额单位为分，支付时最低金额为2分，因为测试和生产环境的商户都有手续费（如2%），易宝支付收取手续费如果不满1分钱将按照1分钱收取。
+        $cardno = $u->bank_id;
         $idcardtype = '01';
-        $idcard = '';
-        $owner = '张三';
+        $idcard = $u->id;
+        $owner = $u->name;
         $url = $yeepay->webPay($order_id, $transtime, $amount, $cardno, $idcardtype, $idcard, $owner, $product_catalog, $identity_id, $identity_type, $user_ip, $user_ua, $callbackurl, $fcallbackurl, $currency = 156, $product_name, $product_desc, $terminaltype, $terminalid, $orderexp_date = 60);
 
         $arr = explode('&', $url);
@@ -714,6 +736,9 @@ class LoanController extends \yii\web\Controller
 
     public function actionCallback()
     {
+        $appId = Yii::$app->params['wechat_appid'];
+        $secret = Yii::$app->params['wechat_appsecret'];
+
         $merchantaccount = Yii::$app->params['merchant_account'];
         $merchantPublicKey = Yii::$app->params['merchant_pub'];
         $merchantPrivateKey = Yii::$app->params['merchant_private'];
@@ -724,24 +749,41 @@ class LoanController extends \yii\web\Controller
             $return = $yeepay->callback($_POST['data'], $_POST['encryptkey']);
             // TODO:添加订单处理逻辑代码
 
+            $order_id = $return['orderid'];
+            $y = Yeepay::findOne($order_id);
+            $l = Loan::findOne($y->loan_id);
+            if ($return['status']==1 and $y->status==0) {
+                $transaction = Yii::$app->db->beginTransaction();
+                try {
+                    $y->status = 1;
+                    $l->status = 4;
+                    $y->updateAttributes(['status']);
+                    $l->updateAttributes(['status']);
+                    $transaction->commit();
+                } catch(\Exception $e) {
+                    $transaction->rollBack();
+                    throw $e;
+                }
+
+                $notice = new Notice($appId, $secret);
+                $templateId = Yii::$app->params['templateId_repay_success'];
+                $url = Url::to(['loan/repayed'],TRUE);
+                $data = array(
+                    "first"    => "您已成功还款",
+                    "keyword1" => $y->fee/100.00,
+                    "keyword2" => "借款",
+                    "keyword3" => "已还款",
+                    "keyword4" => date("Y-m-d", $l->end_at),
+                    "keyword5" => date("Y-m-d H:i:s"),
+                    "remark"   => "您已还款成功，感谢您的使用！",
+                );
+                $messageId = $notice->uses($templateId)->withUrl($url)->andData($data)->andReceiver($l->wechat_id)->send();
+            }
+
+            return $this->redirect(['loan/repayed']);
         }catch (yeepayMPayException $e) {
             // TODO：添加订单支付异常逻辑代码
+            return $this->redirect(['loan/repay']);
         }
-    }
-
-    function create_str($length = 8)
-    {
-        // 密码字符集，可任意添加你需要的字符
-        $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-        $str = '';
-        for ($i = 0; $i < $length; $i++) {
-            // 这里提供两种字符获取方式
-            // 第一种是使用 substr 截取$chars中的任意一位字符；
-            // 第二种是取字符数组 $chars 的任意元素  
-            // $password .= substr($chars, mt_rand(0, strlen($chars) – 1), 1);
-            $str .= $chars[mt_rand(0, strlen($chars) - 1)];
-        }
-
-        return $str;
     }
 }

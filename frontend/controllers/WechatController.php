@@ -70,7 +70,10 @@ class WechatController extends \yii\web\Controller
 
         $server->on('event', 'CLICK', function($event) {
             if ($event['EventKey']=='CLICK_ANSWER') {
-                return Message::make('text')->content('牛仔您来啦~有什么可以效劳的？您只需点击下方左侧小键盘图标，用文字或语音，就可以和大牛君说话了');
+                return Message::make('text')->content('牛仔您好！大牛贷是专门针对大学生的超低息、无担保、纯信用贷款。只要是大学生，注册提交、并面签通过审核后即可获得借款。
+年轻人，能用钱解决的那都不是事，缺钱就我大牛。
+                 
+请回复“借款”、“业务”、“地区”、“大牛君”了解大牛贷，回复“历史消息”获取历史消息。');
             }
         });
 
