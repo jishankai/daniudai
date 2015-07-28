@@ -50,7 +50,7 @@
 	                <div class="repay-btn">
                         <form action='<?php echo Url::to(["loan/repaying"])?>' method="post">
 	                		<input type="text" value="<?php echo $l->loan_id?>" name="loan_id" style="display:none;"/>
-	                		<input type="text" value="<?php echo ($l->money + $l->rate * $l->money * $l->duration)*1000?>" name="fee" style="display:none;"/>
+	                		<input type="text" value="<?php echo ($l->money + $l->rate * $l->money * $l->duration)*100?>" name="fee" style="display:none;"/>
 	                		<button class="btn btn-orange btn-fullwidth" id="repay_btn">立刻还款</button>
 	                	</form>
 	                </div>
