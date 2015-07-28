@@ -711,7 +711,7 @@ class LoanController extends \yii\web\Controller
         $product_catalog = '18';//商品类编码是我们业管根据商户业务本身的特性进行配置的业务参数。
         $identity_id = $y->wechat_id;//用户身份标识，是生成绑卡关系的因素之一，在正式环境此值不能固定为一个，要一个用户有唯一对应一个用户标识，以防出现盗刷的风险且一个支付身份标识只能绑定5张银行卡
         $identity_type = 2;     //支付身份标识类型码
-        $user_ip = $_SERVER["HTTP_CLIENT_IP"]; //此参数不是固定的商户服务器ＩＰ，而是用户每次支付时使用的网络终端IP，否则的话会有不友好提示：“检测到您的IP地址发生变化，请注意支付安全”。
+        $user_ip = $_SERVER["REMOTE_ADDR"];//此参数不是固定的商户服务器ＩＰ，而是用户每次支付时使用的网络终端IP，否则的话会有不友好提示：“检测到您的IP地址发生变化，请注意支付安全”。
         $user_ua = $_SERVER['HTTP_USER_AGENT'];//用户ua
         $callbackurl = Url::to(['loan/callback'], TRUE);//商户后台系统回调地址，前后台的回调结果一样
         $fcallbackurl = Url::to(['loan/callback'], TRUE);//商户前台系统回调地址，前后台的回调结果一样
