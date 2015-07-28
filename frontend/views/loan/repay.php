@@ -1,3 +1,4 @@
+<?php use yii\helpers\Url;?>
 <!DOCTYPE html>
 <html class="mobile-notes-variant bg-color-white" lang="en"><!--full-srceen-->
 <head>
@@ -47,7 +48,7 @@
                         <span><?php echo $l->duration?>&nbsp;天</span>
 					</div>					
 	                <div class="repay-btn">
-	                	<form action="./index.php?r=loan/repaying" method="post">
+                        <form action='<?php echo Url::to(["loan/repaying"])?>' method="post">
 	                		<input type="text" value="<?php echo $l->loan_id?>" name="loan_id" style="display:none;"/>
 	                		<input type="text" value="<?php echo ($l->money + $l->rate * $l->money * $l->duration)*1000?>" name="fee" style="display:none;"/>
 	                		<button class="btn btn-orange btn-fullwidth" id="repay_btn">立刻还款</button>
