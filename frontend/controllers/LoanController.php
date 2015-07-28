@@ -14,6 +14,7 @@ use backend\models\Loan;
 use backend\models\Student;
 use backend\models\School;
 use backend\models\Bank;
+use backend\models\Yeepay;
 
 class LoanController extends \yii\web\Controller
 {
