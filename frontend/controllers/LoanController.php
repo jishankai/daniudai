@@ -27,7 +27,7 @@ class LoanController extends \yii\web\Controller
 
         $s = Student::findOne($user['openid']);
         $u = User::findOne($user['openid']);
-        $l = Loan::find()->where(['and', "wechat_id={$user['openid']}", 'status<4'])->one();
+        $l = Loan::find()->where(['and', 'wechat_id=:wechat_id', 'status<4'])->addParams([':wechat_id'=>$user['openid']])->one();
 
         if (isset($_POST['stu_id'])) {
             $stu_id = $_POST['stu_id'];
@@ -78,7 +78,7 @@ class LoanController extends \yii\web\Controller
     {
         session_start();
         $user = $_SESSION['user'];
-        $l = Loan::find()->where(['and', "wechat_id={$user['openid']}", 'status<4'])->one();
+        $l = Loan::find()->where(['and', 'wechat_id=:wechat_id', 'status<4'])->addParams([':wechat_id'=>$user['openid']])->one();
         if (isset($l) AND $l->status>0) {
             return $this->redirect(['loan/success']);
         }
@@ -127,7 +127,7 @@ class LoanController extends \yii\web\Controller
             if ($u->verify_times<1) {
                 return $this->redirect(['loan/failed']);
             }
-            $l = Loan::find()->where(['and', "wechat_id={$user['openid']}", 'status<4'])->one();
+            $l = Loan::find()->where(['and', 'wechat_id=:wechat_id', 'status<4'])->addParams([':wechat_id'=>$user['openid']])->one();
             if (isset($l) and $l->status>0) {
                 return $this->redirect(['loan/success']);
             }
@@ -144,7 +144,7 @@ class LoanController extends \yii\web\Controller
 
         session_start();
         $user = $_SESSION['user'];
-        $loan = Loan::find()->where(['and', "wechat_id={$user['openid']}", 'status<4'])->one();
+        $loan = Loan::find()->where(['and', 'wechat_id=:wechat_id', 'status<4'])->addParams([':wechat_id'=>$user['openid']])->one();
         $transaction = Yii::$app->db->beginTransaction();
         try {
             if (isset($loan) AND $loan->status<=0) {
@@ -377,7 +377,7 @@ class LoanController extends \yii\web\Controller
         }
         $user = $_SESSION['user'];
         $u = User::findOne($user['openid']);
-        $l = Loan::find()->where(['and', "wechat_id={$user['openid']}", 'status<4'])->one();
+        $l = Loan::find()->where(['and', 'wechat_id=:wechat_id', 'status<4'])->addParams([':wechat_id'=>$user['openid']])->one();
         $student = Student::findOne($user['openid']);
 
         if ($l->status<=0) {
@@ -454,7 +454,7 @@ class LoanController extends \yii\web\Controller
             $r = Yii::$app->db->createCommand('SELECT u.name,u.bank,u.bank_id, l.loan_id,l.money,l.duration,t.name AS reviewer,l.status FROM user u LEFT JOIN loan l ON u.wechat_id=l.wechat_id LEFT JOIN user t ON l.reviewer=t.wechat_id WHERE l.status=2')->queryAll();
             return $this->renderPartial('bank_list', ['verification'=>'admin','r'=>$r]);
         } else {
-            $l = Loan::find()->where(['and', "wechat_id={$user['openid']}", 'status<4'])->one();
+            $l = Loan::find()->where(['and', 'wechat_id=:wechat_id', 'status<4'])->addParams([':wechat_id'=>$user['openid']])->one();
             if (isset($l) AND $l->status>=1) {
                 return $this->redirect(['loan/repay']);
             } else {
@@ -652,7 +652,7 @@ class LoanController extends \yii\web\Controller
         }
     
         $user = $_SESSION['user'];
-        $l = Loan::find()->where(['and', "wechat_id={$user['openid']}", 'status<4'])->one();
+        $l = Loan::find()->where(['and', 'wechat_id=:wechat_id', 'status<4'])->addParams([':wechat_id'=>$user['openid']])->one();
 
         if (isset($l) and $l->status>2) {
             if ($l->status==3) {
