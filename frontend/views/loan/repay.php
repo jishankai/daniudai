@@ -242,10 +242,10 @@
 		 	r_money.innerHTML = b_l;
 		 }else{
 		 	document.getElementById("y_day").innerHTML = Math.abs(s_day);
-		 	$("s_day_box").hide();
-		 	$("y_day_box").show();
-		 	document.getElementById("f_money").innerHTML = b_l * s_day * 0.0004;
-		 	r_money.innerHTML = b_l + b_l * s_day * 0.0004;
+		 	$("#s_day_box").hide();
+		 	$("#y_day_box").show();
+		 	document.getElementById("f_money").innerHTML = Math.round((b_l * Math.abs(s_day) * 0.0004)*100)/100;
+		 	r_money.innerHTML = Math.round((b_l + b_l * Math.abs(s_day) * 0.0004)*100)/100;
 		 }
 
 		 function NewDate(date){
