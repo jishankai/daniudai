@@ -29,7 +29,7 @@
 					</div>
 					<div class="repay-text">
 						<div class="r-name">应还总额</div>						
-						<span class="r-money"><span id="r_money"></span>&nbsp;元</span>
+						<span class="r-money"><b id="r_money"></b>&nbsp;元</span>
 						<div class="r-money-s">
                             本金<span class="s-money"><?php echo $l->money?></span>
 						</div>
@@ -85,7 +85,7 @@
 								2、乙方已通过网站或微信服务号在丙方注册，并承诺其提供给丙方的信息是完全真实的；<br/>
 								3、甲方承诺对本协议涉及的借款具有完全的支配能力，是其自有闲散资金，为其合法所得；并承诺其提供给丙方的信息是完全真实的；<br/>
 								4、乙方有借款需求，甲方亦同意借款，双方有意成立借贷关系。
-								各方经协商一致，于【<span id="year"></span>】年【<span id="month"></span>】月【 <span id="day"></span>】日签订如下协议，共同遵照履行：</p>
+								各方经协商一致，于<span id="qsrq1"></span>签订如下协议，共同遵照履行：</p>
 
 								<p>
 									第一条 借款基本信息<br/>
@@ -231,6 +231,7 @@
 		 document.getElementById("loan_date").innerHTML = NewDate(<?php echo $l->start_at?>);
 		 document.getElementById("repay_date").innerHTML = NewDate(<?php echo $l->end_at?>);
 		 document.getElementById("qsrq").innerHTML = AgreementDate(<?php echo $l->start_at?>);
+		 document.getElementById("qsrq1").innerHTML = AgreementDate(<?php echo $l->start_at?>);
 
 		 var s_day = NewDay(<?php echo $l->end_at?>,now),
 		 	 b_l = <?php echo $l->money + $l->rate * $l->money * $l->duration?>,
