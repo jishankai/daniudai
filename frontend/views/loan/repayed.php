@@ -37,7 +37,7 @@
 		 });
 
 		document.getElementById("z_btn").onclick=function () { 
-			window.location.href="";
+			window.location.href="./index.php?r=loan/index";
 		 }
 
 
