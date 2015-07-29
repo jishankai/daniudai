@@ -747,7 +747,7 @@ class LoanController extends \yii\web\Controller
 
         $yeepay = new yeepayMPay($merchantaccount, $merchantPublicKey, $merchantPrivateKey, $yeepayPublicKey);
         try {
-            $return = $yeepay->callback($_POST['data'], $_POST['encryptkey']);
+            $return = $yeepay->callback($_REQUEST['data'], $_REQUEST['encryptkey']);
             // TODO:添加订单处理逻辑代码
 
             $order_id = $return['orderid'];
