@@ -22,14 +22,14 @@
 				<div class="repay-box">	
 					<div class="repay-text">
                         <div class="r-name">到期还款日</div>
-						<div class="r-time font-green">还剩<b id="s_day"></b>天</div>
-						<!--div class="r-time font-red">已逾期2天</div>
-						<div class="r-time font-gray">还剩2天</div-->
+						<div class="r-time font-green" id="s_day_box">还剩<b id="s_day"></b>天</div>
+						<div class="r-time font-red" style="display:none;" id="y_day_box">已逾期<b id="y_day">2</b>天</div>
+						<!-- <div class="r-time font-gray">还剩2天</div> -->
 						<span id="repay_date"></span>
 					</div>
 					<div class="repay-text">
 						<div class="r-name">应还总额</div>						
-						<span class="r-money"><?php echo $l->money + $l->rate * $l->money * $l->duration?>&nbsp;元</span>
+						<span class="r-money"><span id="r_money"></span>&nbsp;元</span>
 						<div class="r-money-s">
                             本金<span class="s-money"><?php echo $l->money?></span>
 						</div>
@@ -37,7 +37,7 @@
                             利息<span class="s-money"><?php echo $l->rate * $l->money * $l->duration?></span>
 						</div>
 						<div class="r-money-s">
-							罚息<span class="s-money">0</span><!--font-red-->
+							罚息<span class="s-money" id="f_money">0</span><!--font-red-->
 						</div>
 					</div>
 					<div class="repay-text">
@@ -55,11 +55,11 @@
 	                		<button class="btn btn-orange btn-fullwidth" id="repay_btn">立刻还款</button>
 	                	</form>
 	                </div>
-	                <p class="repay-xy"><a href="#">查看《借款协议》</a></p>
+	                <p class="repay-xy" id="jkxy_btn"><a href="#">查看《借款协议》</a></p>
 				</div>
 			</div>
 		</div>
-		<div id="masker" class="masker" style="display:block;"></div>
+		<div id="masker" class="masker" style="display:none;"></div>
 		<div class="popover popover-big" style="display:none;position: absolute;left:0;" id="agreement">
 			<div class="popover-inner">
 				<div class="lists-box">					
@@ -227,10 +227,25 @@
 		 });
 
 		 var now = Date.parse(new Date())/1000;
-		 document.getElementById("s_day").innerHTML = NewDay(<?php echo $l->end_at?>,now);
+
 		 document.getElementById("loan_date").innerHTML = NewDate(<?php echo $l->start_at?>);
 		 document.getElementById("repay_date").innerHTML = NewDate(<?php echo $l->end_at?>);
 		 document.getElementById("qsrq").innerHTML = AgreementDate(<?php echo $l->start_at?>);
+
+		 var s_day = NewDay(<?php echo $l->end_at?>,now),
+		 	 b_l = <?php echo $l->money + $l->rate * $l->money * $l->duration?>,
+		 	 r_money = document.getElementById("r_money");
+
+		 if(s_day>0){
+		 	document.getElementById("s_day").innerHTML = s_day;
+		 	r_money.innerHTML = b_l;
+		 }else{
+		 	document.getElementById("y_day").innerHTML = Math.abs(s_day);
+		 	$("s_day_box").hide();
+		 	$("y_day_box").show();
+		 	document.getElementById("f_money").innerHTML = b_l * s_day * 0.0004;
+		 	r_money.innerHTML = b_l + b_l * s_day * 0.0004;
+		 }
 
 		 function NewDate(date){
 		 	var dd=new Date(parseInt(date)*1000);  
@@ -252,11 +267,24 @@
 
 		 var wheight = $(window).height(),
 			 wwidth = $(window).width(),
-			 agreeList = $("#agree_list");
-			 agreement = $("#agreement");
+			 agreeList = $("#agree_list"),
+			 agreement = $("#agreement"),
+			 mask = $("#masker");
 
-			 agreeList.height(wheight/6*4);
-			 agreement.css("top",wheight/8);
+
+		agreeList.height(wheight/6*4);
+		agreement.css("top",wheight/8);
+		$("#jkxy_btn").click(function(){
+			mask.show();
+			agreement.show();
+		})
+		$("#close10").click(function(){
+			mask.hide();
+			agreement.hide();
+		})
+
+		
+
 
 	</script>	
 </body>
