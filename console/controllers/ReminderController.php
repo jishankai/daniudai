@@ -11,7 +11,7 @@ use backend\models\Loan;
 class ReminderController extends Controller {
  
     public function actionIndex() {
-        echo "Reminder Working...";
+        echo "Reminder Working...\n";
 
         $loans = Loan::findAll(['status'=>3]);
         foreach ($loans as $l) {
@@ -20,7 +20,7 @@ class ReminderController extends Controller {
 
             $notice = new Notice($appId, $secret);
             $templateId = Yii::$app->params['templateId_repay_remind'];
-            $url = Url::to(['loan/repay'],TRUE);
+            $url = Url::to(Yii::$app->params['host'].'/index.php?r=loan/repay');
             $data = array(
                 "first"    => "您有一笔借款即将到期，请注意及时还款。",
                 "keyword1" => date("Y-m-d", $l->end_at),
@@ -31,7 +31,7 @@ class ReminderController extends Controller {
             $messageId = $notice->uses($templateId)->withUrl($url)->andData($data)->andReceiver($l->wechat_id)->send();
         }
 
-        echo "Reminder Stop";
+        echo "Reminder Stop\n";
 
     }
 
