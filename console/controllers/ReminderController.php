@@ -2,6 +2,7 @@
 
 namespace console\controllers;
  
+use Yii;
 use yii\console\Controller;
 use yii\helpers\Url;
 use Overtrue\Wechat\Notice;
