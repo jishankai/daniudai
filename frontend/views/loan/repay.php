@@ -28,7 +28,7 @@
 					</div>
 					<div class="repay-text">
 						<div class="r-name">应还总额</div>						
-						<span class="r-money">1002&nbsp;元</span>
+						<span class="r-money"><?php echo $l->money + $l->rate * $l->money * $l->duration?>&nbsp;元</span>
 						<div class="r-money-s">
                             本金<span class="s-money"><?php echo $l->money?></span>
 						</div>
