@@ -657,7 +657,8 @@ class LoanController extends \yii\web\Controller
         if (isset($l) and $l->status>2) {
             if ($l->status==3) {
                 $js = new Js($appId, $secret); 
-                return $this->renderPartial('repay', ['v'=>Yii::$app->params['assets_version'], 'l'=>$l, 'js'=>$js]);
+                $u = User::findOne($user['openid']);
+                return $this->renderPartial('repay', ['v'=>Yii::$app->params['assets_version'], 'l'=>$l, 'u'=>$u, 'js'=>$js]);
             } else {
                 return $this->redirect(['loan/repayed']);
             }
