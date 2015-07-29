@@ -23,7 +23,7 @@
 						<h1>还款成功！</h1>
 					</div>
 					<div class="s-btn">
-		                <button class="btn btn-orange btn-fullwidth">再借一笔</button>
+		                <button class="btn btn-orange btn-fullwidth" id="z_btn">再借一笔</button>
 		            </div>
 				</div>
 			</div>
@@ -35,6 +35,12 @@
 		 wx.ready(function(){
 		 	wx.hideOptionMenu();
 		 });
+
+		document.getElementById("z_btn").onclick=function () { 
+			window.location.href="";
+		 }
+
+
 
 	</script>	
 </body>
