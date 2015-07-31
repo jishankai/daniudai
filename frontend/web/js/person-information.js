@@ -60,7 +60,7 @@ $(function(){
 			$("#school_id").val(s1+s2);
 
 			sname= $("#name").val();
-			RegCellName = /^[\u4e00-\u9fa5\·\•]*$/;
+			RegCellName = /^[\u4e00-\u9fa5\·\•\●]*$/;
 			name_falg=sname.search(RegCellName);
 			/*alert(sname.length);*/
 			if(sname.length<2 || name_falg=="-1"){
