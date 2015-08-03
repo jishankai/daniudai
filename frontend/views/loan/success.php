@@ -4,7 +4,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" user-scalable="no">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>申请通过</title>
+<title>申请已提交</title>
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-precomposed-144.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-precomposed-114.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/logo-72.png">
