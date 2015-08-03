@@ -15,6 +15,9 @@ html{
 	/*background: -o-linear-gradient(top, #2398ab, #4bbbb5);  /*Opera 11.10+*/
 	background-color: #33b4b3;
 }
+.bg-color-white{
+	background-color: #fff;
+}
 body {	
 	-webkit-font-smoothing: antialiased;
 	font-family: "microsoft yahei";
@@ -256,6 +259,114 @@ a {
 	padding: 0;
 }
 
+.repay-box{
+	width: 100%;
+	padding: 20px 15px;
+}
+.repay-box .repay-text{
+	position: relative;
+	padding-left: 120px;
+	font-size: 16px;
+	padding-bottom: 15px;
+	line-height: 30px;
+}
+.repay-box .r-name{
+	position: absolute;
+	left:0;
+	top: -1px;
+}
+.repay-box .r-time{
+	position: absolute;
+	right:0;
+	top: -1px;
+	font-size: 16px;
+}
+.repay-box span{
+	display: block;
+	vertical-align: top;
+}
+.repay-box span em{
+	font-size: 14px;
+	font-style: normal;
+}
+.repay-box .r-money{
+	font-size: 22px;
+}
+.repay-box .r-money-s{
+	width: 80px;
+	font-size: 14px;
+	color: #aaa;
+	line-height: 26px;
+	text-align: left;
+	position: relative;	
+}
+.repay-box .r-money-s .s-money{
+	position: absolute;
+	right: 0;
+	top: 0;	
+}
+.repay-box .repay-btn{
+	margin-top: 20px;
+}
+.repay-box .repay-item{
+	position: relative;
+	border-bottom: 1px solid #ddd;
+	padding: 9px 0 12px;
+	font-size: 16px;
+	cursor: pointer;
+}
+.repay-box .last-child{
+	border-bottom: 1px solid #aaa;
+	padding-bottom: 25px;
+}
+.repay-box .repay-item .r-right{
+	position: absolute;
+	top: 50%;
+	right:0;
+	margin-top: -15px; 	
+	line-height: 30px;
+}
+.repay-box .repay-item .r-right span{
+	display: inline-block;
+	vertical-align: top;
+}
+.repay-box .repay-item .r-arrow{
+	margin:5px -10px 0 5px;	
+	height: 0;
+	width: 0;
+	content: "";
+	border-width:10px;
+	border-style: solid;
+	border-color:transparent transparent transparent #aaa; 
+	position: relative;
+}
+.repay-box .repay-item .r-arrow:after{
+	position: absolute;
+	left: -10px;
+	top: -9px;
+	height: 0;
+	width: 0;
+	content: "";
+	border-width:9px;
+	border-style: solid;
+	border-color:transparent transparent transparent #fff; 
+}
+.repay-box .repay-item .money{
+	font-size: 20px;
+}
+.repay-box .repay-item p{
+	margin-bottom: 0;
+	color: #aaa;
+	margin-top: 3px;
+}
+.repay-box .repay-item em{
+	font-size: 22px;
+	padding: 0 5px;
+	display: inline-block;
+	vertical-align: top;
+	line-height: 26px;
+}
+
 .info-box{
 	padding-top: 10px;
 }
@@ -485,6 +596,22 @@ a {
 }
 .s-again .s-title h1{
 	padding-top: 20px;
+}
+.s-new .s-title{
+	background-color: #efeff4;
+	padding: 0;
+	text-align: center;
+}
+.s-new .s-title h1 {
+	color: #000;
+}
+.s-new .s-title img{
+	max-width: 60%;
+	display: inline-block;
+	vertical-align: top;
+}
+.s-new .s-btn{
+	padding-top: 15%;
 }
 .fail-box{
 	padding: 50px 30px 0;

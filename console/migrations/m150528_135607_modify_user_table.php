@@ -13,8 +13,8 @@ class m150528_135607_modify_user_table extends Migration
 
     public function down()
     {
-        $this->alterColumn('user', 'bank_id', Schema::TYPE_INTEGER . '(20) NOT NULL DEFAULT ""');
-        $this->alterColumn('user', 'mobile', Schema::TYPE_INTEGER . '(11) NOT NULL DEFAULT ""');
+        $this->alterColumn('user', 'bank_id', Schema::TYPE_INTEGER . '(20) NOT NULL DEFAULT 0');
+        $this->alterColumn('user', 'mobile', Schema::TYPE_INTEGER . '(11) NOT NULL DEFAULT 0');
     }
     
     /*

@@ -375,3 +375,23 @@ img {
     height: 100%;
     background: #00c991;    
 }
+
+/* ----------------------------------
+ * font-color
+ * ---------------------------------- */
+.font-red{
+  color: #f01919;
+}
+.font-green{
+  color: #4dd312;
+}
+.font-gray{
+  color: #aaa;
+}
+/* ----------------------------------
+ * border-style
+ * ---------------------------------- */
+.bdr-btm{
+  border-bottom: 1px solid #000;
+ }
+ 
