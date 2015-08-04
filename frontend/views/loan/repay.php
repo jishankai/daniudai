@@ -242,6 +242,7 @@
 		 	r_money.innerHTML = b_l;
 		 }else if(s_day==0){
 		 	document.getElementById("s_day_box").innerHTML = "今天";
+		 	r_money.innerHTML = b_l;
 		 }else{
 		 	document.getElementById("y_day").innerHTML = Math.abs(s_day);
 		 	$("#s_day_box").hide();
