@@ -626,6 +626,41 @@ class LoanController extends \yii\web\Controller
         return $this->renderPartial('password', ['v'=>Yii::$app->params['assets_version'], 'type'=>$type, 'js'=>$js]);
     }
 
+    public function actionAuth()
+    {
+        $appId = Yii::$app->params['wechat_appid'];
+        $secret = Yii::$app->params['wechat_appsecret'];
+
+        session_start();
+        if (empty($_SESSION['user'])) {
+            $auth = new Auth($appId, $secret);
+            $user = $auth->authorize(Url::to(['loan/setpwd'], TRUE), 'snsapi_base'); // 返回用户 Bag
+            $_SESSION['user'] = $user;
+        }
+    
+        $user = $_SESSION['user'];
+        $u = User::findOne($user['openid']);
+
+        if (isset($u)) {
+            if (Yii::$app->request->getIsAjax()) {
+                if ($_POST['name']==$u->name and $_POST['cid']==$u->cid) {
+                    if ($u->auth_code=='') {
+                        return json_encode(['type'=>2, 'stat'=>1]);
+                    } else {
+                        return json_encode(['type'=>1, 'stat'=>1]);
+                    }
+                } else {
+                    return json_encode(['type'=>1, 'stat'=>2]);
+                }
+            } else {
+                $js = new Js($appId, $secret); 
+                return $this->renderPartial('auth', ['v'=>Yii::$app->params['assets_version'], 'js'=>$js]);
+            }
+        } else {
+            return $this->redirect(['loan/index']);
+        }
+    }
+
     public function actionRepays()
     {
         $appId = Yii::$app->params['wechat_appid'];
