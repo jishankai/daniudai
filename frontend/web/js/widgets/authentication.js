@@ -65,8 +65,10 @@
 			}
 			if(ipt_flag==1){
 				this.nextBtn.removeClass("disabled");
+				this.nextBtn.removeAttr("disabled");
 			}else{
 				this.nextBtn.addClass("disabled");
+				this.nextBtn.attr("disabled","disabled");
 			}	 
 		},
  		_fnSubmit : function(nextBtn,name,cid){

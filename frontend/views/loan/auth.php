@@ -34,7 +34,7 @@
 			                </div>			                
 		                </div> 
 		                <div class="forms__option">
-		                	<button class="btn btn-primary btn-fullwidth disabled" id="a_next">下一步</button>
+		                	<button class="btn btn-primary btn-fullwidth disabled" id="a_next" disabled="disabled">下一步</button>
 		                </div>                                              
 		            </form>
 				</div>
