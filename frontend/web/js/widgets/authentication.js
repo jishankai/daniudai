@@ -86,7 +86,7 @@
 			if(falg==-1){
 				MessageBox.alert({type:"common",txt:"请输入真实姓名！"});
 				$("#name").focus();
-			}else if(Id_card.length<18){
+			}else if(cid.length<18){
 				MessageBox.alert({type:"common",txt:"请输入18位身份证号！"});
 			}else if(!age){
 				MessageBox.alert({type:"common",txt:"身份证号不合法！"});
