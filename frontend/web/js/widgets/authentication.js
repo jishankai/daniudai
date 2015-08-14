@@ -40,9 +40,9 @@
 			/*下一步按钮*/
 			this.nextBtn.on("click", function(){
 				var name = sthis.nameInput.val(),
-					Id_card = sthis.idCardInput.val(),
+					cid = sthis.idCardInput.val(),
 					nextBtn = this;
-				sthis._fnSubmit(nextBtn,name,Id_card);
+				sthis._fnSubmit(nextBtn,name,cid);
 			})
 
  		},
@@ -64,14 +64,14 @@
 				}
 			}
 			if(ipt_flag==1){
-				this.nextBtn.removeAttr("disabled");
+				this.nextBtn.removeClass("disabled");
 			}else{
-				this.nextBtn.attr("disabled","disabled");
+				this.nextBtn.addClass("disabled");
 			}	 
 		},
- 		_fnSubmit : function(nextBtn,name,Id_card){
+ 		_fnSubmit : function(nextBtn,name,cid){
  			var flag,
- 				age = TOOLS.isIdentity(Id_card);
+ 				age = TOOLS.isIdentity(cid);
 
 			RegCellName = /^[\u4e00-\u9fa5\·\•\●]*$/;
 			name_falg=name.search(RegCellName);
@@ -90,31 +90,24 @@
 				MessageBox.alert({type:"common",txt:"身份证号不合法！"});
 			}else{
 				// alert("success!");写表单提交代码
+				if(nextBtn.hasClass("disabled")) return false;
+					nextBtn.addClass('disabled');
+				TOOLS.ajax({
+					url:"./index.php?r=loan/auth",
+					data:{name:name,cid:cid},
+					type:"post",
+					dataType:"json",
+					fnSuccess:function(data){
+						if(data.stat == "1"){
+							window.location.href="./index.php?r=loan/password&type="+data.type;
+						}else if(data.isSuccess == "2"){
+							nextBtn.removeClass('disabled');
+	        				MessageBox.alert({type:"common",txt:"身份验证失败！"});
+						}
+					},
+					fnError:function(){}
+				});
 			}
- 			
-			/*if(confirmBtn.hasClass("disabled")) return false;
-			confirmBtn.addClass('disabled');
-			this.idCode = $("#idCode").val();
-			TOOLS.ajax({
-				url:"./index.php?r=loan/sms",
-				data:{mobile:this.phone,code:this.idCode,type:1},
-				type:"post",
-				dataType:"json",
-				fnSuccess:function(data){
-					console.log(data);
-					if(data.isSuccess == "0"){
-						confirmBtn.removeClass('disabled');
-						MessageBox.alert({type:"common",txt:CS.ERRORMSG["CAPTCHAERROR"]});
-					}else if(data.isSuccess == "1"){
-        if (data.auth=="1") {
-          window.location.href="./index.php?r=loan/success";
-        } else {
-          window.location.href="./index.php?r=loan/password";
-        }
-					}
-				},
-				fnError:function(){}
-			});*/
  		}
  	}
 
