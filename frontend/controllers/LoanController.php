@@ -759,7 +759,7 @@ class LoanController extends \yii\web\Controller
 
         //$order_id = $this->create_str(15);//网页支付的订单在订单有效期内可以进行多次支付请求，但是需要注意的是每次请求的业务参数都要一致，交易时间也要保持一致。否则会报错“订单与已存在的订单信息不符”
         $transtime = $y->created_at;//交易时间，是每次支付请求的时间，注意此参数在进行多次支付的时候要保持一致。
-        $product_catalog = '18';//商品类编码是我们业管根据商户业务本身的特性进行配置的业务参数。
+        $product_catalog = '30';//'18';//商品类编码是我们业管根据商户业务本身的特性进行配置的业务参数。
         $identity_id = $y->wechat_id;//用户身份标识，是生成绑卡关系的因素之一，在正式环境此值不能固定为一个，要一个用户有唯一对应一个用户标识，以防出现盗刷的风险且一个支付身份标识只能绑定5张银行卡
         $identity_type = 2;     //支付身份标识类型码
         $user_ip = $_SERVER["REMOTE_ADDR"];//此参数不是固定的商户服务器ＩＰ，而是用户每次支付时使用的网络终端IP，否则的话会有不友好提示：“检测到您的IP地址发生变化，请注意支付安全”。
@@ -770,7 +770,7 @@ class LoanController extends \yii\web\Controller
         $product_desc = '还款';//商品描述
         $terminaltype = 3;
         $terminalid = $y->wechat_id;//其他支付身份信息
-        $amount = (int)$y->fee;//订单金额单位为分，支付时最低金额为2分，因为测试和生产环境的商户都有手续费（如2%），易宝支付收取手续费如果不满1分钱将按照1分钱收取。
+        $amount = 1;//(int)$y->fee;//订单金额单位为分，支付时最低金额为2分，因为测试和生产环境的商户都有手续费（如2%），易宝支付收取手续费如果不满1分钱将按照1分钱收取。
         $cardno = $u->bank_id;
         $idcardtype = '01';
         $idcard = $u->id;
@@ -783,6 +783,20 @@ class LoanController extends \yii\web\Controller
 
         return $this->redirect($url);
         //var_dump($url);
+    }
+
+    public function actionBinds()
+    {
+        $merchantaccount = Yii::$app->params['merchant_account'];
+        $merchantPublicKey = Yii::$app->params['merchant_pub'];
+        $merchantPrivateKey = Yii::$app->params['merchant_private'];
+        $yeepayPublicKey = Yii::$app->params['yeepay_pub'];
+        
+        $yeepay = new YeepayMPay($merchantaccount, $merchantPublicKey, $merchantPrivateKey, $yeepayPublicKey);
+        $identity_id = 'oVnsLt6bzD4hKHqyklrFksy-jRxs';//用户身份标识，是生成绑卡关系的因素之一，在正式环境此值不能固定为一个，要一个用户有唯一对应一个用户标识，以防出现盗刷的风险且一个支付身份标识只能绑定5张银行卡
+        $identity_type = 2;     //支付身份标识类型码
+
+        var_dump($yeepay->getBinds($identity_type, $identity_id));
     }
 
     public function actionCallback()
