@@ -681,8 +681,11 @@ class LoanController extends \yii\web\Controller
         $secret = Yii::$app->params['wechat_appsecret'];
 
         session_start();
-        $user = $_SESSION['user'];
-        $open_id = $user['openid'];
+        if (empty($_SESSION['user'])) {
+            $auth = new Auth($appId, $secret);
+            $user = $auth->authorize(Url::to(['loan/repays'], TRUE), 'snsapi_base'); // 返回用户 Bag
+            $_SESSION['user'] = $user;
+        }
 
         $js = new Js($appId, $secret); 
         return $this->renderPartial('repay_list', ['v'=>Yii::$app->params['assets_version'], 'js'=>$js]);
