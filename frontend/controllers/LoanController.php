@@ -84,10 +84,24 @@ class LoanController extends \yii\web\Controller
         }
         //$rate = ($type=='common')?0.0002:0.0001;
         $rate = 0.0003;
+        $range = 10000 - Yii::$app->createCommand('SELECT SUM(money) FROM loan WHERE status=3 OR status=2')->queryScalar();
+        if ($range<=0) {
+            return $this->redirect(['loan/repays']);
+        }
+        $is_auth = 0;
+        $u = User::findOne($user['openid']);
+        $l = Yii::$app->db->createCommand('SELECT loan_id FROM loan WHERE status>=1 AND wechat_id=:wechat_id')->bindValue(':wechat_id', $user['openid'])->queryScalar();
+        if (isset($u) and $l!=FALSE and $u->bank_id!='') {
+            if ($u->auth_code=='') {
+                return $this->redirect(['loan/auth']);
+            } else {
+                $is_auth = 1;
+            }
+        }
         $appId = Yii::$app->params['wechat_appid'];
         $secret = Yii::$app->params['wechat_appsecret'];
         $js = new Js($appId, $secret); 
-        return $this->renderPartial('lend', ['v'=>Yii::$app->params['assets_version'], 'rate'=>$rate,'js'=>$js]);
+        return $this->renderPartial('lend', ['v'=>Yii::$app->params['assets_version'], 'range'=>$range, 'is_auth'=>$is_auth, 'rate'=>$rate,'js'=>$js]);
     }
 
     public function actionIndex()
@@ -634,7 +648,7 @@ class LoanController extends \yii\web\Controller
         session_start();
         if (empty($_SESSION['user'])) {
             $auth = new Auth($appId, $secret);
-            $user = $auth->authorize(Url::to(['loan/setpwd'], TRUE), 'snsapi_base'); // 返回用户 Bag
+            $user = $auth->authorize(Url::to(['loan/auth'], TRUE), 'snsapi_base'); // 返回用户 Bag
             $_SESSION['user'] = $user;
         }
     
