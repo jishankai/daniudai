@@ -27,7 +27,7 @@ class LoanController extends \yii\web\Controller
 
         $s = Student::findOne($user['openid']);
         $u = User::findOne($user['openid']);
-        $l = Loan::find()->where(['and', 'wechat_id=:wechat_id', 'status<4'])->addParams([':wechat_id'=>$user['openid']])->one();
+        $l = Loan::find()->where(['and', 'wechat_id=:wechat_id', 'status<1'])->addParams([':wechat_id'=>$user['openid']])->one();
 
         if (isset($_POST['stu_id'])) {
             $stu_id = $_POST['stu_id'];
@@ -63,14 +63,10 @@ class LoanController extends \yii\web\Controller
                 return json_encode(['stat'=>2]);
             }
         } else {
-            if (isset($l) AND $l->status>0) {
-                return $this->redirect(['loan/success']);
-            } else {
-                $appId = Yii::$app->params['wechat_appid'];
-                $secret = Yii::$app->params['wechat_appsecret'];
-                $js = new Js($appId, $secret);
-                return $this->renderPartial('bank', ['v'=>Yii::$app->params['assets_version'],'user'=>$u,'loan'=>$l,'js'=>$js]);
-            }
+            $appId = Yii::$app->params['wechat_appid'];
+            $secret = Yii::$app->params['wechat_appsecret'];
+            $js = new Js($appId, $secret);
+            return $this->renderPartial('bank', ['v'=>Yii::$app->params['assets_version'],'user'=>$u,'loan'=>$l,'js'=>$js]);
         }
     }
 
@@ -78,16 +74,9 @@ class LoanController extends \yii\web\Controller
     {
         session_start();
         $user = $_SESSION['user'];
-        $l = Loan::find()->where(['and', 'wechat_id=:wechat_id', 'status<4'])->addParams([':wechat_id'=>$user['openid']])->one();
-        if (isset($l) AND $l->status>0) {
-            return $this->redirect(['loan/success']);
-        }
         //$rate = ($type=='common')?0.0002:0.0001;
         $rate = 0.0003;
         $range = 10000 - Yii::$app->db->createCommand('SELECT SUM(money) FROM loan WHERE status=3 OR status=2')->queryScalar();
-        if ($range<=0) {
-            return $this->redirect(['loan/repays']);
-        }
         $is_auth = 0;
         $u = User::findOne($user['openid']);
         $l = Yii::$app->db->createCommand('SELECT loan_id FROM loan WHERE status>=1 AND wechat_id=:wechat_id')->bindValue(':wechat_id', $user['openid'])->queryScalar();
@@ -141,9 +130,10 @@ class LoanController extends \yii\web\Controller
             if ($u->verify_times<1) {
                 return $this->redirect(['loan/failed']);
             }
-            $l = Loan::find()->where(['and', 'wechat_id=:wechat_id', 'status<4'])->addParams([':wechat_id'=>$user['openid']])->one();
-            if (isset($l) and $l->status>0) {
-                return $this->redirect(['loan/success']);
+            
+            $range = 10000 - Yii::$app->db->createCommand('SELECT SUM(money) FROM loan WHERE status=3 OR status=2')->queryScalar();
+            if ($range<10000) {
+                return $this->redirect(['loan/repays']);
             }
         }
         $js = new Js($appId, $secret);
@@ -158,10 +148,10 @@ class LoanController extends \yii\web\Controller
 
         session_start();
         $user = $_SESSION['user'];
-        $loan = Loan::find()->where(['and', 'wechat_id=:wechat_id', 'status<4'])->addParams([':wechat_id'=>$user['openid']])->one();
+        $loan = Loan::find()->where(['and', 'wechat_id=:wechat_id', 'status<1'])->addParams([':wechat_id'=>$user['openid']])->one();
         $transaction = Yii::$app->db->beginTransaction();
         try {
-            if (isset($loan) AND $loan->status<=0) {
+            if (isset($loan)) {
                 $loan->money = $money;
                 $loan->duration = $duration;
                 $loan->rate = $rate;
@@ -179,8 +169,6 @@ class LoanController extends \yii\web\Controller
                 $loan->end_at = time()+$duration*3600*24;
                 $loan->created_at = time();
                 $loan->save();
-            } else if ($loan->status>0) {
-                return $this->redirect(['loan/success']);
             }
             $transaction->commit();
         } catch(\Exception $e) {
