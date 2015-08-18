@@ -110,6 +110,7 @@
 
 		 <?php }?>
 		
+		alert(arrstatus.length);
 		for(var i=0;i<arrstatus.length;i++){
 
 			var money = arrmoney[i],
