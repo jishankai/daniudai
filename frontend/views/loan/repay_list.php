@@ -100,7 +100,9 @@
 		 	 	 arrstart = new Array(),
 		 	 	 arrstatus = new Array();
 
-		 <?php foreach($loans as $k=>$loan){ ?>
+		 <?php 
+		 	foreach($loans as $k=>$loan){ 
+		 ?>
 		 	arrmoney[<?php echo $k?>] = <?php echo $loan->money?>;
 		 	arrrate[<?php echo $k?>] = <?php echo $loan->rate?>;
 		 	arrduration[<?php echo $k?>] = <?php echo $loan->duration?>;
@@ -111,7 +113,7 @@
 		 <?php }?>
 		
 		alert(arrstatus.length);
-		for(var i=0;i<arrstatus.length;i++){
+		/*for(var i=0;i<arrstatus.length;i++){
 
 			var money = arrmoney[i],
 				start_at = arrstart[i],
@@ -146,7 +148,7 @@
 		 	}
 		 }
 
-		 billInput.html(count);
+		 billInput.html(*/count);
 
 
 		 function NewDate(date){
