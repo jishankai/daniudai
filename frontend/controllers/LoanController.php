@@ -680,7 +680,7 @@ class LoanController extends \yii\web\Controller
 
         if (isset($u)) {
             $loans = Loan::find()->where(['and', 'wechat_id=:wechat_id', 'status>=0'])->addParams([':wechat_id'=>$user['openid']])->all();
-            $range = 10000 - Yii::$app->db->createCommand('SELECT SUM(money) FROM loan WHERE status=3 OR status=2')->queryScalar();
+            $range = 10000 - Yii::$app->db->createCommand('SELECT SUM(money) FROM loan WHERE status=3 OR status=2 AND wechat_id=:wechat_id')->bindValue(':wechat_id', $user['openid'])->queryScalar();
             
             $js = new Js($appId, $secret); 
             return $this->renderPartial('repay_list', ['range'=>$range, 'loans'=>$loans, 'v'=>Yii::$app->params['assets_version'], 'js'=>$js]);            
