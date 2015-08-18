@@ -116,6 +116,7 @@
 		$("#test").html(arrstatus.length);*/
 		// for(var i=0;i<arrstatus.length;i++){
 		for(var key in arrstatus){
+			alert(arrmoney[key]);
 			
 			var money = arrmoney[key],
 				start_at = arrstart[key],
