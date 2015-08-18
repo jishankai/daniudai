@@ -27,44 +27,16 @@
 						<span><?php echo $range;?>&nbsp;&nbsp;/&nbsp;<em class="font-gray">10000</em></span>
 					</div>
 					<div id="overdue">
-						<!-- <div class="repay-item">						
-							<span class="money">1002元</span>
-							<p>2014.04.04</p>
-							<div class="r-right">
-								<span class="font-red">已逾期<em>2</em>天</span>
-								<span class="r-arrow"></span>
-							</div>
-						</div> -->
+						
 					</div>
 					<div id="expire">
-						<!-- <div class="repay-item">						
-							<span class="money">1002元</span>
-							<p>2014.04.04</p>
-							<div class="r-right">
-								<span class="font-green">还剩<em>2</em>天</span>
-								<span class="r-arrow"></span>
-							</div>
-						</div> -->
+						
 					</div>
 					<div id="more_day">
-						<!-- <div class="repay-item">						
-							<span class="money">1002元</span>
-							<p>2014.04.04</p>
-							<div class="r-right">
-								<span class="font-gray">2015.07.30到期</span>
-								<span class="r-arrow"></span>
-							</div>
-						</div> -->
+						
 					</div>
 					<div id="repay">
-						<!-- <div class="repay-item">						
-							<span class="money">1002元</span>
-							<p>2014.04.04</p>
-							<div class="r-right">
-								<span class="font-gray">已还清</span>
-								<span class="r-arrow"></span>
-							</div>
-						</div> -->
+						
 					</div>
 					<div di="wait_money">
 						
@@ -112,12 +84,8 @@
 
 		 <?php }?>
 		
-		/*alert(arrstatus.length);
-		$("#test").html(arrstatus.length);*/
-		// for(var i=0;i<arrstatus.length;i++){
+		
 		for(var key in arrstatus){
-			alert(arrmoney[key]);
-			
 			var money = arrmoney[key],
 				start_at = arrstart[key],
 				date = NewDate(arrstart[key]),
