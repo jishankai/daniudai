@@ -84,14 +84,14 @@
 		 	wx.hideOptionMenu();
 		 });
 
-		/* var billInput = $("#bill"),
+		 var billInput = $("#bill"),
 		 	 overdue = $("$overdue"),
 		 	 expire = $("expire"),
 		 	 more_day = $("#more_day"),
 		 	 repay = $("#repay"),
 		 	 wait_money = $("#wait_money"),
 		 	 wait_review = $("#wait_review"),
-		 	 count=0;*/
+		 	 count=0;
 
 		 	 var arrmoney = new Array(),
 		 	 	 arrrate = new Array(),
@@ -116,23 +116,21 @@
 		$("#test").html(arrstatus.length);*/
 		// for(var i=0;i<arrstatus.length;i++){
 		for(var key in arrstatus){
-			alert(key);
-		}
-
-			var money = arrmoney[i],
-				start_at = arrstart[i],
-				date = NewDate(arrstart[i]),
-				end_at = NewDate(arrend[i]),
+			
+			var money = arrmoney[key],
+				start_at = arrstart[key],
+				date = NewDate(arrstart[key]),
+				end_at = NewDate(arrend[key]),
 				now = Date.parse(new Date())/1000,
-				s_day = NewDay(arrend[i],now),
-				b_l = money+money*arrrate[i]*arrduration[i];
+				s_day = NewDay(arrend[key],now),
+				b_l = money+money*arrrate[key]*arrduration[key];
 
-		 	if(arrstatus[i]==1){
+		 	if(arrstatus[key]==1){
 		 		wait_review.append("<div class='repay-item'><span class='money' id='pay_off_money'>"+money+"元</span><p id='pay_off_date'>"+date+"</p><div class='r-right'><span class='font-gray'>待审核</span><span class='r-arrow'></span></div></div>");		 		
 
-		 	}else if(arrstatus[i]==2){
+		 	}else if(arrstatus[key]==2){
 		 		wait_money.append("<div class='repay-item'><span class='money' id='pay_off_money'>"+money+"元</span><p id='pay_off_date'>"+date+"</p><div class='r-right'><span class='font-gray'>待放款</span><span class='r-arrow'></span></div></div>");
-		 	}else if(arrstatus[i]==3){
+		 	}else if(arrstatus[key]==3){
 		 		if(s_day>7){
 		 			more_day.append("<div class='repay-item'><span class='money' id='pay_off_money'>"+money+"元</span><p id='pay_off_date'>"+date+"</p><div class='r-right'><span class='font-gray'>"+end_at+"到期</span><span class='r-arrow'></span></div></div>");
 		 			count = count + b_l;
@@ -147,10 +145,10 @@
 		 			bill = Math.round((b_l + b_l * Math.abs(s_day) * 0.0004)*100)/100;
 		 			count = count + bill;
 		 		}
-		 	}else if(arrstatus[i]==4){
+		 	}else if(arrstatus[key]==4){
 		 		repay.append("<div class='repay-item'><span class='money' id='pay_off_money'>"+money+"元</span><p id='pay_off_date'>"+date+"</p><div class='r-right'><span class='font-gray'>已还清</span><span class='r-arrow'></span></div></div>");
 		 	}
-		 // }
+		}
 
 		 billInput.html(count);
 
