@@ -85,8 +85,8 @@
 		 });
 
 		 var billInput = $("#bill"),
-		 	 overdue = $("$overdue"),
-		 	 expire = $("expire"),
+		 	 overdue = $("#overdue"),
+		 	 expire = $("#expire"),
 		 	 more_day = $("#more_day"),
 		 	 repay = $("#repay"),
 		 	 wait_money = $("#wait_money"),
@@ -118,7 +118,7 @@
 		for(var key in arrstatus){
 			alert(arrmoney[key]);
 			
-			/*var money = arrmoney[key],
+			var money = arrmoney[key],
 				start_at = arrstart[key],
 				date = NewDate(arrstart[key]),
 				end_at = NewDate(arrend[key]),
@@ -148,7 +148,7 @@
 		 		}
 		 	}else if(arrstatus[key]==4){
 		 		repay.append("<div class='repay-item'><span class='money' id='pay_off_money'>"+money+"元</span><p id='pay_off_date'>"+date+"</p><div class='r-right'><span class='font-gray'>已还清</span><span class='r-arrow'></span></div></div>");
-		 	}*/
+		 	}
 		}
 
 		 billInput.html(count);
