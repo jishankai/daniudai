@@ -20,7 +20,7 @@
 				<div class="repay-box">
 					<div class="repay-text">
 						<div class="r-name">还款账单</div>						
-						<span><!-- 5010 --><b id="bill"></b></span>
+						<span><!-- 5010 --><b id="bill">0</b></span>
 					</div>
 					<div class="repay-text last-child">
 						<div class="r-name">可用金额</div>						
@@ -93,23 +93,39 @@
 		 	 wait_review = $("#wait_review"),
 		 	 count=0;
 
-		 <?php foreach($loans as $loan){ ?>
-		 	var status = <?php $loan->status;?>,
-		 		money = <?php $loan->money;?>,
-		 		start_at = <?php $loan->start_at;?>,
-		 		date = NewDate(<?php $loan->start_at;?>),
-		 		end_at = NewDate(<?php $loan->end_at;?>),
-		 		now = Date.parse(new Date())/1000,
-		 		s_day = NewDay(<?php echo $loan->end_at?>,now),
-		 		b_l = <?php echo $loan->money + $loan->rate * $loan->money * $loan->duration?>,
-		 		bill;
+		 	 var arrmoney = new Array(),
+		 	 	 arrrate = new Array(),
+		 	 	 arrduration = new Array(),
+		 	 	 arrend = new Array(),
+		 	 	 arrstart = new Array(),
+		 	 	 arrstatus = new Array();
 
-		 	if(status==1){
+		 <?php foreach($loans as $k=>$loan){ ?>
+		 	arrmoney[<?php echo $k?>] = <?php echo $loan->money?>;
+		 	arrrate[<?php echo $k?>] = <?php echo $loan->rate?>;
+		 	arrduration[<?php echo $k?>] = <?php echo $loan->duration?>;
+		 	arrend[<?php echo $k ?>] = <?php echo $loan->end_at?>;
+		 	arrstart[<?php echo $k?>] = <?php echo $loan->start_at?>;
+		 	arrstatus[<?php echo $k?>] = <?php echo $loan->status?>;
+
+		 <?php }?>
+		
+		for(var i=0;i<arrstatus.length;i++){
+
+			var money = arrmoney[i],
+				start_at = arrstart[i],
+				date = NewDate(arrstart[i]),
+				end_at = NewDate(arrend[i]),
+				now = Date.parse(new Date())/1000,
+				s_day = NewDay(arrend[i],now),
+				b_l = money+money*arrrate[i]*arrduration[i];
+
+		 	if(arrstatus[i]==1){
 		 		wait_review.append("<div class='repay-item'><span class='money' id='pay_off_money'>"+money+"元</span><p id='pay_off_date'>"+date+"</p><div class='r-right'><span class='font-gray'>待审核</span><span class='r-arrow'></span></div></div>");		 		
 
-		 	}else if(status==2){
+		 	}else if(arrstatus[i]==2){
 		 		wait_money.append("<div class='repay-item'><span class='money' id='pay_off_money'>"+money+"元</span><p id='pay_off_date'>"+date+"</p><div class='r-right'><span class='font-gray'>待放款</span><span class='r-arrow'></span></div></div>");
-		 	}else if(status==3){
+		 	}else if(arrstatus[i]==3){
 		 		if(s_day>7){
 		 			more_day.append("<div class='repay-item'><span class='money' id='pay_off_money'>"+money+"元</span><p id='pay_off_date'>"+date+"</p><div class='r-right'><span class='font-gray'>"+end_at+"到期</span><span class='r-arrow'></span></div></div>");
 		 			count = count + b_l;
@@ -124,11 +140,10 @@
 		 			bill = Math.round((b_l + b_l * Math.abs(s_day) * 0.0004)*100)/100;
 		 			count = count + bill;
 		 		}
-		 	}else if(status==4){
+		 	}else if(arrstatus[i]==4){
 		 		repay.append("<div class='repay-item'><span class='money' id='pay_off_money'>"+money+"元</span><p id='pay_off_date'>"+date+"</p><div class='r-right'><span class='font-gray'>已还清</span><span class='r-arrow'></span></div></div>");
 		 	}
-
-		 <?php }?>
+		 }
 
 		 billInput.html(count);
 
