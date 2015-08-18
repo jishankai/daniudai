@@ -76,7 +76,7 @@ class LoanController extends \yii\web\Controller
         $user = $_SESSION['user'];
         //$rate = ($type=='common')?0.0002:0.0001;
         $rate = 0.0003;
-        $range = 10000 - Yii::$app->db->createCommand('SELECT SUM(money) FROM loan WHERE status=3 OR status=2')->queryScalar();
+        $range = 10000 - Yii::$app->db->createCommand('SELECT SUM(money) FROM loan WHERE status=3 OR status=2 AND wechat_id=:wechat_id')->bindValue(':wechat_id', $user['openid'])->queryScalar();
         $is_auth = 0;
         $u = User::findOne($user['openid']);
         $l = Yii::$app->db->createCommand('SELECT loan_id FROM loan WHERE status>=1 AND wechat_id=:wechat_id')->bindValue(':wechat_id', $user['openid'])->queryScalar();
@@ -130,8 +130,7 @@ class LoanController extends \yii\web\Controller
             if ($u->verify_times<1) {
                 return $this->redirect(['loan/failed']);
             }
-            
-            $range = 10000 - Yii::$app->db->createCommand('SELECT SUM(money) FROM loan WHERE status=3 OR status=2')->queryScalar();
+            $range = 10000 - Yii::$app->db->createCommand('SELECT SUM(money) FROM loan WHERE status=3 OR status=2 AND wechat_id=:wechat_id')->bindValue(':wechat_id', $user['openid'])->queryScalar();
             if ($range<10000) {
                 return $this->redirect(['loan/repays']);
             }
