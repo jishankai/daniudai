@@ -70,7 +70,7 @@
 						
 					</div>
 					<div id="wait_review">
-						<span id="test">0</span>
+						
 					</div>
 				</div>
 			</div>
@@ -112,9 +112,12 @@
 
 		 <?php }?>
 		
-		alert(arrstatus.length);
-		$("#test").html(arrstatus.length);
-		/*for(var i=0;i<arrstatus.length;i++){
+		/*alert(arrstatus.length);
+		$("#test").html(arrstatus.length);*/
+		// for(var i=0;i<arrstatus.length;i++){
+		for(var key in arrstatus){
+			alert(key);
+		}
 
 			var money = arrmoney[i],
 				start_at = arrstart[i],
@@ -147,9 +150,9 @@
 		 	}else if(arrstatus[i]==4){
 		 		repay.append("<div class='repay-item'><span class='money' id='pay_off_money'>"+money+"元</span><p id='pay_off_date'>"+date+"</p><div class='r-right'><span class='font-gray'>已还清</span><span class='r-arrow'></span></div></div>");
 		 	}
-		 }
+		 // }
 
-		 billInput.html(count);*/
+		 billInput.html(count);
 
 
 		 function NewDate(date){
