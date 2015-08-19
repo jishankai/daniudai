@@ -648,12 +648,12 @@ class LoanController extends \yii\web\Controller
             if (Yii::$app->request->getIsAjax()) {
                 if ($_POST['name']==$u->name and $_POST['cid']==$u->id) {
                     if ($u->auth_code=='') {
-                        return json_encode(['type'=>2, 'stat'=>1]);
+                        return json_encode(['type'=>0, 'stat'=>1]);
                     } else {
                         return json_encode(['type'=>1, 'stat'=>1]);
                     }
                 } else {
-                    return json_encode(['type'=>1, 'stat'=>2]);
+                    return json_encode(['type'=>0, 'stat'=>2]);
                 }
             } else {
                 $js = new Js($appId, $secret); 
