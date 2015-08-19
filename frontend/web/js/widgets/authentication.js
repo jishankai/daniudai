@@ -102,7 +102,7 @@
 					fnSuccess:function(data){
 						if(data.stat == "1"){
 							window.location.href="./index.php?r=loan/password&type="+data.type;
-						}else if(data.isSuccess == "2"){
+						}else if(data.stat == "2"){
 							nextBtn.removeClass('disabled');
 	        				MessageBox.alert({type:"common",txt:"身份验证失败！"});
 						}
