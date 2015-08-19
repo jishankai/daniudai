@@ -93,8 +93,10 @@
 					if(!age){
 						MessageBox.alert({type:"common",txt:"身份证号不合法！"});
 					}else{
+						/*alert(cid);
+						alert(name);
 						if(nextBtn.hasClass("disabled")) return false;
-						nextBtn.addClass('disabled');
+						nextBtn.addClass('disabled');*/
 						TOOLS.ajax({
 							url:"./index.php?r=loan/auth",
 							data:{mobile:name,cid:cid},
