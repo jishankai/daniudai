@@ -459,7 +459,7 @@ class LoanController extends \yii\web\Controller
         } else {
             $l = Loan::find()->where(['and', 'wechat_id=:wechat_id', 'status<4'])->addParams([':wechat_id'=>$user['openid']])->one();
             if (isset($l) AND $l->status>=1) {
-                return $this->redirect(['loan/repay']);
+                return $this->redirect(['loan/repays']);
             } else {
                 return $this->redirect(['loan/index']);
             }
