@@ -400,7 +400,7 @@ class LoanController extends \yii\web\Controller
             $url = Url::to(['loan/me'],TRUE);
             $color = '#FF0000';
             $data = array(
-                "first"    => "大牛君呐，又一位大牛来了",
+                "first"    => "真牛君呐，又来了一位同学",
                 "keyword1" => "{$u->name}，借款{$l->money}元，借{$l->duration}天，手机号{$u->mobile}，专业{$s->depart}，年级{$student->grade}",
                 "keyword2" => "待办",
                 "remark"   => "请快速约起来~",
@@ -517,7 +517,7 @@ class LoanController extends \yii\web\Controller
                 $url1 = Url::to(['loan/me'],TRUE);
                 $color = '#FF0000';
                 $data1 = array(
-                    "first"    => "又一位大牛{$u->name}通过审核！",
+                    "first"    => "又一位同学{$u->name}通过审核！",
                     "keyword1" => "{$l->money}元",
                     "keyword2" => "{$l->duration}天",
                     "keyword3" => "{$l->rate}*每个月的天数",
@@ -528,7 +528,7 @@ class LoanController extends \yii\web\Controller
                 $messageId = $notice->uses($templateId)->withUrl($url1)->andData($data1)->andReceiver(Yii::$app->params['admin_supporter'])->send();
                 $url2 = Url::to(['loan/success'],TRUE);
                 $data2 = array(
-                    "first"    => "大牛您好！您的借款申请已通过审核",
+                    "first"    => "您好！您的借款申请已通过审核",
                     "keyword1" => "{$l->money}元",
                     "keyword2" => "{$l->duration}天",
                     "keyword3" => "{$l->rate}*每个月的天数",
@@ -540,7 +540,7 @@ class LoanController extends \yii\web\Controller
                 $templateId = Yii::$app->params['templateId_review'];
                 $url = Url::to(['loan/failed`'],TRUE);
                 $data = array(
-                    "first"    => "大牛您好！您没有通过审核",
+                    "first"    => "您好！您没有通过审核",
                     "keyword1" => "{$l->money}元",
                     "keyword2" => "{$l->duration}天",
                     "keyword3" => "{$l->rate}*每个月的天数",
@@ -569,7 +569,7 @@ class LoanController extends \yii\web\Controller
             $bank_id = substr($u->bank_id, -4);
             $url = Url::to(['loan/success'],TRUE);
             $data = array(
-                "first"    => "大牛您好，您申请的借款已汇入您尾号为{$bank_id}的银行卡中",
+                "first"    => "您好，您申请的借款已汇入您尾号为{$bank_id}的银行卡中",
                 "keyword1" => "已汇款",
                 "keyword2" => "真牛贷",
                 "keyword3" => date("Ymd"),
