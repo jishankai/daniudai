@@ -93,20 +93,22 @@
 					if(!age){
 						MessageBox.alert({type:"common",txt:"身份证号不合法！"});
 					}else{
-						if(nextBtn.hasClass("disabled")) return false;
-						nextBtn.addClass('disabled');
+						/*if(nextBtn.hasClass("disabled")) return false;
+						nextBtn.addClass('disabled');*/
+						alert("success!222");
 						TOOLS.ajax({
 							url:"./index.php?r=loan/auth",
 							data:{name:name,cid:cid},
 							type:"post",
 							dataType:"json",
 							fnSuccess:function(data){
+								alert("success111!");
 								if(data.stat == "1"){
 									alert("success!");
 									window.location.href="./index.php?r=loan/password&type="+data.type;
 								}else if(data.stat == "2"){
 									alert("success!");
-									nextBtn.removeClass('disabled');
+									/*nextBtn.removeClass('disabled');*/
 									MessageBox.alert({type:"common",txt:"身份验证失败！"});
 								}
 							},
