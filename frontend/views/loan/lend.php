@@ -56,7 +56,7 @@
 		                	<input type="text" value="<?php echo $rate?>" style="display:none;" name="rate"/>
 		                	<input type="text" value="200" style="display:none;" name="duration"/>
 		                	<input type="text" value="3000" style="display:none;" name="money"/>
-		                	<a class="btn btn-orange btn-fullwidth" id="apply_btn">立即申请</a>
+		                	<!-- <a class="btn btn-orange btn-fullwidth" id="apply_btn">立即申请</a> -->
 		                	<button class="btn btn-orange btn-fullwidth" id="applicationBtn" style="display:none">立即申请</button>
 		                </div>                                              
 		            </form>
