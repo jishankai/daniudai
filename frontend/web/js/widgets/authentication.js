@@ -93,7 +93,7 @@
 					if(!age){
 						MessageBox.alert({type:"common",txt:"身份证号不合法！"});
 					}else{
-						//alert("success!");
+						alert("success!");
 						if(nextBtn.hasClass("disabled")) return false;
 						nextBtn.addClass('disabled');
 						TOOLS.ajax({
