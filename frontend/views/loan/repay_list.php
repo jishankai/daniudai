@@ -101,16 +101,16 @@
 		 		wait_money.append("<div class='repay-item'><span class='money' id='pay_off_money'>"+money+"元</span><p id='pay_off_date'>"+date+"</p><div class='r-right'><span class='font-gray'>待放款</span><span class='r-arrow'></span></div></div>");
 		 	}else if(arrstatus[key]==3){
 		 		if(s_day>7){
-		 			more_day.append("<div class='repay-item'><span class='money' id='pay_off_money'>"+money+"元</span><p id='pay_off_date'>"+date+"</p><div class='r-right'><span class='font-gray'>"+end_at+"到期</span><span class='r-arrow'></span></div></div>");
+		 			more_day.append("<div class='repay-item' id='"+key+"'><span class='money' id='pay_off_money'>"+money+"元</span><p id='pay_off_date'>"+date+"</p><div class='r-right'><span class='font-gray'>"+end_at+"到期</span><span class='r-arrow'></span></div></div>");
 		 			count = count + b_l;
 		 		}else if(s_day>0){
-		 			expire.append("<div class='repay-item'><span class='money' id='pay_off_money'>"+money+"元</span><p id='pay_off_date'>"+date+"</p><div class='r-right'><span class='font-green'>还剩<em>"+s_day+"</em>天</span><span class='r-arrow'></span></div></div>");
+		 			expire.append("<div class='repay-item' id='"+key+"'><span class='money' id='pay_off_money'>"+money+"元</span><p id='pay_off_date'>"+date+"</p><div class='r-right'><span class='font-green'>还剩<em>"+s_day+"</em>天</span><span class='r-arrow'></span></div></div>");
 		 			count = count + b_l;
 		 		}else if(s_day==0){
-		 			expire.append("<div class='repay-item'><span class='money' id='pay_off_money'>"+money+"元</span><p id='pay_off_date'>"+date+"</p><div class='r-right'><span class='font-green'><em>今天</em></span><span class='r-arrow'></span></div></div>");
+		 			expire.append("<div class='repay-item' id='"+key+"'><span class='money' id='pay_off_money'>"+money+"元</span><p id='pay_off_date'>"+date+"</p><div class='r-right'><span class='font-green'><em>今天</em></span><span class='r-arrow'></span></div></div>");
 		 			count = count + b_l;
 		 		}else{
-		 			overdue.append("<div class='repay-item'><span class='money' id='pay_off_money'>"+money+"元</span><p id='pay_off_date'>"+date+"</p><div class='r-right'><span class='font-red>已逾期<em>"+Math.abs(s_day)+"</em>天</span><span class='r-arrow'></span></div></div>");
+		 			overdue.append("<div class='repay-item' id='"+key+"'><span class='money' id='pay_off_money'>"+money+"元</span><p id='pay_off_date'>"+date+"</p><div class='r-right'><span class='font-red>已逾期<em>"+Math.abs(s_day)+"</em>天</span><span class='r-arrow'></span></div></div>");
 		 			bill = Math.round((b_l + b_l * Math.abs(s_day) * 0.0004)*100)/100;
 		 			count = count + bill;
 		 		}
@@ -120,6 +120,12 @@
 		}
 
 		 billInput.html(count);
+
+		 $(".repay-item").click(function(){
+		 	if(this.id.length>0){
+		 		window.location.href="./index.php?r=loan/repay&loan_id="+this.id;
+		 	}
+		 })
 
 
 		 function NewDate(date){
