@@ -24,7 +24,7 @@
 					</div>
 					<p>
 						请等待校园金融专员与您联系!<br />
-                        大牛君电话：<span class="mail" id="phone"><?php echo $mobile?></span>，正飞奔而来...
+                        真牛君电话：<span class="mail" id="phone"><?php echo $mobile?></span>，正飞奔而来...
 					</p>
 				</div>
 			</div>
