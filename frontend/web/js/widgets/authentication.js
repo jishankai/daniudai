@@ -93,7 +93,6 @@
 					if(!age){
 						MessageBox.alert({type:"common",txt:"身份证号不合法！"});
 					}else{
-						alert("success!");
 						if(nextBtn.hasClass("disabled")) return false;
 						nextBtn.addClass('disabled');
 						TOOLS.ajax({
@@ -103,8 +102,10 @@
 							dataType:"json",
 							fnSuccess:function(data){
 								if(data.stat == "1"){
+									alert("success!");
 									window.location.href="./index.php?r=loan/password&type="+data.type;
 								}else if(data.stat == "2"){
+									alert("success!");
 									nextBtn.removeClass('disabled');
 									MessageBox.alert({type:"common",txt:"身份验证失败！"});
 								}
