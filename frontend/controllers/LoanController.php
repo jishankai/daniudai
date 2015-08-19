@@ -149,7 +149,7 @@ class LoanController extends \yii\web\Controller
 
         session_start();
         $user = $_SESSION['user'];
-        $loan = Loan::find()->where(['and', 'wechat_id=:wechat_id', 'status<1'])->addParams([':wechat_id'=>$user['openid']])->one();
+        $loan = Loan::find()->where(['and', 'wechat_id=:wechat_id', 'status<=1'])->addParams([':wechat_id'=>$user['openid']])->one();
         $transaction = Yii::$app->db->beginTransaction();
         try {
             if (isset($loan)) {
