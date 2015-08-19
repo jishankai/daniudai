@@ -56,7 +56,7 @@
 		                	<input type="text" value="<?php echo $rate?>" style="display:none;" name="rate"/>
 		                	<input type="text" value="200" style="display:none;" name="duration"/>
 		                	<input type="text" value="3000" style="display:none;" name="money"/>
-		                	<!-- <a class="btn btn-orange btn-fullwidth" id="apply_btn">立即申请</a> -->
+		                	<a class="btn btn-orange btn-fullwidth" id="apply_btn">立即申请1</a>
 		                	<button class="btn btn-orange btn-fullwidth" id="applicationBtn" style="display:none">立即申请</button>
 		                </div>                                              
 		            </form>
@@ -94,8 +94,14 @@
 	<script type="text/javascript" src="js/jquery-1.11.1.js?<?php echo $v;?>"></script>
 	<script type="text/javascript" src="js/depend.js?<?php echo $v;?>"></script>
 	<script type="text/javascript" src="js/loan.js?<?php echo $v;?>"></script>
-	<script type="text/javascript">
-		$(".container").Loan(); 
+</body>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+     wx.config(<?php echo $js->config(array('hideOptionMenu'), false, true) ?>);
+     wx.ready(function(){
+         wx.hideOptionMenu();
+     });
+     $(".container").Loan(); 
 		document.getElementById("sixDigitPassword").onclick = function(){
 			document.getElementById("payPassword_rsainput").focus();
 		}
@@ -123,19 +129,13 @@
 
 		$("#apply_btn").click(function(){
 			if(<?php echo $is_auth?>==1){
+				alert(111);
 				$("#masker").show();
 				$("#pwdBox").show();
 			}else{
+				alert(222);
 				$("#applicationBtn").click();
 			}
 		})
-	</script>
-</body>
-<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript" charset="utf-8">
-     wx.config(<?php echo $js->config(array('hideOptionMenu'), false, true) ?>);
-     wx.ready(function(){
-         wx.hideOptionMenu();
-     });
  </script>
 </html>
