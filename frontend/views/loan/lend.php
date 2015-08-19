@@ -56,7 +56,8 @@
 		                	<input type="text" value="<?php echo $rate?>" style="display:none;" name="rate"/>
 		                	<input type="text" value="200" style="display:none;" name="duration"/>
 		                	<input type="text" value="3000" style="display:none;" name="money"/>
-		                	<button class="btn btn-orange btn-fullwidth" id="applicationBtn">立即申请</button>
+		                	<a class="btn btn-orange btn-fullwidth" id="apply_btn">立即申请</a>
+		                	<button class="btn btn-orange btn-fullwidth" id="applicationBtn" style="display:none">立即申请</button>
 		                </div>                                              
 		            </form>
 				</div>
@@ -118,6 +119,15 @@
 		$("#psd_close").click(function(){
 			$("#masker").hide();
 			$("#pwdBox").hide();
+		})
+
+		$("#apply_btn").click(function(){
+			if(<?php echo $is_auth?>==1){
+				$("#masker").show();
+				$("#pwdBox").show();
+			}else{
+				$("#applicationBtn").click();
+			}
 		})
 	</script>
 </body>
