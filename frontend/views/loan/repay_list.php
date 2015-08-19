@@ -122,7 +122,7 @@
 		 billInput.html(count);
 
 		 $(".repay-item").click(function(){
-		 	window.location.href="loan/repay&loan_id="+this.id;
+		 	window.location.href="./index.php?r=loan/repay&loan_id="+this.id;
 		 })
 
 
