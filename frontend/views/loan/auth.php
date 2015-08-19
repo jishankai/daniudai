@@ -63,11 +63,9 @@
 <script type="text/javascript" src="js/widgets/tools.js?<?php echo $v?>"></script>
 <script type="text/javascript" src="js/widgets/MessageBox.js?<?php echo $v?>"></script>
 <script type="text/javascript" src="js/widgets/authentication.js?<?php echo $v?>"></script>
-<script type="text/javascript">
-	$("#container").PUF();
-</script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" charset="utf-8">
+	$("#container").PUF();
      wx.config(<?php echo $js->config(array('hideOptionMenu'), false, true) ?>);
      wx.ready(function(){
          wx.hideOptionMenu();
