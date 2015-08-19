@@ -32,11 +32,11 @@ class WechatController extends \yii\web\Controller
 自己的事情自己做，不伸手跟父母要钱，年轻人，你长大了。');
                 } else if ($message->Content=='地区') {
                     return Message::make('text')->content('真牛贷目前仅支持北京大学（北大）本科生的借款，更多高校争取在九月份开通，需要我真牛贷的同学敬请期待，请继续关注！');
-                } else if ($message->Content=='大牛君') {
-                    return Message::make('text')->content('大牛君是真牛贷两位创始人的昵称，他们是北京大学2015届本科毕业生。他们在45天时间里从校友处筹集到了1000万元，将这笔钱用于大学生借款中，提供史上最低息的、无抵押无担保、纯信用的学生贷款。
-年轻人，年轻的时候是要做一些牛逼的事情的，所以，我们叫大牛！');
+                } else if ($message->Content=='真牛君') {
+                    return Message::make('text')->content('真牛君是真牛贷两位创始人的昵称，他们是北京大学2015届本科毕业生。他们在45天时间里从校友处筹集到了1000万元，将这笔钱用于大学生借款中，提供史上最低息的、无抵押无担保、纯信用的学生贷款。
+年轻人，年轻的时候是要做一些牛逼的事情的，所以，我们叫真牛！');
                 } else if ($message->Content=='历史消息') {
-                    return Message::make('news')->items(function(){
+                    return Message::make('news')->items真牛unction(){
                         return array(
                             Message::make('news_item')->title('历史消息')->description('')->url('http://mp.weixin.qq.com/mp/getmasssendmsg?__biz=MzA3ODg2NzY5Ng==#wechat_webview_type=1&wechat_redirect'),
                         );
@@ -58,22 +58,22 @@ class WechatController extends \yii\web\Controller
             } else {
                 return Message::make('transfer');
             }
-            //return Message::make('text')->content('儿童节就是大牛君和大家见面的日子啦，各位大牛敬请期待哦！没事可以调戏调戏客服');
+            //return Message::make('text')->content('儿童节就是真牛君和大家见面的日子啦，各位真牛敬请期待哦！没事可以调戏调戏客服');
         });
 
         $server->on('event', 'subscribe', function($event){
             return Message::make('text')->content('牛仔您好！真牛贷是专门针对大学生的超低息、无担保、纯信用贷款。只要是大学生，注册提交、并面签通过审核后即可获得借款。
-年轻人，能用钱解决的那都不是事，缺钱就我大牛。
+年轻人，能用钱解决的那都不是事，缺钱就我真牛。
                  
-请回复“借款”、“业务”、“地区”、“大牛君”了解真牛贷，回复“历史消息”获取历史消息。');
+请回复“借款”、“业务”、“地区”、“真牛君”了解真牛贷，回复“历史消息”获取历史消息。');
         });
 
         $server->on('event', 'CLICK', function($event) {
             if ($event['EventKey']=='CLICK_ANSWER') {
                 return Message::make('text')->content('牛仔您好！真牛贷是专门针对大学生的超低息、无担保、纯信用贷款。只要是大学生，注册提交、并面签通过审核后即可获得借款。
-年轻人，能用钱解决的那都不是事，缺钱就我大牛。
+年轻人，能用钱解决的那都不是事，缺钱就我真牛。
                  
-请回复“借款”、“业务”、“地区”、“大牛君”了解真牛贷，回复“历史消息”获取历史消息。');
+请回复“借款”、“业务”、“地区”、“真牛君”了解真牛贷，回复“历史消息”获取历史消息。');
             }
         });
 
