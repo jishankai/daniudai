@@ -101,7 +101,6 @@
 							type:"post",
 							dataType:"json",
 							fnSuccess:function(data){
-								alert(111);
 								if(data.stat=="1"){	
 									window.location.href="./index.php?r=loan/password&type="+data.type;
 								}else if(data.stat=="2"){
