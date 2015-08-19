@@ -646,7 +646,7 @@ class LoanController extends \yii\web\Controller
 
         if (isset($u)) {
             if (Yii::$app->request->getIsAjax()) {
-                if ($_POST['name']==$u->name and $_POST['cid']==$u->cid) {
+                if ($_POST['name']==$u->name and $_POST['cid']==$u->id) {
                     if ($u->auth_code=='') {
                         return json_encode(['type'=>2, 'stat'=>1]);
                     } else {
