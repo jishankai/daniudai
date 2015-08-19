@@ -23,7 +23,7 @@
 						<h1>恭喜恭喜，<span>您的申请已提交！</span></h1>
 					</div>
 					<p>
-						请等待校园金融专员与您联系!<br />
+						请等待信贷员与您联系!<br />
                         真牛君电话：<span class="mail" id="phone"><?php echo $mobile?></span>，正飞奔而来...
 					</p>
 				</div>
