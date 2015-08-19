@@ -567,7 +567,7 @@ class LoanController extends \yii\web\Controller
             $data = array(
                 "first"    => "大牛您好，您申请的借款已汇入您尾号为{$bank_id}的银行卡中",
                 "keyword1" => "已汇款",
-                "keyword2" => "大牛贷",
+                "keyword2" => "真牛贷",
                 "keyword3" => date("Ymd"),
                 "remark"   => "请及时查看",
             );
@@ -715,7 +715,7 @@ class LoanController extends \yii\web\Controller
         $user_ua = $_SERVER['HTTP_USER_AGENT'];//用户ua
         $callbackurl = Url::to(['loan/callback'], TRUE);//商户后台系统回调地址，前后台的回调结果一样
         $fcallbackurl = Url::to(['loan/callback'], TRUE);//商户前台系统回调地址，前后台的回调结果一样
-        $product_name = '大牛贷-还款';//出于风控考虑，请按下面的格式传递值：应用-商品名称，如“诛仙-3 阶成品天琊”
+        $product_name = '真牛贷-还款';//出于风控考虑，请按下面的格式传递值：应用-商品名称，如“诛仙-3 阶成品天琊”
         $product_desc = '还款';//商品描述
         $terminaltype = 3;
         $terminalid = $y->wechat_id;//其他支付身份信息
