@@ -86,13 +86,16 @@
 			if(falg==-1){
 				MessageBox.alert({type:"common",txt:"请输入真实姓名！"});
 				$("#name").focus();
-			}else if(cid.length<18){
-				MessageBox.alert({type:"common",txt:"请输入18位身份证号！"});
-			}else if(!age){
-				MessageBox.alert({type:"common",txt:"身份证号不合法！"});
-			}else if(cid.length==18 && age && falg!=-1){
-				 alert("success!");//写表单提交代码
-				if(nextBtn.hasClass("disabled")) return false;
+				if(cid.length<18){
+					MessageBox.alert({type:"common",txt:"请输入18位身份证号！"});
+					if(!age){
+						MessageBox.alert({type:"common",txt:"身份证号不合法！"});
+					}else{
+						alert("success!");
+					}
+				}
+				 //写表单提交代码
+				/*if(nextBtn.hasClass("disabled")) return false;
 					nextBtn.addClass('disabled');
 				TOOLS.ajax({
 					url:"./index.php?r=loan/auth",
@@ -108,7 +111,7 @@
 						}
 					},
 					fnError:function(){}
-				});
+				});*/
 			}
  		}
  	}
