@@ -104,9 +104,9 @@
 							dataType:"json",
 							fnSuccess:function(data){
 								alert(111);
-								if(data.stat==1){
+								if(data.stat=="1"){
 									window.location.href="./index.php?r=loan/password&type="+data.type;
-								}else if(data.stat==2){
+								}else if(data.stat=="2"){
 									MessageBox.alert({type:"common",txt:"身份验证失败！"});
 									nextBtn.removeClass('disabled');
 								}
