@@ -97,7 +97,7 @@
 	 				fnSuccess:function(data){
 	 					if(data.stat == "1"){
               if (data.type== "0") {
-                window.location.href="./index.php?r=loan/success";
+                window.location.href="./index.php?r=loan/repays";
               } else {
                 window.location.href="./index.php?r=loan/me";
               }
