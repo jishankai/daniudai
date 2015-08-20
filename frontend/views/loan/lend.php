@@ -56,6 +56,7 @@
 		                	<input type="text" value="<?php echo $rate?>" style="display:none;" name="rate"/>
 		                	<input type="text" value="200" style="display:none;" name="duration"/>
 		                	<input type="text" value="3000" style="display:none;" name="money"/>
+		                	<input type="text" value="<?php echo $is_auth?>" name="is_auth" style="display:none;">
 		                	<a class="btn btn-orange btn-fullwidth" id="apply_btn">立即申请</a>
 		                	<button class="btn btn-orange btn-fullwidth" id="applicationBtn" style="display:none">立即申请</button>
 		                </div>                                              
@@ -79,10 +80,11 @@
 							<i><b data-type="h" style="visibility: hidden;"></b></i>
 							<i><b data-type="h" style="visibility: hidden;"></b></i>
 						</div>
+						<span id="error" style="color:red;"></span>
 						<a class="forget-btn font-gray clearfix">忘记密码</a>
 			        </div>
 					<a href="#" class="btn-option"> 					
-						<button class="btn btn-orange btn-fullwidth">下一步</button>	
+						<button class="btn btn-orange btn-fullwidth" id="pwd_btn">下一步</button>	
 					</a>	
 				</div>
 			</div>
@@ -94,6 +96,7 @@
 	<script type="text/javascript" src="js/jquery-1.11.1.js?<?php echo $v;?>"></script>
 	<script type="text/javascript" src="js/depend.js?<?php echo $v;?>"></script>
 	<script type="text/javascript" src="js/loan.js?<?php echo $v;?>"></script>
+	<script type="text/javascript" src="js/widgets/tools.js?<?php echo $v?>"></script>
 	<script type="text/javascript" src="js/widgets/tools.js?<?php echo $v; ?>"></script>
 </body>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
@@ -135,6 +138,38 @@
 			}else{
 				$("#applicationBtn").click();
 			}
+		})
+		var pwdBtn=$("#pwd_btn");
+		$("#pwd_btn").click(function(){
+			alert(1);
+			if(pwdBtn.hasClass("disabled")) return false;
+			pwdBtn.addClass('disabled');
+			alert(2);
+			var pwd=$("#payPassword_rsainput").val();
+			alert(pwd);
+			TOOLS.ajax({
+				url:"./index.php?r=loan/password&type=3",
+				data:{input_pwd:pwd},
+				type:"post",
+				dataType:"json",
+				fnSuccess:function(data){
+					alert(111);
+					if(data.stat=="1"){	
+						alert(stat1);
+						$("#applicationBtn").click();
+					}else if(data.stat=="2"){
+						alert(stat2);
+						pwdBtn.removeClass('disabled');
+						$("#error").html("密码错误");
+					}
+				},
+				fnError:function(XMLHttpRequest,textstatus,errorThrown){
+					alert(XMLHttpRequest.status);
+					alert(XMLHttpRequest);
+					alert(XMLHttpRequest.readystate);
+					alert(textstatus);
+				}
+			});
 		})
  </script>
 </html>
