@@ -131,7 +131,7 @@ class LoanController extends \yii\web\Controller
                 return $this->redirect(['loan/failed']);
             }
             $range = 10000 - Yii::$app->db->createCommand('SELECT SUM(money) FROM loan WHERE (status=3 OR status=2 OR status=1) AND wechat_id=:wechat_id')->bindValue(':wechat_id', $user['openid'])->queryScalar();
-            if ($range<0) {
+            if ($range<=0) {
                 return $this->redirect(['loan/repays']);
             } else {
                 return $this->redirect(['loan/lend']);
@@ -433,8 +433,8 @@ class LoanController extends \yii\web\Controller
             } else if (floor($student->school_id/100)==102) {
                 return $this->renderPartial('success', ['mobile'=>'18810521341', 'js'=>$js]);
             }
-        } else if ($l->status>1) {
-            return $this->renderPartial('success2', ['v'=>Yii::$app->params['assets_version'], 'js'=>$js]);
+        //} else if ($l->status>1) {
+        //  return $this->renderPartial('success2', ['v'=>Yii::$app->params['assets_version'], 'js'=>$js]);
         } else {
             return $this->redirect(['loan/index']);
         }
