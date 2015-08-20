@@ -146,7 +146,8 @@ class LoanController extends \yii\web\Controller
         $money = $_REQUEST['money'];
         $duration = $_REQUEST['duration'];
         $rate = $_REQUEST['rate'];
-
+        $is_auth = $_REQUEST['is_auth'];
+ 
         session_start();
         $user = $_SESSION['user'];
         $loan = Loan::find()->where(['and', 'wechat_id=:wechat_id', 'status<1'])->addParams([':wechat_id'=>$user['openid']])->one();
@@ -158,6 +159,9 @@ class LoanController extends \yii\web\Controller
                 $loan->rate = $rate;
                 $loan->start_at = time();
                 $loan->end_at = time()+$duration*3600*24;
+                if ($is_auth==1) {
+                    $loan->status = 1;
+                }
                 $loan->save();
             } else if (!isset($loan)) {
                 $loan = new Loan;
@@ -165,7 +169,11 @@ class LoanController extends \yii\web\Controller
                 $loan->money = $money;
                 $loan->duration = $duration;
                 $loan->rate = $rate;
-                $loan->status = 0;
+                if ($is_auth==1) {
+                    $loan->status = 1;
+                } else {
+                    $loan->status = 0;
+                }
                 $loan->start_at = time();
                 $loan->end_at = time()+$duration*3600*24;
                 $loan->created_at = time();
@@ -180,8 +188,12 @@ class LoanController extends \yii\web\Controller
         $appId = Yii::$app->params['wechat_appid'];
         $secret = Yii::$app->params['wechat_appsecret'];
         $js = new Js($appId, $secret); 
-        return $this->renderPartial('school', ['v'=>Yii::$app->params['assets_version'],'from'=>$rate==0.0001?'graduate':'common', 'js'=>$js]);
-   }
+        if ($is_auth==1) {
+            return $this->redirect(['loan/success']);
+        } else {
+            return $this->renderPartial('school', ['v'=>Yii::$app->params['assets_version'],'from'=>$rate==0.0001?'graduate':'common', 'js'=>$js]);
+        }
+    }
 
     public function actionVerify()
     {
@@ -581,7 +593,7 @@ class LoanController extends \yii\web\Controller
         return $this->redirect(['loan/me']);
     }
 
-    public function actionPassword($type=0)
+    public function actionPassword($type=0) // 0.新密码 1.重设密码 2.验证密码
     {
         $appId = Yii::$app->params['wechat_appid'];
         $secret = Yii::$app->params['wechat_appsecret'];
@@ -619,6 +631,8 @@ class LoanController extends \yii\web\Controller
                     throw $e;
                 }
 
+                return json_encode(['type'=>$type, 'stat'=>1]);
+            } else if ($type==3&&$u->auth_code!=''&&$u->auth_code==md5($_POST['input_pwd'])) {
                 return json_encode(['type'=>$type, 'stat'=>1]);
             } else {
                 return json_encode(['type'=>$type, 'stat'=>2]);
