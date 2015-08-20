@@ -150,12 +150,9 @@
 				type:"post",
 				dataType:"json",
 				fnSuccess:function(data){
-					alert(data.stat);
 					if(data.stat=="1"){	
-						alert(111);
 						$("#applicationBtn").click();
 					}else if(data.stat=="2"){
-						alert(222);
 						pwdBtn.removeClass('disabled');
 						$("#error").html("密码错误");
 					}
