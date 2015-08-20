@@ -600,7 +600,7 @@ class LoanController extends \yii\web\Controller
 
         if (Yii::$app->request->getIsAjax()) {
             $old_pwd = isset($_POST['opwd'])?$_POST['opwd']:NULL;
-            $new_pwd = $_POST['spwd'];
+            $new_pwd = isset($_POST['spwd'])?$_POST['spwd']:NULL;
             $type = $_POST['type'];
 
             session_start();
