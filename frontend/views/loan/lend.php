@@ -141,24 +141,21 @@
 		})
 		var pwdBtn=$("#pwd_btn");
 		$("#pwd_btn").click(function(){
-			alert(1);
 			if(pwdBtn.hasClass("disabled")) return false;
 			pwdBtn.addClass('disabled');
-			alert(2);
 			var pwd=$("#payPassword_rsainput").val();
-			alert(pwd);
 			TOOLS.ajax({
 				url:"./index.php?r=loan/password&type=3",
 				data:{input_pwd:pwd},
 				type:"post",
 				dataType:"json",
 				fnSuccess:function(data){
-					alert(111);
+					alert(data.stat);
 					if(data.stat=="1"){	
-						alert(stat1);
+						alert(111);
 						$("#applicationBtn").click();
 					}else if(data.stat=="2"){
-						alert(stat2);
+						alert(222);
 						pwdBtn.removeClass('disabled');
 						$("#error").html("密码错误");
 					}
