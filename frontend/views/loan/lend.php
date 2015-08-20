@@ -80,7 +80,7 @@
 							<i><b data-type="h" style="visibility: hidden;"></b></i>
 							<i><b data-type="h" style="visibility: hidden;"></b></i>
 						</div>
-						<span id="error" style="color:red;">密码错误</span>
+						<span id="error" style="color:red;"></span>
 						<a class="forget-btn font-gray clearfix">忘记密码</a>
 			        </div>
 					<a href="#" class="btn-option"> 					
@@ -155,14 +155,19 @@
 				fnSuccess:function(data){
 					alert(111);
 					if(data.stat=="1"){	
+						alert(stat1);
 						$("#applicationBtn").click();
 					}else if(data.stat=="2"){
+						alert(stat2);
 						pwdBtn.removeClass('disabled');
 						$("#error").html("密码错误");
 					}
 				},
-				fnError:function(data){
-					alert(data);
+				fnError:function(XMLHttpRequest,textstatus,errorThrown){
+					alert(XMLHttpRequest.status);
+					alert(XMLHttpRequest);
+					alert(XMLHttpRequest.readystate);
+					alert(textstatus);
 				}
 			});
 		})
