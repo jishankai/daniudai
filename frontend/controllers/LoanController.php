@@ -143,7 +143,8 @@ class LoanController extends \yii\web\Controller
 
     public function actionSchool()
     {
-        $money = $_REQUEST['money'];
+        $range = 10000 - Yii::$app->db->createCommand('SELECT SUM(money) FROM loan WHERE (status=3 OR status=2 OR status=1) AND wechat_id=:wechat_id')->bindValue(':wechat_id', $user['openid'])->queryScalar();
+        $money = min($range, $_REQUEST['money']);
         $duration = $_REQUEST['duration'];
         $rate = $_REQUEST['rate'];
         $is_auth = $_REQUEST['is_auth'];
