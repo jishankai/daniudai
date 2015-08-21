@@ -17,6 +17,9 @@
  		this.pwd = $(".forms_input");
  		this.pwdnext = $("#next");
  		this.sxflag = $("#s_x");
+ 		this.infoText = $("#info_text");
+ 		this.newPwdText = $("#new_pwd");
+ 		this.newCfmText = $("#new_cfm");
 
  		this._addEvents();
  	}
@@ -33,8 +36,14 @@
  				sxflag_val = this.sxflag.html();
  				if(sxflag_val=="1"){
  					this.opwdBox.show();
+ 					this.infoText.hide();
+ 					this.newPwdText.html("新密码");
+ 					this.pwdnext.val("确认修改");
  				}else{
  					this.opwdBox.hide();
+ 					this.infoText.show();
+ 					this.newPwdText.html("输入密码");
+ 					this.pwdnext.val("设置");
  				}
 
  			/*判断信息完整*/
@@ -88,7 +97,7 @@
 	 				fnSuccess:function(data){
 	 					if(data.stat == "1"){
               if (data.type== "0") {
-                window.location.href="./index.php?r=loan/success";
+                window.location.href="./index.php?r=loan/repays";
               } else {
                 window.location.href="./index.php?r=loan/me";
               }

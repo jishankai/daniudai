@@ -1,10 +1,10 @@
 $(function(){
 
 	var name = $("#name");
-		name.on("keyup",function(){
+	/*	name.on("keyup",function(){
 			var name_val = this.value.replace(/[^\u4E00-\u9FA5\·\u4E00-\u9FA5$]/g,'');
 			this.value = name_val;
-		})
+		})*/
 
 /*验证提示框位置适配*/
 	wheight=$(window).height();
@@ -60,10 +60,10 @@ $(function(){
 			$("#school_id").val(s1+s2);
 
 			sname= $("#name").val();
-			/*RegCellName = /^[\u4e00-\u9fa5\·]*$/;
-			falg=sname.search(RegCellName);*/
+			RegCellName = /^[\u4e00-\u9fa5\·\•\●]*$/;
+			name_falg=sname.search(RegCellName);
 			/*alert(sname.length);*/
-			if(sname.length<2){
+			if(sname.length<2 || name_falg=="-1"){
 				falg=-1;
 			}else{
 				falg=0;

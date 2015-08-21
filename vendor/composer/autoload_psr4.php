@@ -15,5 +15,6 @@ return array(
     'yii\\bootstrap\\' => array($vendorDir . '/yiisoft/yii2-bootstrap'),
     'yii\\' => array($vendorDir . '/yiisoft/yii2'),
     'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),
+    'Yeepay\\' => array($vendorDir . '/luzhongyang/yeepay/src/Yeepay'),
     'Overtrue\\' => array($vendorDir . '/overtrue/wechat/src'),
 );
