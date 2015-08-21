@@ -19,15 +19,26 @@
 		<div class="screen-content">			
 			<div class="content">
 				<div class="apply-box">
+					<?php 
+						$maxLimit = $range;
+						if($maxLimit>3000){
+							$defaultMoney = 3000;
+						} else {
+							$defaultMoney = 1000;
+						}
+						
+						$maxwidth = ($maxLimit-1000)*0.0111111;
+						$persentwidth = ($defaultMoney-1000)*0.0111111;
+					?>
 					<div class="apply-info">轻松申请，快速到账，日利率：<?php echo $rate*100; ?>%</div> 
 					<div class="apply-item" id="applyMoney">
 						<div class="a-title">
 							<h3>我要借：</h3>
-							<span class="a-right"><em class="f-orange">￥3000</em></span>
+							<span class="a-right"><em class="f-orange">￥<?php echo $defaultMoney;?></em></span>
 						</div>
 						<div class="progress-box">
 							<div class="progressBar-wrap">
-								<div class="progressBar" style="width:22.222%;">
+								<div class="progressBar" style="max-width:<?php echo $maxwidth;?>%;width:<?php echo $persentwidth;?>%;">
 									<i id="changeRecharge" class="icons icons-recharge">￥</i>
 								</div>
 							</div>
@@ -55,7 +66,7 @@
 		                <div class="forms__option">
 		                	<input type="text" value="<?php echo $rate?>" style="display:none;" name="rate"/>
 		                	<input type="text" value="200" style="display:none;" name="duration"/>
-		                	<input type="text" value="3000" style="display:none;" name="money"/>
+		                	<input type="text" value="<?php echo $defaultMoney;?>" style="display:none;" name="money"/>
 		                	<input type="text" value="<?php echo $is_auth?>" name="is_auth" style="display:none;">
 		                	<a class="btn btn-orange btn-fullwidth" id="apply_btn">立即申请</a>
 		                	<button class="btn btn-orange btn-fullwidth" id="applicationBtn" style="display:none">立即申请</button>
@@ -91,13 +102,14 @@
 		</div>
 	</div>	
 	<script type="text/javascript">
-		var rate = '<?php echo $rate?>';
+		var rate = '<?php echo $rate?>',
+			dfm = <?php echo $defaultMoney;?>,
+			maxlimit = <?php echo $maxLimit?>;
 	</script>
 	<script type="text/javascript" src="js/jquery-1.11.1.js?<?php echo $v;?>"></script>
 	<script type="text/javascript" src="js/depend.js?<?php echo $v;?>"></script>
 	<script type="text/javascript" src="js/loan.js?<?php echo $v;?>"></script>
 	<script type="text/javascript" src="js/widgets/tools.js?<?php echo $v?>"></script>
-	<script type="text/javascript" src="js/widgets/tools.js?<?php echo $v; ?>"></script>
 </body>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" charset="utf-8">
@@ -158,10 +170,7 @@
 					}
 				},
 				fnError:function(XMLHttpRequest,textstatus,errorThrown){
-					alert(XMLHttpRequest.status);
-					alert(XMLHttpRequest);
-					alert(XMLHttpRequest.readystate);
-					alert(textstatus);
+					
 				}
 			});
 		})
