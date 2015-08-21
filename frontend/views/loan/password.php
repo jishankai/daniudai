@@ -18,33 +18,34 @@
 		<div class="screen-content">			
 			<div class="content">
 				<div class="info-box">
-					<div class="info-text"><p>为保证您的借款安全，请设置6位数字密码。</p></div>
 					<form class="forms" onsubmit="return false;">
 						<div class="forms-item forms-psdNew" id="opwdBox" style="display:none">
 							<div class="forms__group" >
-			                    <label class="forms__label">原始密码</label>
+			                    <label class="forms__label">原密码</label>
 			                    <span class="input__box no-border">             
-			                        <input type="password" class="forms_input" placeholder="请输入密码" value="" maxlength="6" id="ogn_pwd" node-type="LoanOpwdInput">	
+			                        <input type="password" class="forms_input" placeholder="输入原有密码" value="" maxlength="6" id="ogn_pwd" node-type="LoanOpwdInput">	
 			                    </span>
+			                    <a class="f-right-btn font-gray">忘记了<i class="icons icons-arrowRright"></i></a>
 			                </div>
 		                </div> <!--修改密码之原始密码的代码-->
 						<div class="forms-item forms-psdNew">
 							<div class="forms__group">
-			                    <label class="forms__label">设置密码</label>
+			                    <label class="forms__label" id="new_pwd">输入密码</label>
 			                    <span class="input__box">             
-			                        <input type="password" class="forms_input" placeholder="请输入密码" value="" maxlength="6" id="set_
+			                        <input type="password" class="forms_input" placeholder="6位数字" value="" maxlength="6" id="set_
 			                        pwd" node-type="LoanSpwdInput">	
 			                    </span>
 			                </div>
 			                <div class="forms__group">
-			                    <label class="forms__label">确认密码</label>
+			                    <label class="forms__label" id="new_cfm">再次输入</label>
 			                    <span class="input__box no-border">             
-			                        <input type="password" class="forms_input" placeholder="请再次输入密码" value="" maxlength="6" id="cf_pwd" node-type="LoanCpwdInput">
+			                        <input type="password" class="forms_input" placeholder="6位数字" value="" maxlength="6" id="cf_pwd" node-type="LoanCpwdInput">
 			                    </span>
 			                </div>
 		                </div> 
+		                <div class="info-text" id="info_text"><p>下次借只需要输入密码。</p></div>
 		                <div class="forms__option">
-		                	<button class="btn btn-primary disabled btn-fullwidth" id="next">下一步</button>
+		                	<button class="btn btn-primary disabled btn-fullwidth" id="next">设置</button>
 		                </div>                                              
 		            </form>
 				</div>

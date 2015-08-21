@@ -1,0 +1,17 @@
+{
+    "name": "luzhongyang/yeepay",
+    "description": "易宝通处理程序",
+    "type": "yeepay",
+    "authors": [
+        {
+            "name": "luzhongyang",
+            "email": "luzhongyang@touzila.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Yeepay\\": "src/Yeepay/"
+        }
+    }
+}

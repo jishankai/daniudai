@@ -207,12 +207,12 @@ function beiyi(degrees){
 function grade(college,adgree,dtype){
 	if(adgree=="本科" && dtype=="common"){
 		$('#year_list li').remove();
-		for(var i=2010;i<2015;i++){
+		for(var i=2011;i<2015;i++){
 		 $('#year_list').append("<li><i class='icons icons-check'></i>"+i+"</li>");
 		}
 	}else{
 		$('#year_list li').remove();
-		for(var i=2010;i<2012;i++){
+		for(var i=2011;i<2012;i++){
 		 $('#year_list').append("<li><i class='icons icons-check'></i>"+i+"</li>");
 		}
 	}
@@ -220,19 +220,19 @@ function grade(college,adgree,dtype){
 	if(adgree=="本博/本硕连读" && dtype=="common"){
 		if(college=="临床医学8年制" || college=="基础医学8年制" || college=="口腔医学8年制"){
 			$('#year_list li').remove();
-			for(var i=2007;i<2015;i++){
+			for(var i=2008;i<2015;i++){
 			 $('#year_list').append("<li><i class='icons icons-check'></i>"+i+"</li>");
 			}
 		}
 		if(college=="预防医学7年制"){
 			$('#year_list li').remove();
-			for(var i=2008;i<2015;i++){
+			for(var i=2009;i<2015;i++){
 			 $('#year_list').append("<li><i class='icons icons-check'></i>"+i+"</li>");
 			}
 		}
 		if(college=="应用药学6年制"){
 			$('#year_list li').remove();
-			for(var i=2009;i<2015;i++){
+			for(var i=2010;i<2015;i++){
 			 $('#year_list').append("<li><i class='icons icons-check'></i>"+i+"</li>");
 			}
 		}
@@ -240,19 +240,19 @@ function grade(college,adgree,dtype){
 	}else{
 		if(college=="临床医学8年制" || college=="基础医学8年制" || college=="口腔医学8年制"){
 			$('#year_list li').remove();
-			for(var i=2006;i<2008;i++){
+			for(var i=2007;i<2008;i++){
 			 $('#year_list').append("<li><i class='icons icons-check'></i>"+i+"</li>");
 			}
 		}
 		if(college=="预防医学7年制"){
 			$('#year_list li').remove();
-			for(var i=2007;i<2009;i++){
+			for(var i=2008;i<2009;i++){
 			 $('#year_list').append("<li><i class='icons icons-check'></i>"+i+"</li>");
 			}
 		}
 		if(college=="应用药学6年制"){
 			$('#year_list li').remove();
-			for(var i=2008;i<2010;i++){
+			for(var i=2009;i<2010;i++){
 			 $('#year_list').append("<li><i class='icons icons-check'></i>"+i+"</li>");
 			}
 		}

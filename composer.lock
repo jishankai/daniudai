@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c8719be07ff08a9d70f248189a8c9a64",
+    "hash": "4afe63fe9e38a7c0582dcd410da8d78c",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -318,6 +318,36 @@
                 "html"
             ],
             "time": "2013-11-30 08:25:19"
+        },
+        {
+            "name": "luzhongyang/yeepay",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/luzhongyang/yeepay.git",
+                "reference": "86382882b0bbaacf05277c1fd8d0e0d48fa146aa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/luzhongyang/yeepay/zipball/86382882b0bbaacf05277c1fd8d0e0d48fa146aa",
+                "reference": "86382882b0bbaacf05277c1fd8d0e0d48fa146aa",
+                "shasum": ""
+            },
+            "type": "yeepay",
+            "autoload": {
+                "psr-4": {
+                    "Yeepay\\": "src/Yeepay/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "luzhongyang",
+                    "email": "luzhongyang@touzila.com"
+                }
+            ],
+            "description": "易宝通处理程序",
+            "time": "2015-05-11 09:10:20"
         },
         {
             "name": "overtrue/wechat",
@@ -954,8 +984,10 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
-    "stability-flags": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "luzhongyang/yeepay": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
