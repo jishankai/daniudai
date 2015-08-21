@@ -149,6 +149,9 @@ class LoanController extends \yii\web\Controller
         $rate = $_REQUEST['rate'];
         $is_auth = $_REQUEST['is_auth'];        
         $range = 10000 - Yii::$app->db->createCommand('SELECT SUM(money) FROM loan WHERE (status=3 OR status=2 OR status=1) AND wechat_id=:wechat_id')->bindValue(':wechat_id', $user['openid'])->queryScalar();
+        if ($range<=0) {
+            return $this->redirect(['loan/repays']);
+        }
         $money = min($range, $_REQUEST['money']);
         $loan = Loan::find()->where(['and', 'wechat_id=:wechat_id', 'status<1'])->addParams([':wechat_id'=>$user['openid']])->one();
         $transaction = Yii::$app->db->beginTransaction();
