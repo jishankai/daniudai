@@ -38,7 +38,7 @@
 					<div id="repay">
 						
 					</div>
-					<div di="wait_money">
+					<div id="wait_money">
 						
 					</div>
 					<div id="wait_review">
