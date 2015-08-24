@@ -512,6 +512,26 @@ a {
 	line-height:20px;
 	height: 20px;
 }
+.info-box .forms .input-mail{
+	padding:15px 33px 0 105px;
+	height: 45px;
+}
+.info-box .forms .input-mail .forms_input{	
+	position: absolute;
+	left: 0;
+	top: 13px;
+	width: 100px;
+	padding-right: 0;	
+	display: inline-block;
+	vertical-align: top;
+}
+.info-box .forms .input-mail .mail{
+	display: block;
+	font-size: 14px;
+	line-height:14px;
+	word-break: break-all;
+	word-wrap: break-word;
+}
 .info-box .forms .select p{
 	margin-bottom: 0;
 	line-height: 20px;
