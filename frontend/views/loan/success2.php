@@ -33,5 +33,6 @@
      wx.ready(function(){
          wx.hideOptionMenu();
      });
+     window.history.forward(1);
  </script>
 </html>
