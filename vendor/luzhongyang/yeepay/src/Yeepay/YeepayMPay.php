@@ -35,16 +35,16 @@ class YeepayMPay
     private $AES;
 
     //	测试环境请求基础地址
-    private $API_Pay_Base_Url = 'http://mobiletest.yeepay.com/testpayapi/api/';
-    private $API_Mobile_Pay_Base_Url = 'http://mobiletest.yeepay.com/paymobile/';
-    private $API_PC_Pay_Base_Url = 'http://mobiletest.yeepay.com/payweb/';
-    private $API_Merchant_Base_Url = 'http://mobiletest.yeepay.com/merchant/';
+    // private $API_Pay_Base_Url = 'http://mobiletest.yeepay.com/testpayapi/api/';
+    // private $API_Mobile_Pay_Base_Url = 'http://mobiletest.yeepay.com/paymobile/';
+    // private $API_PC_Pay_Base_Url = 'http://mobiletest.yeepay.com/payweb/';
+    // private $API_Merchant_Base_Url = 'http://mobiletest.yeepay.com/merchant/';
 
-//	正式环境请求基础地址
-// 	private $API_Pay_Base_Url = 'https://ok.yeepay.com/payapi/api/';
-//  private $API_Mobile_Pay_Base_Url = 'https://ok.yeepay.com/paymobile/';
-//	private $API_PC_Pay_Base_Url = 'https://ok.yeepay.com/payweb/';
-// 	private $API_Merchant_Base_Url = 'https://ok.yeepay.com/merchant/';
+    //	正式环境请求基础地址
+	private $API_Pay_Base_Url = 'https://ok.yeepay.com/payapi/api/';
+    private $API_Mobile_Pay_Base_Url = 'https://ok.yeepay.com/paymobile/';
+	private $API_PC_Pay_Base_Url = 'https://ok.yeepay.com/payweb/';
+	private $API_Merchant_Base_Url = 'https://ok.yeepay.com/merchant/';
 
     /**
      * - $account 商户账号
