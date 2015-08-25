@@ -127,6 +127,9 @@ class LoanController extends \yii\web\Controller
                 throw $e;
             }
         } else {
+            if ($u->ban>=3) {
+                return $this->redirect(['loan/ban']);
+            }
             if ($u->verify_times<1) {
                 return $this->redirect(['loan/failed']);
             }
@@ -220,7 +223,7 @@ class LoanController extends \yii\web\Controller
         $b1 = Bank::find()
             ->select('bank.*')
             ->leftJoin('loan', '`loan`.`wechat_id`=`bank`.`wechat_id`')
-            ->where(['and', "bank.cid=$cid", 'loan.status>1 and loan.status!=4'])
+            ->where(['and', "bank.cid='$cid'", 'loan.status>1'])
             ->one();
         if (isset($b1)||isset($b2)) {
             $resCode = '0000';
@@ -552,6 +555,18 @@ class LoanController extends \yii\web\Controller
                 );
                 $messageId = $notice->uses($templateId)->withUrl($url2)->andData($data2)->andReceiver($l->wechat_id)->send();
             } else if ($operation==-1) {
+                $u = User::findOne($l->wechat_id);
+                $transaction = Yii::$app->db->beginTransaction();
+                try {
+                    $u->ban++;
+                    $u->updateAttributes(['ban']);
+                    
+                    $transaction->commit();
+                } catch(\Exception $e) {
+                    $transaction->rollBack();
+                    throw $e;
+                }
+                
                 $templateId = Yii::$app->params['templateId_review'];
                 $url = Url::to(['loan/failed`'],TRUE);
                 $data = array(
@@ -778,7 +793,7 @@ class LoanController extends \yii\web\Controller
 
         //$order_id = $this->create_str(15);//网页支付的订单在订单有效期内可以进行多次支付请求，但是需要注意的是每次请求的业务参数都要一致，交易时间也要保持一致。否则会报错“订单与已存在的订单信息不符”
         $transtime = $y->created_at;//交易时间，是每次支付请求的时间，注意此参数在进行多次支付的时候要保持一致。
-        $product_catalog = '30';//'18';//商品类编码是我们业管根据商户业务本身的特性进行配置的业务参数。
+        $product_catalog = '30';//商品类编码是我们业管根据商户业务本身的特性进行配置的业务参数。
         $identity_id = $y->wechat_id;//用户身份标识，是生成绑卡关系的因素之一，在正式环境此值不能固定为一个，要一个用户有唯一对应一个用户标识，以防出现盗刷的风险且一个支付身份标识只能绑定5张银行卡
         $identity_type = 2;     //支付身份标识类型码
         $user_ip = $_SERVER["REMOTE_ADDR"];//此参数不是固定的商户服务器ＩＰ，而是用户每次支付时使用的网络终端IP，否则的话会有不友好提示：“检测到您的IP地址发生变化，请注意支付安全”。
