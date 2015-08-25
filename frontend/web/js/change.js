@@ -72,12 +72,14 @@ $(function(){
 function mclick(school_name){
 	if(school_name=="北京大学"){
 		 $('#cdegrees_list ul li').remove();
-		 $('#cdegrees_list ul').append("<li class='last-child'><i class='icons icons-check'></i>本科</li>");
-		 $('#cdegrees_list p').html("目前暂不支持研究生");
+		 $('#cdegrees_list ul').append("<li><i class='icons icons-check'></i>本科</li>");
+		 $('#cdegrees_list ul').append("<li class='last-child'><i class='icons icons-check'></i>研究生</li>");
+		 $('#cdegrees_list p').html("");
 	}else if(school_name=="北京大学（医学部）"){
 		$('#cdegrees_list ul li').remove();
 		$('#cdegrees_list ul').append("<li><i class='icons icons-check'></i>本科</li>");
-		$('#cdegrees_list ul').append("<li class='last-child'><i class='icons icons-check'></i>本博/本硕连读</li>");
+		$('#cdegrees_list ul').append("<li><i class='icons icons-check'></i>本博/本硕连读</li>");
+		$('#cdegrees_list ul').append("<li class='last-child'><i class='icons icons-check'></i>研究生</li>");
 		$('#cdegrees_list p').html("");
 	}
 	$("#stu_id,#name").blur();
@@ -92,6 +94,7 @@ function mclick(school_name){
 			$(this).addClass("active").siblings().removeClass();
 			ad=$(this).html();
 			adgree=ad.substring(33);
+			$("#adgree").val(adgree);
 
 			$(".mask1").hide();	
 			$("#cdegrees").val(a.substring(33));
@@ -181,25 +184,39 @@ function error2(){
 
 function beida(degrees){
 	var school = ["数学科学学院","物理学院","化学与分子工程学院","地球与空间科学学院","城市与环境学院","生命科学学院","心理学系","环境科学与工程学院","信息科学技术学院","工学院","中国语言文学系","历史学系","考古文博学院","外国语学院","哲学系","艺术学院","国际关系学院","社会学系","法学院","经济学院","光华管理学院","信息管理系","政府管理学院","新闻与传播学院","元培学院"];
-	$('#college-list ul li').remove();
-	for(var i=0;i<school.length;i++){
-	 $('#college-list ul').append("<li><i class='icons icons-check'></i>"+school[i]+"</li>");
+	var school1 = ["城市与环境学院","城市与环境学院","法学院","工学院","光华管理学院","国际关系学院","化学与分子工程学院","环境科学与工程学院","经济学院","考古文博学院","历史学系","社会学系","生命科学学院","数学科学学院","外国语学院","物理学院","心理学系","新闻与传播学院","信息管理系","信息科学技术学院","艺术学院","元培学院","哲学系","政府管理学院","中国语言文学系"];
+	
+	if(degrees=="本科"){
+		$('#college-list ul li').remove();
+		for(var i=0;i<school.length;i++){
+		 	$('#college-list ul').append("<li><i class='icons icons-check'></i>"+school[i]+"</li>");
+		}
+	}else if(degrees=="研究生"){
+		$('#college-list ul li').remove();
+		for(var i=0;i<school1.length;i++){
+		 	$('#college-list ul').append("<li><i class='icons icons-check'></i>"+school1[i]+"</li>");
+		}
 	}
 }
 function beiyi(degrees){
 	var school = ["临床医学8年制","基础医学8年制","口腔医学8年制","预防医学7年制","应用药学6年制"];
 	var school1=["临床医学5年制","口腔医学5年制","生物医学英语","预防医学5年制","应用药学4年制","护理学","医学实验技术","医学检验技术","口腔医学技术"];
-	
+	var school2=["基础医学院","药学院","公共卫生学院","护理学院","医学人文研究院","北京大学第一医院","北京大学人民医院","北京大学第三医院","北京大学口腔医院","北京大学肿瘤医院","北京大学第六医院","北京大学首钢医院","北京大学国际医院","北京积水潭医院","卫生部北京医院","北京世纪坛医院","卫生部中日友好医院","北京航天中心医院","北京地坛医院","北京民用航空总医院","首都儿科研究所","北京京煤集团总医院","北京仁和医院","解放军306医院","解放军302医院","北京回龙观医院"];
+
 	if(degrees=="本科"){
 		$('#college-list ul li').remove();
 		for(var i=0;i<school1.length;i++){
 		 $('#college-list ul').append("<li><i class='icons icons-check'></i>"+school1[i]+"</li>");
 		}
-	}
-	if(degrees=="本博/本硕连读"){
+	}else if(degrees=="本博/本硕连读"){
 		$('#college-list ul li').remove();
 		for(var i=0;i<school.length;i++){
 		 $('#college-list ul').append("<li><i class='icons icons-check'></i>"+school[i]+"</li>");
+		}
+	}else if(degrees=="研究生"){
+		$('#college-list ul li').remove();
+		for(var i=0;i<school2.length;i++){
+		 $('#college-list ul').append("<li><i class='icons icons-check'></i>"+school2[i]+"</li>");
 		}
 	}
 }
@@ -213,6 +230,13 @@ function grade(college,adgree,dtype){
 	}else{
 		$('#year_list li').remove();
 		for(var i=2011;i<2012;i++){
+		 $('#year_list').append("<li><i class='icons icons-check'></i>"+i+"</li>");
+		}
+	}
+
+	if(adgree=="研究生"){
+		$('#year_list li').remove();
+		for(var i=2011;i<2016;i++){
 		 $('#year_list').append("<li><i class='icons icons-check'></i>"+i+"</li>");
 		}
 	}
@@ -257,6 +281,7 @@ function grade(college,adgree,dtype){
 			}
 		}
 	}
+
 	
 }
 

@@ -53,9 +53,11 @@ $(function(){
 		var major=$("#major").html();
 		  
 			/*ss=s2(school,major);*/
-			var major_len=major.length-5;
-			var college=major.substr(0,major_len);
-			ss(school,college);
+			var major_len=major.length-5,
+			    college=major.substr(0,major_len),
+			    adgree = $("#adgree").val();
+			    
+			ss(school,college,adgree);
 			/*alert(s1+s2);*/
 			$("#school_id").val(s1+s2);
 
@@ -176,7 +178,7 @@ function error3(){
 
 })    /*$(function)结束*/
 
-function ss(school,college){
+function ss(school,college,adgree){
 	 if(school=="北京大学（医学部）"){
 			s1="101";
 		}
@@ -184,34 +186,59 @@ function ss(school,college){
 				s1="102";
 		}
 		
-	if(college=="临床医学8年制" || college=="城市与环境学院"){
+	if(college=="临床医学8年制" || college=="城市与环境学院" && adgree=="本科"){
 		s2="01";
 	}
-	if(college=="基础医学8年制" || college=="地球与空间科学学院"){s2="02";}
-	if(college=="口腔医学8年制" || college=="法学院"){s2="03";}
-	if(college=="预防医学7年制" || college=="工学院"){s2="04";}
-	if(college=="应用药学6年制" || college=="光华管理学院"){s2="05";}
-	if(college=="临床医学5年制" || college=="国际关系学院"){s2="06";}
-	if(college=="口腔医学5年制" || college=="化学与分子工程学院"){s2="07";}
-	if(college=="生物医学英语" || college=="环境科学与工程学院"){s2="08";}
-	if(college=="预防医学5年制" || college=="经济学院"){s2="09";}
-	if(college=="应用药学4年制" || college=="考古文博学院"){s2="10";}
-	if(college=="护理学" || college=="历史学系"){s2="11";}
-	if(college=="医学实验技术" || college=="社会学系"){s2="12";}
-	if(college=="医学检验技术" || college=="生命科学学院"){s2="13";}
-	if(college=="口腔医学技术" || college=="数学科学学院"){s2="14";}
+	if(college=="基础医学8年制" || college=="地球与空间科学学院" && adgree=="本科"){s2="02";}
+	if(college=="口腔医学8年制" || college=="法学院" && adgree=="本科"){s2="03";}
+	if(college=="预防医学7年制" || college=="工学院" && adgree=="本科"){s2="04";}
+	if(college=="应用药学6年制" || college=="光华管理学院" && adgree=="本科"){s2="05";}
+	if(college=="临床医学5年制" || college=="国际关系学院" && adgree=="本科"){s2="06";}
+	if(college=="口腔医学5年制" || college=="化学与分子工程学院" && adgree=="本科"){s2="07";}
+	if(college=="生物医学英语" || college=="环境科学与工程学院" && adgree=="本科"){s2="08";}
+	if(college=="预防医学5年制" || college=="经济学院" && adgree=="本科"){s2="09";}
+	if(college=="应用药学4年制" || college=="考古文博学院" && adgree=="本科"){s2="10";}
+	if(college=="护理学" || college=="历史学系" && adgree=="本科"){s2="11";}
+	if(college=="医学实验技术" || college=="社会学系" && adgree=="本科"){s2="12";}
+	if(college=="医学检验技术" || college=="生命科学学院" && adgree=="本科"){s2="13";}
+	if(college=="口腔医学技术" || college=="数学科学学院" && adgree=="本科"){s2="14";}
 
-	if(college=="外国语学院"){s2="15";}
-	if(college=="物理学院"){s2="16";}
-	if(college=="心理学系"){s2="17";}
-	if(college=="新闻与传播学院"){s2="18";}
-	if(college=="信息管理系"){s2="19";}
-	if(college=="信息科学技术学院"){s2="20";}
-	if(college=="艺术学院"){s2="21";}
-	if(college=="元培学院"){s2="22";}
-	if(college=="哲学系"){s2="23";}
-	if(college=="政府管理学院"){s2="24";}
-	if(college=="中国语言文学系"){s2="25";}
+	if(college=="外国语学院" && adgree=="本科" || college=="基础医学院"){s2="15";}
+	if(college=="物理学院" && adgree=="本科" || college=="药学院"){s2="16";}
+	if(college=="心理学系" && adgree=="本科" || college=="公共卫生学院"){s2="17";}
+	if(college=="新闻与传播学院" && adgree=="本科" || college=="护理学院"){s2="18";}
+	if(college=="信息管理系" && adgree=="本科" || college=="医学人文研究院"){s2="19";}
+	if(college=="信息科学技术学院" && adgree=="本科" || college=="北京大学第一医院"){s2="20";}
+	if(college=="艺术学院" && adgree=="本科" || college=="北京大学人民医院"){s2="21";}
+	if(college=="元培学院" && adgree=="本科" || college=="北京大学第三医院"){s2="22";}
+	if(college=="哲学系" && adgree=="本科" || college=="北京大学口腔医院"){s2="23";}
+	if(college=="政府管理学院" && adgree=="本科" || college=="北京大学肿瘤医院"){s2="24";}
+	if(college=="中国语言文学系" && adgree=="本科" || college=="北京大学第六医院"){s2="25";}
 
+	if(college=="北京大学首钢医院" || college=="城市与环境学院" && adgree=="研究生"){s2="26";}
+	if(college=="北京大学国际医院" || college=="地球与空间科学学院" && adgree=="研究生"){s2="27";}
+	if(college=="北京积水潭医院" || college=="法学院" && adgree=="研究生"){s2="28";}
+	if(college=="卫生部北京医院" || college=="工学院" && adgree=="研究生"){s2="29";}
+	if(college=="北京世纪坛医院" || college=="光华管理学院" && adgree=="研究生"){s2="30";}
+	if(college=="卫生部中日友好医院" || college=="国际关系学院" && adgree=="研究生"){s2="31";}
+	if(college=="北京航天中心医院" || college=="化学与分子工程学院" && adgree=="研究生"){s2="32";}
+	if(college=="北京地坛医院" || college=="环境科学与工程学院" && adgree=="研究生"){s2="33";}
+	if(college=="北京民用航空总医院" || college=="经济学院" && adgree=="研究生"){s2="34";}
+	if(college=="首都儿科研究所" || college=="考古文博学院" && adgree=="研究生"){s2="35";}
+	if(college=="北京京煤集团总医院" || college=="历史学系" && adgree=="研究生"){s2="36";}
+	if(college=="北京仁和医院" || college=="社会学系" && adgree=="研究生"){s2="37";}
+	if(college=="解放军306医院" || college=="生命科学学院" && adgree=="研究生"){s2="38";}
+	if(college=="解放军302医院" || college=="数学科学学院" && adgree=="研究生"){s2="39";}
+	if(college=="北京回龙观医院" || college=="外国语学院" && adgree=="研究生"){s2="40";}
+	if(college=="物理学院" && adgree=="研究生"){s2="41";}
+	if(college=="心理学系" && adgree=="研究生"){s2="42";}
+	if(college=="新闻与传播学院" && adgree=="研究生"){s2="43";}
+	if(college=="信息管理系" && adgree=="研究生"){s2="44";}
+	if(college=="信息科学技术学院" && adgree=="研究生"){s2="45";}
+	if(college=="艺术学院" && adgree=="研究生"){s2="46";}
+	if(college=="元培学院" && adgree=="研究生"){s2="47";}
+	if(college=="哲学系" && adgree=="研究生"){s2="48";}
+	if(college=="政府管理学院" && adgree=="研究生"){s2="49";}
+	if(college=="中国语言文学系" && adgree=="研究生"){s2="50";}
 	
 }
