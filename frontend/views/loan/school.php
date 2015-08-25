@@ -64,6 +64,16 @@
 			                    </span>
 			                </div>
 			            </div>
+			            <div class="forms-item">							
+			                <div class="forms__group">
+			                    <label class="forms__label">学校邮箱</label>
+			                    <span class="input__box no-border input-mail">   
+			                        <input type="text" class="forms_input" placeholder="邮箱地址">
+			                        <span class="mail">@examplee.edu.cn</span>
+			                        <span class="icon-option"><i class="icons icons-cross"></i></span>
+			                    </span>
+			                </div> 
+		                </div> s
 		                <div class="forms__option">
 		                	<input type="text" value="" style="display:none;" id="grade" name="grade"/>
 		                	<input type="text" value="10101" style="display:none;" id="school_id" name="school_id"/>                	

@@ -5,6 +5,11 @@ $(function(){
 			var name_val = this.value.replace(/[^\u4E00-\u9FA5\·\u4E00-\u9FA5$]/g,'');
 			this.value = name_val;
 		})*/
+	/*var email_c = $("#email");
+		email_c.on("keyup",function(){
+			var email_cval = this.value.replace( /[^a-zA-Z0-9_\.\-]$/,'');
+			this.value = email_cval;
+		})*/
 
 /*验证提示框位置适配*/
 	wheight=$(window).height();
@@ -46,6 +51,7 @@ $(function(){
 	$('#school-name').bind('input propertychange', function() {cmd();});
 	$('#major').bind('input propertychange', function() {cmd();});
 	$('#address').bind('input propertychange', function() {cmd();}); 
+	$('#email').bind('input propertychange', function(){cmd();});
 	
 	$("#next").click(function(){
 
@@ -108,6 +114,16 @@ $(function(){
 			}
 
 		}
+		if(falg!=-1 && falg1!=-1 && falg2!=-1){
+			c_email = $("#email").val();
+			RegCellEmail = /[a-zA-Z0-9_\.\-]/;
+			falg3 = c_email.search(RegCellEmail);
+			if(falg3==-1){
+				$("#error").html("邮箱包含非法字符");
+				$("#n_validate").show().delay(3000).fadeOut();
+				$("#email").focus();
+			}
+		}
 
 		var next = $("#next"),
 			z_name = $("#name").val(),
@@ -117,9 +133,24 @@ $(function(){
 			zdorm = $("#address").val(),
 			loading = $("#loading_masker"),
 			loadingImg = $("#loadingImg"),
-			mask = $("#masker");
+			mask = $("#masker"),
+			school_name = $("#school-name").html(),
+			email = $("#email").val();
+			if(school_name=="北京大学"){
+				email = email+'@pku.edu.cn';
+			}else if(school_name=="北京大学（医学部）"){
+				email = email+'@bjmu.edu.cn';
+			}else if(school_name=="清华大学"){
+				email = email+'@tsinghua.edu.cn';
+			}else if(school_name=="中国人民大学"){
+				email = email+'@ruc.edu.cn';
+			}else if(school_name=="北京师范大学"){
+				email = email+'@bnu.edu.cn';
+			}else if(school_name=="浙江大学"){
+				email = email+'@zju.edu.cn';
+			}
 
-		if(falg!=-1 && falg1!=-1 && falg2!=-1 && stu_len==8 || falg!=-1 && falg1!=-1 && falg2!=-1  && stu_len==10){
+		if(falg!=-1 && falg1!=-1 && falg2!=-1 && falg3!=-1 && stu_len==8 || falg!=-1 && falg1!=-1 && falg2!=-1 && falg3!=-1 && stu_len==10){
 			
 			if(next.hasClass("disabled")) return false;
 			next.addClass('disabled');	 
@@ -129,7 +160,7 @@ $(function(){
 			},200);						
 			TOOLS.ajax({
 				url:"./index.php?r=loan/bank",
-				data:{name:z_name,stu_id:zstu_id,grade:z_grade,school_id:zschool_id,dorm:zdorm},
+				data:{name:z_name,stu_id:zstu_id,grade:z_grade,school_id:zschool_id,dorm:zdorm,email:email},
 				dataType:"json",
 				type:"post",
 				fnSuccess:function(data){
