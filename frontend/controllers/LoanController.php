@@ -358,6 +358,17 @@ class LoanController extends \yii\web\Controller
         return $this->renderPartial('sms', ['v'=>Yii::$app->params['assets_version'], 'mobile'=>$mobile, 'js'=>$js]);
     }
 
+    public function actionBan()
+    {
+        $appId = Yii::$app->params['wechat_appid'];
+        $secret = Yii::$app->params['wechat_appsecret'];
+
+        $js = new Js($appId, $secret); 
+
+        return $this->renderPartial('ban', ['v'=>Yii::$app->params['assets_version'], 'js'=>$js]);
+
+    }
+    
     public function actionFailed()
     {
         $appId = Yii::$app->params['wechat_appid'];
@@ -499,8 +510,9 @@ class LoanController extends \yii\web\Controller
             $s = Student::findOne($l->wechat_id);
             $transaction = Yii::$app->db->beginTransaction();
             try {
-                Yii::$app->db->createCommand('UPDATE loan l LEFT JOIN student s ON l.wechat_id=s.wechat_id SET l.status=-1 WHERE s.stu_id=:stu_id')->bindValue(':stu_id', $s->stu_id)->execute();
-
+                if ($operation==2) {
+                    Yii::$app->db->createCommand('UPDATE loan l LEFT JOIN student s ON l.wechat_id=s.wechat_id SET l.status=-1 WHERE s.stu_id=:stu_id')->bindValue(':stu_id', $s->stu_id)->execute();
+                }
                 $l->reviewer = $open_id;
                 $l->status = $operation;
                 $l->updateAttributes(['reviewer', 'status']);
