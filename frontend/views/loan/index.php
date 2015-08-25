@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" user-scalable="no">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>大牛贷</title>
+<title>真牛贷</title>
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-precomposed-144.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-precomposed-114.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/logo-72.png">
@@ -23,7 +23,7 @@
 					<img class="loan-picImg" src="img/pic-01.jpg" />
 					<div class="loan-content">
 						<h2>信用贷款</h2>
-						<p>只要你是在校大学生，用大牛贷，纯信用</p>
+						<p>只要你是在校大学生，用真牛贷，纯信用</p>
 						<h2>超低利率</h2>
 						<p>远低于市场上的信用贷款，日利率仅0.03%</p>
 						<h2>不是分期，是到期哟~</h2>
