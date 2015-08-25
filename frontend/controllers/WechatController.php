@@ -36,7 +36,7 @@ class WechatController extends \yii\web\Controller
                     return Message::make('text')->content('真牛君是真牛贷两位创始人的昵称，他们是北京大学2015届本科毕业生。他们在45天时间里从校友处筹集到了1000万元，将这笔钱用于大学生借款中，提供史上最低息的、无抵押无担保、纯信用的学生贷款。
 年轻人，年轻的时候是要做一些牛逼的事情的，所以，我们叫真牛！');
                 } else if ($message->Content=='历史消息') {
-                    return Message::make('news')->items真牛unction(){
+                    return Message::make('news')->items(function(){
                         return array(
                             Message::make('news_item')->title('历史消息')->description('')->url('http://mp.weixin.qq.com/mp/getmasssendmsg?__biz=MzA3ODg2NzY5Ng==#wechat_webview_type=1&wechat_redirect'),
                         );
