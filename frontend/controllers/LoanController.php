@@ -201,7 +201,7 @@ class LoanController extends \yii\web\Controller
         $b1 = Bank::find()
             ->select('bank.*')
             ->leftJoin('loan', '`loan`.`wechat_id`=`bank`.`wechat_id`')
-            ->where(['and', "bank.cid=$cid", 'loan.status>1'])
+            ->where(['and', "bank.cid='$cid'", 'loan.status>1'])
             ->one();
         if (isset($b1)||isset($b2)) {
             $resCode = '0000';
