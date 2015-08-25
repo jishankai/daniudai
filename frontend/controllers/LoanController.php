@@ -124,6 +124,9 @@ class LoanController extends \yii\web\Controller
                 throw $e;
             }
         } else {
+            if ($u->ban>=3) {
+                return $this->redirect(['loan/ban']);
+            }
             if ($u->verify_times<1) {
                 return $this->redirect(['loan/failed']);
             }
@@ -534,6 +537,18 @@ class LoanController extends \yii\web\Controller
                 );
                 $messageId = $notice->uses($templateId)->withUrl($url2)->andData($data2)->andReceiver($l->wechat_id)->send();
             } else if ($operation==-1) {
+                $u = User::findOne($l->wechat_id);
+                $transaction = Yii::$app->db->beginTransaction();
+                try {
+                    $u->ban++;
+                    $u->updateAttributes(['ban']);
+                    
+                    $transaction->commit();
+                } catch(\Exception $e) {
+                    $transaction->rollBack();
+                    throw $e;
+                }
+                
                 $templateId = Yii::$app->params['templateId_review'];
                 $url = Url::to(['loan/failed`'],TRUE);
                 $data = array(
