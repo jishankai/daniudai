@@ -15,6 +15,7 @@ use Yii;
  * @property string $bank_id
  * @property string $auth_code
  * @property integer $verify_times
+ * @property integer $ban
  * @property integer $created_at
  * @property string $updated_at
  *
@@ -37,8 +38,8 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-//            [['wechat_id', 'name', 'id', 'bank', 'created_at'], 'required'],
-            [['verify_times', 'created_at'], 'integer'],
+            //[['wechat_id', 'name', 'id', 'bank', 'created_at'], 'required'],
+            [['verify_times', 'ban', 'created_at'], 'integer'],
             [['updated_at'], 'safe'],
             [['wechat_id', 'name', 'bank'], 'string', 'max' => 45],
             [['id'], 'string', 'max' => 18],
@@ -62,6 +63,7 @@ class User extends \yii\db\ActiveRecord
             'bank_id' => 'Bank ID',
             'auth_code' => 'Auth Code',
             'verify_times' => 'Verify Times',
+            'ban' => 'Ban',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];

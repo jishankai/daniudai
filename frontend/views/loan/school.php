@@ -67,6 +67,7 @@
 		                <div class="forms__option">
 		                	<input type="text" value="" style="display:none;" id="grade" name="grade"/>
 		                	<input type="text" value="10101" style="display:none;" id="school_id" name="school_id"/>                	
+		                	<input type="text" value="" style="display:none;" id="adgree"/>
 		                	<input type="button" class="btn btn-primary btn-fullwidth" value="下一步" id="next" disabled/>
 		                </div>                                              
 		            </form>
@@ -129,7 +130,7 @@
 					<ul class="lists-main">
 						<!-- <li><i class="icons icons-check"></i>本科</li> -->
 					</ul>
-					<p class="l-info">目前暂不支持研究生</p>
+					<p class="l-info"><!-- 目前暂不支持研究生 --></p>
 				</div>
 		   	</div>
 		</div>

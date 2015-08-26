@@ -14,6 +14,7 @@ use backend\models\Loan;
 use backend\models\Student;
 use backend\models\School;
 use backend\models\Bank;
+use backend\models\Yeepay;
 
 class LoanController extends \yii\web\Controller
 {
@@ -26,11 +27,11 @@ class LoanController extends \yii\web\Controller
 
         $s = Student::findOne($user['openid']);
         $u = User::findOne($user['openid']);
-        $l = Loan::findOne(['wechat_id'=>$user['openid']]);
+        $l = Loan::find()->where(['and', 'wechat_id=:wechat_id', 'status<4'])->addParams([':wechat_id'=>$user['openid']])->one();
 
         if (isset($_POST['stu_id'])) {
             $stu_id = $_POST['stu_id'];
-            $wechat_id = Yii::$app->db->createCommand('SELECT l.wechat_id FROM loan l LEFT JOIN student s ON l.wechat_id=s.wechat_id WHERE s.stu_id=:stu_id AND l.status>1')->bindValue(':stu_id', $stu_id)->queryScalar();        
+            $wechat_id = Yii::$app->db->createCommand('SELECT l.wechat_id FROM loan l LEFT JOIN student s ON l.wechat_id=s.wechat_id WHERE s.stu_id=:stu_id AND l.status>1 AND l.status!=4')->bindValue(':stu_id', $stu_id)->queryScalar();        
             if ($wechat_id==FALSE) {
                 $school_id = $_POST['school_id'];
                 $dorm = $_POST['dorm'];
@@ -77,7 +78,7 @@ class LoanController extends \yii\web\Controller
     {
         session_start();
         $user = $_SESSION['user'];
-        $l = Loan::findOne(['wechat_id'=>$user['openid']]);
+        $l = Loan::find()->where(['and', 'wechat_id=:wechat_id', 'status<4'])->addParams([':wechat_id'=>$user['openid']])->one();
         if (isset($l) AND $l->status>0) {
             return $this->redirect(['loan/success']);
         }
@@ -123,10 +124,13 @@ class LoanController extends \yii\web\Controller
                 throw $e;
             }
         } else {
+            if ($u->ban>=3) {
+                return $this->redirect(['loan/ban']);
+            }
             if ($u->verify_times<1) {
                 return $this->redirect(['loan/failed']);
             }
-            $l = Loan::findOne(['wechat_id'=>$open_id]);
+            $l = Loan::find()->where(['and', 'wechat_id=:wechat_id', 'status<4'])->addParams([':wechat_id'=>$user['openid']])->one();
             if (isset($l) and $l->status>0) {
                 return $this->redirect(['loan/success']);
             }
@@ -143,7 +147,7 @@ class LoanController extends \yii\web\Controller
 
         session_start();
         $user = $_SESSION['user'];
-        $loan = Loan::findOne(['wechat_id'=>$user['openid']]);
+        $loan = Loan::find()->where(['and', 'wechat_id=:wechat_id', 'status<4'])->addParams([':wechat_id'=>$user['openid']])->one();
         $transaction = Yii::$app->db->beginTransaction();
         try {
             if (isset($loan) AND $loan->status<=0) {
@@ -196,12 +200,12 @@ class LoanController extends \yii\web\Controller
         $b1 = Bank::find()
             ->select('bank.*')
             ->leftJoin('loan', '`loan`.`wechat_id`=`bank`.`wechat_id`')
-            ->where(['and', "bank.card=$card", 'loan.status>1'])
+            ->where(['and', "bank.card=$card", 'loan.status>1 and loan.status!=4'])
             ->one();
         $b1 = Bank::find()
             ->select('bank.*')
             ->leftJoin('loan', '`loan`.`wechat_id`=`bank`.`wechat_id`')
-            ->where(['and', "bank.cid='$cid'", 'loan.status>1'])
+            ->where(['and', "bank.cid='$cid'", 'loan.status>1 and loan.status!=4'])
             ->one();
         if (isset($b1)||isset($b2)) {
             $resCode = '0000';
@@ -354,6 +358,17 @@ class LoanController extends \yii\web\Controller
         return $this->renderPartial('sms', ['v'=>Yii::$app->params['assets_version'], 'mobile'=>$mobile, 'js'=>$js]);
     }
 
+    public function actionBan()
+    {
+        $appId = Yii::$app->params['wechat_appid'];
+        $secret = Yii::$app->params['wechat_appsecret'];
+
+        $js = new Js($appId, $secret); 
+
+        return $this->renderPartial('ban', ['v'=>Yii::$app->params['assets_version'], 'js'=>$js]);
+
+    }
+    
     public function actionFailed()
     {
         $appId = Yii::$app->params['wechat_appid'];
@@ -376,7 +391,7 @@ class LoanController extends \yii\web\Controller
         }
         $user = $_SESSION['user'];
         $u = User::findOne($user['openid']);
-        $l = Loan::findOne(['wechat_id'=>$user['openid']]);
+        $l = Loan::find()->where(['and', 'wechat_id=:wechat_id', 'status<4'])->addParams([':wechat_id'=>$user['openid']])->one();
         $student = Student::findOne($user['openid']);
 
         if ($l->status<=0) {
@@ -453,9 +468,9 @@ class LoanController extends \yii\web\Controller
             $r = Yii::$app->db->createCommand('SELECT u.name,u.bank,u.bank_id, l.loan_id,l.money,l.duration,t.name AS reviewer,l.status FROM user u LEFT JOIN loan l ON u.wechat_id=l.wechat_id LEFT JOIN user t ON l.reviewer=t.wechat_id WHERE l.status=2')->queryAll();
             return $this->renderPartial('bank_list', ['verification'=>'admin','r'=>$r]);
         } else {
-            $l = Loan::findOne(['wechat_id'=>$open_id]);
+            $l = Loan::find()->where(['and', 'wechat_id=:wechat_id', 'status<4'])->addParams([':wechat_id'=>$user['openid']])->one();
             if (isset($l) AND $l->status>=1) {
-                return $this->redirect(['loan/repay_list']);
+                return $this->redirect(['loan/repay']);
             } else {
                 return $this->redirect(['loan/index']);
             }
@@ -471,7 +486,7 @@ class LoanController extends \yii\web\Controller
             $r = Yii::$app->db->createCommand('SELECT l.loan_id,l.rate,l.duration,l.money,u.name,u.id,stu.dorm,stu.stu_id,.s.depart,u.mobile FROM loan l LEFT JOIN user u ON l.wechat_id=u.wechat_id LEFT JOIN student stu ON l.wechat_id=stu.wechat_id LEFT JOIN school s ON stu.school_id=s.school_id WHERE l.loan_id=:loan_id')->bindValue(':loan_id',$loan_id)->queryOne();
             return $this->renderPartial('personal_details', ['r'=>$r]);
         } else {
-            return $this->renderPartial('404');
+            return $this->redirect(['site/error']);
         }
 
     }
@@ -495,8 +510,9 @@ class LoanController extends \yii\web\Controller
             $s = Student::findOne($l->wechat_id);
             $transaction = Yii::$app->db->beginTransaction();
             try {
-                Yii::$app->db->createCommand('UPDATE loan l LEFT JOIN student s ON l.wechat_id=s.wechat_id SET l.status=-1 WHERE s.stu_id=:stu_id')->bindValue(':stu_id', $s->stu_id)->execute();
-
+                if ($operation==2) {
+                    Yii::$app->db->createCommand('UPDATE loan l LEFT JOIN student s ON l.wechat_id=s.wechat_id SET l.status=-1 WHERE s.stu_id=:stu_id')->bindValue(':stu_id', $s->stu_id)->execute();
+                }
                 $l->reviewer = $open_id;
                 $l->status = $operation;
                 $l->updateAttributes(['reviewer', 'status']);
@@ -533,6 +549,18 @@ class LoanController extends \yii\web\Controller
                 );
                 $messageId = $notice->uses($templateId)->withUrl($url2)->andData($data2)->andReceiver($l->wechat_id)->send();
             } else if ($operation==-1) {
+                $u = User::findOne($l->wechat_id);
+                $transaction = Yii::$app->db->beginTransaction();
+                try {
+                    $u->ban++;
+                    $u->updateAttributes(['ban']);
+                    
+                    $transaction->commit();
+                } catch(\Exception $e) {
+                    $transaction->rollBack();
+                    throw $e;
+                }
+                
                 $templateId = Yii::$app->params['templateId_review'];
                 $url = Url::to(['loan/failed`'],TRUE);
                 $data = array(
@@ -651,12 +679,13 @@ class LoanController extends \yii\web\Controller
         }
     
         $user = $_SESSION['user'];
-        $l = Loan::findOne(['wechat_id'=>$user['openid']]);
+        $l = Loan::find()->where(['and', 'wechat_id=:wechat_id', 'status<4'])->addParams([':wechat_id'=>$user['openid']])->one();
 
         if (isset($l) and $l->status>2) {
             if ($l->status==3) {
                 $js = new Js($appId, $secret); 
-                return $this->renderPartial('repay', ['v'=>Yii::$app->params['assets_version'], 'l'=>$l, 'js'=>$js]);
+                $u = User::findOne($user['openid']);
+                return $this->renderPartial('repay', ['v'=>Yii::$app->params['assets_version'], 'l'=>$l, 'u'=>$u, 'js'=>$js]);
             } else {
                 return $this->redirect(['loan/repayed']);
             }
@@ -708,10 +737,10 @@ class LoanController extends \yii\web\Controller
 
         //$order_id = $this->create_str(15);//网页支付的订单在订单有效期内可以进行多次支付请求，但是需要注意的是每次请求的业务参数都要一致，交易时间也要保持一致。否则会报错“订单与已存在的订单信息不符”
         $transtime = $y->created_at;//交易时间，是每次支付请求的时间，注意此参数在进行多次支付的时候要保持一致。
-        $product_catalog = '18';//商品类编码是我们业管根据商户业务本身的特性进行配置的业务参数。
+        $product_catalog = '30';//商品类编码是我们业管根据商户业务本身的特性进行配置的业务参数。
         $identity_id = $y->wechat_id;//用户身份标识，是生成绑卡关系的因素之一，在正式环境此值不能固定为一个，要一个用户有唯一对应一个用户标识，以防出现盗刷的风险且一个支付身份标识只能绑定5张银行卡
         $identity_type = 2;     //支付身份标识类型码
-        $user_ip = $_SERVER["HTTP_CLIENT_IP"]; //此参数不是固定的商户服务器ＩＰ，而是用户每次支付时使用的网络终端IP，否则的话会有不友好提示：“检测到您的IP地址发生变化，请注意支付安全”。
+        $user_ip = $_SERVER["REMOTE_ADDR"];//此参数不是固定的商户服务器ＩＰ，而是用户每次支付时使用的网络终端IP，否则的话会有不友好提示：“检测到您的IP地址发生变化，请注意支付安全”。
         $user_ua = $_SERVER['HTTP_USER_AGENT'];//用户ua
         $callbackurl = Url::to(['loan/callback'], TRUE);//商户后台系统回调地址，前后台的回调结果一样
         $fcallbackurl = Url::to(['loan/callback'], TRUE);//商户前台系统回调地址，前后台的回调结果一样
@@ -719,7 +748,7 @@ class LoanController extends \yii\web\Controller
         $product_desc = '还款';//商品描述
         $terminaltype = 3;
         $terminalid = $y->wechat_id;//其他支付身份信息
-        $amount = $y->fee;//订单金额单位为分，支付时最低金额为2分，因为测试和生产环境的商户都有手续费（如2%），易宝支付收取手续费如果不满1分钱将按照1分钱收取。
+        $amount = (int)$y->fee;//订单金额单位为分，支付时最低金额为2分，因为测试和生产环境的商户都有手续费（如2%），易宝支付收取手续费如果不满1分钱将按照1分钱收取。
         $cardno = $u->bank_id;
         $idcardtype = '01';
         $idcard = $u->id;
@@ -746,7 +775,7 @@ class LoanController extends \yii\web\Controller
 
         $yeepay = new yeepayMPay($merchantaccount, $merchantPublicKey, $merchantPrivateKey, $yeepayPublicKey);
         try {
-            $return = $yeepay->callback($_POST['data'], $_POST['encryptkey']);
+            $return = $yeepay->callback($_REQUEST['data'], $_REQUEST['encryptkey']);
             // TODO:添加订单处理逻辑代码
 
             $order_id = $return['orderid'];
