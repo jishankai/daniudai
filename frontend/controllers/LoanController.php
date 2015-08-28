@@ -136,8 +136,6 @@ class LoanController extends \yii\web\Controller
             $range = 10000 - Yii::$app->db->createCommand('SELECT SUM(money) FROM loan WHERE (status=3 OR status=2 OR status=1) AND wechat_id=:wechat_id')->bindValue(':wechat_id', $user['openid'])->queryScalar();
             if ($range<=0) {
                 return $this->redirect(['loan/repays']);
-            } else {
-                return $this->redirect(['loan/lend']);
             }
         }
         $js = new Js($appId, $secret);
