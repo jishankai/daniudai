@@ -64,7 +64,8 @@
  		},
  		_fnObtain : function(times,send){
  			var timer = null,
- 				success_send = $("#success_send");
+ 				success_send = $("#success_send"),
+ 				v_falg = $("#v_falg").html();
  			if(send.hasClass("disabled")) return false;
  			send.addClass('disabled');
  			timer = setInterval(function(){
@@ -78,43 +79,66 @@
  				times--;
  			},1000);
 
- 			TOOLS.ajax({
- 				url:"./index.php?r=loan/sms",
- 				data:{mobile:this.phone,code:1},
- 				type:"post",
- 				dataType:"json",
- 				fnSuccess:function(data){
- 					if(data.isSend == "1"){
- 						success_send.show();
- 					}
- 				},
- 				fnError:function(){}
- 			});
+ 			if(v_falg!="mail"){
+ 				TOOLS.ajax({
+ 					url:"./index.php?r=loan/sms",
+ 					data:{mobile:this.phone,code:1},
+ 					type:"post",
+ 					dataType:"json",
+ 					fnSuccess:function(data){
+ 						if(data.isSend == "1"){
+ 							success_send.show();
+ 						}
+ 					},
+ 					fnError:function(){}
+ 				});
+ 			}
+ 			
  		},
  		_fnSubmit : function(confirmBtn){
+ 			var v_falg = $("#v_falg").html();
  			if(confirmBtn.hasClass("disabled")) return false;
  			confirmBtn.addClass('disabled');
  			this.idCode = $("#idCode").val();
- 			TOOLS.ajax({
- 				url:"./index.php?r=loan/sms",
- 				data:{mobile:this.phone,code:this.idCode,type:1},
- 				type:"post",
- 				dataType:"json",
- 				fnSuccess:function(data){
- 					console.log(data);
- 					if(data.isSuccess == "0"){
- 						confirmBtn.removeClass('disabled');
- 						MessageBox.alert({type:"common",txt:CS.ERRORMSG["CAPTCHAERROR"]});
- 					}else if(data.isSuccess == "1"){
-            if (data.auth=="1") {
-              window.location.href="./index.php?r=loan/success";
-            } else {
-              window.location.href="./index.php?r=loan/password";
-            }
- 					}
- 				},
- 				fnError:function(){}
- 			});
+ 			if(v_falg!="mail"){
+ 				TOOLS.ajax({
+ 					url:"./index.php?r=loan/sms",
+ 					data:{mobile:this.phone,code:this.idCode,type:1},
+ 					type:"post",
+ 					dataType:"json",
+ 					fnSuccess:function(data){
+ 						console.log(data);
+ 						if(data.isSuccess == "0"){
+ 							confirmBtn.removeClass('disabled');
+ 							MessageBox.alert({type:"common",txt:CS.ERRORMSG["CAPTCHAERROR"]});
+ 						}else if(data.isSuccess == "1"){
+ 							if (data.auth=="1") {
+ 								window.location.href="./index.php?r=loan/success";
+ 							} else {
+ 								window.location.href="./index.php?r=loan/password";
+ 							}
+ 						}
+ 					},
+ 					fnError:function(){}
+ 				});
+ 			}else{
+ 				TOOLS.ajax({
+ 					url:"./index.php?r=loan/mail",
+ 					data:{mail:this.phone,code:this.idCode},
+ 					type:"post",
+ 					dataType:"json",
+ 					fnSuccess:function(data){
+ 						if(data.isSuccess == "0"){
+ 							confirmBtn.removeClass('disabled');
+ 							MessageBox.alert({type:"common",txt:CS.ERRORMSG["CAPTCHAERROR"]});
+ 						}else if(data.isSuccess == "1"){
+ 							window.location.href="./index.php?r=loan/bank";
+ 						}
+ 					},
+ 					fnError:function(){}
+ 				});
+ 			}
+ 			
  		}
  	}
 

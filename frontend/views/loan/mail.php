@@ -47,6 +47,7 @@
 			</div>
 		</div>
 	</div>	
+	<div id="v_falg" style="display:none;">mail</div>
 	
 </body>
 <script type="text/javascript" src="./js/libs/zepto.js?<?php echo $v; ?>"></script>
