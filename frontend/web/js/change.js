@@ -25,6 +25,20 @@ $(function(){
 			a=$(this).html();
 			$(".mask").hide();	
 			$("#school-name").html(a.substring(33));
+			var s_name=$("#school-name").html();
+				if(s_name=="北京大学"){
+					$("#suffix").html("pku");
+				}else if(s_name=="北京大学（医学部）"){
+					$("#suffix").html("bjmu");
+				}else if(s_name=="清华大学"){
+					$("#suffix").html("tsinghua");
+				}else if(s_name=="中国人民大学"){
+					$("#suffix").html("ruc.edu.cn");
+				}else if(s_name=="北京师范大学"){
+					$("#suffix").html("bnu");
+				}else if(s_name=="浙江大学"){
+					$("#suffix").html("zju");
+				}
 			$("#school-name").removeClass("d-color");
 
 			$("#major").html("专业/入学年份");
@@ -52,6 +66,20 @@ $(function(){
 				a=$(this).html();
 				$(".mask").hide();	
 				$("#school-name").html(a.substring(33));
+				var s_name=$("#school-name").html();
+				if(s_name=="北京大学"){
+					$("#suffix").html("pku");
+				}else if(s_name=="北京大学（医学部）"){
+					$("#suffix").html("bjmu");
+				}else if(s_name=="清华大学"){
+					$("#suffix").html("tsinghua");
+				}else if(s_name=="中国人民大学"){
+					$("#suffix").html("ruc.edu.cn");
+				}else if(s_name=="北京师范大学"){
+					$("#suffix").html("bnu");
+				}else if(s_name=="浙江大学"){
+					$("#suffix").html("zju");
+				}
 				$("#school-name").removeClass("d-color");
 				$("#c_school").css("left",-wwidth);//左推动画重置
 				var school_name=$("#school-name").html();

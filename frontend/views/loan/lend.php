@@ -82,7 +82,7 @@
 					<span class="close-btn" id="psd_close">&times;</span>
 					<p>输入密码，使用历史借款信息</p>
 					<div class="psd-box">
-						<input type="password" tabindex="1" autofocus="autofocus" name="payPassword_rsainput" id="payPassword_rsainput" class="psd-input sixDigitPassword" oncontextmenu="return false" onpaste="return false" oncopy="return false" oncut="return false" autocomplete="off" value="" maxlength="6" minlength="6" style="outline: none; margin-left: -519px;">
+						<input type="tel" tabindex="1" autofocus="autofocus" name="payPassword_rsainput" id="payPassword_rsainput" class="psd-input sixDigitPassword" oncontextmenu="return false" onpaste="return false" oncopy="return false" oncut="return false" autocomplete="off" value="" maxlength="6" minlength="6" style="outline: none; margin-left: -519px;">
 						<div id="sixDigitPassword" class="sixDigitPassword clearfix" tabindex="0"><!--focus-->
 							<i style="border-left-width: 0px;"><b data-type="h" style="visibility: hidden;"></b></i>
 							<i><b data-type="h" style="visibility: hidden;"></b></i>
