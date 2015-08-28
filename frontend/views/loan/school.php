@@ -73,7 +73,7 @@
 			                        <span class="icon-option"><i class="icons icons-cross"></i></span>
 			                    </span>
 			                </div> 
-		                </div> s
+		                </div>
 		                <div class="forms__option">
 		                	<input type="text" value="" style="display:none;" id="grade" name="grade"/>
 		                	<input type="text" value="10101" style="display:none;" id="school_id" name="school_id"/>                	
