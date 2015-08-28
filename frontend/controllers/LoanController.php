@@ -511,7 +511,7 @@ class LoanController extends \yii\web\Controller
             $transaction = Yii::$app->db->beginTransaction();
             try {
                 if ($operation==2) {
-                    Yii::$app->db->createCommand('UPDATE loan l LEFT JOIN student s ON l.wechat_id=s.wechat_id SET l.status=-1 WHERE s.stu_id=:stu_id')->bindValue(':stu_id', $s->stu_id)->execute();
+                    Yii::$app->db->createCommand('UPDATE loan l LEFT JOIN student s ON l.wechat_id=s.wechat_id SET l.status=-1 WHERE s.stu_id=:stu_id AND l.status=1')->bindValue(':stu_id', $s->stu_id)->execute();
                 }
                 $l->reviewer = $open_id;
                 $l->status = $operation;
