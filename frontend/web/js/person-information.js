@@ -166,7 +166,6 @@ $(function(){
 				dataType:"json",
 				type:"post",
 				fnSuccess:function(data){
-					alert(data.stat);
 					if(data.stat == "1"){
 						loadingImg.hide();	
 						window.location.href= "./index.php?r=loan/mail&email="+email;
