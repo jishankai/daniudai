@@ -68,7 +68,7 @@
 			                <div class="forms__group">
 			                    <label class="forms__label">学校邮箱</label>
 			                    <span class="input__box no-border input-mail">   
-			                        <input type="text" class="forms_input" placeholder="邮箱地址">
+			                        <input type="text" class="forms_input" id="email" placeholder="邮箱地址">
 			                        <span class="mail">@<span id="suffix">examplee</span>.edu.cn</span>
 			                        <span class="icon-option"><i class="icons icons-cross"></i></span>
 			                    </span>

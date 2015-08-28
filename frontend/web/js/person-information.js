@@ -168,7 +168,7 @@ $(function(){
 				fnSuccess:function(data){
 					if(data.stat == "1"){
 						loadingImg.hide();	
-						window.location.href= "./index.php?r=loan/bank";
+						window.location.href= "./index.php?r=loan/mail";
 					}else{
 						loadingImg.hide();
 						MessageBox.alert({type:"message",txt:"当前学生信息已被占用，请核实重新填写。"});
