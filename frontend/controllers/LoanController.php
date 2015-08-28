@@ -37,6 +37,7 @@ class LoanController extends \yii\web\Controller
                 $dorm = $_POST['dorm'];
                 $grade = $_POST['grade'];
                 $name = $_POST['name'];
+                $mail = $_POST['email'];
 
                 $transaction = Yii::$app->db->beginTransaction();
                 try {
@@ -48,6 +49,7 @@ class LoanController extends \yii\web\Controller
                     $s->school_id = $school_id;
                     $s->dorm = $dorm;
                     $s->grade = $grade;
+                    $s->mail = $mail;
                     $s->created_at = time();
                     $s->save();
 
@@ -329,6 +331,45 @@ class LoanController extends \yii\web\Controller
             $resMsg = '验证次数超过上限';
         }
         return json_encode(['resCode'=>$resCode, 'resMsg'=>$resMsg, 'stat'=>$stat, 'verify_times'=>$u->verify_times, 'mobile'=>$mobile]);
+    }
+
+    public function actionMail()
+    {
+        $appId = Yii::$app->params['wechat_appid'];
+        $secret = Yii::$app->params['wechat_appsecret'];
+
+        $mobile = $_REQUEST['email'];
+        $code = isset($_REQUEST['code'])?$_REQUEST['code']:0;
+
+        session_start();
+        if ($code!=0) {
+            if ($_SESSION['mail_code']==$code) {
+                $result = 1;
+            } else {
+                $result = 0;
+            }
+            return json_encode(['isSuccess'=>$result]);
+        } else {
+            if (!isset($_SESSION['mail_send_time']) or time()-$_SESSION['mail_send_time']>60) {
+                $code = $_SESSION['mail_code'] = rand(100000, 999999);
+
+                Yii::$app->mailer->compose('contact/html')
+                    ->setFrom('zhenniujun@zhenniuidai.com')
+                    ->setTo($mail)
+                    ->setSubject('【真牛贷】验证邮件')
+                    ->setBody('<p>尊敬的'.$name.',这封信来自【真牛贷】。</p><br />'.
+                              '<p>您的验证码是:'.$code.'</p><br />'.
+                              '<p>您收到这封邮件，是由于您正在申请【真牛贷】。如果不是您本人操作，请联系【真牛贷】微信公众号（昵称“真牛贷”）</p><br />'.
+                              '<p>我们会做您最贴心的“小银行”，到永远~')
+                    ->send();
+                $_SESSION['mail_send_time'] = time();
+            }
+
+            return json_encode(['isSend'=>1]);
+        }
+        $js = new Js($appId, $secret); 
+
+        return $this->renderPartial('mail', ['v'=>Yii::$app->params['assets_version'], 'email'=>$mail, 'js'=>$js]);
     }
 
     public function actionSms()

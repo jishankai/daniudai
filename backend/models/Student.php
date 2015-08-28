@@ -12,6 +12,7 @@ use Yii;
  * @property integer $school_id
  * @property string $dorm
  * @property integer $grade
+ * @property string $mail
  * @property integer $created_at
  * @property string $updated_at
  *
@@ -37,7 +38,7 @@ class Student extends \yii\db\ActiveRecord
             //[['wechat_id', 'school_id', 'dorm', 'grade', 'created_at'], 'required'],
             [['school_id', 'grade', 'created_at'], 'integer'],
             [['updated_at'], 'safe'],
-            [['wechat_id', 'dorm'], 'string', 'max' => 45],
+            [['wechat_id', 'dorm', 'mail'], 'string', 'max' => 45],
             [['stu_id'], 'string', 'max' => 12]
         ];
     }
@@ -53,6 +54,7 @@ class Student extends \yii\db\ActiveRecord
             'school_id' => 'School ID',
             'dorm' => 'Dorm',
             'grade' => 'Grade',
+            'mail' => 'Mail',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
