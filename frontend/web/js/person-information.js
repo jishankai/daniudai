@@ -169,7 +169,7 @@ $(function(){
 					alert(data.stat);
 					if(data.stat == "1"){
 						loadingImg.hide();	
-						window.location.href= "./index.php?r=loan/mail";
+						window.location.href= "./index.php?r=loan/mail&email="+email;
 					}else{
 						loadingImg.hide();
 						MessageBox.alert({type:"message",txt:"当前学生信息已被占用，请核实重新填写。"});
