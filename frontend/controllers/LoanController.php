@@ -446,6 +446,17 @@ class LoanController extends \yii\web\Controller
 
     }
 
+    public function actionPasswordok()
+    {
+        $appId = Yii::$app->params['wechat_appid'];
+        $secret = Yii::$app->params['wechat_appsecret'];
+
+        $js = new Js($appId, $secret); 
+
+        return $this->renderPartial('passwordok', ['v'=>Yii::$app->params['assets_version'], 'js'=>$js]);
+
+    }
+
     public function actionSuccess()
     {
         $appId = Yii::$app->params['wechat_appid'];
@@ -673,7 +684,7 @@ class LoanController extends \yii\web\Controller
         return $this->redirect(['loan/me']);
     }
 
-    public function actionPassword($type=0) // 0.新密码 1.重设密码 2.验证密码
+    public function actionPassword($type=0) // 0.新密码 1.重设密码 3.验证密码 2.第一次借款
     {
         $appId = Yii::$app->params['wechat_appid'];
         $secret = Yii::$app->params['wechat_appsecret'];
@@ -688,7 +699,7 @@ class LoanController extends \yii\web\Controller
 
             $u = User::findOne($user['openid']);
 
-            if ($type==0) {
+            if ($type==0 OR $type==2) {
                 $transaction = Yii::$app->db->beginTransaction();
                 try {
                     $u->auth_code = md5($new_pwd);

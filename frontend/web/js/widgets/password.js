@@ -96,14 +96,14 @@
 	 				dataType:"json",
 	 				fnSuccess:function(data){
 	 					if(data.stat == "1"){
-              if (data.type== "0") {
-                window.location.href="./index.php?r=loan/repays";
-              } else {
-                window.location.href="./index.php?r=loan/me";
-              }
+                                                  if (data.type== "2") {
+                                                    window.location.href="./index.php?r=loan/success";
+                                                  } else {
+                                                    window.location.href="./index.php?r=loan/passwordok";
+                                                  }
 	 					}else if(data.stat == "2"){
-	 						MessageBox.alert({type:"common",txt:"原始密码错误！"});
-	 						confirmBtn.removeClass("disabled");	
+	 					  MessageBox.alert({type:"common",txt:"原始密码错误！"});
+	 					  confirmBtn.removeClass("disabled");	
 	 					}
 	 				},
 	 				fnError:function(){}
