@@ -14,6 +14,7 @@
  		this.sendBtn = this.$el.find('[node-type="LoanSendBtn"]');
  		this.confirmBtn = this.$el.find('[node-type="LoanConfirmBtn"]');
  		this.phone = $("#phone").html();
+ 		this.mail = $("#phone").html();
  		this.idCode = $("#idCode").val();
  		this._addEvents();
  	}
@@ -124,10 +125,11 @@
  			}else{
  				TOOLS.ajax({
  					url:"./index.php?r=loan/mail",
- 					data:{mail:this.phone,code:this.idCode},
+ 					data:{mail:this.mail,code:this.idCode},
  					type:"post",
  					dataType:"json",
  					fnSuccess:function(data){
+ 						alert(data.isSuccess);
  						if(data.isSuccess == "0"){
  							confirmBtn.removeClass('disabled');
  							MessageBox.alert({type:"common",txt:CS.ERRORMSG["CAPTCHAERROR"]});
