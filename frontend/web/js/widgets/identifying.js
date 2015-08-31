@@ -129,7 +129,6 @@
  					type:"post",
  					dataType:"json",
  					fnSuccess:function(data){
- 						alert(data.isSuccess);
  						if(data.isSuccess == "0"){
  							confirmBtn.removeClass('disabled');
  							MessageBox.alert({type:"common",txt:CS.ERRORMSG["CAPTCHAERROR"]});
