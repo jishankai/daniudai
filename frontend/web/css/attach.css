@@ -18,3 +18,9 @@
 /*.mask9 .agree{display:block;width: 50%;height: 30px;line-height: 30px;max-width: 200px;
 	background:#333;margin:20px auto;text-decoration: none;color:#fff;
 	text-align: center;border-radius: 10px;}*/
+.success{text-align: center;}
+.success img{width:50%;margin-top: 10%;}
+.success h3{font-weight: normal;margin-top: 5%;}
+.success p{width: 80%;margin: 0 auto;
+	margin-top: 20%;font-size: 18px;}
+.success p span{font-size: 22px;color: #f00;}

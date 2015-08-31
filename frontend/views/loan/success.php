@@ -14,21 +14,10 @@
 <link rel="stylesheet" type="text/css" media="all" href="css/widget.css" />
 </head>
 <body>
-	<div class="container">
-		<div class="screen-content">			
-			<div class="content">
-				<div class="success-box s-bgcolor">				
-					<div class="s-title">
-						<img src="img/success.png" />
-						<h1>恭喜恭喜，<span>您的申请已提交！</span></h1>
-					</div>
-					<p>
-						请等待信贷员与您联系!<br />
-                        真牛君电话：<span class="mail" id="phone"><?php echo $mobile?></span>，正飞奔而来...
-					</p>
-				</div>
-			</div>
-		</div>
+	<div class="success">
+		<img src="img/logo.png">
+		<h3>您的借款申请已提交！</h3>
+		<p>真牛贷信用状况会<span>同步上传征信系统</span>，真爱您的信用，请及时还款～</p>
 	</div>	
 </body>
 <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
