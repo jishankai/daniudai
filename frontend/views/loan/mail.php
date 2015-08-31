@@ -32,6 +32,7 @@
 			                </div>                
 			            </div>        
 		                <div class="forms__option">
+		                	<div class="remark">请到<?php echo $email?>邮箱确认邮件</div>
 		                	<button class="btn btn-primary btn-fullwidth disabled" id="confirmBtn" node-type="LoanConfirmBtn">确定</button><!--disabled-->
 		                </div>                                              
 		            </form>
