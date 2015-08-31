@@ -126,7 +126,7 @@
  				alert(111);
  				TOOLS.ajax({
  					url:"./index.php?r=loan/mail",
- 					data:{mail:this.mail,code:this.idCode},
+ 					data:{email:this.mail,code:this.idCode},
  					type:"post",
  					dataType:"json",
  					fnSuccess:function(data){
