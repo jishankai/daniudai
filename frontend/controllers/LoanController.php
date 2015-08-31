@@ -338,10 +338,13 @@ class LoanController extends \yii\web\Controller
         $appId = Yii::$app->params['wechat_appid'];
         $secret = Yii::$app->params['wechat_appsecret'];
 
-        $mobile = $_REQUEST['email'];
+        $mail = $_REQUEST['email'];
         $code = isset($_REQUEST['code'])?$_REQUEST['code']:0;
 
         session_start();
+        $user = $_SESSION['user'];
+        $u = User::findOne($user['openid']);
+
         if ($code!=0) {
             if ($_SESSION['mail_code']==$code) {
                 $result = 1;
@@ -350,14 +353,13 @@ class LoanController extends \yii\web\Controller
             }
             return json_encode(['isSuccess'=>$result]);
         } else {
-            if (!isset($_SESSION['mail_send_time']) or time()-$_SESSION['mail_send_time']>60) {
+            if (!isset($_SESSION['mail_send_time']) or time()-$_SESSION['mail_send_time']>3600) {
                 $code = $_SESSION['mail_code'] = rand(100000, 999999);
 
-                Yii::$app->mailer->compose('contact/html')
-                    ->setFrom('zhenniujun@zhenniuidai.com')
+                Yii::$app->mailer->compose()
                     ->setTo($mail)
                     ->setSubject('【真牛贷】验证邮件')
-                    ->setBody('<p>尊敬的'.$name.',这封信来自【真牛贷】。</p><br />'.
+                    ->setHtmlBody('<p>尊敬的'.$u->name.',这封信来自【真牛贷】。</p><br />'.
                               '<p>您的验证码是:'.$code.'</p><br />'.
                               '<p>您收到这封邮件，是由于您正在申请【真牛贷】。如果不是您本人操作，请联系【真牛贷】微信公众号（昵称“真牛贷”）</p><br />'.
                               '<p>我们会做您最贴心的“小银行”，到永远~')
@@ -365,11 +367,14 @@ class LoanController extends \yii\web\Controller
                 $_SESSION['mail_send_time'] = time();
             }
 
-            return json_encode(['isSend'=>1]);
-        }
-        $js = new Js($appId, $secret); 
+            if (Yii::$app->request->getIsAjax()) {
+                return json_encode(['isSend'=>1]);
+            } else {
+                $js = new Js($appId, $secret); 
 
-        return $this->renderPartial('mail', ['v'=>Yii::$app->params['assets_version'], 'email'=>$mail, 'js'=>$js]);
+                return $this->renderPartial('mail', ['v'=>Yii::$app->params['assets_version'], 'email'=>$mail, 'js'=>$js]);
+            }
+        }
     }
 
     public function actionSms()
