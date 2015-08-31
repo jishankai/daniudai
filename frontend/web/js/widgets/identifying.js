@@ -123,6 +123,7 @@
  					fnError:function(){}
  				});
  			}else{
+ 				alert(111);
  				TOOLS.ajax({
  					url:"./index.php?r=loan/mail",
  					data:{mail:this.mail,code:this.idCode},
