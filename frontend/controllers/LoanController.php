@@ -353,7 +353,7 @@ class LoanController extends \yii\web\Controller
             }
             return json_encode(['isSuccess'=>$result]);
         } else {
-            if (!isset($_SESSION['mail_send_time']) or time()-$_SESSION['mail_send_time']>3600) {
+            if (!isset($_SESSION['mail_send_time']) or time()-$_SESSION['mail_send_time']>60) {
                 $code = $_SESSION['mail_code'] = rand(100000, 999999);
 
                 Yii::$app->mailer->compose()
@@ -624,7 +624,7 @@ class LoanController extends \yii\web\Controller
                 }
                 
                 $templateId = Yii::$app->params['templateId_review'];
-                $url = Url::to(['loan/failed`'],TRUE);
+                $url = Url::to(['loan/failed'],TRUE);
                 $data = array(
                     "first"    => "您好！您没有通过审核",
                     "keyword1" => "{$l->money}元",
