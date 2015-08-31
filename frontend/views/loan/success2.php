@@ -14,17 +14,9 @@
 <link rel="stylesheet" type="text/css" media="all" href="css/widget.css" />
 </head>
 <body>
-	<div class="container">
-		<div class="screen-content">			
-			<div class="content">
-				<div class="success-box s-again s-bgcolor">				
-					<div class="s-title">
-						<img src="img/success.png" />
-						<h1>您已贷过款，欢迎再来！</h1>
-					</div>					
-				</div>
-			</div>
-		</div>
+	<div class="success">
+		<img src="img/logo.png">
+		<h3>您已贷过款，欢迎再来！</h3>
 	</div>	
 </body>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
