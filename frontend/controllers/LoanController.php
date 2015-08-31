@@ -483,11 +483,13 @@ class LoanController extends \yii\web\Controller
                 "remark"   => "请快速约起来~",
             );
             if (floor($student->school_id/100)==101) {
-                $userId = Yii::$app->params['pku101_supporter'];
+                $userIds = Yii::$app->params['pku101_supporter'];
             } else if (floor($student->school_id/100)==102) {
-                $userId = Yii::$app->params['pku102_supporter'];
+                $userIds = Yii::$app->params['pku102_supporter'];
             }
-            $messageId = $notice->uses($templateId)->withUrl($url)->andData($data)->andReceiver($userId)->send();
+            foreach ($userIds as $userId) {
+                $messageId = $notice->uses($templateId)->withUrl($url)->andData($data)->andReceiver($userId)->send();
+            }
             $messageId = $notice->uses($templateId)->withUrl($url)->andData($data)->andReceiver(Yii::$app->params['demo_supporter'])->send();
         }
 
@@ -519,10 +521,10 @@ class LoanController extends \yii\web\Controller
         $user = $_SESSION['user'];
 
         $open_id = $user['openid'];
-        if ($open_id==Yii::$app->params['pku101_supporter']) {
+        if (in_array($open_id,Yii::$app->params['pku101_supporter'])) {
             $r = Yii::$app->db->createCommand('SELECT u.name,u.mobile,s.depart, l.loan_id,l.status FROM user u LEFT JOIN loan l ON u.wechat_id=l.wechat_id LEFT JOIN student stu ON u.wechat_id=stu.wechat_id LEFT JOIN school s ON stu.school_id=s.school_id WHERE stu.school_id LIKE "101%" AND l.status>=1 ORDER BY l.status ASC, l.updated_at DESC')->queryAll();
             return $this->renderPartial('personal_list',['r'=>$r]);
-        } else if($open_id==Yii::$app->params['pku102_supporter']) {
+        } else if(in_array($open_id,Yii::$app->params['pku102_supporter'])) {
             $r = Yii::$app->db->createCommand('SELECT u.name,u.mobile,s.depart, l.loan_id,l.status FROM user u LEFT JOIN loan l ON u.wechat_id=l.wechat_id LEFT JOIN student stu ON u.wechat_id=stu.wechat_id LEFT JOIN school s ON stu.school_id=s.school_id WHERE stu.school_id LIKE "102%" AND l.status>=1 ORDER BY l.status ASC, l.updated_at DESC')->queryAll();
             return $this->renderPartial('personal_list',['r'=>$r]);
         } else if($open_id==Yii::$app->params['demo_supporter']) {
@@ -548,7 +550,7 @@ class LoanController extends \yii\web\Controller
         session_start();
         $user = $_SESSION['user'];
         $open_id = $user['openid'];
-        if ($open_id==Yii::$app->params['pku101_supporter'] OR $open_id==Yii::$app->params['pku102_supporter']) {
+        if (in_array($open_id,Yii::$app->params['pku101_supporter']) OR in_array($open_id,Yii::$app->params['pku102_supporter'])) {
             $r = Yii::$app->db->createCommand('SELECT l.loan_id,l.rate,l.duration,l.money,u.name,u.id,stu.dorm,stu.stu_id,.s.depart,u.mobile FROM loan l LEFT JOIN user u ON l.wechat_id=u.wechat_id LEFT JOIN student stu ON l.wechat_id=stu.wechat_id LEFT JOIN school s ON stu.school_id=s.school_id WHERE l.loan_id=:loan_id')->bindValue(':loan_id',$loan_id)->queryOne();
             return $this->renderPartial('personal_details', ['r'=>$r]);
         } else {
@@ -570,7 +572,7 @@ class LoanController extends \yii\web\Controller
         }
         $user = $_SESSION['user'];
         $open_id = $user['openid'];
-        if (($operation==-1 OR $operation==2) AND ($open_id==Yii::$app->params['pku101_supporter'] OR $open_id==Yii::$app->params['pku102_supporter'])) {
+        if (($operation==-1 OR $operation==2) AND (in_array($open_id,Yii::$app->params['pku101_supporter']) OR in_array($open_id,Yii::$app->params['pku102_supporter']))) {
             $l = Loan::findOne($loan_id);
             $u = User::findOne($l->wechat_id);
             $s = Student::findOne($l->wechat_id);
