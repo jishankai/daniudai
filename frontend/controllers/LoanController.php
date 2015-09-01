@@ -468,7 +468,7 @@ class LoanController extends \yii\web\Controller
         }
         $user = $_SESSION['user'];
         $u = User::findOne($user['openid']);
-        $l = Loan::find()->where(['and', 'wechat_id=:wechat_id', 'status<4'])->addParams([':wechat_id'=>$user['openid']])->one();
+        $l = Loan::find()->where(['and', 'wechat_id=:wechat_id', 'status<2'])->addParams([':wechat_id'=>$user['openid']])->one();
         $student = Student::findOne($user['openid']);
 
         if ($l->status<=0) {
