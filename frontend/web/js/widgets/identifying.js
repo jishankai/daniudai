@@ -116,7 +116,7 @@
  							if (data.auth=="1") {
  								window.location.href="./index.php?r=loan/success";
  							} else {
- 								window.location.href="./index.php?r=loan/password";
+ 								window.location.href="./index.php?r=loan/password&type=2";
  							}
  						}
  					},
