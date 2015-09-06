@@ -141,9 +141,9 @@ function mclick(school_name){
 			}else if(asname=="中国人民大学"){
 				renda(adgree);
 			}else if(asname=="清华大学"){
-				qinghua(asname);
+				qinghua(adgree);
 			}else if(asname=="浙江大学"){
-				zheda(asname);
+				zheda(adgree);
 			}
 
 			/*选择学院*/
