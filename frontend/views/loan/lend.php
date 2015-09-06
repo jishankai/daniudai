@@ -142,7 +142,7 @@
 			$("#masker").hide();
 			$("#pwdBox").hide();
 			$("#payPassword_rsainput").val("");
-			$('[data-type]').css({visibility: "hidden"});
+			$('[data-type]').css({visibility: "hidden"}).attr("data-type", "h");
 			$("#error").html("");
 		})
 
