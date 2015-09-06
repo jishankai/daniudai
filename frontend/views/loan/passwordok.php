@@ -14,8 +14,8 @@
 <link rel="stylesheet" type="text/css" media="all" href="css/widget.css" />
 </head>
 <body>
-	<div class="success">
-		<img src="img/logo.png">
+	<div class="success" style="text-align:center;">
+		<img src="img/logo.png" style="width:70%;height:70%;">
 		<h3>您的密码已设置成功！</h3>
     </div>	
 </body>

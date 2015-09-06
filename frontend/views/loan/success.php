@@ -14,10 +14,9 @@
 <link rel="stylesheet" type="text/css" media="all" href="css/widget.css" />
 </head>
 <body>
-	<div class="success">
-		<img src="img/logo.png">
+	<div class="success" style="text-align:center;">
+		<img src="img/logo.png" style="width:70%;height:70%;">
 		<h3>您的借款申请已提交！</h3>
-		<p>真牛贷信用状况会<span>同步上传征信系统</span>，真爱您的信用，请及时还款～</p>
 	</div>	
 </body>
 <script type="text/javascript" src="js/jquery-1.11.1.js"></script>

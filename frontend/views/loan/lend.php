@@ -141,6 +141,9 @@
 		$("#psd_close").click(function(){
 			$("#masker").hide();
 			$("#pwdBox").hide();
+			$("#payPassword_rsainput").val("");
+			$('[data-type]').css({visibility: "hidden"}).attr("data-type", "h");
+			$("#error").html("");
 		})
 
 		$("#apply_btn").click(function(){
