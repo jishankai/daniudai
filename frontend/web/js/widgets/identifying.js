@@ -96,7 +96,7 @@
  			} else {
  				TOOLS.ajax({
  					url:"./index.php?r=loan/mail",
- 					data:{mail:this.mail},
+ 					data:{email:this.mail},
  					type:"post",
  					dataType:"json",
  					fnSuccess:function(data){
