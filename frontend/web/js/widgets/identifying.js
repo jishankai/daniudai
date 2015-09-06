@@ -93,6 +93,19 @@
  					},
  					fnError:function(){}
  				});
+ 			} else {
+ 				TOOLS.ajax({
+ 					url:"./index.php?r=loan/mail",
+ 					data:{mail:this.mail},
+ 					type:"post",
+ 					dataType:"json",
+ 					fnSuccess:function(data){
+ 						if(data.isSend == "1"){
+ 							success_send.show();
+ 						}
+ 					},
+ 					fnError:function(){}
+ 				});
  			}
  			
  		},
