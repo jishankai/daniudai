@@ -843,7 +843,7 @@ class LoanController extends \yii\web\Controller
     
         $user = $_SESSION['user'];
 
-        $order_id = $user['openid'].'_'.$_POST['loan_id'];
+        $order_id = $user['openid'].'_'.$_POST['loan_id'].'_'.date("Ymd");
         $y = Yeepay::findOne($order_id);
         if (!isset($y)) {
             $y = new Yeepay;
