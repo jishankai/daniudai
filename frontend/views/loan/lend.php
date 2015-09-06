@@ -143,6 +143,7 @@
 			$("#pwdBox").hide();
 			$("#payPassword_rsainput").val("");
 			$('[data-type]').css({visibility: "hidden"});
+			$("#error").html("");
 		})
 
 		$("#apply_btn").click(function(){
