@@ -169,9 +169,7 @@ class LoanController extends \yii\web\Controller
                 $loan->rate = $rate;
                 $loan->start_at = time();
                 $loan->end_at = time()+$duration*3600*24;
-                if ($is_auth==1) {
-                    $loan->status = 1;
-                }
+                $loan->status = 0;
                 $loan->save();
             } else if (!isset($loan)) {
                 $loan = new Loan;
@@ -179,11 +177,7 @@ class LoanController extends \yii\web\Controller
                 $loan->money = $money;
                 $loan->duration = $duration;
                 $loan->rate = $rate;
-                if ($is_auth==1) {
-                    $loan->status = 1;
-                } else {
-                    $loan->status = 0;
-                }
+                $loan->status = 0;
                 $loan->start_at = time();
                 $loan->end_at = time()+$duration*3600*24;
                 $loan->created_at = time();
