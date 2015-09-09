@@ -63,7 +63,7 @@ class WechatController extends \yii\web\Controller
         });
 
         $server->on('event', 'subscribe', function($event){
-            return Message::make('text')->content('哈喽，等您很久了，非常欢迎您的到来。真牛贷是专门针对大学生的超低息、无抵押无担保、纯信用贷款。只要是大学生，注册提交、并面签通过审核后即可获得借款。
+            return Message::make('text')->content('哈喽，等您很久了，非常欢迎您的到来。真牛贷是专门针对大学生的超低息、无抵押无担保、纯信用贷款。您的身份就是最好的信用！只要是目标大学学生，注册提交、并面签通过审核后即可获得借款。
 年轻人，能用钱解决的那都不是事，缺钱就找真牛。
  
 详细咨询请点击屏幕右下角“你问我答”或直接在对话框输入问题。');
