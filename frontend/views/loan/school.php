@@ -119,8 +119,8 @@
 					<ul class="lists-main">
 						<li><i class="icons icons-check"></i>北京大学</li>
 						<li><i class="icons icons-check"></i>北京大学（医学部）</li>
-						<li><i class="icons icons-check"></i>中国人民大学</li>
 						<li><i class="icons icons-check"></i>清华大学</li>
+						<li><i class="icons icons-check"></i>中国人民大学</li>
 						<!-- <li><i class="icons icons-check"></i>北京师范大学</li>
 						<li class="last-child"><i class="icons icons-check"></i>浙江大学</li> -->
 					</ul>
