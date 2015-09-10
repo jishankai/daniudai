@@ -17,7 +17,7 @@
 	<div class="container">
 		<div class="screen-content">			
 			<div class="content">
-				<div class="fail-box">				
+                <div class="success-box s-new">
 					<p>
                        您还没有申请过借款，
                        <br />
@@ -26,7 +26,7 @@
 					</p>
                 </div>
                 <div class="s-btn">
-                    <button class="btn btn-orange btn-fullwidth" id="z_btn">再借一笔</button>
+                    <button class="btn btn-orange btn-fullwidth" id="z_btn">去借一笔</button>
                 </div>
 
 			</div>
