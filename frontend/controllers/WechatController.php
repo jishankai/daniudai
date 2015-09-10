@@ -30,18 +30,22 @@ class WechatController extends \yii\web\Controller
                 } else if ($message->Content=='2') {
                     return Message::make('text')->content('真牛贷对在校生提供1000-10000元的无抵押、纯信用贷款，利率为0.03%/日。只要是大学生，注册提交并面签通过后，最快10分钟内拿到借款。借款期限为100天、200天、300天，到期再还款。');
                 } else if ($message->Content=='3') {
-                    return Message::make('text')->content('真牛贷目前仅支持北京大学（北大）本科生的借款，更多高校争取在九月份开通，需要我真牛贷的同学敬请期待，请继续关注！');
+                    return Message::make('text')->content('真牛贷已经开通北京大学，清华大学及人民大学。北京师范大学和浙江大学马上要开启！我们会走到每一所城市，需要我真牛贷的同学敬请期待，请继续关注！');
                 } else if ($message->Content=='4') {
                     return Message::make('text')->content('逾期1天后产生罚息，罚息为“本金+利息”*0.04%/天。逾期超过14天真牛贷会酌情将借款人信息提供给人民银行，会影响借款人征信情况，且借且珍惜。');
                 } else if ($message->Content=='5') {
-                    return Message::make('text')->content('真牛君是真牛贷两位创始人的昵称，他们是北京大学2015届本科毕业生。他们在45天时间里从校友处筹集到了1000万元，将这笔钱用于大学生借款中，提供史上最低息的、无抵押无担保、纯信用的学生贷款。
+                    return Message::make('text')->content('真牛君是真牛贷两位创始人的昵称，他们是北京大学2015届本科毕业生。他们起初从校友处筹集到了1000万元（目前累积筹款5000万元），将这笔钱用于大学生借款中，提供低息、无抵押无担保、纯信用的学生贷款。
 年轻人，年轻的时候是要做一些牛逼的事情的，所以，我们叫真牛！');
-                } else if ($message->Content=='6') {
+                } else if ($message->Content=='8') {
                     return Message::make('news')->items(function(){
                         return array(
                             Message::make('news_item')->title('历史消息')->description('')->url('http://mp.weixin.qq.com/mp/getmasssendmsg?__biz=MzA3ODg2NzY5Ng==#wechat_webview_type=1&wechat_redirect'),
                         );
                     });
+                } else if ($message->Content=='6') {
+                    return Message::make('text')->content('目标大学的学生会获得10000元的额度，按需借款。10000元可一次性也可分次借满，如（3000+1000+2000+4000）。借你所需，找真牛！');
+                } else if ($message->Content=='7') {
+                    return Message::make('text')->content('点击下方“我的——我的贷款”进入到您的贷款列表中，可查看每次借款详情和到期时间。点击“立刻还款”就可以还款啦~');
                 }
             }
 
@@ -77,8 +81,10 @@ class WechatController extends \yii\web\Controller
 2.真牛贷业务
 3.借款支持地区
 4.违约怎么处理
-5.真牛君是谁
-6.查看历史消息');
+5.真牛君是谁？
+6.10000元额度怎么理解？
+7.我的贷款何时到期，怎么还款？
+8.查看历史消息');
             }
         });
 
