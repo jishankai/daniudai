@@ -765,7 +765,7 @@ class LoanController extends \yii\web\Controller
         $user = $_SESSION['user'];
         $u = User::findOne($user['openid']);
 
-        if (isset($u) and $u->name!='') {
+        if (isset($u) and $u->name!='' and $u->cid!='') {
             if (Yii::$app->request->getIsAjax()) {
                 if ($_POST['name']==$u->name and $_POST['cid']==$u->id) {
                     if ($u->auth_code=='') {
