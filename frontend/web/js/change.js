@@ -33,7 +33,7 @@ $(function(){
 				}else if(s_name=="清华大学"){
 					$("#suffix").html("tsinghua");
 				}else if(s_name=="中国人民大学"){
-					$("#suffix").html("ruc.edu.cn");
+					$("#suffix").html("ruc");
 				}else if(s_name=="北京师范大学"){
 					$("#suffix").html("bnu");
 				}else if(s_name=="浙江大学"){
@@ -74,7 +74,7 @@ $(function(){
 				}else if(s_name=="清华大学"){
 					$("#suffix").html("tsinghua");
 				}else if(s_name=="中国人民大学"){
-					$("#suffix").html("ruc.edu.cn");
+					$("#suffix").html("ruc");
 				}else if(s_name=="北京师范大学"){
 					$("#suffix").html("bnu");
 				}else if(s_name=="浙江大学"){
