@@ -137,7 +137,7 @@ class LoanController extends \yii\web\Controller
             }
             $l = Loan::find()->where(['and', 'wechat_id=:wechat_id', 'status=1'])->addParams([':wechat_id'=>$user['openid']])->one();
             if (isset($l)) {
-                return $this->redirect(['loan/success']);
+                return $this->redirect(['loan/reviewing']);
             }
             $range = 10000 - Yii::$app->db->createCommand('SELECT SUM(money) FROM loan WHERE (status=3 OR status=2 OR status=1) AND wechat_id=:wechat_id')->bindValue(':wechat_id', $user['openid'])->queryScalar();
             if ($range<=0) {
@@ -426,6 +426,28 @@ class LoanController extends \yii\web\Controller
         $js = new Js($appId, $secret); 
 
         return $this->renderPartial('ban', ['v'=>Yii::$app->params['assets_version'], 'js'=>$js]);
+
+    }
+
+    public function actionEmpty()
+    {
+        $appId = Yii::$app->params['wechat_appid'];
+        $secret = Yii::$app->params['wechat_appsecret'];
+
+        $js = new Js($appId, $secret); 
+
+        return $this->renderPartial('empty', ['v'=>Yii::$app->params['assets_version'], 'js'=>$js]);
+
+    }
+
+    public function actionReviewing()
+    {
+        $appId = Yii::$app->params['wechat_appid'];
+        $secret = Yii::$app->params['wechat_appsecret'];
+
+        $js = new Js($appId, $secret); 
+
+        return $this->renderPartial('reviewing', ['v'=>Yii::$app->params['assets_version'], 'js'=>$js]);
 
     }
     
@@ -747,7 +769,7 @@ class LoanController extends \yii\web\Controller
         $user = $_SESSION['user'];
         $u = User::findOne($user['openid']);
 
-        if (isset($u)) {
+        if (isset($u) and $u->name!='') {
             if (Yii::$app->request->getIsAjax()) {
                 if ($_POST['name']==$u->name and $_POST['cid']==$u->id) {
                     if ($u->auth_code=='') {
@@ -763,7 +785,7 @@ class LoanController extends \yii\web\Controller
                 return $this->renderPartial('auth', ['v'=>Yii::$app->params['assets_version'], 'js'=>$js]);
             }
         } else {
-            return $this->redirect(['loan/index']);
+            return $this->redirect(['loan/empty']);
         }
     }
 
