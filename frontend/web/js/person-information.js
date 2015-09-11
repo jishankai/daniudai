@@ -268,6 +268,7 @@ function ss(school,college,adgree){
 	  if(college=="哲学系" && adgree=="研究生"){s2="48";}
 	  if(college=="政府管理学院" && adgree=="研究生"){s2="49";}
 	  if(college=="中国语言文学系" && adgree=="研究生"){s2="50";}
+          if(college=="软件与微电子学院" && adgree=="研究生"){s2="51";}
 	}else if(school=="浙江大学"){
 	  s1="103";
           if(adgree=="本科"){
