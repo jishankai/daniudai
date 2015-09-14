@@ -31,7 +31,7 @@ $(function(){
 				}else if(s_name=="北京大学（医学部）"){
 					$("#suffix").html("bjmu");
 				}else if(s_name=="清华大学"){
-					$("#suffix").html("tsinghua");
+					$("#suffix").html("mails.tsinghua");
 				}else if(s_name=="中国人民大学"){
 					$("#suffix").html("ruc");
 				}else if(s_name=="北京师范大学"){
@@ -72,7 +72,7 @@ $(function(){
 				}else if(s_name=="北京大学（医学部）"){
 					$("#suffix").html("bjmu");
 				}else if(s_name=="清华大学"){
-					$("#suffix").html("tsinghua");
+					$("#suffix").html("mails.tsinghua");
 				}else if(s_name=="中国人民大学"){
 					$("#suffix").html("ruc");
 				}else if(s_name=="北京师范大学"){
