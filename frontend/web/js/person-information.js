@@ -143,7 +143,7 @@ $(function(){
 			}else if(school_name=="北京大学（医学部）"){
 				email = email+'@bjmu.edu.cn';
 			}else if(school_name=="清华大学"){
-				email = email+'@tsinghua.edu.cn';
+				email = email+'@mails.tsinghua.edu.cn';
 			}else if(school_name=="中国人民大学"){
 				email = email+'@ruc.edu.cn';
 			}else if(school_name=="北京师范大学"){
