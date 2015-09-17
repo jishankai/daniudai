@@ -92,7 +92,7 @@ $(function(){
 			RegCellStuid =/^(\d{8}|\d{10})$/;
 			falg1=stu_id.search(RegCellStuid);
 			stu_len=stu_id.length;
-			if(falg1==-1 || stu_len!=8 && stu_len!=10){
+			if(falg1==-1 || stu_len!=8 && stu_len!=10 && stu_len!=12){
 				$("#error").html("请输入正确的学生证号");
 				$("#n_validate").show().delay(3000).fadeOut();
 				/*$("#stu_id").click(function(){
@@ -152,7 +152,7 @@ $(function(){
 				email = email+'@zju.edu.cn';
 			}
 
-		if(falg!=-1 && falg1!=-1 && falg2!=-1 && falg3!=-1 && stu_len==8 || falg!=-1 && falg1!=-1 && falg2!=-1 && falg3!=-1 && stu_len==10){
+		if(falg!=-1 && falg1!=-1 && falg2!=-1 && falg3!=-1 && stu_len==8 || falg!=-1 && falg1!=-1 && falg2!=-1 && falg3!=-1 && stu_len==10 || falg!=-1 && falg1!=-1 && falg2!=-1 && falg3!=-1 && stu_len=12){
 			
 			if(next.hasClass("disabled")) return false;
 			next.addClass('disabled');	 
