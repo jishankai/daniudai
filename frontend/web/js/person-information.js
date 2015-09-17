@@ -89,7 +89,7 @@ $(function(){
 		if(falg!=-1){
 			stu_id= $("#stu_id").val();
 			/*RegCellStuid = /^([0-9]*)?$/;*/
-			RegCellStuid =/^(\d{8}|\d{10})$/;
+		        RegCellStuid =/^(\d{8}|\d{10}|\d{12})$/;
 			falg1=stu_id.search(RegCellStuid);
 			stu_len=stu_id.length;
 			if(falg1==-1 || stu_len!=8 && stu_len!=10 && stu_len!=12){
