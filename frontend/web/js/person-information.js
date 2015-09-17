@@ -152,7 +152,7 @@ $(function(){
 				email = email+'@zju.edu.cn';
 			}
 
-		if(falg!=-1 && falg1!=-1 && falg2!=-1 && falg3!=-1 && stu_len==8 || falg!=-1 && falg1!=-1 && falg2!=-1 && falg3!=-1 && stu_len==10 || falg!=-1 && falg1!=-1 && falg2!=-1 && falg3!=-1 && stu_len=12){
+		if(falg!=-1 && falg1!=-1 && falg2!=-1 && falg3!=-1 && stu_len==8 || falg!=-1 && falg1!=-1 && falg2!=-1 && falg3!=-1 && stu_len==10 || falg!=-1 && falg1!=-1 && falg2!=-1 && falg3!=-1 && stu_len==12){
 			
 			if(next.hasClass("disabled")) return false;
 			next.addClass('disabled');	 
