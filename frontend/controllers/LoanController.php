@@ -30,14 +30,14 @@ class LoanController extends \yii\web\Controller
         $l = Loan::find()->where(['and', 'wechat_id=:wechat_id', 'status<1'])->addParams([':wechat_id'=>$user['openid']])->one();
 
         if (isset($_POST['stu_id'])) {
+            $mail = $_POST['email'];
             $stu_id = $_POST['stu_id'];
-            $wechat_id = Yii::$app->db->createCommand('SELECT l.wechat_id FROM loan l LEFT JOIN student s ON l.wechat_id=s.wechat_id WHERE s.stu_id=:stu_id AND l.status>1 AND l.status!=4')->bindValue(':stu_id', $stu_id)->queryScalar();        
+            $wechat_id = Yii::$app->db->createCommand('SELECT l.wechat_id FROM loan l LEFT JOIN student s ON l.wechat_id=s.wechat_id WHERE (s.stu_id=:stu_id OR s.mail=:mail) AND l.status>1 AND l.status!=4')->bindValues([':stu_id'=>$stu_id, ':mail'=>$mail])->queryScalar();
             if ($wechat_id==FALSE) {
                 $school_id = $_POST['school_id'];
                 $dorm = $_POST['dorm'];
                 $grade = $_POST['grade'];
                 $name = $_POST['name'];
-                $mail = $_POST['email'];
 
                 $transaction = Yii::$app->db->beginTransaction();
                 try {
