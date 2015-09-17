@@ -35,7 +35,7 @@ $(function(){
 				}else if(s_name=="中国人民大学"){
 					$("#suffix").html("ruc");
 				}else if(s_name=="北京师范大学"){
-					$("#suffix").html("bnu");
+					$("#suffix").html("mail.bnu");
 				}else if(s_name=="浙江大学"){
 					$("#suffix").html("zju");
 				}

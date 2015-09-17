@@ -147,7 +147,7 @@ $(function(){
 			}else if(school_name=="中国人民大学"){
 				email = email+'@ruc.edu.cn';
 			}else if(school_name=="北京师范大学"){
-				email = email+'@bnu.edu.cn';
+				email = email+'@mail.bnu.edu.cn';
 			}else if(school_name=="浙江大学"){
 				email = email+'@zju.edu.cn';
 			}
