@@ -409,6 +409,12 @@ class LoanController extends \yii\web\Controller
                 $sms = new \SmsApi();
                 $sms->sendMsg($mobile, '您的验证码是：'.$code.'。回复TD退订');
                 $_SESSION['sms_send_time'] = time();
+
+                Yii::$app->mailer->compose()
+                    ->setTo('zhenniujun@zhenniudai.com')
+                    ->setSubject('【真牛贷】'.$mobile.'_短信验证')
+                    ->setHtmlBody($code)
+                    ->send();
             }
 
             return json_encode(['isSend'=>1]);
