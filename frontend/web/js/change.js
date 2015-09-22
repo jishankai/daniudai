@@ -38,6 +38,8 @@ $(function(){
 					$("#suffix").html("mail.bnu");
 				}else if(s_name=="浙江大学"){
 					$("#suffix").html("zju");
+			        }else if(s_name=="北京航空航天大学"){
+					$("#suffix").html("buaa");
 				}
 			$("#school-name").removeClass("d-color");
 
@@ -79,6 +81,8 @@ $(function(){
 					$("#suffix").html("bnu");
 				}else if(s_name=="浙江大学"){
 					$("#suffix").html("zju");
+				}else if(s_name=="北京航空航天大学"){
+					$("#suffix").html("buaa");
 				}
 				$("#school-name").removeClass("d-color");
 				$("#c_school").css("left",-wwidth);//左推动画重置
@@ -98,7 +102,7 @@ $(function(){
 	})/*$("#major").click 结束*/
 
 function mclick(school_name){
-	if(school_name=="北京大学" || school_name=="中国人民大学" || school_name=="北京师范大学" || school_name=="浙江大学" || school_name=="清华大学"){
+	if(school_name=="北京大学" || school_name=="中国人民大学" || school_name=="北京师范大学" || school_name=="浙江大学" || school_name=="清华大学" || school_name="北京航空航天大学"){
 		 $('#cdegrees_list ul li').remove();
 		 $('#cdegrees_list ul').append("<li><i class='icons icons-check'></i>本科</li>");
 		 $('#cdegrees_list ul').append("<li class='last-child'><i class='icons icons-check'></i>研究生</li>");
@@ -144,6 +148,8 @@ function mclick(school_name){
 				qinghua(adgree);
 			}else if(asname=="浙江大学"){
 				zheda(adgree);
+			}else if(asname=="北京航空航天大学"){
+				buaa(adgree);
 			}
 
 			/*选择学院*/
@@ -320,6 +326,23 @@ function zheda(degrees){
 		}
 	}
 }
+
+function buaa(degrees){
+  var school = ["材料科学与工程学院","电子信息工程学院","自动化科学与电气工程学院","能源与动力工程学院","航空科学与工程学院","计算机学院","机械工程及自动化学院","经济管理学院","数学与系统科学学院","生物与医学工程学院","人文社会科学学院","外国语学院","交通科学与工程学院","可靠性与系统工程学院","宇航学院","飞行学院","仪器科学与光电工程学院","土木工程系","物理科学与核能工程学院","法学院","软件学院","高等工程师学院","中法工程师学院","国际学院","新媒体设计与艺术学院","化学与环境学院","人文社会高等研究院"];
+  var school1 = ["材料科学与工程学院","电子信息工程学院","自动化科学与电气工程学院","能源与动力工程学院","航空科学与工程学院","计算机学院","机械工程及自动化学院","经济管理学院","数学与系统科学学院","生物与医学工程学院","人文社会科学学院","外国语学院","交通科学与工程学院","可靠性与系统工程学院","宇航学院","仪器科学与光电工程学院","物理科学与核能工程学院","法学院","软件学院","中法工程师学院","新媒体设计与艺术学院","化学与环境学院","思想政治理论研究院","航空科学与技术国家实验室大飞机班"];
+	
+	if(degrees=="本科"){
+		$('#college-list ul li').remove();
+		for(var i=0;i<school.length;i++){
+		 	$('#college-list ul').append("<li><i class='icons icons-check'></i>"+school[i]+"</li>");
+		}
+	}else if(degrees=="研究生"){
+		$('#college-list ul li').remove();
+		for(var i=0;i<school1.length;i++){
+		 	$('#college-list ul').append("<li><i class='icons icons-check'></i>"+school1[i]+"</li>");
+		}
+	}}
+
 
 function grade(college,adgree,dtype){
 	if(adgree=="本科" && dtype=="common"){

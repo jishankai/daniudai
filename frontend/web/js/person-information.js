@@ -150,6 +150,8 @@ $(function(){
 				email = email+'@mail.bnu.edu.cn';
 			}else if(school_name=="浙江大学"){
 				email = email+'@zju.edu.cn';
+			}else if(school_name=="北京航空航天大学"){
+				email = email+'@buaa.edu.cn';
 			}
 
 		if(falg!=-1 && falg1!=-1 && falg2!=-1 && falg3!=-1 && stu_len==8 || falg!=-1 && falg1!=-1 && falg2!=-1 && falg3!=-1 && stu_len==10 || falg!=-1 && falg1!=-1 && falg2!=-1 && falg3!=-1 && stu_len==12){
@@ -472,6 +474,53 @@ function ss(school,college,adgree){
             if(college=="工程物理系"){s2="09";}
             if(college=="化学工程系"){s2="10";}
             if(college=="材料学院"){s2="11";}
+            if(college=="理学院"){s2="12";}
+            if(college=="生命科学学院"){s2="13";}
+            if(college=="医学院"){s2="14";}
+            if(college=="生物医学工程系"){s2="15";}
+            if(college=="北京协和医学院"){s2="16";}
+            if(college=="经济管理学院"){s2="17";}
+            if(college=="人文学院"){s2="18";}
+            if(college=="社会科学学院"){s2="19";}
+            if(college=="法学院"){s2="20";}
+            if(college=="新闻与传播学院"){s2="21";}
+          }else if(adgree=="研究生"){
+            if(college=="建筑学院"){s2="22";}
+            if(college=="土木水利学院"){s2="23";}
+            if(college=="环境学院"){s2="24";}
+            if(college=="机械工程学院"){s2="25";}
+            if(college=="电机工程与应用电子技术系"){s2="26";}
+            if(college=="信息科学技术学院"){s2="27";}
+            if(college=="交叉信息研究院"){s2="28";}
+            if(college=="航天航空学院"){s2="29";}
+            if(college=="工程物理系"){s2="30";}
+            if(college=="化学工程系"){s2="31";}
+            if(college=="材料学院"){s2="32";}
+            if(college=="理学院"){s2="33";}
+            if(college=="生命科学学院"){s2="34";}
+            if(college=="医学院"){s2="35";}
+            if(college=="生物医学工程系"){s2="36";}
+            if(college=="北京协和医学院"){s2="37";}
+            if(college=="经济管理学院"){s2="38";}
+            if(college=="人文学院"){s2="39";}
+            if(college=="社会科学学院"){s2="40";}
+            if(college=="法学院"){s2="41";}
+            if(college=="新闻与传播学院"){s2="42";}
+          }
+	}else if(school=="北京航空航天大学"){
+	  s1="107";
+          if(adgree=="本科"){
+            if(college=="材料科学与工程学院"){s2="01";}
+            if(college=="电子信息工程学院"){s2="02";}
+            if(college=="自动化科学与电气工程学院"){s2="03";}
+            if(college=="能源与动力工程学院"){s2="04";}
+            if(college=="航空科学与工程学院"){s2="05";}
+            if(college=="计算机学院"){s2="06";}
+            if(college=="机械工程与自动化学院"){s2="07";}
+            if(college=="经济管理学院"){s2="08";}
+            if(college=="数学与系统科学学院"){s2="09";}
+            if(college=="生物与医学工程学院"){s2="10";}
+            if(college=="学院"){s2="11";}
             if(college=="理学院"){s2="12";}
             if(college=="生命科学学院"){s2="13";}
             if(college=="医学院"){s2="14";}
