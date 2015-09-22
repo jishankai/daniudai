@@ -102,7 +102,7 @@ $(function(){
 	})/*$("#major").click 结束*/
 
 function mclick(school_name){
-	if(school_name=="北京大学" || school_name=="中国人民大学" || school_name=="北京师范大学" || school_name=="浙江大学" || school_name=="清华大学" || school_name="北京航空航天大学"){
+	if(school_name=="北京大学" || school_name=="中国人民大学" || school_name=="北京师范大学" || school_name=="浙江大学" || school_name=="清华大学" || school_name=="北京航空航天大学"){
 		 $('#cdegrees_list ul li').remove();
 		 $('#cdegrees_list ul').append("<li><i class='icons icons-check'></i>本科</li>");
 		 $('#cdegrees_list ul').append("<li class='last-child'><i class='icons icons-check'></i>研究生</li>");
@@ -341,7 +341,8 @@ function buaa(degrees){
 		for(var i=0;i<school1.length;i++){
 		 	$('#college-list ul').append("<li><i class='icons icons-check'></i>"+school1[i]+"</li>");
 		}
-	}}
+	}
+}
 
 
 function grade(college,adgree,dtype){
