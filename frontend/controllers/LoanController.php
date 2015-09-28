@@ -899,7 +899,7 @@ class LoanController extends \yii\web\Controller
         $product_desc = '还款';//商品描述
         $terminaltype = 3;
         $terminalid = $y->wechat_id;//其他支付身份信息
-        $amount = 1;//(int)$y->fee;//订单金额单位为分，支付时最低金额为2分，因为测试和生产环境的商户都有手续费（如2%），易宝支付收取手续费如果不满1分钱将按照1分钱收取。
+        $amount = (int)$y->fee;//订单金额单位为分，支付时最低金额为2分，因为测试和生产环境的商户都有手续费（如2%），易宝支付收取手续费如果不满1分钱将按照1分钱收取。
         $cardno = $u->bank_id;
         $idcardtype = '01';
         $idcard = $u->id;
