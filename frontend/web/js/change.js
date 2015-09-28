@@ -40,6 +40,8 @@ $(function(){
 					$("#suffix").html("zju");
 			        }else if(s_name=="北京航空航天大学"){
 					$("#suffix").html("buaa");
+				}else if(s_name=="对外经济贸易大学"){
+					$("#suffix").html("mail.uibe");
 				}
 			$("#school-name").removeClass("d-color");
 
@@ -83,6 +85,8 @@ $(function(){
 					$("#suffix").html("zju");
 				}else if(s_name=="北京航空航天大学"){
 					$("#suffix").html("buaa");
+				}else if(s_name=="对外经济贸易大学"){
+					$("#suffix").html("mail.uibe");
 				}
 				$("#school-name").removeClass("d-color");
 				$("#c_school").css("left",-wwidth);//左推动画重置
@@ -102,7 +106,7 @@ $(function(){
 	})/*$("#major").click 结束*/
 
 function mclick(school_name){
-	if(school_name=="北京大学" || school_name=="中国人民大学" || school_name=="北京师范大学" || school_name=="浙江大学" || school_name=="清华大学" || school_name=="北京航空航天大学"){
+  if(school_name=="北京大学" || school_name=="中国人民大学" || school_name=="北京师范大学" || school_name=="浙江大学" || school_name=="清华大学" || school_name=="北京航空航天大学" || school_name=="对外经济贸易大学"){
 		 $('#cdegrees_list ul li').remove();
 		 $('#cdegrees_list ul').append("<li><i class='icons icons-check'></i>本科</li>");
 		 $('#cdegrees_list ul').append("<li class='last-child'><i class='icons icons-check'></i>研究生</li>");
@@ -147,9 +151,11 @@ function mclick(school_name){
 			}else if(asname=="清华大学"){
 				qinghua(adgree);
 			}else if(asname=="浙江大学"){
-				zheda(adgree);
+				zju(adgree);
 			}else if(asname=="北京航空航天大学"){
 				buaa(adgree);
+			}else if(asname=="对外经济贸易大学"){
+				uibe(adgree);
 			}
 
 			/*选择学院*/
@@ -310,7 +316,7 @@ function shida(degrees){
 		}
 	}
 }
-function zheda(degrees){
+function zju(degrees){
 	var school = ["人文学院","外国语言文化与国际交流学院","传媒与国际文化学院","经济学院","光华法学院","教育学院","管理学院","公共管理学院","数学科学学院","物理学系","化学系","地球科学学院","心理与行为科学系","机械工程学院","材料科学与工程学院","能源工程学院","电气工程学院","建筑工程学院","化学工程与生物工程学院","航空航天学院","高分子科学与工程学系","海洋学院","光电科学与工程学院","信息与电子工程学院","控制科学与工程学院","计算机科学与技术学院","生物医学工程与仪器科学学院","软件学院","生命科学学院","生物系统工程与食品科学学院","环境与资源学院","农业与生物技术学院","动物科学学院","医学院","药学院"];
 	var school1 = ["人文学院","材料科学与工程学院","传媒与国际文化学院","地球科学学院","电气工程学院","动物科学学院","高分子科学与工程学系","公共管理学院","管理学院","光电科学与工程学院","光华法学院","海洋学院","航空航天学院","化学工程与生物工程学院","化学系","环境与资源学院","机械工程学院","计算机科学与技术学院","建筑工程学院","教育学院","经济学院","控制科学与工程学院","能源工程学院","农业与生物技术学院","软件学院","生命科学学院","生物系统工程与食品科学学院","生物医学工程与仪器科学学院","数学科学学院","外国语言文化与国际交流学院","物理学系","心理与行为科学系","信息与电子工程学院","药学院","医学院"];
 	
@@ -330,6 +336,23 @@ function zheda(degrees){
 function buaa(degrees){
   var school = ["材料科学与工程学院","电子信息工程学院","自动化科学与电气工程学院","能源与动力工程学院","航空科学与工程学院","计算机学院","机械工程及自动化学院","经济管理学院","数学与系统科学学院","生物与医学工程学院","人文社会科学学院","外国语学院","交通科学与工程学院","可靠性与系统工程学院","宇航学院","飞行学院","仪器科学与光电工程学院","土木工程系","物理科学与核能工程学院","法学院","软件学院","高等工程师学院","中法工程师学院","国际学院","新媒体设计与艺术学院","化学与环境学院","人文社会高等研究院"];
   var school1 = ["材料科学与工程学院","电子信息工程学院","自动化科学与电气工程学院","能源与动力工程学院","航空科学与工程学院","计算机学院","机械工程及自动化学院","经济管理学院","数学与系统科学学院","生物与医学工程学院","人文社会科学学院","外国语学院","交通科学与工程学院","可靠性与系统工程学院","宇航学院","仪器科学与光电工程学院","物理科学与核能工程学院","法学院","软件学院","中法工程师学院","新媒体设计与艺术学院","化学与环境学院","思想政治理论研究院","航空科学与技术国家实验室大飞机班"];
+	
+	if(degrees=="本科"){
+		$('#college-list ul li').remove();
+		for(var i=0;i<school.length;i++){
+		 	$('#college-list ul').append("<li><i class='icons icons-check'></i>"+school[i]+"</li>");
+		}
+	}else if(degrees=="研究生"){
+		$('#college-list ul li').remove();
+		for(var i=0;i<school1.length;i++){
+		 	$('#college-list ul').append("<li><i class='icons icons-check'></i>"+school1[i]+"</li>");
+		}
+	}
+}
+
+function uibe(degrees){
+  var school = ["国际经济与贸易学院","保险学院","法学院","公共管理学院","国际关系学院","国际商学院","金融学院","统计学院","外语学院","信息学院","英语学院","中国语言文学学院"];
+  var school1 = ["国际经济与贸易学院","保险学院","法学院","公共管理学院","国际关系学院","国际商学院","金融学院","统计学院","外语学院","信息学院","英语学院","中国语言文学学院"];
 	
 	if(degrees=="本科"){
 		$('#college-list ul li').remove();
