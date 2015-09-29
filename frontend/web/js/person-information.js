@@ -89,10 +89,11 @@ $(function(){
 		if(falg!=-1){
 			stu_id= $("#stu_id").val();
 			/*RegCellStuid = /^([0-9]*)?$/;*/
-		        RegCellStuid =/^(\d{8}|\d{10}|\d{12})$/;
-			falg1=stu_id.search(RegCellStuid);
-			stu_len=stu_id.length;
-			if(falg1==-1 || stu_len!=8 && stu_len!=10 && stu_len!=12){
+		        //RegCellStuid =/^(\d{8}|\d{10}|\d{12})$/;
+			//falg1=stu_id.search(RegCellStuid);
+                  flag1==1;
+                        stu_len=stu_id.length;
+			if(falg1==-1 || stu_len<8){
 				$("#error").html("请输入正确的学生证号");
 				$("#n_validate").show().delay(3000).fadeOut();
 				/*$("#stu_id").click(function(){
@@ -156,7 +157,7 @@ $(function(){
 				email = email+'@mail.uibe.edu.cn';
 			}
 
-		if(falg!=-1 && falg1!=-1 && falg2!=-1 && falg3!=-1 && stu_len==8 || falg!=-1 && falg1!=-1 && falg2!=-1 && falg3!=-1 && stu_len==10 || falg!=-1 && falg1!=-1 && falg2!=-1 && falg3!=-1 && stu_len==12){
+		if(falg!=-1 && falg1!=-1 && falg2!=-1 && falg3!=-1 && stu_len>=8){
 			
 			if(next.hasClass("disabled")) return false;
 			next.addClass('disabled');	 
