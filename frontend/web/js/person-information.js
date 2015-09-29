@@ -91,7 +91,7 @@ $(function(){
 			/*RegCellStuid = /^([0-9]*)?$/;*/
 		        //RegCellStuid =/^(\d{8}|\d{10}|\d{12})$/;
 			//falg1=stu_id.search(RegCellStuid);
-                  flag1==1;
+                        falg1=1;
                         stu_len=stu_id.length;
 			if(falg1==-1 || stu_len<8){
 				$("#error").html("请输入正确的学生证号");
