@@ -154,7 +154,7 @@ $(function(){
 			}else if(school_name=="北京航空航天大学"){
 				email = email+'@buaa.edu.cn';
 			}else if(school_name=="对外经济贸易大学"){
-				email = email+'@mail.uibe.edu.cn';
+				email = email+'@uibe.edu.cn';
 			}
 
 		if(falg!=-1 && falg1!=-1 && falg2!=-1 && falg3!=-1 && stu_len>=8){

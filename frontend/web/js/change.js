@@ -41,7 +41,7 @@ $(function(){
 			        }else if(s_name=="北京航空航天大学"){
 					$("#suffix").html("buaa");
 				}else if(s_name=="对外经济贸易大学"){
-					$("#suffix").html("mail.uibe");
+					$("#suffix").html("uibe");
 				}
 			$("#school-name").removeClass("d-color");
 
@@ -86,7 +86,7 @@ $(function(){
 				}else if(s_name=="北京航空航天大学"){
 					$("#suffix").html("buaa");
 				}else if(s_name=="对外经济贸易大学"){
-					$("#suffix").html("mail.uibe");
+					$("#suffix").html("uibe");
 				}
 				$("#school-name").removeClass("d-color");
 				$("#c_school").css("left",-wwidth);//左推动画重置

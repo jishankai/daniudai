@@ -51,7 +51,7 @@
 	                <div class="repay-btn">
                         <form action='<?php echo Url::to(["loan/repaying"])?>' method="post">
 	                		<input type="text" value="<?php echo $l->loan_id?>" name="loan_id" style="display:none;"/>
-	                		<input type="text" value="<?php echo ($l->money + $l->rate * $l->money * $l->duration)*100?>" name="fee" style="display:none;"/>
+	                		<input type="text" value="<?php echo ($l->money + $l->rate * $l->money * $l->duration)*100?>" id="fee" name="fee" style="display:none;"/>
 	                		<button class="btn btn-orange btn-fullwidth" id="repay_btn">立刻还款</button>
 	                	</form>
 	                </div>
@@ -247,9 +247,10 @@
 		 	document.getElementById("y_day").innerHTML = Math.abs(s_day);
 		 	$("#s_day_box").hide();
 		 	$("#y_day_box").show();
-		 	document.getElementById("f_money").innerHTML = Math.round((b_l * Math.abs(s_day) * 0.0004)*100)/100;
-		 	r_money.innerHTML = Math.round((b_l + b_l * Math.abs(s_day) * 0.0004)*100)/100;
-		 }
+		 	document.getElementById("f_money").innerHTML = Math.round((b_l * Math.abs(s_day) * 0.0007)*100)/100;
+		 	r_money.innerHTML = Math.round((b_l + b_l * Math.abs(s_day) * 0.0007)*100)/100;
+            $("#fee").val(Math.round((b_l + b_l * Math.abs(s_day) * 0.0007)*100)/100);
+         }
 
 		 function NewDate(date){
 		 	var dd=new Date(parseInt(date)*1000);  
