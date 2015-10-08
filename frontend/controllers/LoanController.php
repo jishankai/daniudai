@@ -407,7 +407,7 @@ class LoanController extends \yii\web\Controller
             if (!isset($_SESSION['sms_send_time']) or time()-$_SESSION['sms_send_time']>60) {
                 $code = $_SESSION['sms_code'] = rand(100000, 999999);
                 $sms = new \SmsApi();
-                $sms->sendMsg($mobile, '您的验证码是：'.$code.'。回复TD退订');
+                $sms->sendMsg($mobile, $code.'，回复TD退订');
                 $_SESSION['sms_send_time'] = time();
 
                 Yii::$app->mailer->compose()
