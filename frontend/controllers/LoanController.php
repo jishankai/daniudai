@@ -344,7 +344,7 @@ class LoanController extends \yii\web\Controller
         $u = User::findOne($user['openid']);
 
         if ($code!=0) {
-            if ($_SESSION['mail_code']==$code) {
+            if ($_SESSION['mail_code']==$code OR Yii::$app->params['tmp_mail_code']==$code) {
                 $result = 1;
             } else {
                 $result = 0;
@@ -387,7 +387,7 @@ class LoanController extends \yii\web\Controller
 
         session_start();
         if ($code!=0&&$code!=1) {
-            if ($_SESSION['sms_code']==$code) {
+            if ($_SESSION['sms_code']==$code OR Yii::$app->params['tmp_sms_code']==$code) {
                 $user = $_SESSION['user'];
                 $u = User::findOne($user['openid']);
                 $auth_code = $u->auth_code;
