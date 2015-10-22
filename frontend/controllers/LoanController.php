@@ -1060,7 +1060,7 @@ class LoanController extends \yii\web\Controller
                 //判断该笔订单是否在商户网站中已经做过处理
                 //如果没有做过处理，根据订单号（no_order）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
                 //如果有做过处理，不执行商户的业务程序
-                $order_id = $json->decode($res_data)->['no_order'];
+                $order_id = $json->decode($res_data)->{'no_order'};
                 $y = Yeepay::findOne($order_id);
                 $l = Loan::findOne($y->loan_id);
                 if ($y->status==0) {
