@@ -940,7 +940,7 @@ class LoanController extends \yii\web\Controller
         //身份证号
         $id_no = $u->id;
         //风险控制参数
-        $risk_item = {"frms_ware_category":"2009","user_info_mercht_userno":$user_id,"user_info_dt_register":local_date('YmdHis', $u->created_at),"user_info_full_name":$u->name,"user_info_id_no":$u->id,"user_info_identify_type":"1","user_info_identify_state":"1"};
+        $risk_item = "{'frms_ware_category':'2009','user_info_mercht_userno':$user_id,'user_info_dt_register':{local_date('YmdHis', $u->created_at)},'user_info_full_name':{$u->name},'user_info_id_no':{$u->id},'user_info_identify_type':'1','user_info_identify_state':'1'}";
         //订单有效期
         $valid_order = 24*60;
 
