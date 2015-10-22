@@ -16,10 +16,10 @@ use backend\models\School;
 use backend\models\Bank;
 use backend\models\Yeepay;
 
-require_once(__DIR__ . '/../vendor/lianlianpay/llpay.config.php');
-require_once(__DIR__ . '/../vendor/lianlianpay/lib/llpay_notify.class.php');
-require_once(__DIR__ . '/../vendor/lianlianpay/lib/llpay_cls_json.php');
-require_once(__DIR__ . '/../vendor/lianlianpay/lib/llpay_submit.class.php');
+require_once(__DIR__ . '/../../vendor/lianlianpay/llpay.config.php');
+require_once(__DIR__ . '/../../vendor/lianlianpay/lib/llpay_notify.class.php');
+require_once(__DIR__ . '/../../vendor/lianlianpay/lib/llpay_cls_json.php');
+require_once(__DIR__ . '/../../vendor/lianlianpay/lib/llpay_submit.class.php');
 
 class LoanController extends \yii\web\Controller
 {
