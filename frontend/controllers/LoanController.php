@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use Yii;
 use yii\helpers\Url;
+use yii\helpers\Json;
 use Overtrue\Wechat\Auth;
 use Overtrue\Wechat\Notice;
 use Overtrue\Wechat\Staff;
@@ -16,9 +17,7 @@ use backend\models\School;
 use backend\models\Bank;
 use backend\models\Yeepay;
 
-require_once(__DIR__ . '/../../vendor/lianlianpay/llpay.config.php');
 require_once(__DIR__ . '/../../vendor/lianlianpay/lib/llpay_notify.class.php');
-require_once(__DIR__ . '/../../vendor/lianlianpay/lib/llpay_cls_json.php');
 require_once(__DIR__ . '/../../vendor/lianlianpay/lib/llpay_submit.class.php');
 
 class LoanController extends \yii\web\Controller
@@ -873,6 +872,12 @@ class LoanController extends \yii\web\Controller
 
     public function actionRepaying()
     {
+        
+        require_once(__DIR__ . '/../../vendor/lianlianpay/llpay.config.php');
+        
+        $appId = Yii::$app->params['wechat_appid'];
+        $secret = Yii::$app->params['wechat_appsecret'];
+
         session_start();
         if (empty($_SESSION['user'])) {
             $auth = new Auth($appId, $secret);
@@ -896,29 +901,6 @@ class LoanController extends \yii\web\Controller
             $y->save();
         }
 
-        $transtime = $y->created_at;//交易时间，是每次支付请求的时间，注意此参数在进行多次支付的时候要保持一致。
-        $product_catalog = '30';//商品类编码是我们业管根据商户业务本身的特性进行配置的业务参数。
-        $identity_id = $y->wechat_id;//用户身份标识，是生成绑卡关系的因素之一，在正式环境此值不能固定为一个，要一个用户有唯一对应一个用户标识，以防出现盗刷的风险且一个支付身份标识只能绑定5张银行卡
-        $identity_type = 2;     //支付身份标识类型码
-        $user_ip = $_SERVER["REMOTE_ADDR"];//此参数不是固定的商户服务器ＩＰ，而是用户每次支付时使用的网络终端IP，否则的话会有不友好提示：“检测到您的IP地址发生变化，请注意支付安全”。
-        $user_ua = $_SERVER['HTTP_USER_AGENT'];//用户ua
-        $product_name = '真牛贷-还款';//出于风控考虑，请按下面的格式传递值：应用-商品名称，如“诛仙-3 阶成品天琊”
-        $product_desc = '还款';//商品描述
-        $terminaltype = 3;
-        $terminalid = $y->wechat_id;//其他支付身份信息
-        $amount = (int)$y->fee;//订单金额单位为分，支付时最低金额为2分，因为测试和生产环境的商户都有手续费（如2%），易宝支付收取手续费如果不满1分钱将按照1分钱收取。
-        $cardno = $u->bank_id;
-        $idcardtype = '01';
-        $idcard = $u->id;
-        $owner = $u->name;
-        $url = $yeepay->webPay($order_id, $transtime, $amount, $cardno, $idcardtype, $idcard, $owner, $product_catalog, $identity_id, $identity_type, $user_ip, $user_ua, $callbackurl, $fcallbackurl, $currency = 156, $product_name, $product_desc, $terminaltype, $terminalid, $orderexp_date = 60);
-
-        $arr = explode('&', $url);
-        $encrypt = explode('=', $arr[1]);
-        $data = explode('=', $arr[2]);
-
-        return $this->redirect($url);
-        
         //商户用户唯一编号
         $user_id = $user['openid'];
         //支付类型
@@ -939,8 +921,10 @@ class LoanController extends \yii\web\Controller
         $acct_name = $u->name;
         //身份证号
         $id_no = $u->id;
+        //注册时间
+        $dt = local_date('YmdHis', $u->created_at);
         //风险控制参数
-        $risk_item = "{'frms_ware_category':'2009','user_info_mercht_userno':$user_id,'user_info_dt_register':{local_date('YmdHis', $u->created_at)},'user_info_full_name':{$u->name},'user_info_id_no':{$u->id},'user_info_identify_type':'1','user_info_identify_state':'1'}";
+        $risk_item = "{\\\"frms_ware_category\\\":\\\"2009\\\",\\\"user_info_mercht_userno\\\":$user_id,\\\"user_info_dt_register\\\":$dt,\\\"user_info_full_name\\\":{$u->name},\\\"user_info_id_no\\\":{$u->id},\\\"user_info_identify_type\\\":\\\"1\\\",\\\"user_info_identify_state\\\":\\\"1\\\"}";
         //订单有效期
         $valid_order = 24*60;
 
@@ -967,13 +951,12 @@ class LoanController extends \yii\web\Controller
             "card_no" => $card_no,
             "acct_name" => $acct_name,
             "id_no" => $id_no,
-            "no_agree" => $no_agree,
             "risk_item" => $risk_item,
             "valid_order" => $valid_order
         );
 
         //建立请求
-        $llpaySubmit = new LLpaySubmit($llpay_config);
+        $llpaySubmit = new \LLpaySubmit($llpay_config);
         $html_text = $llpaySubmit->buildRequestForm($parameter, "post", "确认");
         echo $html_text;
 
@@ -1039,8 +1022,13 @@ class LoanController extends \yii\web\Controller
 
     public function actionReturn()
     {
+        require_once(__DIR__ . '/../../vendor/lianlianpay/llpay.config.php');
+
+        $appId = Yii::$app->params['wechat_appid'];
+        $secret = Yii::$app->params['wechat_appsecret'];
+
         //计算得出通知验证结果
-        $llpayNotify = new LLpayNotify($llpay_config);
+        $llpayNotify = new \LLpayNotify($llpay_config);
         $verify_result = $llpayNotify->verifyReturn();
         if($verify_result) {//验证成功
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1049,18 +1037,18 @@ class LoanController extends \yii\web\Controller
             //——请根据您的业务逻辑来编写程序（以下代码仅作参考）——
             //获取连连支付的通知返回参数，可参考技术文档中页面跳转同步通知参数列表
             $json = new JSON;
-            $res_data = $_GET["res_data"];
+            $res_data = $_REQUEST["res_data"];
             //商户编号
-            $oid_partner = $json->decode($res_data)-> {'oid_partner' };
-            //商户订单号	$no_order = $json->decode($res_data)-> {'no_order' };
+            $oid_partner = $json->decode($res_data)['oid_partner'];
+            //商户订单号	$no_order = $json->decode($res_data)['no_order'];
             //支付结果
-            $result_pay =  $json->decode($res_data)-> {'result_pay' };
+            $result_pay =  $json->decode($res_data)['result_pay'];
 
             if($result_pay == 'SUCCESS') {
                 //判断该笔订单是否在商户网站中已经做过处理
                 //如果没有做过处理，根据订单号（no_order）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
                 //如果有做过处理，不执行商户的业务程序
-                $order_id = $json->decode($res_data)->{'no_order'};
+                $order_id = $json->decode($res_data)['no_order'];
                 $y = Yeepay::findOne($order_id);
                 $l = Loan::findOne($y->loan_id);
                 if ($y->status==0) {
@@ -1110,11 +1098,13 @@ class LoanController extends \yii\web\Controller
     
     public function actionCallback()
     {
+        require_once(__DIR__ . '/../../vendor/lianlianpay/llpay.config.php');
+        
         $appId = Yii::$app->params['wechat_appid'];
         $secret = Yii::$app->params['wechat_appsecret'];
 
         //计算得出通知验证结果
-        $llpayNotify = new LLpayNotify($llpay_config);
+        $llpayNotify = new \LLpayNotify($llpay_config);
         $llpayNotify->verifyNotify();
         if ($llpayNotify->result) { //验证成功
             //获取连连支付的通知返回参数，可参考技术文档中服务器异步通知参数列表
@@ -1158,11 +1148,9 @@ class LoanController extends \yii\web\Controller
                     $messageId = $notice->uses($templateId)->withUrl($url)->andData($data)->andReceiver($l->wechat_id)->send();
                 }
             }
-            file_put_contents("log.txt", "异步通知 验证成功\n", FILE_APPEND);
             die("{'ret_code':'0000','ret_msg':'交易成功'}"); //请不要修改或删除
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         } else {
-            file_put_contents("log.txt", "异步通知 验证失败\n", FILE_APPEND);
             //验证失败
             die("{'ret_code':'9999','ret_msg':'验签失败'}");
             //调试用，写文本函数记录程序运行情况是否正常
