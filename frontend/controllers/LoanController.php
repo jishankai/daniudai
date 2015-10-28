@@ -512,7 +512,7 @@ class LoanController extends \yii\web\Controller
             $color = '#FF0000';
             $data = array(
                 "first"    => "真牛君呐，又来了一位同学",
-                "keyword1" => "{$u->name}，借款{$l->money}元，借{$l->duration}天，手机号{$u->mobile}，专业{$s->depart}，年级{$student->grade}",
+                "keyword1" => "{$u->name}，借款{$l->money}元，借{$l->duration}天，手机号{$u->mobile}，学校{$s->name}, 专业{$s->depart}，年级{$student->grade}",
                 "keyword2" => "待办",
                 "remark"   => "请快速约起来~",
             );
@@ -639,6 +639,7 @@ class LoanController extends \yii\web\Controller
 
             $notice = new Notice($appId, $secret);
             if ($operation==2) {
+                $school = School::findOne($s->school_id);
                 $templateId = Yii::$app->params['templateId_review'];
                 $url1 = Url::to(['loan/me'],TRUE);
                 $color = '#FF0000';
@@ -648,7 +649,7 @@ class LoanController extends \yii\web\Controller
                     "keyword2" => "{$l->duration}天",
                     "keyword3" => "{$l->rate}*每个月的天数",
                     "keyword4" => "通过",
-                    "remark"   => "姓名：{$u->name}，银行类别：{$u->bank}，银行卡号：{$u->bank_id}，借款额{$l->money}元，手机：{$u->mobile}",
+                    "remark"   => "姓名：{$u->name}，学校：{$school->name}, 银行类别：{$u->bank}，银行卡号：{$u->bank_id}，借款额{$l->money}元，手机：{$u->mobile}",
                 );
                 $messageId = $notice->uses($templateId)->withUrl($url1)->andData($data1)->andReceiver(Yii::$app->params['demo_supporter'])->send();
                 $messageId = $notice->uses($templateId)->withUrl($url1)->andData($data1)->andReceiver(Yii::$app->params['admin_supporter'])->send();

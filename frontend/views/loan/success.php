@@ -17,6 +17,7 @@
 	<div class="success" style="text-align:center;">
 		<img src="img/logo.png" style="width:70%;height:70%;">
 		<h3>您的借款申请已提交！</h3>
+        <h3>请等待真牛君的面审吧～</h3>
 	</div>	
 </body>
 <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
