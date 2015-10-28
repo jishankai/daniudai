@@ -40,7 +40,7 @@ class PayController extends \yii\web\Controller
         }
 
         $user = $_SESSION['user'];
-        $order_id = $user['openid'].'_'.$_GET['loan_id'].'_'.date("Ymd");
+        $order_id = $user['openid'].'_'.$_POST['loan_id'].'_'.date("Ymd");
         $u = User::findOne($user['openid']);
 
         $y = Yeepay::findOne($order_id);
@@ -48,8 +48,8 @@ class PayController extends \yii\web\Controller
             $y = new Yeepay;
             $y->order_id = $order_id;
             $y->wechat_id = $user['openid'];
-            $y->loan_id = $_GET['loan_id'];
-            $y->fee = $_GET['fee'];
+            $y->loan_id = $_POST['loan_id'];
+            $y->fee = $_POST['fee'];
             $y->status = 0;
             $y->created_at = time();
             $y->save();
