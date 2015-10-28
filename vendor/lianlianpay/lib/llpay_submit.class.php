@@ -104,7 +104,7 @@ class LLpaySubmit {
 		$sHtml = "<form id='llpaysubmit' name='llpaysubmit' action='" . $this->llpay_gateway_new . "' method='" . $method . "'>";
 		$sHtml .= "<input type='hidden' name='req_data' value='" . $para . "'/>";
 		//submit按钮控件请不要含有name属性
-		$sHtml = $sHtml . "<input type='submit' value='" . $button_name . "'></form>";
+		$sHtml = $sHtml . "<input type='submit' value='" . $button_name . "' style='display:none'></form>";
 		$sHtml = $sHtml."<script>document.forms['llpaysubmit'].submit();</script>";
 		return $sHtml;
 	}
