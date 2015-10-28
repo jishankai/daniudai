@@ -22,6 +22,8 @@ require_once(__DIR__ . '/../../vendor/lianlianpay/lib/llpay_submit.class.php');
 
 class PayController extends \yii\web\Controller
 {
+    public $enableCsrfValidation = false;
+
     public function actionRepaying()
     {
 
