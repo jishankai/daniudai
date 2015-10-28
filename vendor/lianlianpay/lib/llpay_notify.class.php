@@ -155,6 +155,10 @@ class LLpayNotify {
 			case "MD5" :
 				$isSgin = md5Verify($prestr, $sign, $this->llpay_config['key']);
 				break;
+            case "RSA" :
+                $isSgin = Rsaverify($prestr, $sign);
+                break;
+
 			default :
 				$isSgin = false;
 		}
