@@ -55,7 +55,7 @@ return [
     ],
     'params' => $params,
     'as access' => [
-        'class' => 'mdm\admin\components\AccessControl',
+        'class' => 'mdm\admin\classes\AccessControl',
         'allowActions' => [
             'admin/*',
             // The actions listed here will be allowed to everyone including guests.
