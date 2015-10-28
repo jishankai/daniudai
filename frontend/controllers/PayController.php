@@ -63,7 +63,7 @@ class PayController extends \yii\web\Controller
         $no_order = $order_id;
         //商户网站订单系统中唯一订单号，必填
         //付款金额
-        $money_order = (int)$y->fee;
+        $money_order = (int)$y->fee/100.00;
         //必填
         //商品名称
         $name_goods = '真牛贷-还款';
