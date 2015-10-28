@@ -16,6 +16,7 @@
 namespace Overtrue\Wechat;
 
 use Overtrue\Wechat\Utils\JSON;
+use Overtrue\Wechat\Url;
 
 /**
  * 微信 JSSDK
@@ -73,15 +74,32 @@ class Js
      * @param bool  $debug
      * @param bool  $json
      *
-     * @return array
+     * @return string|array
      */
-    public function config(array $APIs, $debug = false, $json = true)
+    public function config(array $APIs, $debug = false, $beta = false, $json = true)
     {
         $signPackage = $this->getSignaturePackage();
-
-        $config = array_merge(array('debug' => $debug), $signPackage, array('jsApiList' => $APIs));
+        $base = array(
+                 'debug' => $debug,
+                 'beta'  => $beta,
+                );
+        $config = array_merge($base, $signPackage, array('jsApiList' => $APIs));
 
         return $json ? JSON::encode($config) : $config;
+    }
+
+    /**
+     * 获取数组形式的配置
+     *
+     * @param array $APIs
+     * @param bool  $debug
+     * @param bool  $beta
+     *
+     * @return array
+     */
+    public function getConfigArray(array $APIs, $debug = false, $beta = false)
+    {
+        return $this->config($APIs, $debug, $beta, false);
     }
 
     /**
@@ -180,9 +198,7 @@ class Js
             return $this->url;
         }
 
-        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] === 443) ? 'https://' : 'http://';
-
-        return $protocol.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+        return Url::current();
     }
 
     /**

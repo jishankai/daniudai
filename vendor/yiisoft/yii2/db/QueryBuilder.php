@@ -34,7 +34,7 @@ class QueryBuilder extends \yii\base\Object
      * @var string the separator between different fragments of a SQL statement.
      * Defaults to an empty space. This is mainly used by [[build()]] when generating a SQL statement.
      */
-    public $separator = " ";
+    public $separator = ' ';
     /**
      * @var array the abstract column types mapped to physical column types.
      * This is mainly used to support creating/modifying tables using DB-independent data type specifications.
@@ -153,8 +153,8 @@ class QueryBuilder extends \yii\base\Object
         }
 
         return 'INSERT INTO ' . $schema->quoteTableName($table)
-            . ' (' . implode(', ', $names) . ') VALUES ('
-            . implode(', ', $placeholders) . ')';
+            . (!empty($names) ? ' (' . implode(', ', $names) . ')' : '')
+            . (!empty($placeholders) ? ' VALUES (' . implode(', ', $placeholders) . ')' : ' DEFAULT VALUES');
     }
 
     /**
@@ -322,7 +322,7 @@ class QueryBuilder extends \yii\base\Object
                 $cols[] = "\t" . $type;
             }
         }
-        $sql = "CREATE TABLE " . $this->db->quoteTableName($table) . " (\n" . implode(",\n", $cols) . "\n)";
+        $sql = 'CREATE TABLE ' . $this->db->quoteTableName($table) . " (\n" . implode(",\n", $cols) . "\n)";
 
         return $options === null ? $sql : $sql . ' ' . $options;
     }
@@ -345,7 +345,7 @@ class QueryBuilder extends \yii\base\Object
      */
     public function dropTable($table)
     {
-        return "DROP TABLE " . $this->db->quoteTableName($table);
+        return 'DROP TABLE ' . $this->db->quoteTableName($table);
     }
 
     /**
@@ -389,7 +389,7 @@ class QueryBuilder extends \yii\base\Object
      */
     public function truncateTable($table)
     {
-        return "TRUNCATE TABLE " . $this->db->quoteTableName($table);
+        return 'TRUNCATE TABLE ' . $this->db->quoteTableName($table);
     }
 
     /**
@@ -416,8 +416,8 @@ class QueryBuilder extends \yii\base\Object
      */
     public function dropColumn($table, $column)
     {
-        return "ALTER TABLE " . $this->db->quoteTableName($table)
-            . " DROP COLUMN " . $this->db->quoteColumnName($column);
+        return 'ALTER TABLE ' . $this->db->quoteTableName($table)
+            . ' DROP COLUMN ' . $this->db->quoteColumnName($column);
     }
 
     /**
@@ -429,9 +429,9 @@ class QueryBuilder extends \yii\base\Object
      */
     public function renameColumn($table, $oldName, $newName)
     {
-        return "ALTER TABLE " . $this->db->quoteTableName($table)
-            . " RENAME COLUMN " . $this->db->quoteColumnName($oldName)
-            . " TO " . $this->db->quoteColumnName($newName);
+        return 'ALTER TABLE ' . $this->db->quoteTableName($table)
+            . ' RENAME COLUMN ' . $this->db->quoteColumnName($oldName)
+            . ' TO ' . $this->db->quoteColumnName($newName);
     }
 
     /**
@@ -586,11 +586,15 @@ class QueryBuilder extends \yii\base\Object
      * be ignored.
      *
      * If a type cannot be found in [[typeMap]], it will be returned without any change.
-     * @param string $type abstract column type
+     * @param string|ColumnSchemaBuilder $type abstract column type
      * @return string physical column type.
      */
     public function getColumnType($type)
     {
+        if ($type instanceof ColumnSchemaBuilder) {
+            $type = $type->__toString();
+        }
+
         if (isset($this->typeMap[$type])) {
             return $this->typeMap[$type];
         } elseif (preg_match('/^(\w+)\((.+?)\)(.*)$/', $type, $matches)) {
@@ -992,7 +996,7 @@ class QueryBuilder extends \yii\base\Object
      */
     public function buildNotCondition($operator, $operands, &$params)
     {
-        if (count($operands) != 1) {
+        if (count($operands) !== 1) {
             throw new InvalidParamException("Operator '$operator' requires exactly one operand.");
         }
 
@@ -1202,7 +1206,7 @@ class QueryBuilder extends \yii\base\Object
             throw new InvalidParamException("Operator '$operator' requires two operands.");
         }
 
-        $escape = isset($operands[2]) ? $operands[2] : ['%'=>'\%', '_'=>'\_', '\\'=>'\\\\'];
+        $escape = isset($operands[2]) ? $operands[2] : ['%' => '\%', '_' => '\_', '\\' => '\\\\'];
         unset($operands[2]);
 
         if (!preg_match('/^(AND |OR |)(((NOT |))I?LIKE)/', $operator, $matches)) {

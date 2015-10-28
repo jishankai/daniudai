@@ -61,13 +61,13 @@ class Cache
      */
     public function set($key, $value, $lifetime = 7200)
     {
-        if ($handler = self::$cacheSetter) {
-            return call_user_func_array($handler, func_get_args());
+        if (self::$cacheSetter) {
+            return call_user_func_array(self::$cacheSetter, func_get_args());
         }
 
         $data = array(
                  'data'       => $value,
-                 'expired_at' => time() + $lifetime - 100, //XXX: 减去 100 秒更可靠的说
+                 'expired_at' => time() + $lifetime - 500, //XXX: 微信API是世界上最烂的，没有之一
                 );
 
         if (!file_put_contents($this->getCacheFile($key), serialize($data))) {
@@ -85,8 +85,8 @@ class Cache
     {
         $return = null;
 
-        if ($handler = self::$cacheGetter) {
-            $return = call_user_func_array($handler, func_get_args());
+        if (self::$cacheGetter) {
+            $return = call_user_func_array(self::$cacheGetter, func_get_args());
         } else {
             $file = $this->getCacheFile($key);
 

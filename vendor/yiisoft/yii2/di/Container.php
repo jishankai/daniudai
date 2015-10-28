@@ -171,7 +171,7 @@ class Container extends Component
         } elseif (is_object($definition)) {
             return $this->_singletons[$class] = $definition;
         } else {
-            throw new InvalidConfigException("Unexpected object definition type: " . gettype($definition));
+            throw new InvalidConfigException('Unexpected object definition type: ' . gettype($definition));
         }
 
         if (array_key_exists($class, $this->_singletons)) {
@@ -242,7 +242,7 @@ class Container extends Component
      * - a string: a class name, an interface name or an alias name.
      * @param array $params the list of constructor parameters. The parameters will be passed to the class
      * constructor when [[get()]] is called.
-     * @return static the container itself
+     * @return $this the container itself
      */
     public function set($class, $definition = [], array $params = [])
     {
@@ -262,7 +262,7 @@ class Container extends Component
      * @param mixed $definition the definition associated with `$class`. See [[set()]] for more details.
      * @param array $params the list of constructor parameters. The parameters will be passed to the class
      * constructor when [[get()]] is called.
-     * @return static the container itself
+     * @return $this the container itself
      * @see set()
      */
     public function setSingleton($class, $definition = [], array $params = [])

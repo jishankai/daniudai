@@ -84,7 +84,7 @@ Todo List
 - ~~Right sidebar~~ (Done v2.1.0)
 - ~~Minified main-sidebar~~ (Done v2.1.0)
 - Right to left support
-- Custom pace style
+- ~~Custom pace style~~ (Done v2.3.1)
 
 Legacy Realeases
 ----------------
@@ -92,6 +92,12 @@ AdminLTE 1.x can be easily upgraded to 2.x using [this guide](https://almsaeedst
 
 Change log
 ----------
+**v2.3.1:**
+- Fix sidebar issue #676
+- Fix BootLint warnings and errors
+- Minor bug fixes and code reformat
+- Added Pace page
+
 **v2.3.0:**
 - Added social widgets (found in the widgets page)
 - Added profile page

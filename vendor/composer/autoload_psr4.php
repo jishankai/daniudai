@@ -19,5 +19,6 @@ return array(
     'dmstr\\' => array($vendorDir . '/dmstr/yii2-adminlte-asset'),
     'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),
     'Yeepay\\' => array($vendorDir . '/luzhongyang/yeepay/src/Yeepay'),
-    'Overtrue\\' => array($vendorDir . '/overtrue/wechat/src'),
+    'Overtrue\\Wechat\\' => array($vendorDir . '/overtrue/wechat/src/Wechat'),
+    'Faker\\' => array($vendorDir . '/fzaninotto/faker/src/Faker'),
 );

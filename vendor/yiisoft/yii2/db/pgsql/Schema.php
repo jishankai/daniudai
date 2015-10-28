@@ -411,7 +411,7 @@ SQL;
                     $column->defaultValue = bindec(trim($column->defaultValue, 'B\''));
                 } elseif (preg_match("/^'(.*?)'::/", $column->defaultValue, $matches)) {
                     $column->defaultValue = $matches[1];
-                } elseif (preg_match("/^(.*?)::/", $column->defaultValue, $matches)) {
+                } elseif (preg_match('/^(.*?)::/', $column->defaultValue, $matches)) {
                     $column->defaultValue = $column->phpTypecast($matches[1]);
                 } else {
                     $column->defaultValue = $column->phpTypecast($column->defaultValue);
@@ -462,7 +462,7 @@ SQL;
         $returnColumns = $this->getTableSchema($table)->primaryKey;
         if (!empty($returnColumns)) {
             $returning = [];
-            foreach ((array)$returnColumns as $name) {
+            foreach ((array) $returnColumns as $name) {
                 $returning[] = $this->quoteColumnName($name);
             }
             $sql .= ' RETURNING ' . implode(', ', $returning);

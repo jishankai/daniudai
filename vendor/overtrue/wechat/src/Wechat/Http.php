@@ -96,14 +96,14 @@ class Http extends HttpClient
             throw new Exception('服务器无响应');
         }
 
-        // 文本或者json
-        $textMIME = '~application/json|text/plain~i';
+        if (!preg_match('/^[\[\{]\"/', $response['data'])) {
+            return $response['data'];
+        }
 
-        $contents = JSON::decode($response['data'], true);
+        $contents = json_decode(substr(str_replace(array('\"', '\\\\'), array('"', ''), json_encode($response['data'])), 1, -1), true);
 
         // while the response is an invalid JSON structure, returned the source data
-        if (!preg_match($textMIME, $response['content_type'])
-            || (JSON_ERROR_NONE !== json_last_error() && false === $contents)) {
+        if (JSON_ERROR_NONE !== json_last_error()) {
             return $response['data'];
         }
 
@@ -112,7 +112,7 @@ class Http extends HttpClient
                 $contents['errmsg'] = 'Unknown';
             }
 
-            throw new Exception("[{$contents['errcode']}] ".$contents['errcode'], $contents['errcode']);
+            throw new Exception("[{$contents['errcode']}] ".$contents['errmsg'], $contents['errcode']);
         }
 
         if ($contents === array('errcode' => '0', 'errmsg' => 'ok')) {

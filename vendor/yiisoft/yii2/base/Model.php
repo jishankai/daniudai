@@ -103,10 +103,10 @@ class Model extends Component implements IteratorAggregate, ArrayAccess, Arrayab
      *
      * where
      *
-     *  - attribute list: required, specifies the attributes array to be validated, for single attribute you can pass string;
+     *  - attribute list: required, specifies the attributes array to be validated, for single attribute you can pass a string;
      *  - validator type: required, specifies the validator to be used. It can be a built-in validator name,
      *    a method name of the model class, an anonymous function, or a validator class name.
-     *  - on: optional, specifies the [[scenario|scenarios]] array when the validation
+     *  - on: optional, specifies the [[scenario|scenarios]] array in which the validation
      *    rule can be applied. If this option is not set, the rule will apply to all scenarios.
      *  - additional name-value pairs can be specified to initialize the corresponding validator properties.
      *    Please refer to individual validator class API for possible properties.
@@ -119,12 +119,13 @@ class Model extends Component implements IteratorAggregate, ArrayAccess, Arrayab
      * function validatorName($attribute, $params)
      * ~~~
      *
-     * In the above `$attribute` refers to currently validated attribute name while `$params` contains an array of
-     * validator configuration options such as `max` in case of `string` validator. Currently validate attribute value
-     * can be accessed as `$this->[$attribute]`.
+     * In the above `$attribute` refers to the attribute currently being validated while `$params` contains an array of
+     * validator configuration options such as `max` in case of `string` validator. The value of the attribute currently being validated
+     * can be accessed as `$this->$attribute`. Note the `$` before `attribute`; this is taking the value of the variable
+     * `$attribute` and using it as the name of the property to access.
      *
      * Yii also provides a set of [[Validator::builtInValidators|built-in validators]].
-     * They each has an alias name which can be used when specifying a validation rule.
+     * Each one has an alias name which can be used when specifying a validation rule.
      *
      * Below are some examples:
      *
@@ -232,15 +233,19 @@ class Model extends Component implements IteratorAggregate, ArrayAccess, Arrayab
      * name is "b", then the corresponding input name would be "A[b]". If the form name is
      * an empty string, then the input name would be "b".
      *
+     * The purpose of the above naming schema is that for forms which contain multiple different models,
+     * the attributes of each model are grouped in sub-arrays of the POST-data and it is easier to
+     * differentiate between them.
+     *
      * By default, this method returns the model class name (without the namespace part)
      * as the form name. You may override it when the model is used in different forms.
      *
      * @return string the form name of this model class.
+     * @see load()
      */
     public function formName()
     {
         $reflector = new ReflectionClass($this);
-
         return $reflector->getShortName();
     }
 
@@ -617,7 +622,7 @@ class Model extends Component implements IteratorAggregate, ArrayAccess, Arrayab
     {
         foreach ($items as $attribute => $errors) {
             if (is_array($errors)) {
-                foreach($errors as $error) {
+                foreach ($errors as $error) {
                     $this->addError($attribute, $error);
                 }
             } else {
@@ -779,15 +784,37 @@ class Model extends Component implements IteratorAggregate, ArrayAccess, Arrayab
     }
 
     /**
-     * Populates the model with the data from end user.
-     * The data to be loaded is `$data[formName]`, where `formName` refers to the value of [[formName()]].
-     * If [[formName()]] is empty, the whole `$data` array will be used to populate the model.
-     * The data being populated is subject to the safety check by [[setAttributes()]].
-     * @param array $data the data array. This is usually `$_POST` or `$_GET`, but can also be any valid array
-     * supplied by end user.
-     * @param string $formName the form name to be used for loading the data into the model.
-     * If not set, [[formName()]] will be used.
-     * @return boolean whether the model is successfully populated with some data.
+     * Populates the model with input data.
+     *
+     * This method provides a convenient shortcut for:
+     *
+     * ```php
+     * if (isset($_POST['FormName'])) {
+     *     $model->attributes = $_POST['FormName'];
+     *     if ($model->save()) {
+     *         // handle success
+     *     }
+     * }
+     * ```
+     *
+     * which, with `load()` can be written as:
+     *
+     * ```php
+     * if ($model->load($_POST) && $model->save()) {
+     *     // handle success
+     * }
+     * ```
+     *
+     * `load()` gets the `'FormName'` from the model's [[formName()]] method (which you may override), unless the
+     * `$formName` parameter is given. If the form name is empty, `load()` populates the model with the whole of `$data`,
+     * instead of `$data['FormName']`.
+     *
+     * Note, that the data being populated is subject to the safety check by [[setAttributes()]].
+     *
+     * @param array $data the data array to load, typically `$_POST` or `$_GET`.
+     * @param string $formName the form name to use to load the data into the model.
+     * If not set, [[formName()]] is used.
+     * @return boolean whether `load()` found the expected form in `$data`.
      */
     public function load($data, $formName = null)
     {
@@ -882,7 +909,7 @@ class Model extends Component implements IteratorAggregate, ArrayAccess, Arrayab
      * returning the corresponding field value. The signature of the callable should be:
      *
      * ```php
-     * function ($field, $model) {
+     * function ($model, $field) {
      *     // return field value
      * }
      * ```
@@ -924,7 +951,7 @@ class Model extends Component implements IteratorAggregate, ArrayAccess, Arrayab
 
     /**
      * Returns an iterator for traversing the attributes in the model.
-     * This method is required by the interface IteratorAggregate.
+     * This method is required by the interface [[\IteratorAggregate]].
      * @return ArrayIterator an iterator for traversing the items in the list.
      */
     public function getIterator()
@@ -935,7 +962,7 @@ class Model extends Component implements IteratorAggregate, ArrayAccess, Arrayab
 
     /**
      * Returns whether there is an element at the specified offset.
-     * This method is required by the SPL interface `ArrayAccess`.
+     * This method is required by the SPL interface [[\ArrayAccess]].
      * It is implicitly called when you use something like `isset($model[$offset])`.
      * @param mixed $offset the offset to check on
      * @return boolean
@@ -947,7 +974,7 @@ class Model extends Component implements IteratorAggregate, ArrayAccess, Arrayab
 
     /**
      * Returns the element at the specified offset.
-     * This method is required by the SPL interface `ArrayAccess`.
+     * This method is required by the SPL interface [[\ArrayAccess]].
      * It is implicitly called when you use something like `$value = $model[$offset];`.
      * @param mixed $offset the offset to retrieve element.
      * @return mixed the element at the offset, null if no element is found at the offset
@@ -959,7 +986,7 @@ class Model extends Component implements IteratorAggregate, ArrayAccess, Arrayab
 
     /**
      * Sets the element at the specified offset.
-     * This method is required by the SPL interface `ArrayAccess`.
+     * This method is required by the SPL interface [[\ArrayAccess]].
      * It is implicitly called when you use something like `$model[$offset] = $item;`.
      * @param integer $offset the offset to set element
      * @param mixed $item the element value
@@ -971,7 +998,7 @@ class Model extends Component implements IteratorAggregate, ArrayAccess, Arrayab
 
     /**
      * Sets the element value at the specified offset to null.
-     * This method is required by the SPL interface `ArrayAccess`.
+     * This method is required by the SPL interface [[\ArrayAccess]].
      * It is implicitly called when you use something like `unset($model[$offset])`.
      * @param mixed $offset the offset to unset element
      */

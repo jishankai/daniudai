@@ -1,12 +1,52 @@
-# Faker #
+# Faker
 
 Faker is a PHP library that generates fake data for you. Whether you need to bootstrap your database, create good-looking XML documents, fill-in your persistence to stress test it, or anonymize data taken from a production service, Faker is for you.
 
-Faker is heavily inspired by Perl's [Data::Faker](http://search.cpan.org/~jasonk/Data-Faker-0.07/), and by ruby's [Faker](http://faker.rubyforge.org/).
+Faker is heavily inspired by Perl's [Data::Faker](http://search.cpan.org/~jasonk/Data-Faker-0.07/), and by ruby's [Faker](https://rubygems.org/gems/faker).
 
 Faker requires PHP >= 5.3.3.
 
-[![Monthly Downloads](https://poser.pugx.org/fzaninotto/faker/d/monthly.png)](https://packagist.org/packages/fzaninotto/faker) [![Build Status](https://secure.travis-ci.org/fzaninotto/Faker.png)](http://travis-ci.org/fzaninotto/Faker) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/eceb78a9-38d4-4ad5-8b6b-b52f323e3549/mini.png)](https://insight.sensiolabs.com/projects/eceb78a9-38d4-4ad5-8b6b-b52f323e3549)
+[![Monthly Downloads](https://poser.pugx.org/fzaninotto/faker/d/monthly.png)](https://packagist.org/packages/fzaninotto/faker) [![Build Status](https://travis-ci.org/fzaninotto/Faker.svg?branch=master)](https://travis-ci.org/fzaninotto/Faker) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/eceb78a9-38d4-4ad5-8b6b-b52f323e3549/mini.png)](https://insight.sensiolabs.com/projects/eceb78a9-38d4-4ad5-8b6b-b52f323e3549)
+
+# Table of Contents
+
+- [Installation](#installation)
+- [Basic Usage](#basic-usage)
+- [Formatters](#formatters)
+	- [Base](#fakerproviderbase)
+	- [Lorem Ipsum Text](#fakerproviderlorem)
+	- [Person](#fakerprovideren_usperson)
+	- [Address](#fakerprovideren_usaddress)
+	- [Phone Number](#fakerprovideren_usphonenumber)
+	- [Company](#fakerprovideren_uscompany)
+	- [Real Text](#fakerprovideren_ustext)
+	- [Date and Time](#fakerproviderdatetime)
+	- [Internet](#fakerproviderinternet)
+	- [User Agent](#fakerprovideruseragent)
+	- [Payment](#fakerproviderpayment)
+	- [Color](#fakerprovidercolor)
+	- [File](#fakerproviderfile)
+	- [Image](#fakerproviderimage)
+	- [Uuid](#fakerprovideruuid)
+	- [Barcode](#fakerproviderbarcode)
+	- [Miscellaneous](#fakerprovidermiscellaneous)
+	- [Biased](#fakerproviderbiased)
+- [Unique and Optional modifiers](#unique-and-optional-modifiers)
+- [Localization](#localization)
+- [Populating Entities Using an ORM or an ODM](#populating-entities-using-an-orm-or-an-odm)
+- [Seeding the Generator](#seeding-the-generator)
+- [Faker Internals: Understanding Providers](#faker-internals-understanding-providers)
+- [Real Life Usage](#real-life-usage)
+- [Language specific formatters](#language-specific-formatters)
+- [Third-Party Libraries Extending/Based On Faker](#third-party-libraries-extendingbased-on-faker)
+- [License](#license)
+
+
+## Installation
+
+```sh
+composer require fzaninotto/faker
+```
 
 ## Basic Usage
 
@@ -28,15 +68,10 @@ echo $faker->address;
   // "426 Jordy Lodge
   // Cartwrightshire, SC 88120-6700"
 echo $faker->text;
-  // Sint velit eveniet. Rerum atque repellat voluptatem quia rerum. Numquam excepturi
-  // beatae sint laudantium consequatur. Magni occaecati itaque sint et sit tempore. Nesciunt
-  // amet quidem. Iusto deleniti cum autem ad quia aperiam.
-  // A consectetur quos aliquam. In iste aliquid et aut similique suscipit. Consequatur qui
-  // quaerat iste minus hic expedita. Consequuntur error magni et laboriosam. Aut aspernatur
-  // voluptatem sit aliquam. Dolores voluptatum est.
-  // Aut molestias et maxime. Fugit autem facilis quos vero. Eius quibusdam possimus est.
-  // Ea quaerat et quisquam. Deleniti sunt quam. Adipisci consequatur id in occaecati.
-  // Et sint et. Ut ducimus quod nemo ab voluptatum.
+  // Dolores sit sint laboriosam dolorem culpa et autem. Beatae nam sunt fugit
+  // et sit et mollitia sed.
+  // Fuga deserunt tempora facere magni omnis. Omnis quia temporibus laudantium
+  // sit minima sint.
 ```
 
 Even if this example shows a property access, each call to `$faker->name` yields a different (random) result. This is because Faker uses `__get()` magic, and forwards `Faker\Generator->$property` calls to `Faker\Generator->format($property)`.
@@ -74,9 +109,13 @@ Each of the generator properties (like `name`, `address`, and `lorem`) are calle
     randomLetter            // 'b'
     randomElements($array = array ('a','b','c'), $count = 1) // array('c')
     randomElement($array = array ('a','b','c')) // 'b'
-    numerify($string = '###') // '609'
-    lexify($string = '????') // 'wgts'
-    bothify($string = '## ??') // '42 jz'
+    shuffle('hello, world') // 'rlo,h eoldlw'
+    shuffle(array(1, 2, 3)) // array(2, 1, 3)
+    numerify('Hello ###') // 'Hello 609'
+    lexify('Hello ???') // 'Hello wgt'
+    bothify('Hello ##??') // 'Hello 42jz'
+    asciify('Hello ***') // 'Hello R6+'
+    regexify('[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}'); // sm0@y8k96a.ej
 
 ### `Faker\Provider\Lorem`
 
@@ -115,12 +154,13 @@ Each of the generator properties (like `name`, `address`, and `lorem`) are calle
     postcode                // '17916'
     address                 // '8888 Cummings Vista Apt. 101, Susanbury, NY 95473'
     country                 // 'Falkland Islands (Malvinas)'
-    latitude                // '77.147489'
-    longitude               // '86.211205'
+    latitude                // 77.147489
+    longitude               // 86.211205
 
 ### `Faker\Provider\en_US\PhoneNumber`
 
-    phoneNumber             // '132-149-0269x3767'
+    phoneNumber             // '201-886-0269 x3767'
+    tollFreePhoneNumber     // '(888) 937-7238'
 
 ### `Faker\Provider\en_US\Company`
 
@@ -142,6 +182,7 @@ Each of the generator properties (like `name`, `address`, and `lorem`) are calle
     date($format = 'Y-m-d', $max = 'now') // '1979-06-09'
     time($format = 'H:i:s', $max = 'now') // '20:49:42'
     dateTimeBetween($startDate = '-30 years', $endDate = 'now') // DateTime('2003-03-15 02:00:49')
+    dateTimeInInterval($startDate = '-30 years', $interval = '+ 5 days') // DateTime('2003-03-15 02:00:49')
     dateTimeThisCentury($max = 'now')     // DateTime('1915-05-30 19:28:21')
     dateTimeThisDecade($max = 'now')      // DateTime('2007-05-29 22:30:48')
     dateTimeThisYear($max = 'now')        // DateTime('2011-02-27 20:52:14')
@@ -164,6 +205,7 @@ Each of the generator properties (like `name`, `address`, and `lorem`) are calle
     freeEmailDomain         // 'yahoo.com'
     safeEmailDomain         // 'example.org'
     userName                // 'wade55'
+    password                // 'k&|X+a45*2['
     domainName              // 'wolffdeckow.net'
     domainWord              // 'feeney'
     tld                     // 'biz'
@@ -190,6 +232,9 @@ Each of the generator properties (like `name`, `address`, and `lorem`) are calle
     creditCardExpirationDate // 04/13
     creditCardExpirationDateString // '04/13'
     creditCardDetails       // array('MasterCard', '4485480221084675', 'Aleksander Nowak', '04/13')
+    // Generates a random IBAN. Set $countryCode to null for a random country
+    iban($countryCode)      // 'IT31A8497112740YZ575DJ28BP4'
+    swiftBicNumber          // RZTIAT22263
 
 ### `Faker\Provider\Color`
 
@@ -213,8 +258,10 @@ Each of the generator properties (like `name`, `address`, and `lorem`) are calle
     // Image generation provided by LoremPixel (http://lorempixel.com/)
     imageUrl($width = 640, $height = 480) // 'http://lorempixel.com/640/480/'
     imageUrl($width, $height, 'cats')     // 'http://lorempixel.com/800/600/cats/'
+    imageUrl($width, $height, 'cats', true, 'Faker') // 'http://lorempixel.com/800/400/cats/Faker'
     image($dir = '/tmp', $width = 640, $height = 480) // '/tmp/13b73edae8443990be1aa8f1a483bc27.jpg'
     image($dir, $width, $height, 'cats')  // 'tmp/13b73edae8443990be1aa8f1a483bc27.jpg' it's a cat!
+    image($dir, $width, $height, 'cats', true, 'Faker') // 'tmp/13b73edae8443990be1aa8f1a483bc27.jpg' it's a cat with Faker text
 
 ### `Faker\Provider\Uuid`
 
@@ -224,16 +271,25 @@ Each of the generator properties (like `name`, `address`, and `lorem`) are calle
 
     ean13          // '4006381333931'
     ean8           // '73513537'
+    isbn13         // '9790404436093'
+    isbn10         // '4881416324'
 
 ### `Faker\Provider\Miscellaneous`
 
     boolean($chanceOfGettingTrue = 50) // true
-    md5                     // 'de99a620c50f2990e87144735cd357e7'
-    sha1                    // 'f08e7f04ca1a413807ebc47551a40a20a0b4de5c'
-    sha256                  // '0061e4c60dac5c1d82db0135a42e00c89ae3a333e7c26485321f24348c7e98a5'
-    locale                  // en_UK
-    countryCode             // UK
-    languageCode            // en
+    md5           // 'de99a620c50f2990e87144735cd357e7'
+    sha1          // 'f08e7f04ca1a413807ebc47551a40a20a0b4de5c'
+    sha256        // '0061e4c60dac5c1d82db0135a42e00c89ae3a333e7c26485321f24348c7e98a5'
+    locale        // en_UK
+    countryCode   // UK
+    languageCode  // en
+    currencyCode  // EUR
+
+### `Faker\Provider\Biased`
+
+    // get a random number between 10 and 20,
+    // with more chances to be close to 20
+    biasedNumberBetween($min = 10, $max = 20, $function = 'sqrt')
 
 ## Unique and Optional modifiers
 
@@ -271,7 +327,7 @@ for ($i=0; $i < 10; $i++) {
 print_r($values); // [1, 4, null, 9, 5, null, null, 4, 6, null]
 
 // optional() accepts a weight argument to specify the probability of receiving the default value.
-// 0 will always return the default value; 1 will always return the provider. Default weight is 0.5.
+// 0 will always return the default value; 1 will always return the provider. Default weight is 0.5 (50% chance).
 $faker->optional($weight = 0.1)->randomDigit; // 90% chance of NULL
 $faker->optional($weight = 0.9)->randomDigit; // 10% chance of NULL
 
@@ -307,7 +363,7 @@ You can check available Faker locales in the source code, [under the `Provider` 
 
 ## Populating Entities Using an ORM or an ODM
 
-Faker provides adapters for Object-Relational and Object-Document Mappers (currently, [Propel](http://www.propelorm.org), [Doctrine2](http://www.doctrine-project.org/projects/orm/2.0/docs/en), and [Mandango](https://github.com/mandango/mandango) are supported). These adapters ease the population of databases through the Entity classes provided by an ORM library (or the population of document stores using Document classes provided by an ODM library).
+Faker provides adapters for Object-Relational and Object-Document Mappers (currently, [Propel](http://www.propelorm.org), [Doctrine2](http://docs.doctrine-project.org/projects/doctrine-orm/en/latest/), [CakePHP](http://cakephp.org) and [Mandango](https://github.com/mandango/mandango) are supported). These adapters ease the population of databases through the Entity classes provided by an ORM library (or the population of document stores using Document classes provided by an ODM library).
 
 To populate entities, create a new populator class (using a generator instance as parameter), then list the class and number of all the entities that must be generated. To launch the actual data population, call the `execute()` method.
 
@@ -327,7 +383,7 @@ The populator uses name and column type guessers to populate each column with re
 ```php
 <?php
 $populator->addEntity('Book', 5, array(
-  'ISBN' => function() use ($generator) { return $generator->randomNumber(13); }
+  'ISBN' => function() use ($generator) { return $generator->ean13(); }
 ));
 ```
 
@@ -385,6 +441,19 @@ echo $faker->name; // 'Jess Mraz I';
 > $faker->dateTime(); // equivalent to $faker->dateTime($max = 'now')
 > // make sure you fix the $max parameter
 > $faker->dateTime('2014-02-25 08:37:17'); // will return always the same date when seeded
+> ```
+>
+> **Tip**: Formatters won't reproduce the same fake data if you use the `rand()` php function. Use `$faker` or `mt_rand()` instead:
+>
+> ```php
+> <?php
+> // bad
+> $faker->realText(rand(10,20));
+> // good
+> $faker->realText($faker->numberBetween(10,20));
+> ```
+
+
 
 ## Faker Internals: Understanding Providers
 
@@ -422,7 +491,7 @@ class Book extends \Faker\Provider\Base
 
   public function ISBN()
   {
-    return $this->generator->randomNumber(13);
+    return $this->generator->ean13();
   }
 }
 ```
@@ -646,6 +715,43 @@ Fugiat non in itaque sunt nobis totam. Sed nesciunt est deleniti cumque alias. R
 
 ## Language specific formatters
 
+### `Faker\Provider\ar_SA\Person`
+```php
+<?php
+
+echo $faker->idNumber;      // ID number
+echo $faker->nationalIdNumber // Citizen ID number
+echo $faker->foreignerIdNumber // Foreigner ID number
+
+```
+
+### `Faker\Provider\at_AT\Payment`
+```php
+<?php
+
+echo $faker->vat;           // "AT U12345678" - Austrian Value Added Tax number
+echo $faker->vat(false);    // "ATU12345678" - unspaced Austrian Value Added Tax number
+
+```
+
+### `Faker\Provider\be_BE\Payment`
+```php
+<?php
+
+echo $faker->vat;           // "BE 0123456789" - Belgian Value Added Tax number
+echo $faker->vat(false);    // "BE0123456789" - unspaced Belgian Value Added Tax number
+
+```
+
+### `Faker\Provider\bg_BG\Payment`
+```php
+<?php
+
+echo $faker->vat;           // "BG 0123456789" - Bulgarian Value Added Tax number
+echo $faker->vat(false);    // "BG0123456789" - unspaced Bulgarian Value Added Tax number
+
+```
+
 ### `Faker\Provider\cs_CZ\Address`
 ```php
 <?php
@@ -669,6 +775,14 @@ echo $faker->ico; // "69663963"
 
 echo $faker->monthNameGenitive; // "prosince"
 echo $faker->formattedDate; // "12. listopadu 2015"
+
+```
+
+### `Faker\Provider\cs_CZ\Person`
+```php
+<?php
+
+echo $faker->birthNumber; // "7304243452"
 
 ```
 
@@ -718,10 +832,6 @@ echo $faker->siren; // 082 250 104
 
 // Generates a random SIRET number
 echo $faker->siret; // 347 355 708 00224
-
-// Generates a random SIRET number (controlling the number of sequential digits)
-echo $faker->siret(3); // 438 472 611 01513
-
 ```
 
 ### `Faker\Provider\fr_FR\Address`
@@ -743,19 +853,106 @@ echo $faker->region; // "Saint-Pierre-et-Miquelon"
 
 ```
 
+### `Faker\Provider\hu_HU\Payment`
+
+```php
+<?php
+
+// Generates a random bank account number
+echo $faker->bankAccountNumber; // "HU09904437680048220079300783"
+
+```
+
 ### `Faker\Provider\ja_JP\Person`
 
 ```php
 <?php
 
 // Generates a 'kana' name
-echo $faker->kanaName; // "アオタ ナオコ"
+echo $faker->kanaName; // "アオタ ミノル"
 
 // Generates a 'kana' first name
-echo $faker->firstKanaName; // "トモミ"
+echo $faker->firstKanaName; // "ハルカ"
 
 // Generates a 'kana' last name
-echo $faker->lastKanaName; // "ナギサ"
+echo $faker->lastKanaName; // "ナカジマ"
+```
+
+### `Faker\Provider\ka_GE\Payment`
+
+```php
+<?php
+
+// Generates a random bank account number
+echo $faker->bankAccountNumber; // "GE33ZV9773853617253389"
+
+```
+
+### `Faker\Provider\kk_KZ\Company`
+
+```php
+<?php
+
+// Generates an business identification number
+echo $faker->businessIdentificationNumber; // "150140000019"
+
+```
+
+### `Faker\Provider\kk_KZ\Payment`
+
+```php
+<?php
+
+// Generates a random bank name
+echo $faker->bank; // "Қазкоммерцбанк"
+
+// Generates a random bank account number
+echo $faker->bankAccountNumber; // "KZ1076321LO4H6X41I37"
+
+```
+
+### `Faker\Provider\kk_KZ\Person`
+
+```php
+<?php
+
+// Generates an individual identification number
+echo $faker->individualIdentificationNumber; // "780322300455"
+
+```
+
+### `Faker\Provider\ko_KR\Address`
+
+```php
+<?php
+
+// Generates a metropolitan city
+echo $faker->metropolitanCity; // "서울특별시"
+
+// Generates a borough
+echo $faker->borough; // "강남구"
+
+```
+
+
+### `Faker\Provider\lv_LV\Person`
+
+```php
+<?php
+
+// Generates a random personal identity card number
+echo $faker->personalIdentityNumber; // "140190-12301"
+
+```
+
+### `Faker\Provider\no_NO\Payment`
+
+```php
+<?php
+
+// Generates a random bank account number
+echo $faker->bankAccountNumber; // "NO3246764709816"
+
 ```
 
 ### `Faker\Provider\pl_PL\Person`
@@ -806,6 +1003,64 @@ echo $faker->taxpayerIdentificationNumber; // '165249277'
 
 ```
 
+### `Faker\Provider\pt_BR\PhoneNumber`
+
+```php
+<?php
+
+echo $faker->areaCode;  // 21
+echo $faker->cellphone; // 9432-5656
+echo $faker->landline;  // 2654-3445
+echo $faker->phone;     // random landline, 8-digit or 9-digit cellphone number
+
+// Using the phone functions with a false argument returns unformatted numbers
+echo $faker->cellphone(false); // 74336667
+
+// cellphone() has a special second argument to add the 9th digit. Ignored if generated a Radio number
+echo $faker->cellphone(true, true); // 98983-3945 or 7343-1290
+
+// Using the "Number" suffix adds area code to the phone
+echo $faker->cellphoneNumber;       // (11) 98309-2935
+echo $faker->landlineNumber(false); // 3522835934
+echo $faker->phoneNumber;           // formatted, random landline or cellphone (obbeying the 9th digit rule)
+echo $faker->phoneNumberCleared;    // not formatted, random landline or cellphone (obbeying the 9th digit rule)
+```
+
+### `Faker\Provider\pt_BR\Person`
+
+```php
+<?php
+
+// The name generator may include double first or double last names, plus title and suffix
+echo $faker->name; // 'Sr. Luis Adriano Sepúlveda Filho'
+
+// Valid document generators have a boolean argument to remove formatting
+echo $faker->cpf;        // '145.343.345-76'
+echo $faker->cpf(false); // '45623467866'
+echo $faker->rg;         // '84.405.736-3'
+echo $faker->cnpj;       // '23.663.478/0001-24'
+```
+
+### `Faker\Provider\ro_MD\Payment`
+
+```php
+<?php
+
+// Generates a random bank account number
+echo $faker->bankAccountNumber; // "MD83BQW1CKMUW34HBESDP3A8"
+
+```
+
+### `Faker\Provider\ro_RO\Payment`
+
+```php
+<?php
+
+// Generates a random bank account number
+echo $faker->bankAccountNumber; // "RO55WRJE3OE8X3YQI7J26U1E"
+
+```
+
 ### `Faker\Provider\ro_RO\Person`
 
 ```php
@@ -840,6 +1095,83 @@ echo $faker->tollFreePhoneNumber; // "0800123456"
 // Generates a random premium-rate phone number
 echo $faker->premiumRatePhoneNumber; // "0900123456"
 ```
+
+### `Faker\Provider\ru_RU\Payment`
+
+```php
+<?php
+
+// Generates a Russian bank name (based on list of real russian banks)
+echo $faker->bank; // "ОТП Банк"
+```
+
+### `Faker\Provider\en_NZ\Phone`
+
+```php
+<?php
+
+// Generates a cell (mobile) phone number
+echo $faker->cellNumber; // "021 123 4567"
+
+// Generates a toll free number
+echo $faker->tollFreeNumber; // "0800 123 456"
+
+// Area Code
+echo $faker->areaCode; // "03"
+```
+
+### `Faker\Provider\sv_SE\Payment`
+
+```php
+<?php
+
+// Generates a random bank account number
+echo $faker->bankAccountNumber; // "SE5018548608468284909192"
+
+```
+
+### `Faker\Provider\sv_SE\Person`
+```php
+<?php
+
+//Generates a valid Swedish personal identity number (in Swedish - Personnummer)
+echo $faker->personalIdentityNumber() // '950910-0799'
+
+//Since the numbers are different for male and female persons, optionally you can specify gender.
+echo $faker->personalIdentityNumber('female') // '950910-0781'
+
+```
+
+### `Faker\Provider\ne_NP\Address`
+```php
+<?php
+
+//Generates a Nepali district name
+echo $faker->district;
+
+//Generates a Nepali city name
+echo $faker->cityName;
+```
+
+## Third-Party Libraries Extending/Based On Faker
+
+* Symfony2 bundles:
+  * [BazingaFakerBundle](https://github.com/willdurand/BazingaFakerBundle): Put the awesome Faker library into the Symfony2 DIC and populate your database with fake data.
+  * [AliceBundle](https://github.com/hautelook/AliceBundle), [AliceFixturesBundle](https://github.com/h4cc/AliceFixturesBundle): Bundles for using [Alice](https://packagist.org/packages/nelmio/alice) and Faker with data fixtures. Able to use Doctrine ORM as well as Doctrine MongoDB ODM.
+* [FakerServiceProvider](https://github.com/EmanueleMinotto/FakerServiceProvider): Faker Service Provider for Silex
+* [faker-cli](https://github.com/bit3/faker-cli): Command Line Tool for the Faker PHP library
+* [Factory Muffin](https://github.com/thephpleague/factory-muffin): enable the rapid creation of objects (PHP port of factory-girl)
+* [CompanyNameGenerator](https://github.com/fzaninotto/CompanyNameGenerator): Generate names for English tech companies with class
+* [PlaceholdItProvider](https://github.com/EmanueleMinotto/PlaceholdItProvider): Generate images using placehold.it
+* [datalea](https://github.com/spyrit/datalea) A highly customizable random test data generator web app
+* [newage-ipsum](https://github.com/frequenc1/newage-ipsum): A new aged ipsum provider for the faker library inspired by http://sebpearce.com/bullshit/
+* [xml-faker](https://github.com/prewk/xml-faker): Create fake XML with Faker
+* [faker-context](https://github.com/denheck/faker-context): Behat context using Faker to generate testdata
+* [CronExpressionGenerator](https://github.com/swekaj/CronExpressionGenerator): Faker provider for generating random, valid cron expressions.
+* [pragmafabrik/Pomm2Faker](https://github.com/pragmafabrik/Pomm2Faker): Faker client for Pomm ORM (PostgreSQL)
+* [nelmio/alice](https://packagist.org/packages/nelmio/alice): Fixtures/object generator with a yaml DSL that can use Faker as data generator.
+* [CakePHP 2.x Fake Seeder Plugin](https://github.com/ravage84/cakephp-fake-seeder) A CakePHP 2.x shell to seed your database with fake and/or fixed data.
+* [images-generator](https://github.com/bruceheller/images-generator): An image generator provider using GD for placeholder type pictures
 
 ## License
 

@@ -10,9 +10,9 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
         133 , 153 , 180 , 181 , 189, // chinatelecom
     );
 
-    protected static $formats = array('######');
+    protected static $formats = array('########');
 
-    public static function phoneNumber()
+    public function phoneNumber()
     {
         $operators = static::randomElement(static::$operators);
 

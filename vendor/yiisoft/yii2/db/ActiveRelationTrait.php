@@ -98,7 +98,7 @@ trait ActiveRelationTrait
      * @param string $relationName the relation name. This refers to a relation declared in [[primaryModel]].
      * @param callable $callable a PHP callback for customizing the relation associated with the junction table.
      * Its signature should be `function($query)`, where `$query` is the query to be customized.
-     * @return static the relation object itself.
+     * @return $this the relation object itself.
      */
     public function via($relationName, callable $callable = null)
     {
@@ -128,7 +128,7 @@ trait ActiveRelationTrait
      * ```
      *
      * @param string $relationName the name of the relation that is the inverse of this relation.
-     * @return static the relation object itself.
+     * @return $this the relation object itself.
      */
     public function inverseOf($relationName)
     {
@@ -249,7 +249,7 @@ trait ActiveRelationTrait
 
             $link = array_values(isset($viaQuery) ? $viaQuery->link : $this->link);
             foreach ($primaryModels as $i => $primaryModel) {
-                if ($this->multiple && count($link) == 1 && is_array($keys = $primaryModel[reset($link)])) {
+                if ($this->multiple && count($link) === 1 && is_array($keys = $primaryModel[reset($link)])) {
                     $value = [];
                     foreach ($keys as $key) {
                         $key = $this->normalizeModelKey($key);

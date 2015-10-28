@@ -281,6 +281,24 @@ abstract class Schema extends Object
     }
 
     /**
+     * Refreshes the particular table schema.
+     * This method cleans up cached table schema so that it can be re-created later
+     * to reflect the database schema change.
+     * @param string $name table name.
+     * @since 2.0.6
+     */
+    public function refreshTableSchema($name)
+    {
+        unset($this->_tables[$name]);
+        $this->_tableNames = [];
+        /* @var $cache Cache */
+        $cache = is_string($this->db->schemaCache) ? Yii::$app->get($this->db->schemaCache, false) : $this->db->schemaCache;
+        if ($this->db->enableSchemaCache && $cache instanceof Cache) {
+            $cache->delete($this->getCacheKey($name));
+        }
+    }
+
+    /**
      * Creates a query builder for the database.
      * This method may be overridden by child classes to create a DBMS-specific query builder.
      * @return QueryBuilder query builder instance
@@ -288,6 +306,21 @@ abstract class Schema extends Object
     public function createQueryBuilder()
     {
         return new QueryBuilder($this->db);
+    }
+
+    /**
+     * Create a column schema builder instance giving the type and value precision.
+     *
+     * This method may be overridden by child classes to create a DBMS-specific column schema builder.
+     *
+     * @param string $type type of the column. See [[ColumnSchemaBuilder::$type]].
+     * @param integer|string|array $length length or precision of the column. See [[ColumnSchemaBuilder::$length]].
+     * @return ColumnSchemaBuilder column schema builder instance
+     * @since 2.0.6
+     */
+    public function createColumnSchemaBuilder($type, $length = null)
+    {
+        return new ColumnSchemaBuilder($type, $length);
     }
 
     /**
@@ -348,7 +381,7 @@ abstract class Schema extends Object
     public function getLastInsertID($sequenceName = '')
     {
         if ($this->db->isActive) {
-            return $this->db->pdo->lastInsertId($sequenceName === '' ? null : $this->quoteSimpleTableName($sequenceName));
+            return $this->db->pdo->lastInsertId($sequenceName === '' ? null : $this->quoteTableName($sequenceName));
         } else {
             throw new InvalidCallException('DB Connection is not active.');
         }
@@ -560,9 +593,9 @@ abstract class Schema extends Object
         ];
         if (isset($typeMap[$column->type])) {
             if ($column->type === 'bigint') {
-                return PHP_INT_SIZE == 8 && !$column->unsigned ? 'integer' : 'string';
+                return PHP_INT_SIZE === 8 && !$column->unsigned ? 'integer' : 'string';
             } elseif ($column->type === 'integer') {
-                return PHP_INT_SIZE == 4 && $column->unsigned ? 'string' : 'integer';
+                return PHP_INT_SIZE === 4 && $column->unsigned ? 'string' : 'integer';
             } else {
                 return $typeMap[$column->type];
             }

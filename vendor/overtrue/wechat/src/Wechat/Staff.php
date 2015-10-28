@@ -89,7 +89,7 @@ class Staff
      */
     public function onlines()
     {
-        $response = $this->http->get(self::API_GET);
+        $response = $this->http->get(self::API_ONLINE);
 
         return $response['kf_online_list'];
     }
@@ -151,7 +151,7 @@ class Staff
                    'password'   => $password,
                   );
 
-        return $this->http->jsonPost(self::API_UPDATE, $params);
+        return $this->http->jsonPost(self::API_DELETE . "?kf_account={$email}", $params);
     }
 
     /**
@@ -168,9 +168,9 @@ class Staff
                     'files' => array('media' => $path),
                    );
 
-        $url = self::API_AVATAR_UPLOAD."?kf_account={$email}";
+        $url = self::API_AVATAR_UPLOAD . "?kf_account={$email}";
 
-        return $this->http->jsonPost($url, array(), $options);
+        return $this->http->post($url, array(), $options);
     }
 
     /**
@@ -185,7 +185,7 @@ class Staff
         is_string($message) && $message = Message::make('text')->with('content', $message);
 
         if (!$message instanceof BaseMessage) {
-            throw new Exception("消息必须继承自 'Overtrue\Wechat\BaseMessage'");
+            throw new \Exception("消息必须继承自 'Overtrue\\Wechat\\BaseMessage'");
         }
 
         $this->message = $message;

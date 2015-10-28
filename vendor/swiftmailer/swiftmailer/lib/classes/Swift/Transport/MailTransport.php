@@ -19,7 +19,7 @@
  * due to limitations of PHP's internal mail() function.  You'll get an
  * all-or-nothing result from sending.
  *
- * @author     Chris Corbyn
+ * @author Chris Corbyn
  */
 class Swift_Transport_MailTransport implements Swift_Transport
 {
@@ -156,15 +156,17 @@ class Swift_Transport_MailTransport implements Swift_Transport
         if ("\r\n" != PHP_EOL) {
             // Non-windows (not using SMTP)
             $headers = str_replace("\r\n", PHP_EOL, $headers);
+            $subject = str_replace("\r\n", PHP_EOL, $subject);
             $body = str_replace("\r\n", PHP_EOL, $body);
         } else {
             // Windows, using SMTP
             $headers = str_replace("\r\n.", "\r\n..", $headers);
+            $subject = str_replace("\r\n.", "\r\n..", $subject);
             $body = str_replace("\r\n.", "\r\n..", $body);
         }
 
         if ($this->_invoker->mail($to, $subject, $body, $headers,
-            sprintf($this->_extraParams, $reversePath))) {
+            sprintf($this->_extraParams, escapeshellarg($reversePath)))) {
             if ($evt) {
                 $evt->setResult(Swift_Events_SendEvent::RESULT_SUCCESS);
                 $evt->setFailedRecipients($failedRecipients);

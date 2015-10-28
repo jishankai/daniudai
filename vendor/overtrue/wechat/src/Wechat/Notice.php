@@ -177,7 +177,7 @@ class Notice
     {
         $params = array('template_id_short' => $shortId);
 
-        $result = $this->http->jsonPost(self::API_SET_INDUSTRY, $params);
+        $result = $this->http->jsonPost(self::API_ADD_TEMPLATE, $params);
 
         return $result['template_id'];
     }
@@ -208,8 +208,13 @@ class Notice
                    'data'        => $data,
                   );
 
+        $required = array(
+                     'touser',
+                     'template_id',
+                    );
+
         foreach ($params as $key => $value) {
-            if (empty($value) && empty($this->message[$key])) {
+            if (in_array($key, $required) && empty($value) && empty($this->message[$key])) {
                 throw new Exception("消息属性 '$key' 不能为空！");
             }
 
@@ -280,7 +285,7 @@ class Notice
                     $value = array_shift($item);
                     $color = $this->defaultColor;
                 } else {
-                    list($value, $color) = each($item);
+                    list($value, $color) = $item;
                 }
             } else {
                 $value = '数据项格式错误';
@@ -331,7 +336,8 @@ class Notice
         if (isset($map[$method])) {
             $this->message[$map[$method]] = array_shift($args);
 
-            return $this;
         }
+
+        return $this;
     }
 }

@@ -10,7 +10,6 @@ namespace yii\validators;
 use DateTime;
 use IntlDateFormatter;
 use Yii;
-use yii\base\Exception;
 use yii\base\InvalidConfigException;
 use yii\helpers\FormatConverter;
 
@@ -53,7 +52,7 @@ class DateValidator extends Validator
      * is used to parse the input value. In all other cases the PHP [DateTime](http://php.net/manual/en/datetime.createfromformat.php) class
      * is used. The IntlDateFormatter has the advantage that it can parse international dates like `12. Mai 2015` or `12 мая 2014`, while the
      * PHP parser is limited to English only. The PHP parser however is more strict about the input format as it will not accept
-     * `12.05.05` for the format `php:d.m.Y`, but the IntlDateFormatter will accept it for the format `dd-MM-yyyy`.
+     * `12.05.05` for the format `php:d.m.Y`, but the IntlDateFormatter will accept it for the format `dd.MM.yyyy`.
      * If you need to use the IntlDateFormatter you can avoid this problem by specifying a [[min|minimum date]].
      */
     public $format;
@@ -181,10 +180,10 @@ class DateValidator extends Validator
             $this->tooBig = Yii::t('yii', '{attribute} must be no greater than {max}.');
         }
         if ($this->maxString === null) {
-            $this->maxString = (string)$this->max;
+            $this->maxString = (string) $this->max;
         }
         if ($this->minString === null) {
-            $this->minString = (string)$this->min;
+            $this->minString = (string) $this->min;
         }
         if ($this->max !== null && is_string($this->max)) {
             $timestamp = $this->parseDateValue($this->max);
@@ -276,7 +275,6 @@ class DateValidator extends Validator
     {
         if (isset($this->_dateFormats[$format])) {
             $formatter = new IntlDateFormatter($this->locale, $this->_dateFormats[$format], IntlDateFormatter::NONE, 'UTC');
-            $hasTimeInfo = false;
         } else {
             // if no time was provided in the format string set time to 0 to get a simple date timestamp
             $hasTimeInfo = (strpbrk($format, 'ahHkKmsSA') !== false);

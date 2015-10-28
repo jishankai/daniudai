@@ -16,7 +16,9 @@
 namespace Overtrue\Wechat;
 
 use Overtrue\Wechat\Utils\JSON;
+use Overtrue\Wechat\Utils\Arr;
 use Overtrue\Wechat\Utils\Bag;
+use Overtrue\Wechat\Utils\File;
 
 /**
  * 媒体素材
@@ -28,7 +30,7 @@ use Overtrue\Wechat\Utils\Bag;
 class Media
 {
     const API_TEMPORARY_UPLOAD    = 'http://file.api.weixin.qq.com/cgi-bin/media/upload';
-    const API_FOREVER_UPLOAD      = 'http://api.weixin.qq.com/cgi-bin/material/add_material';
+    const API_FOREVER_UPLOAD      = 'https://api.weixin.qq.com/cgi-bin/material/add_material';
     const API_TEMPORARY_GET       = 'https://api.weixin.qq.com/cgi-bin/media/get';
     const API_FOREVER_GET         = 'https://api.weixin.qq.com/cgi-bin/material/get_material';
     const API_FOREVER_NEWS_UPLOAD = 'https://api.weixin.qq.com/cgi-bin/material/add_news';
@@ -117,8 +119,14 @@ class Media
         $response = $this->http->post($url, $params, $options);
 
         $this->forever = false;
+        
+        if ($type == 'image') {
+            return $response;
+        }
 
-        return $response['media_id'];
+        $response = Arr::only($response, array('media_id', 'thumb_media_id'));
+
+        return array_pop($response);
     }
 
     /**
@@ -176,7 +184,7 @@ class Media
         $params = array(
                    'media_id' => $mediaId,
                    'index'    => $index,
-                   'articles' => array($article),
+                   'articles' => isset($article['title']) ? $article : (isset($article[$index]) ? $article[$index] : array()),
                   );
 
         return $this->http->jsonPost(self::API_FOREVER_NEWS_UPDATE, $params);
@@ -266,7 +274,18 @@ class Media
 
         $contents = $this->http->{$method}($api, $params);
 
-        return $filename ? file_put_contents($filename, $contents) : $contents;
+        $filename = $filename ? $filename : $mediaId;
+
+        if (!is_array($contents)) {
+            $ext = File::getStreamExt($contents);
+
+            file_put_contents($filename.'.'.$ext, $contents);
+
+            return $filename.'.'.$ext;
+        } else {
+
+            return $contents;
+        }
     }
 
     /**

@@ -59,6 +59,12 @@ class Card
     const TYPE_LUCKY_MONEY    = 'LUCKY_MONEY';      // 红包
     const TYPE_MEETING_TICKET = 'MEETING_TICKET';   // 会议门票
 
+    const CARD_STATUS_NOT_VERIFY    = 'CARD_STATUS_NOT_VERIFY' ;   // 待审核
+    const CARD_STATUS_VERIFY_FAIL   = 'CARD_STATUS_VERIFY_FAIL';   //审核失败
+    const CARD_STATUS_VERIFY_OK     = 'CARD_STATUS_VERIFY_OK';     //通过审核
+    const CARD_STATUS_USER_DELETE   = 'CARD_STATUS_USER_DELETE';   //卡券被商户删除
+    const CARD_STATUS_USER_DISPATCH = 'CARD_STATUS_USER_DISPATCH'; //在公众平台投放过的卡券 
+
     const API_CREATE                = 'https://api.weixin.qq.com/card/create';
     const API_DELETE                = 'https://api.weixin.qq.com/card/delete';
     const API_GET                   = 'https://api.weixin.qq.com/card/get';
@@ -76,6 +82,9 @@ class Card
     const API_BOARDING_PASS_CHECKIN = 'https://api.weixin.qq.com/card/boardingpass/checkin';
     const API_MEETING_TICKET_UPDATE = 'https://api.weixin.qq.com/card/meetingticket/updateuser';
     const API_TICKET                = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?type=wx_card';
+    const API_TESTWHITELIST         = 'https://api.weixin.qq.com/card/testwhitelist/set';
+    const API_USER_CARD_LIST        = 'https://api.weixin.qq.com/card/user/getcardlist';
+    const API_LANDINGPAGE_CREATE    = 'https://api.weixin.qq.com/card/landingpage/create';
 
     /**
      * constructor
@@ -149,8 +158,8 @@ class Card
         );
 
         return array(
-                'card_id'  => $cardId,
-                'card_ext' => JSON::encode($ext),
+                'cardId'  => $cardId,
+                'cardExt' => JSON::encode($ext),
                );
     }
 
@@ -163,7 +172,7 @@ class Card
      *
      * @return string
      */
-    public function create(array $base, array $properties = array(), $type = self::GENERAL_COUPON)
+    public function create(array $base, array $properties = array(), $type = self::TYPE_GENERAL_COUPON)
     {
         $key  = strtolower($type);
         $card = array_merge(array('base_info' => $base), $properties);
@@ -223,14 +232,16 @@ class Card
      *
      * @param int $offset
      * @param int $count
+     * @param array $statusList
      *
      * @return array
      */
-    public function lists($offset = 0, $count = 10)
+    public function lists($offset = 0, $count = 10, $statusList = array())
     {
         $params = array(
                    'offset' => $offset,
                    'count'  => $count,
+                   'status_list' => $statusList
                   );
 
         $result = $this->http->jsonPost(self::API_LIST, $params);
@@ -419,6 +430,22 @@ class Card
     }
 
     /**
+     * 获取用户已领取卡券接口
+     *
+     * @param string $openid
+     * @param string $cardId
+     *
+     * @return array
+     */
+    public function userCardLists($openid , $cardId = null){
+        $params = [
+            'openid'    =>  $openid,
+            'card_id'   =>  $cardId
+        ];
+        return new Bag($this->http->jsonPost(self::API_USER_CARD_LIST, $params));
+    }
+
+    /**
      * 会员卡交易
      *
      * <pre>
@@ -546,5 +573,121 @@ class Card
     public function getNonce()
     {
         return uniqid('pre_');
+    }
+
+    /**
+     * 设置测试白名单
+     *
+     * <pre>
+     * $data:
+     * {
+     *     "openIds": {
+     *          "openid1",
+     *          "openid2",
+     *          "openid3"...
+     *     }
+     *     "usernames": {
+     *          "username1",
+     *          "username2",
+     *          "username3"...
+     *     }
+     * }
+     * </pre>
+     *
+     * @param array $data
+     *
+     * @return mixed
+     */
+    public function setWhitelist(array $data)
+    {
+        $data = array_merge(array('openIds' => array(), 'usernames' => array()), $data);
+        $params = array_merge(array('openid' => $data['openIds']), array('username' => $data['usernames']));
+
+        return $this->http->jsonPost(self::API_TESTWHITELIST, $params);
+    }
+
+    /**
+     * 通过openId设置测试白名单
+     *
+     * $data:
+     * {
+     *     "openid1",
+     *     "openid2",
+     *     "openid3"...
+     * }
+     *
+     * @param array $data
+     *
+     * @return mixed
+     */
+    public function setWhitelistByOpenId(array $data)
+    {
+        return $this->setWhitelist(array('openIds' => $data));
+    }
+
+    /**
+     * 通过username设置测试白名单
+     *
+     * $data:
+     * {
+     *     "username1",
+     *     "username2",
+     *     "username3"...
+     * }
+     *
+     * @param array $data
+     *
+     * @return mixed
+     */
+    public function setWhitelistByUsername(array $data)
+    {
+        return $this->setWhitelist(array('usernames' => $data));
+    }
+
+    /**
+     * 创建卡券货架
+     *
+     * <pre>
+     * $data:
+     * {
+     *     "banner": "http://mmbiz.qpic.cn/mmbiz/iaL1LJM1mF9aRKPZJkmG8xXhiaHqkKSVMMWeN3hLut7X7h  icFN",
+     *     "page_title": "惠城优惠大派送",
+     *     "can_share": true,
+     *     "scene": 'SCENE_H5',
+     *     "card_list": [
+     *         {
+     *             'card_id':"pXch-jnOlGtbuWwIO2NDftZeynRE",
+     *             'thumb_url':"www.qq.com/a.jpg"
+     *         },
+     *         {
+     *             'card_id':"pXch-jnAN-ZBoRbiwgqBZ1RV60fI",
+     *             'thumb_url':"www.qq.com/b.jpg"
+     *         }
+     *     ]
+     * }
+     * </pre>
+     *
+     * @param array $data
+     *
+     * @return array
+     */
+    public function createLandingPage(array $data)
+    {
+        $defaultParams = array(
+            'banner' => '',
+            'page_title' => '',
+            'can_share' => true,
+            'scene' => 'SCENE_H5',
+            'card_list' => array(
+                array(
+                    'card_id' => '',
+                    'thumb_url' => ''
+                )
+            )
+        );
+
+        $params = array_merge($defaultParams, $data);
+
+        return $this->http->jsonPost(self::API_LANDINGPAGE_CREATE, $params);
     }
 }
