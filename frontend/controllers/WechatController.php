@@ -78,7 +78,7 @@ class WechatController extends \yii\web\Controller
         });
 
         $server->on('event', 'subscribe', function($event){
-            if (isset($event['Eventkey'])) {
+            if (isset($event['EventKey'])) {
                 $qr = new Qr;
                 $qr->wechat_id = $event['FromUserName'];
                 $qr->scene = $event['EventKey'];
