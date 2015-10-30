@@ -142,7 +142,7 @@ class WechatController extends \yii\web\Controller
 
         $qrcode = new QRCode($appId, $secret);
 
-        $result = $qrcode->forever($scene_id);
+        $result = $qrcode->forever(int($scene_id));
 
         $ticket = $result->ticket; // 或者 $result['ticket']
 
