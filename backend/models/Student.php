@@ -49,12 +49,12 @@ class Student extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'wechat_id' => 'Wechat ID',
-            'stu_id' => 'Stu ID',
-            'school_id' => 'School ID',
-            'dorm' => 'Dorm',
-            'grade' => 'Grade',
-            'mail' => 'Mail',
+            'wechat_id' => '微信',
+            'stu_id' => '编号',
+            'school_id' => '学校',
+            'dorm' => '寝室',
+            'grade' => '年级',
+            'mail' => '邮箱',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];

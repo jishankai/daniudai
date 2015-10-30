@@ -46,11 +46,11 @@ class Bank extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'wechat_id' => 'Wechat ID',
-            'card' => 'Card',
-            'name' => 'Name',
-            'mobile' => 'Mobile',
-            'cid' => 'Cid',
+            'wechat_id' => '微信',
+            'card' => '卡号',
+            'name' => '姓名',
+            'mobile' => '电话',
+            'cid' => '身份证',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];

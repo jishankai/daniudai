@@ -44,11 +44,11 @@ class Yeepay extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'order_id' => 'Order ID',
-            'wechat_id' => 'Wechat ID',
-            'fee' => 'Fee',
-            'status' => 'Status',
-            'loan_id' => 'Loan ID',
+            'order_id' => '编号',
+            'wechat_id' => '微信',
+            'fee' => '还款额',
+            'status' => '状态',
+            'loan_id' => '借款编号',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];

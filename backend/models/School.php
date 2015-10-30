@@ -46,11 +46,11 @@ class School extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'school_id' => 'School ID',
-            'name' => 'Name',
-            'depart' => 'Depart',
-            'major' => 'Major',
-            'degree' => 'Degree',
+            'school_id' => '学校',
+            'name' => '学校名称',
+            'depart' => '学院',
+            'major' => '专业',
+            'degree' => '学历',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];

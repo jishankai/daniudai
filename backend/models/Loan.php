@@ -50,14 +50,15 @@ class Loan extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'loan_id' => 'Loan ID',
-            'wechat_id' => 'Wechat ID',
-            'money' => 'Money',
-            'duration' => 'Duration',
-            'rate' => 'Rate',
-            'status' => 'Status',
-            'start_at' => 'Start At',
-            'end_at' => 'End At',
+            'loan_id' => '编号',
+            'wechat_id' => '微信',
+            'money' => '金额',
+            'duration' => '周期',
+            'rate' => '费率',
+            'status' => '状态',
+            'start_at' => '开始时间',
+            'end_at' => '结束时间',
+            'reviewer' => '审核人',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];

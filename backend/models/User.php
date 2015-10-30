@@ -55,15 +55,15 @@ class User extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'wechat_id' => 'Wechat ID',
-            'name' => 'Name',
-            'id' => 'ID',
-            'mobile' => 'Mobile',
-            'bank' => 'Bank',
-            'bank_id' => 'Bank ID',
-            'auth_code' => 'Auth Code',
-            'verify_times' => 'Verify Times',
-            'ban' => 'Ban',
+            'wechat_id' => '微信',
+            'name' => '姓名',
+            'id' => '身份证',
+            'mobile' => '电话',
+            'bank' => '银行',
+            'bank_id' => '卡号',
+            'auth_code' => '密码',
+            'verify_times' => '剩余验证次数',
+            'ban' => '黑名单',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
