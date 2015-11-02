@@ -839,13 +839,14 @@ class LoanController extends \yii\web\Controller
         session_start();
         if (empty($_SESSION['user'])) {
             $auth = new Auth($appId, $secret);
-            $user = $auth->authorize(Url::to(['loan/repay'], TRUE), 'snsapi_base'); // 返回用户 Bag
+            $user = $auth->authorize(Url::to(['loan/repays'], TRUE), 'snsapi_base'); // 返回用户 Bag
             $_SESSION['user'] = $user;
         }
     
         $user = $_SESSION['user'];
-        $l = Loan::find()->where(['and', 'wechat_id=:wechat_id', 'status<4'])->addParams([':wechat_id'=>$user['openid']])->one();
-
+        //$l = Loan::find()->where(['and', 'wechat_id=:wechat_id', 'status<4'])->addParams([':wechat_id'=>$user['openid']])->one();
+        $l = Loan::findOne($loan_id);
+        
         if (isset($l) and $l->status>2) {
             if ($l->status==3) {
                 $js = new Js($appId, $secret); 
@@ -868,7 +869,6 @@ class LoanController extends \yii\web\Controller
         return $this->renderPartial('repayed', ['v'=>Yii::$app->params['assets_version'], 'js'=>$js]);
     }
 
-
     public function actionBinds()
     {
         $merchantaccount = Yii::$app->params['merchant_account'];
@@ -882,6 +882,4 @@ class LoanController extends \yii\web\Controller
 
         var_dump($yeepay->getBinds($identity_type, $identity_id));
     }
-
-
 }
