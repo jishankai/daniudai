@@ -119,9 +119,6 @@ class LLpayNotify {
 				'money_order' => $json->decode($res_data)-> {'money_order' },
 				'result_pay' => $json->decode($res_data)-> {'result_pay' },
 				'settle_date' => $json->decode($res_data)-> {'settle_date' },
-				'info_order' => $json->decode($res_data)-> {'info_order' },
-				'pay_type'=> $json->decode($res_data)-> {'pay_type' },
-				'bank_code'=> $json->decode($res_data)-> {'bank_code' },
 			);
 
 			if (!$this->getSignVeryfy($parameter,$json->decode($res_data)-> {'sign' })) {
