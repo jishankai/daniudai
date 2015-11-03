@@ -770,7 +770,7 @@ class LoanController extends \yii\web\Controller
         return $this->renderPartial('password', ['v'=>Yii::$app->params['assets_version'], 'type'=>$type, 'js'=>$js]);
     }
 
-    public function actionAuth()
+    public function actionAuth($is_reset=0)
     {
         $appId = Yii::$app->params['wechat_appid'];
         $secret = Yii::$app->params['wechat_appsecret'];
@@ -784,6 +784,11 @@ class LoanController extends \yii\web\Controller
     
         $user = $_SESSION['user'];
         $u = User::findOne($user['openid']);
+
+        if ($is_reset) {
+            $u->auth_code = '';
+            $u->updateAttributes(['auth_code']);
+        }
 
         if (isset($u) and $u->name!='' and $u->id!='') {
             if (Yii::$app->request->getIsAjax()) {

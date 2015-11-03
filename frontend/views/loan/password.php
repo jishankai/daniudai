@@ -25,7 +25,7 @@
 			                    <span class="input__box no-border">             
 			                        <input type="password" class="forms_input" placeholder="输入原有密码" value="" maxlength="6" id="ogn_pwd" node-type="LoanOpwdInput">	
 			                    </span>
-			                    <a class="f-right-btn font-gray" href="./index.php?r=loan/auth">忘记了<i class="icons icons-arrowRright"></i></a>
+			                    <a class="f-right-btn font-gray" href="./index.php?r=loan/auth&is_reset=1">忘记了<i class="icons icons-arrowRright"></i></a>
 			                </div>
 		                </div> <!--修改密码之原始密码的代码-->
 						<div class="forms-item forms-psdNew">

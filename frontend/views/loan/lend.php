@@ -92,7 +92,7 @@
 							<i><b data-type="h" style="visibility: hidden;"></b></i>
 						</div>
 						<span id="error" style="color:red;"></span>
-						<a href="./index.php?r=loan/auth" class="forget-btn font-gray clearfix">忘记密码</a>
+						<a href="./index.php?r=loan/auth&is_reset=1" class="forget-btn font-gray clearfix">忘记密码</a>
 			        </div>
 					<a href="#" class="btn-option"> 					
 						<button class="btn btn-orange btn-fullwidth" id="pwd_btn">下一步</button>	
