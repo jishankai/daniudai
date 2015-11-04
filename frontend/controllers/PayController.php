@@ -92,7 +92,7 @@ class PayController extends \yii\web\Controller
             "oid_partner" => trim($llpay_config['oid_partner']),
             "app_request" => trim($llpay_config['app_request']),
             "sign_type" => trim($llpay_config['sign_type']),
-            "valid_order" => trim($llpay_config['valid_order']),
+            "valid_order" => $valid_order,
             "user_id" => $user_id,
             "busi_partner" => $busi_partner,
             "no_order" => $no_order,
