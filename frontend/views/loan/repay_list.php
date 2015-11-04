@@ -111,7 +111,7 @@
 		 			count = count + b_l;
 		 		}else{
 		 			overdue.append("<div class='repay-item' id='"+key+"'><span class='money' id='pay_off_money'>"+money+"元</span><p id='pay_off_date'>"+date+"</p><div class='r-right'><span class='font-red>已逾期<em>"+Math.abs(s_day)+"</em>天</span><span class='r-arrow'></span></div></div>");
-		 			bill = Math.round((b_l + b_l * Math.abs(s_day) * 0.0004)*100)/100;
+		 			bill = Math.ceil((b_l + b_l * Math.abs(s_day) * 0.0007)*100)/100;
 		 			count = count + bill;
 		 		}
 		 	}else if(arrstatus[key]==4){
