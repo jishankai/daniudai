@@ -43,7 +43,7 @@ $llpay_config['app_request'] = '3';
 
 
 //签名方式 不需修改
-$llpay_config['sign_type'] = strtoupper('RSA');
+$llpay_config['sign_type'] = strtoupper('MD5');
 
 //订单有效时间  分钟为单位，默认为10080分钟（7天） 
 $llpay_config['valid_order'] ="10080";
