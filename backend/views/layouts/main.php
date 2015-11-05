@@ -17,7 +17,7 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+    <title><?= Html::encode("真牛贷管理后台") ?></title>
     <?php $this->head() ?>
 </head>
 <body>
@@ -32,7 +32,9 @@ AppAsset::register($this);
                 ],
             ]);
             $menuItems = [
-                ['label' => '主页', 'url' => ['/site/index']],
+                ['label' => '历史列表', 'url' => ['/loan/index']],
+                ['label' => '额度统计', 'url' => ['/loan/money']],
+                ['label' => '人数统计', 'url' => ['/loan/customer']],
             ];
             if (Yii::$app->user->isGuest) {
                 $menuItems[] = ['label' => '登录', 'url' => ['/site/login']];

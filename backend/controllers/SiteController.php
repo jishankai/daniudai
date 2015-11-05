@@ -55,13 +55,14 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
+
         return $this->render('index');
     }
 
     public function actionLogin()
     {
         if (!\Yii::$app->user->isGuest) {
-            return $this->goHome();
+            return $this->redirect['loan/index'];
         }
 
         $model = new LoginForm();
