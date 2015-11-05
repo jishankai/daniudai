@@ -33,8 +33,6 @@ AppAsset::register($this);
             ]);
             $menuItems = [
                 ['label' => '历史列表', 'url' => ['/loan/index']],
-                ['label' => '额度统计', 'url' => ['/loan/money']],
-                ['label' => '人数统计', 'url' => ['/loan/customer']],
             ];
             if (Yii::$app->user->isGuest) {
                 $menuItems[] = ['label' => '登录', 'url' => ['/site/login']];

@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute'=>'duration',
                 'vAlign'=>'middle',
                 'width'=>'8%',
-                'filter'=>[100,200,300],
+                'filter'=>[100=>100,200=>200,300=>300],
                 'format'=>'raw',
             ],
             'rate',
@@ -58,7 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'vAlign'=>'middle',
                 'width'=>'8%',
                 'value'=>function ($model, $key, $index, $widget) {
-                    return User::findOne($model->reviewer)->name;
+                    return $model->reviewer==''?'':User::findOne($model->reviewer)->name;
                 },
                 //'filterType'=>GridView::FILTER_SELECT2,
                 'filter'=>ArrayHelper::map(User::find()->orderBy('name')->asArray()->all(), 'wechat_id', 'name'),
@@ -88,6 +88,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'type'=>GridView::TYPE_PRIMARY,
             'heading'=>"历史列表",
         ],
+        'showPageSummary'=>true,
     ]); ?>
 
 </div>
