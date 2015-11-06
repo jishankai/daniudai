@@ -35,11 +35,11 @@ AppAsset::register($this);
                 ['label' => '历史列表', 'url' => ['/loan/index']],
             ];
             if (Yii::$app->user->isGuest) {
-                $menuItems[] = ['label' => '登录', 'url' => ['/site/login']];
+                $menuItems[] = ['label' => '登录', 'url' => ['/user/login']];
             } else {
                 $menuItems[] = [
                     'label' => '登出 (' . Yii::$app->user->identity->username . ')',
-                    'url' => ['/site/logout'],
+                    'url' => ['/user/logout'],
                     'linkOptions' => ['data-method' => 'post']
                 ];
             }

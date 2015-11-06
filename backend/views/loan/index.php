@@ -33,14 +33,26 @@ $this->params['breadcrumbs'][] = $this->title;
                 'pageSummary'=>true,
                 'pageSummaryFunc'=>GridView::F_COUNT,
             ],
-            'wechat.id',
-            'wechat.mobile',
             [
-                'attribute'=>'wechat.student.school.name',
-                //'filter'=>ArrayHelper::map(School::find()->orderBy('name')->asArray()->all(), 'name', 'name'),
+                'attribute'=>'wechat.id',
+                'vAlign'=>'middle',
             ],
-            'wechat.student.school.depart',
-            'wechat.student.grade',
+            [
+                'attribute'=>'wechat.mobile',
+                'vAlign'=>'middle',
+            ],
+            [
+                'attribute'=>'school',
+                'filter'=>ArrayHelper::map(School::find()->orderBy('name')->asArray()->all(), 'name', 'name'),
+            ],
+            [
+                'attribute'=>'wechat.student.school.depart',
+                'vAlign'=>'middle',
+            ],
+            [
+                'attribute'=>'wechat.student.grade',
+                'vAlign'=>'middle',
+            ],
             [
                 'attribute'=>'money',
                 'pageSummary'=>true,
@@ -52,7 +64,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filter'=>[100=>100,200=>200,300=>300],
                 'format'=>'raw',
             ],
-            'rate',
+            [
+                'attribute'=>'rate',
+                'vAlign'=>'middle',
+            ],
             [
                 'attribute'=>'reviewer',
                 'vAlign'=>'middle',
@@ -61,7 +76,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $model->reviewer==''?'':User::findOne($model->reviewer)->name;
                 },
                 //'filterType'=>GridView::FILTER_SELECT2,
-                'filter'=>ArrayHelper::map(User::find()->orderBy('name')->asArray()->all(), 'wechat_id', 'name'),
+                'filter'=>ArrayHelper::map(User::find()->orderBy('wechat_id')->asArray()->all(), 'reviewer', 'name'),
                 'format'=>'raw'
             ],
             [
@@ -75,8 +90,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format'=>'raw',
             ],
 
-            'start_at:datetime',
-            'end_at:datetime',
+            // [
+            //     'attribute'=>'start_at:date',
+            //     'vAlign'=>'middle',
+            //     'filterType'=>GridView::FILTER_DATE_RANGE,
+            // ],
+            // [
+            //     'attribute'=>'end_at:date',
+            //     'vAlign'=>'middle',
+            //     'filterType'=>GridView::FILTER_DATE_RANGE,
+            // ]
         ],
         'responsive'=>true,
         'hover'=>true,

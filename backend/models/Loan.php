@@ -59,6 +59,7 @@ class Loan extends \yii\db\ActiveRecord
             'start_at' => '开始时间',
             'end_at' => '结束时间',
             'reviewer' => '审核人',
+            'school' => '学校',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
@@ -70,5 +71,10 @@ class Loan extends \yii\db\ActiveRecord
     public function getWechat()
     {
         return $this->hasOne(User::className(), ['wechat_id' => 'wechat_id']);
+    }
+
+    public function getSchool()
+    {
+        return $this->wechat->student->school->name;
     }
 }

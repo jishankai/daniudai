@@ -12,6 +12,7 @@ use backend\models\Loan;
  */
 class LoanSearch extends Loan
 {
+    public $school;
     /**
      * @inheritdoc
      */
@@ -19,7 +20,7 @@ class LoanSearch extends Loan
     {
         return [
             [['loan_id', 'money', 'duration', 'status', 'start_at', 'end_at', 'created_at'], 'integer'],
-            [['wechat_id', 'reviewer', 'updated_at'], 'safe'],
+            [['wechat_id', 'school', 'reviewer', 'updated_at'], 'safe'],
             [['rate'], 'number'],
         ];
     }
@@ -48,6 +49,9 @@ class LoanSearch extends Loan
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pagesize' => '50',
+            ]
         ]);
 
         $this->load($params);

@@ -113,7 +113,7 @@ return [
     'as access' => [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
-            'admin/*',
+            //'admin/*',
             // The actions listed here will be allowed to everyone including guests.
             // So, 'admin/*' should not appear here in the production, of course.
             // But in the earlier stages of your development, you may probably want to
@@ -130,12 +130,12 @@ return [
             'user/registration/resend',
             'user/registration/connect',
 
-            'site/index',
-            'site/about',
-            'site/contact',
-            'site/signup',
-            'site/logout',
-            'site/login',
+            // 'site/index',
+            // 'site/about',
+            // 'site/contact',
+            // 'site/signup',
+            // 'site/logout',
+            // 'site/login',
 
             'gii/*',
             'loan/*',
