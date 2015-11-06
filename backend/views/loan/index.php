@@ -23,11 +23,11 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'class'=>'kartik\grid\SerialColumn',
                 'contentOptions'=>['class'=>'kartik-sheet-style'],
-                'width'=>'36px',
+                'width'=>'5%',
                 'vAlign'=>'middle',
                 'header'=>'',
                 'headerOptions'=>['class'=>'kartik-sheet-style'],
-                'pageSummary'=>'总计：',
+                'pageSummary'=>'总计',
             ],
             [
                 'attribute'=>'wechat.name',
@@ -41,6 +41,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute'=>'wechat.mobile',
+                'vAlign'=>'middle',
+            ],
+            [
+                'attribute'=>'wechat.bank',
+                'vAlign'=>'middle',
+            ],
+            [
+                'attribute'=>'wechat.bank_id',
                 'vAlign'=>'middle',
             ],
             [
@@ -115,6 +123,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'type'=>GridView::TYPE_PRIMARY,
             'heading'=>"历史列表",
         ],
+        'toolbar'=> [
+            //'{export}',
+            '{toggleData}',
+        ],
+        // set export properties
+        // 'export'=>[
+        //     'fontAwesome'=>true
+        // ],
         'showPageSummary'=>true,
     ]); ?>
 
