@@ -24,12 +24,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class'=>'kartik\grid\SerialColumn',
                 'contentOptions'=>['class'=>'kartik-sheet-style'],
                 'width'=>'36px',
+                'vAlign'=>'middle',
                 'header'=>'',
                 'headerOptions'=>['class'=>'kartik-sheet-style'],
                 'pageSummary'=>'总计：',
             ],
             [
                 'attribute'=>'wechat.name',
+                'vAlign'=>'middle',
                 'pageSummary'=>true,
                 'pageSummaryFunc'=>GridView::F_COUNT,
             ],
@@ -43,7 +45,8 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute'=>'school',
-                'filter'=>ArrayHelper::map(School::find()->orderBy('name')->asArray()->all(), 'name', 'name'),
+                'vAlign'=>'middle',
+                //'filter'=>ArrayHelper::map(School::find()->orderBy('name')->asArray()->all(), 'name', 'name'),
             ],
             [
                 'attribute'=>'wechat.student.school.depart',
@@ -55,6 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute'=>'money',
+                'vAlign'=>'middle',
                 'pageSummary'=>true,
             ],
             [
@@ -76,7 +80,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $model->reviewer==''?'':User::findOne($model->reviewer)->name;
                 },
                 //'filterType'=>GridView::FILTER_SELECT2,
-                'filter'=>ArrayHelper::map(User::find()->orderBy('wechat_id')->asArray()->all(), 'reviewer', 'name'),
+                //'filter'=>ArrayHelper::map(User::find()->orderBy('wechat_id')->asArray()->all(), 'reviewer', 'name'),
                 'format'=>'raw'
             ],
             [
