@@ -40,7 +40,7 @@ class LLpaySubmit {
 		$mysign = "";
                 //PHP5.3 版本以上 风控参数去斜杠
                 $prestr =stripslashes($prestr);
-                file_put_contents("log.txt","新的签名:".$prestr."\n", FILE_APPEND);
+                //file_put_contents("log.txt","新的签名:".$prestr."\n", FILE_APPEND);
 		switch (strtoupper(trim($this->llpay_config['sign_type']))) {
 			case "MD5" :
 				$mysign = md5Sign($prestr, $this->llpay_config['key']);
@@ -51,7 +51,7 @@ class LLpaySubmit {
 			default :
 				$mysign = "";
 		}
-		file_put_contents("log.txt","签名:".$mysign."\n", FILE_APPEND);
+		//file_put_contents("log.txt","签名:".$mysign."\n", FILE_APPEND);
 		return $mysign;
 	}
 
