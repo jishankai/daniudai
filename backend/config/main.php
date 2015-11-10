@@ -137,9 +137,9 @@ return [
             // 'site/logout',
             // 'site/login',
 
-            'gii/*',
-            'loan/*',
-            'debug/*'
+            //'gii/*',
+            //'loan/*',
+            //'debug/*'
         ]
     ],
 
