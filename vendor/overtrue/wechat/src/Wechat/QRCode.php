@@ -174,8 +174,8 @@ class QRCode
         $http = new Http(new AccessToken($this->appId, $this->appSecret));
 
         $params = array(
-                   'action_name' => $actionName,
-                   'action_info' => array('scene' => $actionInfo),
+                    'action_name' => $actionName,
+                    'action_info' => array('scene' => $actionInfo),
                   );
 
         if ($temporary) {

@@ -164,7 +164,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "http://packagist.phpcomposer.com/files/mdmsoft/yii2-admin/99f828c8cc70602a5c9a7abc67591fdd6dfda889.zip",
+            "url": "https://api.github.com/repos/mdmsoft/yii2-admin/zipball/99f828c8cc70602a5c9a7abc67591fdd6dfda889",
             "reference": "99f828c8cc70602a5c9a7abc67591fdd6dfda889",
             "shasum": ""
         },
@@ -217,7 +217,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "http://packagist.phpcomposer.com/files/rmrevin/yii2-fontawesome/51d33ec9d1d7edab2166f1d42668c1bc8d28c068.zip",
+            "url": "https://api.github.com/repos/rmrevin/yii2-fontawesome/zipball/51d33ec9d1d7edab2166f1d42668c1bc8d28c068",
             "reference": "51d33ec9d1d7edab2166f1d42668c1bc8d28c068",
             "shasum": ""
         },
@@ -272,7 +272,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "http://packagist.phpcomposer.com/files/cebe/yii2-gravatar/c9c01bd14c9bdee9e5ae1ef1aad23f80c182c057.zip",
+            "url": "https://api.github.com/repos/cebe/yii2-gravatar/zipball/c9c01bd14c9bdee9e5ae1ef1aad23f80c182c057",
             "reference": "c9c01bd14c9bdee9e5ae1ef1aad23f80c182c057",
             "shasum": ""
         },
@@ -306,62 +306,6 @@
         ]
     },
     {
-        "name": "dmstr/yii2-adminlte-asset",
-        "version": "2.2.3",
-        "version_normalized": "2.2.3.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/dmstr/yii2-adminlte-asset.git",
-            "reference": "45cffbfe90d79f3c405b4cc98f7f318ae372bb10"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "http://packagist.phpcomposer.com/files/dmstr/yii2-adminlte-asset/45cffbfe90d79f3c405b4cc98f7f318ae372bb10.zip",
-            "reference": "45cffbfe90d79f3c405b4cc98f7f318ae372bb10",
-            "shasum": ""
-        },
-        "require": {
-            "almasaeed2010/adminlte": "~2.0",
-            "cebe/yii2-gravatar": "1.*",
-            "rmrevin/yii2-fontawesome": "~2.9",
-            "yiisoft/yii2": "2.*",
-            "yiisoft/yii2-bootstrap": "2.*"
-        },
-        "time": "2015-10-07 21:31:26",
-        "type": "yii2-extension",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "2.0.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "dmstr\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-3-Clause"
-        ],
-        "authors": [
-            {
-                "name": "Tobias Munk",
-                "email": "tobias@diemeisterei.de"
-            },
-            {
-                "name": "Evgeniy Tkachenko",
-                "email": "et.coder@gmail.com"
-            }
-        ],
-        "description": "Backend theme for Yii2 Framework",
-        "keywords": [
-            "AdminLTE",
-            "extension",
-            "yii2"
-        ]
-    },
-    {
         "name": "yiisoft/yii2-composer",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -372,7 +316,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "http://packagist.phpcomposer.com/files/yiisoft/yii2-composer/87cd1f2e0dd454a837607de612b1057840effe8b.zip",
+            "url": "https://api.github.com/repos/yiisoft/yii2-composer/zipball/87cd1f2e0dd454a837607de612b1057840effe8b",
             "reference": "87cd1f2e0dd454a837607de612b1057840effe8b",
             "shasum": ""
         },
@@ -485,7 +429,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "http://packagist.phpcomposer.com/files/cebe/markdown/e14d3da8f84eefa3792fd22b5b5ecba9c98d2e18.zip",
+            "url": "https://api.github.com/repos/cebe/markdown/zipball/e14d3da8f84eefa3792fd22b5b5ecba9c98d2e18",
             "reference": "e14d3da8f84eefa3792fd22b5b5ecba9c98d2e18",
             "shasum": ""
         },
@@ -581,12 +525,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/yiisoft/yii2-framework.git",
-            "reference": "859403065bb845925f6b6fa1bb357a9fb1219676"
+            "reference": "e0135b9140c4d63dfb276540f53833453bd2b875"
         },
         "dist": {
             "type": "zip",
-            "url": "http://packagist.phpcomposer.com/files/yiisoft/yii2-framework/859403065bb845925f6b6fa1bb357a9fb1219676.zip",
-            "reference": "859403065bb845925f6b6fa1bb357a9fb1219676",
+            "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/e0135b9140c4d63dfb276540f53833453bd2b875",
+            "reference": "e0135b9140c4d63dfb276540f53833453bd2b875",
             "shasum": ""
         },
         "require": {
@@ -602,7 +546,7 @@
             "php": ">=5.4.0",
             "yiisoft/yii2-composer": "*"
         },
-        "time": "2015-10-27 14:44:16",
+        "time": "2015-11-06 20:54:00",
         "bin": [
             "yii"
         ],
@@ -618,7 +562,7 @@
                 "yii\\": ""
             }
         },
-        "notification-url": "https://packagist.org/downloads/",
+        "notification-url": "http://packagist.cn/downloads/",
         "license": [
             "BSD-3-Clause"
         ],
@@ -676,7 +620,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "http://packagist.phpcomposer.com/files/swiftmailer/swiftmailer/6522539daf0a7bdada1cc2dccb7ec37dc0712136.zip",
+            "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/6522539daf0a7bdada1cc2dccb7ec37dc0712136",
             "reference": "6522539daf0a7bdada1cc2dccb7ec37dc0712136",
             "shasum": ""
         },
@@ -731,7 +675,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "http://packagist.phpcomposer.com/files/yiisoft/yii2-swiftmailer/745a045c905cc595ca5698f5cd78fd7a8944c706.zip",
+            "url": "https://api.github.com/repos/yiisoft/yii2-swiftmailer/zipball/745a045c905cc595ca5698f5cd78fd7a8944c706",
             "reference": "745a045c905cc595ca5698f5cd78fd7a8944c706",
             "shasum": ""
         },
@@ -769,98 +713,6 @@
             "mailer",
             "swift",
             "swiftmailer",
-            "yii2"
-        ]
-    },
-    {
-        "name": "overtrue/wechat",
-        "version": "2.1.x-dev",
-        "version_normalized": "2.1.9999999.9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/overtrue/wechat.git",
-            "reference": "a88490a1bebaa8be807b3512564138cec0ba4289"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "http://packagist.phpcomposer.com/files/overtrue/wechat/a88490a1bebaa8be807b3512564138cec0ba4289.zip",
-            "reference": "a88490a1bebaa8be807b3512564138cec0ba4289",
-            "shasum": ""
-        },
-        "require": {
-            "ext-mcrypt": "*",
-            "php": ">=5.3"
-        },
-        "time": "2015-10-28 03:03:53",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-4": {
-                "Overtrue\\Wechat\\": "src/Wechat/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "overtrue",
-                "email": "anzhengchao@gmail.com"
-            }
-        ],
-        "description": "微信SDK",
-        "keywords": [
-            "sdk",
-            "wechat",
-            "weixin",
-            "weixin-sdk"
-        ]
-    },
-    {
-        "name": "yiisoft/yii2-codeception",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/yiisoft/yii2-codeception.git",
-            "reference": "d2c91b5a5dbde172f9adbbde10b0a523d1bfc388"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "http://packagist.phpcomposer.com/files/yiisoft/yii2-codeception/d2c91b5a5dbde172f9adbbde10b0a523d1bfc388.zip",
-            "reference": "d2c91b5a5dbde172f9adbbde10b0a523d1bfc388",
-            "shasum": ""
-        },
-        "require": {
-            "yiisoft/yii2": ">=2.0.4"
-        },
-        "time": "2015-09-29 10:36:41",
-        "type": "yii2-extension",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "2.0.x-dev"
-            }
-        },
-        "installation-source": "source",
-        "autoload": {
-            "psr-4": {
-                "yii\\codeception\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-3-Clause"
-        ],
-        "authors": [
-            {
-                "name": "Mark Jebri",
-                "email": "mark.github@yandex.ru"
-            }
-        ],
-        "description": "The Codeception integration for the Yii framework",
-        "keywords": [
-            "codeception",
             "yii2"
         ]
     },
@@ -926,7 +778,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "http://packagist.phpcomposer.com/files/yiisoft/yii2-bootstrap/09a5bfe72c0141ad26281848f1ae9c3f42541f20.zip",
+            "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/09a5bfe72c0141ad26281848f1ae9c3f42541f20",
             "reference": "09a5bfe72c0141ad26281848f1ae9c3f42541f20",
             "shasum": ""
         },
@@ -964,55 +816,6 @@
         "description": "The Twitter Bootstrap extension for the Yii framework",
         "keywords": [
             "bootstrap",
-            "yii2"
-        ]
-    },
-    {
-        "name": "yiisoft/yii2-debug",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/yiisoft/yii2-debug.git",
-            "reference": "a8eba1bb9a7163df5120fb07c0c000e298a8bcf0"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "http://packagist.phpcomposer.com/files/yiisoft/yii2-debug/a8eba1bb9a7163df5120fb07c0c000e298a8bcf0.zip",
-            "reference": "a8eba1bb9a7163df5120fb07c0c000e298a8bcf0",
-            "shasum": ""
-        },
-        "require": {
-            "yiisoft/yii2": ">=2.0.4",
-            "yiisoft/yii2-bootstrap": "*"
-        },
-        "time": "2015-09-29 10:36:38",
-        "type": "yii2-extension",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "2.0.x-dev"
-            }
-        },
-        "installation-source": "source",
-        "autoload": {
-            "psr-4": {
-                "yii\\debug\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-3-Clause"
-        ],
-        "authors": [
-            {
-                "name": "Qiang Xue",
-                "email": "qiang.xue@gmail.com"
-            }
-        ],
-        "description": "The debugger extension for the Yii framework",
-        "keywords": [
-            "debug",
-            "debugger",
             "yii2"
         ]
     },
@@ -1056,7 +859,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "http://packagist.phpcomposer.com/files/phpspec/php-diff/30e103d19519fe678ae64a60d77884ef3d71b28a.zip",
+            "url": "https://api.github.com/repos/phpspec/php-diff/zipball/30e103d19519fe678ae64a60d77884ef3d71b28a",
             "reference": "30e103d19519fe678ae64a60d77884ef3d71b28a",
             "shasum": ""
         },
@@ -1082,73 +885,18 @@
         "description": "A comprehensive library for generating differences between two hashable objects (strings or arrays)."
     },
     {
-        "name": "yiisoft/yii2-gii",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/yiisoft/yii2-gii.git",
-            "reference": "3946123b429ef6aa95618a4159f3c0360054ddec"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "http://packagist.phpcomposer.com/files/yiisoft/yii2-gii/3946123b429ef6aa95618a4159f3c0360054ddec.zip",
-            "reference": "3946123b429ef6aa95618a4159f3c0360054ddec",
-            "shasum": ""
-        },
-        "require": {
-            "bower-asset/typeahead.js": "0.10.* | ~0.11.0",
-            "phpspec/php-diff": ">=1.0.2",
-            "yiisoft/yii2": ">=2.0.4",
-            "yiisoft/yii2-bootstrap": "~2.0"
-        },
-        "time": "2015-10-07 14:54:57",
-        "type": "yii2-extension",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "2.0.x-dev"
-            },
-            "asset-installer-paths": {
-                "npm-asset-library": "vendor/npm",
-                "bower-asset-library": "vendor/bower"
-            }
-        },
-        "installation-source": "source",
-        "autoload": {
-            "psr-4": {
-                "yii\\gii\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-3-Clause"
-        ],
-        "authors": [
-            {
-                "name": "Qiang Xue",
-                "email": "qiang.xue@gmail.com"
-            }
-        ],
-        "description": "The Gii extension for the Yii framework",
-        "keywords": [
-            "code generator",
-            "gii",
-            "yii2"
-        ]
-    },
-    {
         "name": "fzaninotto/faker",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
             "url": "https://github.com/fzaninotto/Faker.git",
-            "reference": "f6b2ebd8c462494083bfea6c087f79da36503930"
+            "reference": "5a91b2475cd9a7a41d02615232eb4d1f18d4ae2c"
         },
         "dist": {
             "type": "zip",
-            "url": "http://packagist.phpcomposer.com/files/fzaninotto/Faker/f6b2ebd8c462494083bfea6c087f79da36503930.zip",
-            "reference": "f6b2ebd8c462494083bfea6c087f79da36503930",
+            "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/5a91b2475cd9a7a41d02615232eb4d1f18d4ae2c",
+            "reference": "5a91b2475cd9a7a41d02615232eb4d1f18d4ae2c",
             "shasum": ""
         },
         "require": {
@@ -1159,7 +907,7 @@
             "phpunit/phpunit": "~4.0",
             "squizlabs/php_codesniffer": "~1.5"
         },
-        "time": "2015-10-19 10:11:20",
+        "time": "2015-11-04 14:05:31",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1172,7 +920,7 @@
                 "Faker\\": "src/Faker/"
             }
         },
-        "notification-url": "https://packagist.org/downloads/",
+        "notification-url": "http://packagist.cn/downloads/",
         "license": [
             "MIT"
         ],
@@ -1199,7 +947,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "http://packagist.phpcomposer.com/files/yiisoft/yii2-faker/6968c97fd2e951e8260d1ccc6f5e2109407290eb.zip",
+            "url": "https://api.github.com/repos/yiisoft/yii2-faker/zipball/6968c97fd2e951e8260d1ccc6f5e2109407290eb",
             "reference": "6968c97fd2e951e8260d1ccc6f5e2109407290eb",
             "shasum": ""
         },
@@ -1248,7 +996,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "http://packagist.phpcomposer.com/files/almasaeed2010/AdminLTE/1ee281b3b99e8d8cccdc72fb8437c6888149cb46.zip",
+            "url": "https://api.github.com/repos/almasaeed2010/AdminLTE/zipball/1ee281b3b99e8d8cccdc72fb8437c6888149cb46",
             "reference": "1ee281b3b99e8d8cccdc72fb8437c6888149cb46",
             "shasum": ""
         },
@@ -1356,7 +1104,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "http://packagist.phpcomposer.com/files/yiisoft/yii2-jui/022637087b4f8b0d321e697cc0a01b09cd2d7345.zip",
+            "url": "https://api.github.com/repos/yiisoft/yii2-jui/zipball/022637087b4f8b0d321e697cc0a01b09cd2d7345",
             "reference": "022637087b4f8b0d321e697cc0a01b09cd2d7345",
             "shasum": ""
         },
@@ -1408,7 +1156,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "http://packagist.phpcomposer.com/files/yiisoft/yii2-authclient/1a748a8f0223361f68d53f02d7cfa4d91be522b6.zip",
+            "url": "https://api.github.com/repos/yiisoft/yii2-authclient/zipball/1a748a8f0223361f68d53f02d7cfa4d91be522b6",
             "reference": "1a748a8f0223361f68d53f02d7cfa4d91be522b6",
             "shasum": ""
         },
@@ -1458,7 +1206,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "http://packagist.phpcomposer.com/files/dektrium/yii2-user/84100e0e63e2052ef4ddd12f1840dfd092446e23.zip",
+            "url": "https://api.github.com/repos/dektrium/yii2-user/zipball/84100e0e63e2052ef4ddd12f1840dfd092446e23",
             "reference": "84100e0e63e2052ef4ddd12f1840dfd092446e23",
             "shasum": ""
         },
@@ -1523,7 +1271,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "http://packagist.phpcomposer.com/files/kartik-v/php-date-formatter/7d3dc3495dd10bd1909c0dfdecd673967019cc21.zip",
+            "url": "https://api.github.com/repos/kartik-v/php-date-formatter/zipball/7d3dc3495dd10bd1909c0dfdecd673967019cc21",
             "reference": "7d3dc3495dd10bd1909c0dfdecd673967019cc21",
             "shasum": ""
         },
@@ -1570,7 +1318,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "http://packagist.phpcomposer.com/files/kartik-v/yii2-krajee-base/c0adff9d9762f4fd3bf0e7cd0000fcab0bf00f19.zip",
+            "url": "https://api.github.com/repos/kartik-v/yii2-krajee-base/zipball/c0adff9d9762f4fd3bf0e7cd0000fcab0bf00f19",
             "reference": "c0adff9d9762f4fd3bf0e7cd0000fcab0bf00f19",
             "shasum": ""
         },
@@ -1618,7 +1366,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "http://packagist.phpcomposer.com/files/kartik-v/yii2-datecontrol/4e858b5cd38130c37739b2f582b66a044f77c95c.zip",
+            "url": "https://api.github.com/repos/kartik-v/yii2-datecontrol/zipball/4e858b5cd38130c37739b2f582b66a044f77c95c",
             "reference": "4e858b5cd38130c37739b2f582b66a044f77c95c",
             "shasum": ""
         },
@@ -1667,7 +1415,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "http://packagist.phpcomposer.com/files/kartik-v/yii2-grid/cbb3ce2fa20171fd5ae13525621f60ea2caebd20.zip",
+            "url": "https://api.github.com/repos/kartik-v/yii2-grid/zipball/cbb3ce2fa20171fd5ae13525621f60ea2caebd20",
             "reference": "cbb3ce2fa20171fd5ae13525621f60ea2caebd20",
             "shasum": ""
         },
@@ -1699,6 +1447,258 @@
             "extension",
             "grid",
             "widget",
+            "yii2"
+        ]
+    },
+    {
+        "name": "overtrue/wechat",
+        "version": "2.1.x-dev",
+        "version_normalized": "2.1.9999999.9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/overtrue/wechat.git",
+            "reference": "f279c53a1b2745eacffd49817ca27394e37c1b94"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/overtrue/wechat/zipball/f279c53a1b2745eacffd49817ca27394e37c1b94",
+            "reference": "f279c53a1b2745eacffd49817ca27394e37c1b94",
+            "shasum": ""
+        },
+        "require": {
+            "ext-mcrypt": "*",
+            "php": ">=5.3"
+        },
+        "time": "2015-11-04 13:15:36",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "Overtrue\\Wechat\\": "src/Wechat/"
+            }
+        },
+        "notification-url": "http://packagist.cn/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "overtrue",
+                "email": "anzhengchao@gmail.com"
+            }
+        ],
+        "description": "微信SDK",
+        "keywords": [
+            "sdk",
+            "wechat",
+            "weixin",
+            "weixin-sdk"
+        ]
+    },
+    {
+        "name": "yiisoft/yii2-codeception",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/yiisoft/yii2-codeception.git",
+            "reference": "22e981b8c93d9882ccd333ba001767a6b99aa9a1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/yiisoft/yii2-codeception/zipball/22e981b8c93d9882ccd333ba001767a6b99aa9a1",
+            "reference": "22e981b8c93d9882ccd333ba001767a6b99aa9a1",
+            "shasum": ""
+        },
+        "require": {
+            "yiisoft/yii2": ">=2.0.4"
+        },
+        "time": "2015-10-29 09:02:25",
+        "type": "yii2-extension",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.0.x-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "yii\\codeception\\": ""
+            }
+        },
+        "notification-url": "http://packagist.cn/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Mark Jebri",
+                "email": "mark.github@yandex.ru"
+            }
+        ],
+        "description": "The Codeception integration for the Yii framework",
+        "keywords": [
+            "codeception",
+            "yii2"
+        ]
+    },
+    {
+        "name": "yiisoft/yii2-debug",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/yiisoft/yii2-debug.git",
+            "reference": "7ba01f0049f691bd76259e10bdede0709323ffc2"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/7ba01f0049f691bd76259e10bdede0709323ffc2",
+            "reference": "7ba01f0049f691bd76259e10bdede0709323ffc2",
+            "shasum": ""
+        },
+        "require": {
+            "yiisoft/yii2": ">=2.0.4",
+            "yiisoft/yii2-bootstrap": "*"
+        },
+        "time": "2015-10-30 19:44:49",
+        "type": "yii2-extension",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.0.x-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "yii\\debug\\": ""
+            }
+        },
+        "notification-url": "http://packagist.cn/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Qiang Xue",
+                "email": "qiang.xue@gmail.com"
+            }
+        ],
+        "description": "The debugger extension for the Yii framework",
+        "keywords": [
+            "debug",
+            "debugger",
+            "yii2"
+        ]
+    },
+    {
+        "name": "yiisoft/yii2-gii",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/yiisoft/yii2-gii.git",
+            "reference": "741ef183702cb8ba8f7d790040ff2c38124cc8c2"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/741ef183702cb8ba8f7d790040ff2c38124cc8c2",
+            "reference": "741ef183702cb8ba8f7d790040ff2c38124cc8c2",
+            "shasum": ""
+        },
+        "require": {
+            "bower-asset/typeahead.js": "0.10.* | ~0.11.0",
+            "phpspec/php-diff": ">=1.0.2",
+            "yiisoft/yii2": ">=2.0.4",
+            "yiisoft/yii2-bootstrap": "~2.0"
+        },
+        "time": "2015-11-03 09:49:52",
+        "type": "yii2-extension",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.0.x-dev"
+            },
+            "asset-installer-paths": {
+                "npm-asset-library": "vendor/npm",
+                "bower-asset-library": "vendor/bower"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "yii\\gii\\": ""
+            }
+        },
+        "notification-url": "http://packagist.cn/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Qiang Xue",
+                "email": "qiang.xue@gmail.com"
+            }
+        ],
+        "description": "The Gii extension for the Yii framework",
+        "keywords": [
+            "code generator",
+            "gii",
+            "yii2"
+        ]
+    },
+    {
+        "name": "dmstr/yii2-adminlte-asset",
+        "version": "2.2.4",
+        "version_normalized": "2.2.4.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/dmstr/yii2-adminlte-asset.git",
+            "reference": "c842a15ceef4e903f70ac927ec3246e6d53e1148"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/dmstr/yii2-adminlte-asset/zipball/c842a15ceef4e903f70ac927ec3246e6d53e1148",
+            "reference": "c842a15ceef4e903f70ac927ec3246e6d53e1148",
+            "shasum": ""
+        },
+        "require": {
+            "almasaeed2010/adminlte": "~2.0",
+            "cebe/yii2-gravatar": "1.*",
+            "rmrevin/yii2-fontawesome": "~2.9",
+            "yiisoft/yii2": "2.*",
+            "yiisoft/yii2-bootstrap": "2.*"
+        },
+        "time": "2015-11-06 10:35:36",
+        "type": "yii2-extension",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "dmstr\\": ""
+            }
+        },
+        "notification-url": "http://packagist.cn/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Tobias Munk",
+                "email": "tobias@diemeisterei.de"
+            },
+            {
+                "name": "Evgeniy Tkachenko",
+                "email": "et.coder@gmail.com"
+            }
+        ],
+        "description": "Backend theme for Yii2 Framework",
+        "keywords": [
+            "AdminLTE",
+            "extension",
             "yii2"
         ]
     }

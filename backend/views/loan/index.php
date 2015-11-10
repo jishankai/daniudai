@@ -124,13 +124,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'heading'=>"历史列表",
         ],
         'toolbar'=> [
-            //'{export}',
+            '{export}',
             '{toggleData}',
         ],
         // set export properties
-        // 'export'=>[
-        //     'fontAwesome'=>true
-        // ],
+        'export'=>[
+            'fontAwesome'=>true
+        ],
         'showPageSummary'=>true,
     ]); ?>
 
