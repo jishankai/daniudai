@@ -39,7 +39,7 @@ class ReminderController extends Controller {
                     "first"    => "您有一笔借款已经逾期，请及时还款避免产生额外的费用。",
                     "keyword1" => date("Y-m-d", $l->end_at),
                     "keyword2" => $l->money,
-                    "keyword3" => $l->money*$l->rate*$l->duration,
+                    "keyword3" => $l->money*$l->rate*$l->duration.'以及逾期罚息',
                     "remark"   => "",
                 );
                 $messageId = $notice->uses($templateId)->withUrl($url)->andData($data)->andReceiver($l->wechat_id)->send();
