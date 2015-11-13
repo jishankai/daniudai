@@ -88,7 +88,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $model->reviewer==''?'':User::findOne($model->reviewer)->name;
                 },
                 //'filterType'=>GridView::FILTER_SELECT2,
-                'filter'=>ArrayHelper::map(User::find()->where(['wechat_id' => Yii::$app->params['supporters']])->asArray()->all(), 'wechat_id', 'name'),
+                'filter'=>ArrayHelper::map(User::find()->where(['wechat_id' => Yii::$app->params['supporters']])->asArray()->all(), 'reviewer', 'name'),
                 'format'=>'raw'
             ],
             [
