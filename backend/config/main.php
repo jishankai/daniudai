@@ -138,7 +138,7 @@ return [
             // 'site/login',
 
             //'gii/*',
-            //'loan/*',
+            'loan/*',
             //'debug/*'
         ]
     ],

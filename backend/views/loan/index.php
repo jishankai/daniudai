@@ -101,7 +101,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filter'=>[0=>'待申请', 1=>'待审核', 2=>'待放款', 3=>'已放款', 4=>'已还款', -1=>'被拒绝'],
                 'format'=>'raw',
             ],
-
+            'start_at:date',
+            'end_at:date'
             // [
             //     'attribute'=>'start_at:date',
             //     'vAlign'=>'middle',
@@ -128,9 +129,9 @@ $this->params['breadcrumbs'][] = $this->title;
             '{toggleData}',
         ],
         // set export properties
-        'export'=>[
-            'fontAwesome'=>true
-        ],
+        // 'export'=>[
+        //     'fontAwesome'=>true
+        // ],
         'showPageSummary'=>true,
     ]); ?>
 
