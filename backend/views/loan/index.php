@@ -88,7 +88,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $model->reviewer==''?'':User::findOne($model->reviewer)->name;
                 },
                 //'filterType'=>GridView::FILTER_SELECT2,
-                'filter'=>ArrayHelper::map(User::find()->where(['wechat_id' => Yii::$app->params['supporters']])->asArray()->all(), 'name', 'name'),
+                'filter'=>ArrayHelper::map(User::find()->where(['wechat_id' => Yii::$app->params['supporters']])->asArray()->all(), 'wechat_id', 'name'),
                 'format'=>'raw'
             ],
             [
@@ -116,7 +116,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'responsive'=>true,
         'hover'=>true,
-        'export'=>false,
+        // 'export'=>false,
         'containerOptions'=>['style'=>'overflow: auto'], // only set when $responsive = false
         'headerRowOptions'=>['class'=>'kartik-sheet-style'],
         'filterRowOptions'=>['class'=>'kartik-sheet-style'],
@@ -129,9 +129,9 @@ $this->params['breadcrumbs'][] = $this->title;
             '{toggleData}',
         ],
         // set export properties
-        // 'export'=>[
-        //     'fontAwesome'=>true
-        // ],
+        'export'=>[
+            'fontAwesome'=>true
+        ],
         'showPageSummary'=>true,
     ]); ?>
 

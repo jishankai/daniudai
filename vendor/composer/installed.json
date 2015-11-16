@@ -207,60 +207,6 @@
         ]
     },
     {
-        "name": "rmrevin/yii2-fontawesome",
-        "version": "2.12.0",
-        "version_normalized": "2.12.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/rmrevin/yii2-fontawesome.git",
-            "reference": "51d33ec9d1d7edab2166f1d42668c1bc8d28c068"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/rmrevin/yii2-fontawesome/zipball/51d33ec9d1d7edab2166f1d42668c1bc8d28c068",
-            "reference": "51d33ec9d1d7edab2166f1d42668c1bc8d28c068",
-            "shasum": ""
-        },
-        "require": {
-            "bower-asset/fontawesome": "4.4.*",
-            "php": ">=5.4.0",
-            "yiisoft/yii2": "2.0.*"
-        },
-        "time": "2015-08-15 16:50:16",
-        "type": "yii2-extension",
-        "extra": {
-            "asset-installer-paths": {
-                "npm-asset-library": "vendor/npm",
-                "bower-asset-library": "vendor/bower"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "rmrevin\\yii\\fontawesome\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Roman Revin",
-                "email": "xgismox@gmail.com",
-                "homepage": "http://rmrevin.ru/"
-            }
-        ],
-        "description": "Asset Bundle for Yii2 with Font Awesome",
-        "keywords": [
-            "asset",
-            "awesome",
-            "bundle",
-            "font",
-            "yii"
-        ]
-    },
-    {
         "name": "cebe/yii2-gravatar",
         "version": "1.1",
         "version_normalized": "1.1.0.0",
@@ -352,70 +298,6 @@
             "composer",
             "extension installer",
             "yii2"
-        ]
-    },
-    {
-        "name": "bower-asset/jquery.inputmask",
-        "version": "3.2.2",
-        "version_normalized": "3.2.2.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/RobinHerbots/jquery.inputmask.git",
-            "reference": "ebceb88a131e1fbc159733a88a6778ffc02debab"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/RobinHerbots/jquery.inputmask/zipball/ebceb88a131e1fbc159733a88a6778ffc02debab",
-            "reference": "ebceb88a131e1fbc159733a88a6778ffc02debab",
-            "shasum": ""
-        },
-        "require": {
-            "bower-asset/jquery": ">=1.7"
-        },
-        "type": "bower-asset-library",
-        "extra": {
-            "bower-asset-main": [
-                "./dist/inputmask/inputmask.dependencyLib.jquery.js",
-                "./dist/inputmask/inputmask.js",
-                "./dist/inputmask/inputmask.extensions.js",
-                "./dist/inputmask/inputmask.date.extensions.js",
-                "./dist/inputmask/inputmask.numeric.extensions.js",
-                "./dist/inputmask/inputmask.phone.extensions.js",
-                "./dist/inputmask/inputmask.regex.extensions.js",
-                "./dist/inputmask/jquery.inputmask.js",
-                "./dist/jquery.inputmask.bundle.js",
-                "./extra/dependencyLibs/inputmask.dependencyLib.jqlite.js",
-                "./extra/dependencyLibs/inputmask.dependencyLib.js",
-                "./extra/phone-codes/phone-be.js",
-                "./extra/phone-codes/phone-codes.js",
-                "./extra/phone-codes/phone-nl.js",
-                "./extra/phone-codes/phone-ru.js",
-                "./extra/phone-codes/phone-uk.js"
-            ],
-            "bower-asset-ignore": [
-                "**/.*",
-                "qunit/",
-                "nuget/",
-                "tools/",
-                "js/",
-                "*.md",
-                "build.properties",
-                "build.xml",
-                "jquery.inputmask.jquery.json"
-            ]
-        },
-        "installation-source": "dist",
-        "license": [
-            "http://opensource.org/licenses/mit-license.php"
-        ],
-        "description": "jquery.inputmask is a jquery plugin which create an input mask.",
-        "keywords": [
-            "form",
-            "input",
-            "inputmask",
-            "jquery",
-            "mask",
-            "plugins"
         ]
     },
     {
@@ -525,12 +407,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/yiisoft/yii2-framework.git",
-            "reference": "e0135b9140c4d63dfb276540f53833453bd2b875"
+            "reference": "464c58f9f5572e6283b9b6211d39ad725a42d91a"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/e0135b9140c4d63dfb276540f53833453bd2b875",
-            "reference": "e0135b9140c4d63dfb276540f53833453bd2b875",
+            "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/464c58f9f5572e6283b9b6211d39ad725a42d91a",
+            "reference": "464c58f9f5572e6283b9b6211d39ad725a42d91a",
             "shasum": ""
         },
         "require": {
@@ -546,7 +428,7 @@
             "php": ">=5.4.0",
             "yiisoft/yii2-composer": "*"
         },
-        "time": "2015-11-06 20:54:00",
+        "time": "2015-11-15 21:23:00",
         "bin": [
             "yii"
         ],
@@ -774,19 +656,19 @@
         "source": {
             "type": "git",
             "url": "https://github.com/yiisoft/yii2-bootstrap.git",
-            "reference": "09a5bfe72c0141ad26281848f1ae9c3f42541f20"
+            "reference": "6fd96d4bf965625a29090e43fcc2870e279ae20d"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/09a5bfe72c0141ad26281848f1ae9c3f42541f20",
-            "reference": "09a5bfe72c0141ad26281848f1ae9c3f42541f20",
+            "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/6fd96d4bf965625a29090e43fcc2870e279ae20d",
+            "reference": "6fd96d4bf965625a29090e43fcc2870e279ae20d",
             "shasum": ""
         },
         "require": {
             "bower-asset/bootstrap": "3.3.* | 3.2.* | 3.1.*",
             "yiisoft/yii2": ">=2.0.6"
         },
-        "time": "2015-10-25 21:18:48",
+        "time": "2015-11-15 12:20:29",
         "type": "yii2-extension",
         "extra": {
             "branch-alias": {
@@ -803,7 +685,7 @@
                 "yii\\bootstrap\\": ""
             }
         },
-        "notification-url": "https://packagist.org/downloads/",
+        "notification-url": "http://packagist.cn/downloads/",
         "license": [
             "BSD-3-Clause"
         ],
@@ -891,12 +773,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/fzaninotto/Faker.git",
-            "reference": "5a91b2475cd9a7a41d02615232eb4d1f18d4ae2c"
+            "reference": "cd5fb1c262e1734366e77688b011a0f0422ce06d"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/5a91b2475cd9a7a41d02615232eb4d1f18d4ae2c",
-            "reference": "5a91b2475cd9a7a41d02615232eb4d1f18d4ae2c",
+            "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/cd5fb1c262e1734366e77688b011a0f0422ce06d",
+            "reference": "cd5fb1c262e1734366e77688b011a0f0422ce06d",
             "shasum": ""
         },
         "require": {
@@ -907,7 +789,7 @@
             "phpunit/phpunit": "~4.0",
             "squizlabs/php_codesniffer": "~1.5"
         },
-        "time": "2015-11-04 14:05:31",
+        "time": "2015-11-09 08:00:48",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -934,55 +816,6 @@
             "data",
             "faker",
             "fixtures"
-        ]
-    },
-    {
-        "name": "yiisoft/yii2-faker",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/yiisoft/yii2-faker.git",
-            "reference": "6968c97fd2e951e8260d1ccc6f5e2109407290eb"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/yiisoft/yii2-faker/zipball/6968c97fd2e951e8260d1ccc6f5e2109407290eb",
-            "reference": "6968c97fd2e951e8260d1ccc6f5e2109407290eb",
-            "shasum": ""
-        },
-        "require": {
-            "fzaninotto/faker": "~1.4",
-            "yiisoft/yii2": "*"
-        },
-        "time": "2015-09-29 10:49:25",
-        "type": "yii2-extension",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "2.0.x-dev"
-            }
-        },
-        "installation-source": "source",
-        "autoload": {
-            "psr-4": {
-                "yii\\faker\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-3-Clause"
-        ],
-        "authors": [
-            {
-                "name": "Mark Jebri",
-                "email": "mark.github@yandex.ru"
-            }
-        ],
-        "description": "Fixture generator. The Faker integration for the Yii framework.",
-        "keywords": [
-            "Fixture",
-            "faker",
-            "yii2"
         ]
     },
     {
@@ -1451,51 +1284,6 @@
         ]
     },
     {
-        "name": "overtrue/wechat",
-        "version": "2.1.x-dev",
-        "version_normalized": "2.1.9999999.9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/overtrue/wechat.git",
-            "reference": "f279c53a1b2745eacffd49817ca27394e37c1b94"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/overtrue/wechat/zipball/f279c53a1b2745eacffd49817ca27394e37c1b94",
-            "reference": "f279c53a1b2745eacffd49817ca27394e37c1b94",
-            "shasum": ""
-        },
-        "require": {
-            "ext-mcrypt": "*",
-            "php": ">=5.3"
-        },
-        "time": "2015-11-04 13:15:36",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-4": {
-                "Overtrue\\Wechat\\": "src/Wechat/"
-            }
-        },
-        "notification-url": "http://packagist.cn/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "overtrue",
-                "email": "anzhengchao@gmail.com"
-            }
-        ],
-        "description": "微信SDK",
-        "keywords": [
-            "sdk",
-            "wechat",
-            "weixin",
-            "weixin-sdk"
-        ]
-    },
-    {
         "name": "yiisoft/yii2-codeception",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -1700,6 +1488,342 @@
             "AdminLTE",
             "extension",
             "yii2"
+        ]
+    },
+    {
+        "name": "bower-asset/jquery.inputmask",
+        "version": "3.2.3",
+        "version_normalized": "3.2.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/RobinHerbots/jquery.inputmask.git",
+            "reference": "85b94d8c8158d610b148317608bf67b678b40659"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/RobinHerbots/jquery.inputmask/zipball/85b94d8c8158d610b148317608bf67b678b40659",
+            "reference": "85b94d8c8158d610b148317608bf67b678b40659",
+            "shasum": ""
+        },
+        "require": {
+            "bower-asset/jquery": ">=1.7"
+        },
+        "type": "bower-asset-library",
+        "extra": {
+            "bower-asset-main": [
+                "./dist/inputmask/inputmask.js"
+            ],
+            "bower-asset-ignore": [
+                "*",
+                "!dist/*",
+                "!extra/*"
+            ]
+        },
+        "installation-source": "dist",
+        "license": [
+            "http://opensource.org/licenses/mit-license.php"
+        ],
+        "description": "jquery.inputmask is a jquery plugin which create an input mask.",
+        "keywords": [
+            "form",
+            "input",
+            "inputmask",
+            "jquery",
+            "mask",
+            "plugins"
+        ]
+    },
+    {
+        "name": "rmrevin/yii2-fontawesome",
+        "version": "2.12.1",
+        "version_normalized": "2.12.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/rmrevin/yii2-fontawesome.git",
+            "reference": "6bfb628f5d93170bfe896866faac494c24783c2e"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/rmrevin/yii2-fontawesome/zipball/6bfb628f5d93170bfe896866faac494c24783c2e",
+            "reference": "6bfb628f5d93170bfe896866faac494c24783c2e",
+            "shasum": ""
+        },
+        "require": {
+            "bower-asset/fontawesome": "4.4.*",
+            "php": ">=5.4.0",
+            "yiisoft/yii2": "2.0.*"
+        },
+        "time": "2015-11-09 15:03:05",
+        "type": "yii2-extension",
+        "extra": {
+            "asset-installer-paths": {
+                "npm-asset-library": "vendor/npm",
+                "bower-asset-library": "vendor/bower"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "rmrevin\\yii\\fontawesome\\": ""
+            }
+        },
+        "notification-url": "http://packagist.cn/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Revin Roman",
+                "email": "roman@rmrevin.com",
+                "homepage": "https://rmrevin.com/"
+            }
+        ],
+        "description": "Asset Bundle for Yii2 with Font Awesome",
+        "keywords": [
+            "asset",
+            "awesome",
+            "bundle",
+            "font",
+            "yii"
+        ]
+    },
+    {
+        "name": "kartik-v/mpdf",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/kartik-v/mpdf.git",
+            "reference": "d48b421625a8760bea72fe2608ff76e77ce7fc0e"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/kartik-v/mpdf/zipball/d48b421625a8760bea72fe2608ff76e77ce7fc0e",
+            "reference": "d48b421625a8760bea72fe2608ff76e77ce7fc0e",
+            "shasum": ""
+        },
+        "require": {
+            "ext-mbstring": "*",
+            "php": ">=4.3.10"
+        },
+        "time": "2015-06-18 15:13:20",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "classmap": [
+                "mpdf.php",
+                "classes"
+            ]
+        },
+        "notification-url": "http://packagist.cn/downloads/",
+        "license": [
+            "GPL-1.0+"
+        ],
+        "authors": [
+            {
+                "name": "Ian N Back"
+            }
+        ],
+        "description": "A PHP class to generate PDF files from HTML with Unicode/UTF-8 and CJK support. This is a fork of the official mPDF library.",
+        "homepage": "http://www.mpdf1.com/mpdf/index.php",
+        "keywords": [
+            "pdf",
+            "php",
+            "utf-8"
+        ]
+    },
+    {
+        "name": "kartik-v/yii2-mpdf",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/kartik-v/yii2-mpdf.git",
+            "reference": "f65fe859e01374545276d40428d6ff75e4985050"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/kartik-v/yii2-mpdf/zipball/f65fe859e01374545276d40428d6ff75e4985050",
+            "reference": "f65fe859e01374545276d40428d6ff75e4985050",
+            "shasum": ""
+        },
+        "require": {
+            "kartik-v/mpdf": "*"
+        },
+        "time": "2015-04-21 15:19:01",
+        "type": "yii2-extension",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "kartik\\mpdf\\": ""
+            }
+        },
+        "notification-url": "http://packagist.cn/downloads/",
+        "license": [
+            "BSD 3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Kartik Visweswaran",
+                "email": "kartikv2@gmail.com",
+                "homepage": "http://www.krajee.com/"
+            }
+        ],
+        "description": "A Yii2 wrapper component for the mPDF library which generates PDF files from UTF-8 encoded HTML.",
+        "homepage": "https://github.com/kartik-v/yii2-mpdf",
+        "keywords": [
+            "component",
+            "extension",
+            "html",
+            "mpdf",
+            "pdf",
+            "utf8",
+            "yii2"
+        ]
+    },
+    {
+        "name": "kartik-v/yii2-date-range",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/kartik-v/yii2-date-range.git",
+            "reference": "c6cb19d1d4808db8f1a64ca86093724e0a0f93fd"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/kartik-v/yii2-date-range/zipball/c6cb19d1d4808db8f1a64ca86093724e0a0f93fd",
+            "reference": "c6cb19d1d4808db8f1a64ca86093724e0a0f93fd",
+            "shasum": ""
+        },
+        "require": {
+            "kartik-v/yii2-krajee-base": "*"
+        },
+        "time": "2015-10-22 06:11:39",
+        "type": "yii2-extension",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "kartik\\daterange\\": ""
+            }
+        },
+        "notification-url": "http://packagist.cn/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Kartik Visweswaran",
+                "email": "kartikv2@gmail.com",
+                "homepage": "http://www.krajee.com/"
+            }
+        ],
+        "description": "An advanced Yii 2 date range picker input for based on bootstrap-daterangepicker plugin.",
+        "homepage": "https://github.com/kartik-v/yii2-date-range",
+        "keywords": [
+            "bootstrap",
+            "bootstrap 3",
+            "date",
+            "date-range",
+            "extension",
+            "range",
+            "time",
+            "widget",
+            "yii2"
+        ]
+    },
+    {
+        "name": "yiisoft/yii2-faker",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/yiisoft/yii2-faker.git",
+            "reference": "9d7b306ebdeef792adb796e5db1e57e068a5041a"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/yiisoft/yii2-faker/zipball/9d7b306ebdeef792adb796e5db1e57e068a5041a",
+            "reference": "9d7b306ebdeef792adb796e5db1e57e068a5041a",
+            "shasum": ""
+        },
+        "require": {
+            "fzaninotto/faker": "~1.4",
+            "yiisoft/yii2": "*"
+        },
+        "time": "2015-11-15 11:52:16",
+        "type": "yii2-extension",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.0.x-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "yii\\faker\\": ""
+            }
+        },
+        "notification-url": "http://packagist.cn/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Mark Jebri",
+                "email": "mark.github@yandex.ru"
+            }
+        ],
+        "description": "Fixture generator. The Faker integration for the Yii framework.",
+        "keywords": [
+            "Fixture",
+            "faker",
+            "yii2"
+        ]
+    },
+    {
+        "name": "overtrue/wechat",
+        "version": "2.1.x-dev",
+        "version_normalized": "2.1.9999999.9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/overtrue/wechat.git",
+            "reference": "ada84f618fbf8255cf77c5ac12bf220c4aa77b1c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/overtrue/wechat/zipball/ada84f618fbf8255cf77c5ac12bf220c4aa77b1c",
+            "reference": "ada84f618fbf8255cf77c5ac12bf220c4aa77b1c",
+            "shasum": ""
+        },
+        "require": {
+            "ext-mcrypt": "*",
+            "php": ">=5.3"
+        },
+        "time": "2015-11-13 08:56:06",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "Overtrue\\Wechat\\": "src/Wechat/"
+            }
+        },
+        "notification-url": "http://packagist.cn/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "overtrue",
+                "email": "anzhengchao@gmail.com"
+            }
+        ],
+        "description": "微信SDK",
+        "keywords": [
+            "sdk",
+            "wechat",
+            "weixin",
+            "weixin-sdk"
         ]
     }
 ]
