@@ -130,7 +130,7 @@ return [
             'user/registration/resend',
             'user/registration/connect',
 
-            // 'site/index',
+            'site/index',
             // 'site/about',
             // 'site/contact',
             // 'site/signup',
