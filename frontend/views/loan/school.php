@@ -124,7 +124,9 @@
 						<li><i class="icons icons-check"></i>中国人民大学</li>
 					    <li><i class="icons icons-check"></i>北京师范大学</li>
 					    <li><i class="icons icons-check"></i>北京航空航天大学</li>
-					    <li class="last-child"><i class="icons icons-check"></i>对外经济贸易大学</li>
+                        <li><i class="icons icons-check"></i>对外经济贸易大学</li>
+                        <li><i class="icons icons-check"></i>北京理工大学</li>
+					    <li class="last-child"><i class="icons icons-check"></i>哈尔滨工业大学</li>
                     </ul>
 					<p class="l-info">即将开放更多大学，敬请期待！</p>
 				</div>

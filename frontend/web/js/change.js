@@ -87,26 +87,30 @@ $(function(){
 					$("#suffix").html("buaa");
 				}else if(s_name=="对外经济贸易大学"){
 					$("#suffix").html("uibe");
+				}else if(s_name=="北京理工大学"){
+					$("#suffix").html("bit");
+				}else if(s_name=="哈尔滨工业大学"){
+					$("#suffix").html("hit");
 				}
 				$("#school-name").removeClass("d-color");
 				$("#c_school").css("left",-wwidth);//左推动画重置
 				var school_name=$("#school-name").html();
 				mclick(school_name);
 
-			})
+			});
 			$("#close1").click(function(){
 				$(".mask").hide();
-			})
+			});
 		}else{
 			var school_name=$("#school-name").html();
 			mclick(school_name);
 		}
 
 		
-	})/*$("#major").click 结束*/
+	});/*$("#major").click 结束*/
 
 function mclick(school_name){
-  if(school_name=="北京大学" || school_name=="中国人民大学" || school_name=="北京师范大学" || school_name=="浙江大学" || school_name=="清华大学" || school_name=="北京航空航天大学" || school_name=="对外经济贸易大学"){
+  if(school_name=="北京大学" || school_name=="中国人民大学" || school_name=="北京师范大学" || school_name=="浙江大学" || school_name=="清华大学" || school_name=="北京航空航天大学" || school_name=="对外经济贸易大学" || school_name=="北京理工大学" || school_name=="哈尔滨工业大学"){
 		 $('#cdegrees_list ul li').remove();
 		 $('#cdegrees_list ul').append("<li><i class='icons icons-check'></i>本科</li>");
 		 $('#cdegrees_list ul').append("<li class='last-child'><i class='icons icons-check'></i>研究生</li>");
@@ -156,6 +160,10 @@ function mclick(school_name){
 				buaa(adgree);
 			}else if(asname=="对外经济贸易大学"){
 				uibe(adgree);
+			}else if(asname=="北京理工大学"){
+				bit(adgree);
+			}else if(asname=="哈尔滨工业大学"){
+				hit(adgree);
 			}
 
 			/*选择学院*/
@@ -367,6 +375,37 @@ function uibe(degrees){
 	}
 }
 
+function bit(degrees){
+  var school = ["宇航学院", "机电学院", "机械与车辆学院", "光电学院", "信息与电子学院", "自动化学院", "计算机学院", "软件学院", "材料学院", "化工与环境学院", "生命学院", "数学学院", "物理学院", "化学学院", "管理与经济学院", "人文与社会科学学院", "法学院", "外国语学院", "设计与艺术学院", "国际学院", "基础学院"];
+ 	
+	if(degrees=="本科"){
+		$('#college-list ul li').remove();
+		for(var i=0;i<school.length;i++){
+		 	$('#college-list ul').append("<li><i class='icons icons-check'></i>"+school[i]+"</li>");
+		}
+	}else if(degrees=="研究生"){
+		$('#college-list ul li').remove();
+		for(var i=0;i<school1.length;i++){
+		 	$('#college-list ul').append("<li><i class='icons icons-check'></i>"+school[i]+"</li>");
+		}
+	}
+}
+
+  function hit(degrees){
+    var school = ["材料科学与工程学院", "电气工程及自动化学院", "电子与信息工程学院", "法学院", "航天学院", "化工学院", "机电工程学院", "基础与交叉科学研究院", "计算机科学与技术学院", "建筑学院", "交通科学与工程学院", "经济与管理学院", "理学院", "能源科学与工程学院", "人文与社会科学学院", "软件学院 ", "生命科学与技术学院", "市政环境工程学院", "土木工程学院", "外国语学院"];
+ 	
+	if(degrees=="本科"){
+		$('#college-list ul li').remove();
+		for(var i=0;i<school.length;i++){
+		 	$('#college-list ul').append("<li><i class='icons icons-check'></i>"+school[i]+"</li>");
+		}
+	}else if(degrees=="研究生"){
+		$('#college-list ul li').remove();
+		for(var i=0;i<school1.length;i++){
+		 	$('#college-list ul').append("<li><i class='icons icons-check'></i>"+school[i]+"</li>");
+		}
+	}
+}
 
 function grade(college,adgree,dtype){
 	if(adgree=="本科" && dtype=="common"){

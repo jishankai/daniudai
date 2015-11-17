@@ -155,6 +155,10 @@ $(function(){
 				email = email+'@buaa.edu.cn';
 			}else if(school_name=="对外经济贸易大学"){
 				email = email+'@uibe.edu.cn';
+			}else if(school_name=="北京理工大学"){
+				email = email+'@bit.edu.cn';
+			}else if(school_name=="哈尔滨工业大学"){
+				email = email+'@hit.edu.cn';
 			}
 
 		if(falg!=-1 && falg1!=-1 && falg2!=-1 && falg3!=-1 && stu_len>=8){
@@ -585,6 +589,98 @@ function ss(school,college,adgree){
             else if(college=="信息学院"){s2="22"}
             else if(college=="英语学院"){s2="23"}
             else if(college=="中国语言文学学院"){s2="24"}
+          }
+        }else if(school=="北京理工大学"){
+          s1="109";
+          if(adgree=="本科"){
+            if(college=="宇航学院"){s2="01"}
+            else if(college=="机电学院"){s2="02"}
+            else if(college=="机械与车辆学院"){s2="03"}
+            else if(college=="光电学院"){s2="04"}
+            else if(college=="信息与电子学院"){s2="05"}
+            else if(college=="自动化学院"){s2="06"}
+            else if(college=="计算机学院"){s2="07"}
+            else if(college=="软件学院"){s2="08"}
+            else if(college=="材料学院"){s2="09"}
+            else if(college=="化工与环境学院"){s2="10"}
+            else if(college=="生命学院"){s2="11"}
+            else if(college=="数学学院"){s2="12"}
+            else if(college=="物理学院"){s2="13"}
+            else if(college=="化学学院"){s2="14"}
+            else if(college=="管理与经济学院"){s2="15"}
+            else if(college=="人文与社会科学学院"){s2="16"}
+            else if(college=="法学院"){s2="17"}
+            else if(college=="外国语学院"){s2="18"}
+            else if(college=="设计与艺术学院"){s2="19"}
+            else if(college=="国际学院"){s2="20"}
+            else if(college=="基础学院"){s2="21"}
+          }else if(adgree=="研究生"){
+            if(college=="宇航学院"){s2="22"}
+            else if(college=="机电学院"){s2="23"}
+            else if(college=="机械与车辆学院"){s2="24"}
+            else if(college=="光电学院"){s2="25"}
+            else if(college=="信息与电子学院"){s2="26"}
+            else if(college=="自动化学院"){s2="27"}
+            else if(college=="计算机学院"){s2="28"}
+            else if(college=="软件学院"){s2="29"}
+            else if(college=="材料学院"){s2="30"}
+            else if(college=="化工与环境学院"){s2="31"}
+            else if(college=="生命学院"){s2="32"}
+            else if(college=="数学学院"){s2="33"}
+            else if(college=="物理学院"){s2="34"}
+            else if(college=="化学学院"){s2="35"}
+            else if(college=="管理与经济学院"){s2="36"}
+            else if(college=="人文与社会科学学院"){s2="37"}
+            else if(college=="法学院"){s2="38"}
+            else if(college=="外国语学院"){s2="39"}
+            else if(college=="设计与艺术学院"){s2="40"}
+            else if(college=="国际学院"){s2="41"}
+            else if(college=="基础学院"){s2="42"}
+          }
+        }else if(school=="哈尔滨工业大学"){
+          s1="110";
+          if(adgree=="本科"){
+            if(college=="材料科学与工程学院"){s2="01"}
+            else if(college=="电气工程及自动化学院"){s2="02"}
+            else if(college=="电子与信息工程学院"){s2="03"}
+            else if(college=="法学院"){s2="04"}
+            else if(college=="航天学院"){s2="05"}
+            else if(college=="化工学院"){s2="06"}
+            else if(college=="机电工程学院"){s2="07"}
+            else if(college=="基础与交叉科学研究院"){s2="08"}
+            else if(college=="计算机科学与技术学院"){s2="09"}
+            else if(college=="建筑学院"){s2="10"}
+            else if(college=="交通科学与工程学院"){s2="11"}
+            else if(college=="经济与管理学院"){s2="12"}
+            else if(college=="理学院"){s2="13"}
+            else if(college=="能源科学与工程学院"){s2="14"}
+            else if(college=="人文与社会科学学院"){s2="15"}
+            else if(college=="软件学院"){s2="16"}
+            else if(college=="生命科学与技术学院"){s2="17"}
+            else if(college=="市政环境工程学院"){s2="18"}
+            else if(college=="土木工程学院"){s2="19"}
+            else if(college=="外国语学院"){s2="20"}
+          }else if(adgree=="研究生"){
+            if(college=="材料科学与工程学院"){s2="21"}
+            else if(college=="电气工程及自动化学院"){s2="22"}
+            else if(college=="电子与信息工程学院"){s2="23"}
+            else if(college=="法学院"){s2="24"}
+            else if(college=="航天学院"){s2="25"}
+            else if(college=="化工学院"){s2="26"}
+            else if(college=="机电工程学院"){s2="27"}
+            else if(college=="基础与交叉科学研究院"){s2="28"}
+            else if(college=="计算机科学与技术学院"){s2="29"}
+            else if(college=="建筑学院"){s2="30"}
+            else if(college=="交通科学与工程学院"){s2="31"}
+            else if(college=="经济与管理学院"){s2="32"}
+            else if(college=="理学院"){s2="33"}
+            else if(college=="能源科学与工程学院"){s2="34"}
+            else if(college=="人文与社会科学学院"){s2="35"}
+            else if(college=="软件学院"){s2="36"}
+            else if(college=="生命科学与技术学院"){s2="37"}
+            else if(college=="市政环境工程学院"){s2="38"}
+            else if(college=="土木工程学院"){s2="39"}
+            else if(college=="外国语学院"){s2="40"}
           }
         }
 }
