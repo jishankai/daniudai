@@ -42,6 +42,10 @@ $(function(){
 					$("#suffix").html("buaa");
 				}else if(s_name=="对外经济贸易大学"){
 					$("#suffix").html("uibe");
+				}else if(s_name=="北京理工大学"){
+					$("#suffix").html("bit");
+				}else if(s_name=="哈尔滨工业大学"){
+					$("#suffix").html("hit");
 				}
 			$("#school-name").removeClass("d-color");
 
