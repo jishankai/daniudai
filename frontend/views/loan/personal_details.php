@@ -61,6 +61,9 @@
 		</tr>
 		
 	</table>
+    <br />
+    <br />
+    <br />
     <a class="btn" href="<?php echo Url::to(['loan/operate','loan_id'=>$r['loan_id'],'operation'=>2])?>" onclick= "if(confirm( '是否确定通过审核！ ')==false)return false; ">确认通过审核</a>
     <a class="btn" href="<?php echo Url::to(['loan/operate','loan_id'=>$r['loan_id'],'operation'=>-1])?>" onclick= "if(confirm( '是否确定审核未通过！ ')==false)return false; ">审核未通过</a>
 </div>

@@ -40,6 +40,8 @@ class WechatController extends \yii\web\Controller
 浙江大学
 北京航空航天大学
 对外经贸大学
+北京理工大学
+哈尔滨工业大学
 我们会走到每一所城市，需要我真牛贷的同学敬请期待，请继续关注！
 ');
                 } else if ($message->Content=='4') {
