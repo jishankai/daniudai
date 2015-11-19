@@ -99,7 +99,7 @@ class WechatController extends \yii\web\Controller
  
 1.如何借款
 2.真牛贷业务
-3.借款支持地区
+3.借款支持学校
 4.违约怎么处理
 5.真牛君是谁？
 6.10000元额度怎么理解？
