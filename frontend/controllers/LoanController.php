@@ -409,7 +409,7 @@ class LoanController extends \yii\web\Controller
             if (!isset($_SESSION['sms_send_time']) or time()-$_SESSION['sms_send_time']>60) {
                 $code = $_SESSION['sms_code'] = rand(100000, 999999);
                 $sms = new Yuntongxun(Yii::$app->params['ytx_appId'], Yii::$app->params['ytx_accountId'], Yii::$app->params['ytx_token']);
-                $sms->sendTemplateSMS($mobile, [$code, 60], 49629);
+                $sms->sendTemplateSMS($mobile, [$code, 1], 49629);
                 $_SESSION['sms_send_time'] = time();
 
                 Yii::$app->mailer->compose()
