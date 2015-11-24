@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0bab89c7c1288fe53f993ea778b36cfc",
-    "content-hash": "a30dcca36bfb4c7de1e657aa04813a16",
+    "hash": "d60ccc3a3078b1f8ce26703ecf838710",
+    "content-hash": "2b26d98208c58b495b02b9e4270073fc",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -204,16 +204,16 @@
         },
         {
             "name": "bower-asset/jquery.inputmask",
-            "version": "3.2.3",
+            "version": "3.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RobinHerbots/jquery.inputmask.git",
-                "reference": "85b94d8c8158d610b148317608bf67b678b40659"
+                "reference": "4e39624ea093d23c34f340c5bd8ab4e3a0aea17d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RobinHerbots/jquery.inputmask/zipball/85b94d8c8158d610b148317608bf67b678b40659",
-                "reference": "85b94d8c8158d610b148317608bf67b678b40659",
+                "url": "https://api.github.com/repos/RobinHerbots/jquery.inputmask/zipball/4e39624ea093d23c34f340c5bd8ab4e3a0aea17d",
+                "reference": "4e39624ea093d23c34f340c5bd8ab4e3a0aea17d",
                 "shasum": ""
             },
             "require": {
@@ -225,9 +225,14 @@
                     "./dist/inputmask/inputmask.js"
                 ],
                 "bower-asset-ignore": [
-                    "*",
+                    "**/*",
                     "!dist/*",
-                    "!extra/*"
+                    "!dist/inputmask/*",
+                    "!dist/min/*",
+                    "!dist/min/inputmask/*",
+                    "!extra/bindings/*",
+                    "!extra/dependencyLibs/*",
+                    "!extra/phone-codes/*"
                 ]
             },
             "license": [
@@ -277,12 +282,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/jquery-pjax.git",
-                "reference": "59ec6e89dab0a945eea2e9f967a9ed6ef97f4525"
+                "reference": "62e44025c58f89f8cd0a7a061241d0b7908387a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/jquery-pjax/zipball/59ec6e89dab0a945eea2e9f967a9ed6ef97f4525",
-                "reference": "59ec6e89dab0a945eea2e9f967a9ed6ef97f4525",
+                "url": "https://api.github.com/repos/yiisoft/jquery-pjax/zipball/62e44025c58f89f8cd0a7a061241d0b7908387a0",
+                "reference": "62e44025c58f89f8cd0a7a061241d0b7908387a0",
                 "shasum": ""
             },
             "require": {
@@ -306,7 +311,7 @@
             "license": [
                 "MIT"
             ],
-            "time": "2015-10-21 22:05:55"
+            "time": "2015-11-23 21:52:47"
         },
         {
             "name": "cebe/markdown",
@@ -571,6 +576,177 @@
                 "html"
             ],
             "time": "2013-11-30 08:25:19"
+        },
+        {
+            "name": "guzzlehttp/guzzle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/guzzle.git",
+                "reference": "a21d3ccb7ea39a5256079adaa7f0901fde02a5b0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "http://packagist.phpcomposer.com/files/guzzle/guzzle/a21d3ccb7ea39a5256079adaa7f0901fde02a5b0.zip",
+                "reference": "a21d3ccb7ea39a5256079adaa7f0901fde02a5b0",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/promises": "~1.0",
+                "guzzlehttp/psr7": "~1.1",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "ext-curl": "*",
+                "phpunit/phpunit": "~4.0",
+                "psr/log": "~1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "6.1-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/functions_include.php"
+                ],
+                "psr-4": {
+                    "GuzzleHttp\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                }
+            ],
+            "description": "Guzzle is a PHP HTTP client library",
+            "homepage": "http://guzzlephp.org/",
+            "keywords": [
+                "client",
+                "curl",
+                "framework",
+                "http",
+                "http client",
+                "rest",
+                "web service"
+            ],
+            "time": "2015-11-15 09:29:07"
+        },
+        {
+            "name": "guzzlehttp/promises",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/promises.git",
+                "reference": "b1e1c0d55f8083c71eda2c28c12a228d708294ea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "http://packagist.phpcomposer.com/files/guzzle/promises/b1e1c0d55f8083c71eda2c28c12a228d708294ea.zip",
+                "reference": "b1e1c0d55f8083c71eda2c28c12a228d708294ea",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GuzzleHttp\\Promise\\": "src/"
+                },
+                "files": [
+                    "src/functions_include.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                }
+            ],
+            "description": "Guzzle promises library",
+            "keywords": [
+                "promise"
+            ],
+            "time": "2015-10-15 22:28:00"
+        },
+        {
+            "name": "guzzlehttp/psr7",
+            "version": "1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/psr7.git",
+                "reference": "4d0bdbe1206df7440219ce14c972aa57cc5e4982"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "http://packagist.phpcomposer.com/files/guzzle/psr7/4d0bdbe1206df7440219ce14c972aa57cc5e4982.zip",
+                "reference": "4d0bdbe1206df7440219ce14c972aa57cc5e4982",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "psr/http-message": "~1.0"
+            },
+            "provide": {
+                "psr/http-message-implementation": "1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GuzzleHttp\\Psr7\\": "src/"
+                },
+                "files": [
+                    "src/functions_include.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                }
+            ],
+            "description": "PSR-7 message implementation",
+            "keywords": [
+                "http",
+                "message",
+                "stream",
+                "uri"
+            ],
+            "time": "2015-11-03 01:34:55"
         },
         {
             "name": "kartik-v/mpdf",
@@ -894,6 +1070,46 @@
             "time": "2015-04-21 15:19:01"
         },
         {
+            "name": "lixunguan/yuntongxun",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LiXunGuan/YunTongXun.git",
+                "reference": "2c6771854420b5fec073d39272dd37509f762658"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "http://packagist.phpcomposer.com/files/LiXunGuan/YunTongXun/2c6771854420b5fec073d39272dd37509f762658.zip",
+                "reference": "2c6771854420b5fec073d39272dd37509f762658",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "~6.0",
+                "php": ">=5.5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "LiXunGuan",
+                    "email": "183517940@qq.com"
+                }
+            ],
+            "description": "容联·云通讯PHP API",
+            "keywords": [
+                "yuntongxun"
+            ],
+            "time": "2015-08-19 07:15:11"
+        },
+        {
             "name": "luzhongyang/yeepay",
             "version": "dev-master",
             "source": {
@@ -976,16 +1192,16 @@
         },
         {
             "name": "overtrue/wechat",
-            "version": "2.1.x-dev",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/wechat.git",
-                "reference": "ada84f618fbf8255cf77c5ac12bf220c4aa77b1c"
+                "reference": "eed3490994c63f016e8402162acb26d421269f59"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/wechat/zipball/ada84f618fbf8255cf77c5ac12bf220c4aa77b1c",
-                "reference": "ada84f618fbf8255cf77c5ac12bf220c4aa77b1c",
+                "url": "http://packagist.phpcomposer.com/files/overtrue/wechat/eed3490994c63f016e8402162acb26d421269f59.zip",
+                "reference": "eed3490994c63f016e8402162acb26d421269f59",
                 "shasum": ""
             },
             "require": {
@@ -998,7 +1214,7 @@
                     "Overtrue\\Wechat\\": "src/Wechat/"
                 }
             },
-            "notification-url": "http://packagist.cn/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1015,7 +1231,56 @@
                 "weixin",
                 "weixin-sdk"
             ],
-            "time": "2015-11-13 08:56:06"
+            "time": "2015-11-18 14:06:11"
+        },
+        {
+            "name": "psr/http-message",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/http-message.git",
+                "reference": "85d63699f0dbedb190bbd4b0d2b9dc707ea4c298"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "http://packagist.phpcomposer.com/files/php-fig/http-message/85d63699f0dbedb190bbd4b0d2b9dc707ea4c298.zip",
+                "reference": "85d63699f0dbedb190bbd4b0d2b9dc707ea4c298",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Http\\Message\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for HTTP messages",
+            "keywords": [
+                "http",
+                "http-message",
+                "psr",
+                "psr-7",
+                "request",
+                "response"
+            ],
+            "time": "2015-05-04 20:22:00"
         },
         {
             "name": "rmrevin/yii2-fontawesome",
@@ -1128,12 +1393,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "464c58f9f5572e6283b9b6211d39ad725a42d91a"
+                "reference": "6dc9fcefe611fcc6af92c2b8297d0dcb00f8cc9c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/464c58f9f5572e6283b9b6211d39ad725a42d91a",
-                "reference": "464c58f9f5572e6283b9b6211d39ad725a42d91a",
+                "url": "http://packagist.phpcomposer.com/files/yiisoft/yii2-framework/6dc9fcefe611fcc6af92c2b8297d0dcb00f8cc9c.zip",
+                "reference": "6dc9fcefe611fcc6af92c2b8297d0dcb00f8cc9c",
                 "shasum": ""
             },
             "require": {
@@ -1163,7 +1428,7 @@
                     "yii\\": ""
                 }
             },
-            "notification-url": "http://packagist.cn/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1209,7 +1474,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2015-11-15 21:23:00"
+            "time": "2015-11-19 21:12:59"
         },
         {
             "name": "yiisoft/yii2-authclient",
@@ -1491,12 +1756,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "cd5fb1c262e1734366e77688b011a0f0422ce06d"
+                "reference": "008e69f17a1286c29b8a60082119b7d6eee69082"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/cd5fb1c262e1734366e77688b011a0f0422ce06d",
-                "reference": "cd5fb1c262e1734366e77688b011a0f0422ce06d",
+                "url": "http://packagist.phpcomposer.com/files/fzaninotto/Faker/008e69f17a1286c29b8a60082119b7d6eee69082.zip",
+                "reference": "008e69f17a1286c29b8a60082119b7d6eee69082",
                 "shasum": ""
             },
             "require": {
@@ -1518,7 +1783,7 @@
                     "Faker\\": "src/Faker/"
                 }
             },
-            "notification-url": "http://packagist.cn/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1533,7 +1798,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2015-11-09 08:00:48"
+            "time": "2015-11-16 08:55:57"
         },
         {
             "name": "phpspec/php-diff",
@@ -1714,12 +1979,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-gii.git",
-                "reference": "741ef183702cb8ba8f7d790040ff2c38124cc8c2"
+                "reference": "754825cb7ef605f552b4f507fe25fa94645312f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/741ef183702cb8ba8f7d790040ff2c38124cc8c2",
-                "reference": "741ef183702cb8ba8f7d790040ff2c38124cc8c2",
+                "url": "http://packagist.phpcomposer.com/files/yiisoft/yii2-gii/754825cb7ef605f552b4f507fe25fa94645312f6.zip",
+                "reference": "754825cb7ef605f552b4f507fe25fa94645312f6",
                 "shasum": ""
             },
             "require": {
@@ -1743,7 +2008,7 @@
                     "yii\\gii\\": ""
                 }
             },
-            "notification-url": "http://packagist.cn/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1759,7 +2024,7 @@
                 "gii",
                 "yii2"
             ],
-            "time": "2015-11-03 09:49:52"
+            "time": "2015-11-19 14:53:57"
         }
     ],
     "aliases": [],
