@@ -28,6 +28,11 @@ return array(
     'dektrium\\user\\' => array($vendorDir . '/dektrium/yii2-user'),
     'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),
     'Yeepay\\' => array($vendorDir . '/luzhongyang/yeepay/src/Yeepay'),
+    'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-message/src'),
     'Overtrue\\Wechat\\' => array($vendorDir . '/overtrue/wechat/src/Wechat'),
+    'GuzzleHttp\\Psr7\\' => array($vendorDir . '/guzzlehttp/psr7/src'),
+    'GuzzleHttp\\Promise\\' => array($vendorDir . '/guzzlehttp/promises/src'),
+    'GuzzleHttp\\' => array($vendorDir . '/guzzlehttp/guzzle/src'),
     'Faker\\' => array($vendorDir . '/fzaninotto/faker/src/Faker'),
+    '' => array($vendorDir . '/lixunguan/yuntongxun/src'),
 );

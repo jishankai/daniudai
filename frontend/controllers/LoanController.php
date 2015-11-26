@@ -16,6 +16,7 @@ use backend\models\Student;
 use backend\models\School;
 use backend\models\Bank;
 use backend\models\Yeepay;
+use Lixunguan\Yuntongxun\Sdk as Yuntongxun;
 
 class LoanController extends \yii\web\Controller
 {
@@ -407,8 +408,8 @@ class LoanController extends \yii\web\Controller
         } else if ($code==1) {
             if (!isset($_SESSION['sms_send_time']) or time()-$_SESSION['sms_send_time']>60) {
                 $code = $_SESSION['sms_code'] = rand(100000, 999999);
-                $sms = new \SmsApi();
-                $sms->sendMsg($mobile, $code.'，回复TD退订');
+                $sms = new Yuntongxun(Yii::$app->params['ytx_appId'], Yii::$app->params['ytx_accountId'], Yii::$app->params['ytx_token']);
+                $sms->sendTemplateSMS($mobile, [$code, 1], 49629);
                 $_SESSION['sms_send_time'] = time();
 
                 Yii::$app->mailer->compose()
