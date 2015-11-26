@@ -34,7 +34,7 @@ class m140403_174025_create_account_table extends Migration
             'properties' => Schema::TYPE_TEXT,
         ], $tableOptions);
 
-        $this->createIndex('account_unique', '{{%account}}', ['provider', 'client_id'], true);
+        //$this->createIndex('account_unique', '{{%account}}', ['provider', 'client_id'], true);
         $this->addForeignKey('fk_user_account', '{{%account}}', 'user_id', '{{%admin_user}}', 'id', 'CASCADE', 'RESTRICT');
     }
 
