@@ -102,7 +102,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format'=>'raw',
             ],
             'start_at:date',
-            'end_at:date'
+            'end_at:date',
+            'updated_at:date'
             // [
             //     'attribute'=>'start_at:date',
             //     'vAlign'=>'middle',

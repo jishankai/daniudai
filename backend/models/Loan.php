@@ -61,7 +61,7 @@ class Loan extends \yii\db\ActiveRecord
             'reviewer' => '审核人',
             'school' => '学校',
             'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'updated_at' => '最后操作时间',
         ];
     }
 
