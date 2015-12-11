@@ -389,12 +389,9 @@ class LoanController extends \yii\web\Controller
 
         session_start();
         if ($code!=0&&$code!=1) {
-        	echo 'get code:'.$code;
-        	echo 'session code' .$_SESSION['sms_code'];
             if ($_SESSION['sms_code']==$code OR Yii::$app->params['tmp_sms_code']==$code) {
                 $user = $_SESSION['user'];
                 $u = User::findOne($user['openid']);
-                print_r($u);exit;
                 $auth_code = $u->auth_code;
                 if ($auth_code!='') {
                     $auth = 1;
