@@ -103,7 +103,7 @@ class WechatController extends \yii\web\Controller
 6.10000元额度怎么理解？
 7.我的贷款何时到期，怎么还款？
 8.查看历史消息');
-            } elseif($event['EventKey']=='CLICK_OVERSEAS_STUDY_LOAN') {
+            } elseif ($event['EventKey']=='CLICK_OVERSEAS_STUDY_LOAN') {
                 return Message::make('image')->media_id(Url::to('img/logo.png'));
             }
         });
