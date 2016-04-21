@@ -104,7 +104,7 @@ class WechatController extends \yii\web\Controller
 7.我的贷款何时到期，怎么还款？
 8.查看历史消息');
             } elseif ($event['EventKey']=='CLICK_OVERSEAS_STUDY_LOAN') {
-                return Message::make('image')->media_id('http://dev.imengstar.com/img/logo.png');
+                return Message::make('image')->media_id(Url::to('img/logo.png'));
             }
         });
 
@@ -123,7 +123,7 @@ class WechatController extends \yii\web\Controller
         $b = new MenuItem('我的');
         $menus = array(
             $loan->buttons([
-                new MenuItem("申请贷款", 'view', Url::to(['loan/index'], TRUE)),
+                new MenuItem("我要贷款", 'view', Url::to(['loan/index'], TRUE)),
                 new MenuItem("留学贷款", 'click', 'CLICK_OVERSEAS_STUDY_LOAN')
             ]),
 
