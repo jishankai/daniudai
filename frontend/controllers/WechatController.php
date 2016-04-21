@@ -123,7 +123,7 @@ class WechatController extends \yii\web\Controller
         $b = new MenuItem('我的');
         $menus = array(
             $loan->buttons([
-                new MenuItem("申请贷款", 'view', Url::to(['loan/index'], TRUE)),
+                new MenuItem("我要贷款", 'view', Url::to(['loan/index'], TRUE)),
                 new MenuItem("留学贷款", 'click', 'CLICK_OVERSEAS_STUDY_LOAN')
             ]),
 
