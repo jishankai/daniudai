@@ -104,6 +104,7 @@ class WechatController extends \yii\web\Controller
 7.我的贷款何时到期，怎么还款？
 8.查看历史消息');
             } elseif ($event['EventKey']=='CLICK_OVERSEAS_STUDY_LOAN') {
+
                 return Message::make('news')->media_id('_ofQW2y0X_reCuxGEnhcw5Bowh7VTC_Awr0Ya3CQjunazOxtBvqqiwjP9w-cAJVc');
             }
         });
