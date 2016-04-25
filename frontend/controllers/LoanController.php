@@ -404,7 +404,6 @@ class LoanController extends \yii\web\Controller
                 $result = 0;
                 $auth = 0;
             }
-            print_r($u);
             return json_encode(['isSuccess'=>$result, 'auth'=>$auth]);
         } else if ($code==1) {
             if (!isset($_SESSION['sms_send_time']) or time()-$_SESSION['sms_send_time']>60) {
