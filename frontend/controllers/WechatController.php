@@ -105,6 +105,9 @@ class WechatController extends \yii\web\Controller
 6.10000元额度怎么理解？
 7.我的贷款何时到期，怎么还款？
 8.查看历史消息');
+            } elseif ($event['EventKey']=='CLICK_OVERSEAS_STUDY_LOAN') {
+
+                return Message::make('image')->media_id('_ofQW2y0X_reCuxGEnhcw5Bowh7VTC_Awr0Ya3CQjunazOxtBvqqiwjP9w-cAJVc');
             }
         });
 
@@ -119,9 +122,14 @@ class WechatController extends \yii\web\Controller
         $secret = Yii::$app->params['wechat_appsecret'];
 
         $menu = new Menu($appId, $secret);
+        $loan = new MenuItem('申请贷款');
         $b = new MenuItem('我的');
         $menus = array(
-            new MenuItem("申请贷款", 'view', Url::to(['loan/index'], TRUE)),
+            $loan->buttons([
+                new MenuItem("我要贷款", 'view', Url::to(['loan/index'], TRUE)),
+                new MenuItem("留学贷款", 'click', 'CLICK_OVERSEAS_STUDY_LOAN')
+            ]),
+
             $b->buttons([
                 new MenuItem("我的贷款", 'view', Url::to(['loan/repays'], TRUE)),
                 new MenuItem("我的密码", 'view', Url::to(['loan/auth'], TRUE)),
