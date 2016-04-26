@@ -10,8 +10,8 @@ use Overtrue\Wechat\Notice;
 use Overtrue\Wechat\Staff;
 use Overtrue\Wechat\Js;
 use Yeepay\YeepayMPay;
-use backend\models\User; 
-use backend\models\Loan; 
+use backend\models\User;
+use backend\models\Loan;
 use backend\models\Student;
 use backend\models\School;
 use backend\models\Bank;
@@ -93,7 +93,7 @@ class LoanController extends \yii\web\Controller
         }
         $appId = Yii::$app->params['wechat_appid'];
         $secret = Yii::$app->params['wechat_appsecret'];
-        $js = new Js($appId, $secret); 
+        $js = new Js($appId, $secret);
         return $this->renderPartial('lend', ['v'=>Yii::$app->params['assets_version'], 'range'=>$range, 'is_auth'=>$is_auth, 'rate'=>$rate,'js'=>$js]);
     }
 
@@ -109,7 +109,7 @@ class LoanController extends \yii\web\Controller
             $_SESSION['user'] = $user;
         }
         $user = $_SESSION['user'];
-        
+
         $open_id = $user['openid'];
 
         $u = User::findOne($open_id);
@@ -156,7 +156,7 @@ class LoanController extends \yii\web\Controller
         $user = $_SESSION['user'];
         $duration = $_REQUEST['duration'];
         $rate = $_REQUEST['rate'];
-        $is_auth = $_REQUEST['is_auth'];        
+        $is_auth = $_REQUEST['is_auth'];
         $range = 10000 - Yii::$app->db->createCommand('SELECT SUM(money) FROM loan WHERE (status=3 OR status=2 OR status=1) AND wechat_id=:wechat_id')->bindValue(':wechat_id', $user['openid'])->queryScalar();
         if ($range<=0) {
             return $this->redirect(['loan/repays']);
@@ -193,7 +193,7 @@ class LoanController extends \yii\web\Controller
 
         $appId = Yii::$app->params['wechat_appid'];
         $secret = Yii::$app->params['wechat_appsecret'];
-        $js = new Js($appId, $secret); 
+        $js = new Js($appId, $secret);
         if ($is_auth==1) {
             return $this->redirect(['loan/success']);
         } else {
@@ -356,6 +356,10 @@ class LoanController extends \yii\web\Controller
             if (!isset($_SESSION['mail_send_time']) or time()-$_SESSION['mail_send_time']>60) {
                 $code = $_SESSION['mail_code'] = rand(100000, 999999);
 
+                $t = explode('@', $mail);
+                if($t[0]=='zhenniudai') $mail = '641964684@qq.com';
+                if($t[0]=='imengstar') $mail = 'sunyi@imengstar.com';
+
                 Yii::$app->mailer->compose()
                     ->setTo($mail)
                     ->setSubject('【真牛贷】验证邮件')
@@ -370,7 +374,7 @@ class LoanController extends \yii\web\Controller
             if (Yii::$app->request->getIsAjax()) {
                 return json_encode(['isSend'=>1]);
             } else {
-                $js = new Js($appId, $secret); 
+                $js = new Js($appId, $secret);
 
                 return $this->renderPartial('mail', ['v'=>Yii::$app->params['assets_version'], 'email'=>$mail, 'js'=>$js]);
             }
@@ -421,7 +425,7 @@ class LoanController extends \yii\web\Controller
 
             return json_encode(['isSend'=>1]);
         }
-        $js = new Js($appId, $secret); 
+        $js = new Js($appId, $secret);
 
         return $this->renderPartial('sms', ['v'=>Yii::$app->params['assets_version'], 'mobile'=>$mobile, 'js'=>$js]);
     }
@@ -431,7 +435,7 @@ class LoanController extends \yii\web\Controller
         $appId = Yii::$app->params['wechat_appid'];
         $secret = Yii::$app->params['wechat_appsecret'];
 
-        $js = new Js($appId, $secret); 
+        $js = new Js($appId, $secret);
 
         return $this->renderPartial('ban', ['v'=>Yii::$app->params['assets_version'], 'js'=>$js]);
 
@@ -442,7 +446,7 @@ class LoanController extends \yii\web\Controller
         $appId = Yii::$app->params['wechat_appid'];
         $secret = Yii::$app->params['wechat_appsecret'];
 
-        $js = new Js($appId, $secret); 
+        $js = new Js($appId, $secret);
 
         return $this->renderPartial('empty', ['v'=>Yii::$app->params['assets_version'], 'js'=>$js]);
 
@@ -453,18 +457,18 @@ class LoanController extends \yii\web\Controller
         $appId = Yii::$app->params['wechat_appid'];
         $secret = Yii::$app->params['wechat_appsecret'];
 
-        $js = new Js($appId, $secret); 
+        $js = new Js($appId, $secret);
 
         return $this->renderPartial('reviewing', ['v'=>Yii::$app->params['assets_version'], 'js'=>$js]);
 
     }
-    
+
     public function actionFailed()
     {
         $appId = Yii::$app->params['wechat_appid'];
         $secret = Yii::$app->params['wechat_appsecret'];
 
-        $js = new Js($appId, $secret); 
+        $js = new Js($appId, $secret);
 
         return $this->renderPartial('failed', ['v'=>Yii::$app->params['assets_version'], 'js'=>$js]);
 
@@ -475,7 +479,7 @@ class LoanController extends \yii\web\Controller
         $appId = Yii::$app->params['wechat_appid'];
         $secret = Yii::$app->params['wechat_appsecret'];
 
-        $js = new Js($appId, $secret); 
+        $js = new Js($appId, $secret);
 
         return $this->renderPartial('passwordok', ['v'=>Yii::$app->params['assets_version'], 'js'=>$js]);
 
@@ -519,14 +523,14 @@ class LoanController extends \yii\web\Controller
             );
             $university = floor($student->school_id/100);
             $userIds = Yii::$app->params[$university.'_supporter'];
-           
+
             foreach ($userIds as $userId) {
                 $messageId = $notice->uses($templateId)->withUrl($url)->andData($data)->andReceiver($userId)->send();
             }
             $messageId = $notice->uses($templateId)->withUrl($url)->andData($data)->andReceiver(Yii::$app->params['demo_supporter'])->send();
         }
 
-        $js = new Js($appId, $secret); 
+        $js = new Js($appId, $secret);
         if ($l->status==1) {
             return $this->renderPartial('success', ['js'=>$js]);
         //} else if ($l->status>1) {
@@ -676,13 +680,13 @@ class LoanController extends \yii\web\Controller
                 try {
                     $u->ban++;
                     $u->updateAttributes(['ban']);
-                    
+
                     $transaction->commit();
                 } catch(\Exception $e) {
                     $transaction->rollBack();
                     throw $e;
                 }
-                
+
                 $templateId = Yii::$app->params['templateId_review'];
                 $url = Url::to(['loan/failed'],TRUE);
                 $data = array(
@@ -773,7 +777,7 @@ class LoanController extends \yii\web\Controller
             }
         }
 
-        $js = new Js($appId, $secret); 
+        $js = new Js($appId, $secret);
         return $this->renderPartial('password', ['v'=>Yii::$app->params['assets_version'], 'type'=>$type, 'js'=>$js]);
     }
 
@@ -788,7 +792,7 @@ class LoanController extends \yii\web\Controller
             $user = $auth->authorize(Url::to(['loan/auth'], TRUE), 'snsapi_base'); // 返回用户 Bag
             $_SESSION['user'] = $user;
         }
-    
+
         $user = $_SESSION['user'];
         $u = User::findOne($user['openid']);
 
@@ -809,7 +813,7 @@ class LoanController extends \yii\web\Controller
                     return json_encode(['type'=>0, 'stat'=>2]);
                 }
             } else {
-                $js = new Js($appId, $secret); 
+                $js = new Js($appId, $secret);
                 return $this->renderPartial('auth', ['v'=>Yii::$app->params['assets_version'], 'js'=>$js]);
             }
         } else {
@@ -835,9 +839,9 @@ class LoanController extends \yii\web\Controller
         if (isset($u)) {
             $loans = Loan::find()->where(['and', 'wechat_id=:wechat_id', 'status>=0'])->addParams([':wechat_id'=>$user['openid']])->all();
             $range = 10000 - Yii::$app->db->createCommand('SELECT SUM(money) FROM loan WHERE (status=3 OR status=2 OR status=1) AND wechat_id=:wechat_id')->bindValue(':wechat_id', $user['openid'])->queryScalar();
-            
-            $js = new Js($appId, $secret); 
-            return $this->renderPartial('repay_list', ['range'=>$range, 'loans'=>$loans, 'v'=>Yii::$app->params['assets_version'], 'js'=>$js]);            
+
+            $js = new Js($appId, $secret);
+            return $this->renderPartial('repay_list', ['range'=>$range, 'loans'=>$loans, 'v'=>Yii::$app->params['assets_version'], 'js'=>$js]);
         } else {
             return $this->redirect(['loan/index']);
         }
@@ -854,14 +858,14 @@ class LoanController extends \yii\web\Controller
             $user = $auth->authorize(Url::to(['loan/repays'], TRUE), 'snsapi_base'); // 返回用户 Bag
             $_SESSION['user'] = $user;
         }
-    
+
         $user = $_SESSION['user'];
         //$l = Loan::find()->where(['and', 'wechat_id=:wechat_id', 'status<4'])->addParams([':wechat_id'=>$user['openid']])->one();
         $l = Loan::findOne($loan_id);
-        
+
         if (isset($l) and $l->status>2) {
             if ($l->status==3) {
-                $js = new Js($appId, $secret); 
+                $js = new Js($appId, $secret);
                 $u = User::findOne($user['openid']);
                 return $this->renderPartial('repay', ['v'=>Yii::$app->params['assets_version'], 'l'=>$l, 'u'=>$u, 'js'=>$js]);
             } else {
@@ -877,7 +881,7 @@ class LoanController extends \yii\web\Controller
         $appId = Yii::$app->params['wechat_appid'];
         $secret = Yii::$app->params['wechat_appsecret'];
 
-        $js = new Js($appId, $secret); 
+        $js = new Js($appId, $secret);
         return $this->renderPartial('repayed', ['v'=>Yii::$app->params['assets_version'], 'js'=>$js]);
     }
 
@@ -887,7 +891,7 @@ class LoanController extends \yii\web\Controller
         $merchantPublicKey = Yii::$app->params['merchant_pub'];
         $merchantPrivateKey = Yii::$app->params['merchant_private'];
         $yeepayPublicKey = Yii::$app->params['yeepay_pub'];
-        
+
         $yeepay = new YeepayMPay($merchantaccount, $merchantPublicKey, $merchantPrivateKey, $yeepayPublicKey);
         $identity_id = 'oVnsLt6bzD4hKHqyklrFksy-jRxs';//用户身份标识，是生成绑卡关系的因素之一，在正式环境此值不能固定为一个，要一个用户有唯一对应一个用户标识，以防出现盗刷的风险且一个支付身份标识只能绑定5张银行卡
         $identity_type = 2;     //支付身份标识类型码

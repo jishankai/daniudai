@@ -10,7 +10,7 @@
 
 //↓↓↓↓↓↓↓↓↓↓请在这里配置您的基本信息↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 //商户编号是商户在连连钱包支付平台上开设的商户号码，为18位数字，如：201408071000001543
-$llpay_config['oid_partner'] = '201408071000001539';
+$llpay_config['oid_partner'] = '201509101000493503';
 
 //秘钥格式注意不能修改（左对齐，右边有回车符）
 $llpay_config['RSA_PRIVATE_KEY'] ='-----BEGIN RSA PRIVATE KEY-----
@@ -27,11 +27,11 @@ ekU2yoN+0KtfLG64RvBI45NkHLQiIiy+7wbyTNcXfewrJUIcNRjRcVRkpesCQEM8
 BbX6BYLnTKUYwV82NfLPJRtKJoUC5n/kgZFGPnkvA4qMKOybIL6ehPGiS/tYge1x
 XD1pCrPZTco4CiambuECQDNtlC31iqzSKmgSWmA5kErqVJB0f1i+a0CbQLlaPGYN
 /qwa7TE13yByaUdDDaTIEUrDyuqWd5+IvlbwuVsSlMw=
------END RSA PRIVATE KEY-----';	
+-----END RSA PRIVATE KEY-----';
 
 
 //安全检验码，以数字和字母组成的字符
-$llpay_config['key'] = '201408071000001539_sahdisa_20141205';
+$llpay_config['key'] = 'zhenniudai1212tiantian';
 
 //↑↑↑↑↑↑↑↑↑↑请在这里配置您的基本信息↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
@@ -45,7 +45,7 @@ $llpay_config['app_request'] = '3';
 //签名方式 不需修改
 $llpay_config['sign_type'] = strtoupper('MD5');
 
-//订单有效时间  分钟为单位，默认为10080分钟（7天） 
+//订单有效时间  分钟为单位，默认为10080分钟（7天）
 $llpay_config['valid_order'] ="10080";
 
 //字符编码格式 目前支持 gbk 或 utf-8

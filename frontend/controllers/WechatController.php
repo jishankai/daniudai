@@ -156,6 +156,7 @@ class WechatController extends \yii\web\Controller
 
         $ticket = $result->ticket; // 或者 $result['ticket']
 
-        return $this->redirect($qrcode->show($ticket));
+        echo $result->url;
+        //return $this->redirect($qrcode->show($ticket));
     }
 }
