@@ -107,7 +107,7 @@ class WechatController extends \yii\web\Controller
 8.查看历史消息');
             } elseif ($event['EventKey']=='CLICK_OVERSEAS_STUDY_LOAN') {
 
-                return Message::make('image')->media_id('_ofQW2y0X_reCuxGEnhcw5Bowh7VTC_Awr0Ya3CQjunazOxtBvqqiwjP9w-cAJVc');
+                return Message::make('image')->media_id('d721dT6DJEavxjhIJzHmkfzc0kQME8v4ll87TVHCDYF8vaIZxQccocHW7T2YZJ3t');
             }
         });
 
