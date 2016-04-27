@@ -107,7 +107,7 @@ class WechatController extends \yii\web\Controller
 8.查看历史消息');
             } elseif ($event['EventKey']=='CLICK_OVERSEAS_STUDY_LOAN') {
 
-                return Message::make('image')->media_id('d721dT6DJEavxjhIJzHmkfzc0kQME8v4ll87TVHCDYF8vaIZxQccocHW7T2YZJ3t');
+                return Message::make('text')->content('您好,留学贷款功能正在开发,可先通过微信向我们的客服咨询办理贷款,为您推荐的客服微信号为【t1102138】');
             }
         });
 
